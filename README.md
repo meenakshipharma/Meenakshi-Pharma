@@ -1,16 +1,44 @@
-# React + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Home 
+          1.scrolable component 
+             Meenaksi pharm
+             Trichy leading pharma distrubuton
+              
+          2.
+            Year of experience 
+            No of customers
+ 
+          3.services 
+             Four services
 
-## React Compiler
+2. About us
+          about 
+          Vision & mission 
+          OUR INFRASTRUCTURE
+           
+3. Web order 
+          link redirect
+4. Stock & sales
+          link redirect
+5. Services 
+       Four services
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+6. Brand we deal 
+     (86 companies)
 
-## Expanding the ESLint configuration
+7. Achievements
+     (25 achievements)
+    
+8. Contact us 
+      
+      contact form 
+      phone numner and email should click and redirect to call and mail app
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+9. Career
+       give a form to submit deatils 
+       or else find a way to share the resume through email
+
+
+reference website : https://www.lifecarepharma.com/

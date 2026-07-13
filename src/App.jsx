@@ -1,19 +1,44 @@
-import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import ScrollToTop from "./components/ScrollToTop";
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Brands from "./pages/Brands";
+import Achievements from "./pages/Achievements";
+import Career from "./pages/Career";
+import Contact from "./pages/Contact";
 
-import "./App.css";
-
-function App() {
-  const [count, setCount] = useState(0);
-
+export default function App() {
   return (
-    <>
-      <div className="mt-8 p-4 bg-purple-100  border border-purple-300  max-w-md mx-auto">
-        <p className="text-red-800 font-light text-sm">
-          Tailwind CSS v4 is successfully configured! 🎉
-        </p>
+    <BrowserRouter>
+      <div className="flex flex-col min-h-screen bg-slate-50">
+        {/* Reset page scroll offset on navigation */}
+        <ScrollToTop />
+
+        {/* Dynamic header navigation */}
+        <Header />
+
+        {/* Main page content container */}
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/brands" element={<Brands />} />
+            <Route path="/achievements" element={<Achievements />} />
+            <Route path="/career" element={<Career />} />
+            <Route path="/contact" element={<Contact />} />
+
+            {/* Fallback route for 404 handler */}
+            <Route path="*" element={<Home />} />
+          </Routes>
+        </main>
+
+        {/* Global Footer */}
+        <Footer />
       </div>
-    </>
+    </BrowserRouter>
   );
 }
-
-export default App;

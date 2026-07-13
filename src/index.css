@@ -1,2 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
 @import "tailwindcss";
 
+@theme {
+  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+
+  --color-primary: #1BD3E4;
+  --color-primary-hover: #16b3c2;
+  --color-accent: #10B981;
+  --color-accent-hover: #0d9488;
+  --color-bg-light: #F8FCFD;
+  --color-text-dark: #0F172A;
+  --color-dark-teal: #082529;
+  --color-dark-teal-hover: #061d20;
+  --color-text-muted: #475569;
+  --color-border-light: #E2E8F0;
+
+  --shadow-premium: 0 10px 30px -10px rgba(27, 211, 228, 0.2), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-hover-glow: 0 20px 40px -15px rgba(27, 211, 228, 0.35), 0 0 15px -3px rgba(27, 211, 228, 0.2);
+
+  --animate-marquee: marquee 50s linear infinite;
+  --animate-float: float 4s ease-in-out infinite;
+  --animate-float-slow: float-slow 6s ease-in-out infinite;
+  --animate-spin-slow: spin-slow 20s linear infinite;
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes float-slow {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(4deg); }
+  }
+
+  @keyframes spin-slow {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F8FCFD;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #1BD3E4;
+}
+
+/* Glassmorphism utility */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(27, 211, 228, 0.15);
+}
+
+.glass-panel-dark {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Base resets & layout tweaks */
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg-light);
+  color: var(--color-text-dark);
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+
+/* Custom layout paddings */
+.section-padding {
+  padding-top: 100px;
+  padding-bottom: 100px;
+}
+
+/* Mask utility for marquee fade effect */
+.marquee-mask {
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
