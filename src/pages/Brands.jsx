@@ -45,30 +45,7 @@ export default function Brands() {
           padding: "120px 24px 72px",
         }}
       >
-        {/* Pill badge */}
-        <div
-          style={{
-            display: "inline-flex",
-            alignItems: "center",
-            gap: "8px",
-            background: "rgba(27,211,228,0.08)",
-            border: "1px solid rgba(27,211,228,0.22)",
-            borderRadius: "100px",
-            padding: "5px 16px",
-            marginBottom: "28px",
-          }}
-        >
-          <span
-            style={{
-              width: "7px",
-              height: "7px",
-              borderRadius: "50%",
-              background: "#1BD3E4",
-              display: "inline-block",
-              boxShadow: "0 0 10px rgba(27,211,228,0.8)",
-            }}
-          />
-        </div>
+
 
         <h1
           style={{
@@ -119,24 +96,7 @@ export default function Brands() {
         ))}
       </section>
 
-      {/* ── Bottom CTA strip ──────────────────────────────────────────────── */}
-      <div
-        style={{
-          position: "relative",
-          zIndex: 1,
-          background: "linear-gradient(135deg,#082529 0%,#0D9488 100%)",
-          padding: "48px 24px",
-          textAlign: "center",
-        }}
-      >
-        <p style={{ color: "rgba(255,255,255,0.6)", fontSize: "13px", letterSpacing: "2px", textTransform: "uppercase", marginBottom: "10px" }}>
-          Trusted Pharmaceutical Distributor
-        </p>
-        <h2 style={{ color: "#fff", fontSize: "clamp(22px, 3vw, 36px)", fontWeight: "800", margin: "0" }}>
-          Need a specific brand?{" "}
-          <span style={{ color: "#1BD3E4" }}>We stock it.</span>
-        </h2>
-      </div>
+    
     </div>
   );
 }
