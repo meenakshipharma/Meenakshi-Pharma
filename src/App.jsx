@@ -13,14 +13,15 @@ import Contact from "./pages/Contact";
 export default function App() {
   return (
     <BrowserRouter>
-      <div className="flex flex-col min-h-screen bg-slate-50">
+      {/* Tiles provide their own background — no wrapper bg needed */}
+      <div className="flex flex-col min-h-screen">
         {/* Reset page scroll offset on navigation */}
         <ScrollToTop />
 
-        {/* Dynamic header navigation */}
+        {/* Global nav — always true black, 44px height */}
         <Header />
 
-        {/* Main page content container */}
+        {/* Main page content — tiles stack edge-to-edge */}
         <main className="flex-grow">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -31,12 +32,12 @@ export default function App() {
             <Route path="/career" element={<Career />} />
             <Route path="/contact" element={<Contact />} />
 
-            {/* Fallback route for 404 handler */}
+            {/* Fallback route */}
             <Route path="*" element={<Home />} />
           </Routes>
         </main>
 
-        {/* Global Footer */}
+        {/* Footer — parchment canvas */}
         <Footer />
       </div>
     </BrowserRouter>

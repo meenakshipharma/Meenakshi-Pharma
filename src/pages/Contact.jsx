@@ -1,265 +1,385 @@
-import React, { useState } from "react";
-import { useForm } from "react-hook-form";
-import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Phone, Mail, Clock, CheckCircle2, Navigation } from "lucide-react";
+import { useState } from "react";
+import { Phone, Mail, MapPin, Clock, Send } from "lucide-react";
 import { CONTACT } from "../utils/contact";
 
 export default function Contact() {
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
+  const [form, setForm] = useState({ name: "", phone: "", email: "", message: "" });
+  const [submitted, setSubmitted] = useState(false);
 
-  const handleFormSubmit = (data) => {
-    console.log("Contact form submission:", data);
-    setIsSubmitted(true);
-    setTimeout(() => {
-      setIsSubmitted(false);
-      reset();
-    }, 4000);
+  const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    const subject = encodeURIComponent(`Enquiry from ${form.name}`);
+    const body = encodeURIComponent(
+      `Name: ${form.name}\nPhone: ${form.phone}\nEmail: ${form.email}\n\nMessage:\n${form.message}`
+    );
+    window.location.href = `${CONTACT.email.generalHref}?subject=${subject}&body=${body}`;
+    setSubmitted(true);
   };
 
+  /* Shared input style */
+  const inputStyle = {
+    width: "100%",
+    height: "44px",
+    padding: "0 20px",
+    fontFamily: "var(--font-text)",
+    fontSize: "var(--type-body-size)",
+    fontWeight: "var(--type-body-weight)",
+    letterSpacing: "var(--type-body-ls)",
+    color: "var(--color-ink)",
+    backgroundColor: "var(--color-canvas)",
+    border: "1px solid rgba(0,0,0,0.08)",
+    borderRadius: "var(--radius-pill)",
+    outline: "none",
+    transition: "border-color 0.2s ease",
+  };
+
+  const textareaStyle = {
+    ...inputStyle,
+    height: "140px",
+    padding: "12px 20px",
+    borderRadius: "var(--radius-lg)",
+    resize: "vertical",
+  };
+
+  const onFocus  = e => (e.target.style.borderColor = "var(--color-primary-focus)");
+  const onBlur   = e => (e.target.style.borderColor = "rgba(0,0,0,0.08)");
+
   return (
-    <div className="relative overflow-hidden bg-slate-50 min-h-screen pt-24 pb-16 sm:pb-0">
+    <div style={{ paddingTop: "var(--height-global-nav)" }}>
 
-      {/* CONTACT CONTAINER (SPLIT LAYOUT) */}
-      <section className="section-padding bg-white">
-        <div className="max-w-[1280px] mx-auto px-6 md:px-8">
-          
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
-            
-            {/* Left Column: Contact Details */}
-            <div className="lg:col-span-5 text-left flex flex-col gap-8">
-              <div>
-                <span className="text-xs font-bold text-primary uppercase tracking-widest mb-3 leading-none block">Inquiries</span>
-                <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                  Get in Touch Directly
-                </h2>
-                <p className="text-slate-500 mt-3.5 leading-relaxed text-sm md:text-base">
-                  Our customer service relations officers are standing by to process your healthcare inventory requirements. Select your preferred channel below.
-                </p>
-              </div>
-
-              {/* Cards List */}
-              <div className="flex flex-col gap-5">
-
-                {/* Address */}
-                <div className="flex gap-4 p-5 bg-slate-50 border border-slate-200/80 rounded-2xl shadow-sm group">
-                  <div className="w-11 h-11 rounded-xl bg-cyan-100/50 text-primary flex items-center justify-center flex-shrink-0">
-                    <MapPin size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-slate-900 text-sm md:text-base">Office &amp; Warehouse Address</h4>
-                    <p className="text-slate-500 text-xs md:text-sm mt-1.5 leading-relaxed">
-                      {CONTACT.address.line1},<br />
-                      {CONTACT.address.line2},<br />
-                      {CONTACT.address.city},<br />
-                      {CONTACT.address.state} – {CONTACT.address.pincode}
-                    </p>
-                    <a
-                      href={CONTACT.address.mapsUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="mt-3.5 inline-flex items-center gap-1.5 px-4 py-1.5 bg-white border border-slate-200 rounded-lg text-xs font-bold text-primary hover:bg-slate-50 transition-colors shadow-sm"
-                    >
-                      <Navigation size={13} /> Open Google Maps
-                    </a>
-                  </div>
-                </div>
-
-                {/* Phone */}
-                <div className="flex gap-4 p-5 bg-slate-50 border border-slate-200/80 rounded-2xl shadow-sm group">
-                  <div className="w-11 h-11 rounded-xl bg-emerald-100 text-accent flex items-center justify-center flex-shrink-0">
-                    <Phone size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-slate-900 text-sm md:text-base">Phone Numbers</h4>
-                    <div className="flex flex-col gap-1 mt-1.5">
-                      <a href={CONTACT.phone.primaryHref} className="text-slate-500 text-xs md:text-sm hover:text-primary transition-colors font-medium">
-                        Office: {CONTACT.phone.primary}
-                      </a>
-                      <a href={CONTACT.phone.secondaryHref} className="text-slate-500 text-xs md:text-sm hover:text-primary transition-colors font-medium">
-                        Mobile: {CONTACT.phone.secondary}
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Email */}
-                <div className="flex gap-4 p-5 bg-slate-50 border border-slate-200/80 rounded-2xl shadow-sm group">
-                  <div className="w-11 h-11 rounded-xl bg-cyan-100/50 text-primary flex items-center justify-center flex-shrink-0">
-                    <Mail size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-slate-900 text-sm md:text-base">Email Inboxes</h4>
-                    <div className="flex flex-col gap-1 mt-1.5">
-                      <a href={CONTACT.email.generalHref} className="text-slate-500 text-xs md:text-sm hover:text-primary transition-colors font-medium">
-                        General: {CONTACT.email.general}
-                      </a>
-                      <a href={CONTACT.email.salesHref} className="text-slate-500 text-xs md:text-sm hover:text-primary transition-colors font-medium">
-                        Sales: {CONTACT.email.sales}
-                      </a>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Business Hours */}
-                <div className="flex gap-4 p-5 bg-slate-50 border border-slate-200/80 rounded-2xl shadow-sm group">
-                  <div className="w-11 h-11 rounded-xl bg-cyan-50 text-primary flex items-center justify-center flex-shrink-0">
-                    <Clock size={20} />
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-slate-900 text-sm md:text-base">Business Hours</h4>
-                    <p className="text-slate-500 text-xs md:text-sm mt-1.5 font-medium leading-relaxed">
-                      {CONTACT.hours.weekdays}<br />
-                      {CONTACT.hours.sunday}
-                    </p>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-
-            {/* Right Column: Contact Form */}
-            <div className="lg:col-span-7 bg-slate-50 border border-slate-200/80 p-6 md:p-8 rounded-[24px] shadow-sm text-left">
-              <span className="text-xs font-bold text-primary uppercase tracking-widest mb-2 block">Direct message</span>
-              <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 mb-6">Send an Inquiry Message</h3>
-
-              <AnimatePresence mode="wait">
-                {isSubmitted ? (
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    className="py-16 text-center flex flex-col items-center justify-center"
-                  >
-                    <div className="w-16 h-16 bg-emerald-100 text-accent rounded-full flex items-center justify-center mb-4">
-                      <CheckCircle2 size={36} />
-                    </div>
-                    <h4 className="font-extrabold text-slate-900 text-lg md:text-xl">Inquiry Sent Successfully!</h4>
-                    <p className="text-slate-500 text-xs md:text-sm mt-2 leading-relaxed max-w-sm">
-                      We have logged your query. A pharmaceutical coordinator will contact you via email or phone within the next 24 business hours.
-                    </p>
-                  </motion.div>
-                ) : (
-                  <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-5">
-                    
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      {/* Name */}
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-xs font-bold text-slate-700 uppercase">Your Name</label>
-                        <input
-                          type="text"
-                          placeholder="Enter your name"
-                          className={`bg-white border text-sm rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary/30 ${
-                            errors.name ? "border-red-500" : "border-slate-200 focus:border-primary"
-                          }`}
-                          {...register("name", { required: true, minLength: 2 })}
-                        />
-                        {errors.name && <span className="text-red-500 text-[10px] font-bold">Please provide your name</span>}
-                      </div>
-
-                      {/* Company Name */}
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-xs font-bold text-slate-700 uppercase">Hospital / Pharmacy Company</label>
-                        <input
-                          type="text"
-                          placeholder="e.g. Trichy City Clinic"
-                          className={`bg-white border text-sm rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary/30 ${
-                            errors.company ? "border-red-500" : "border-slate-200 focus:border-primary"
-                          }`}
-                          {...register("company", { required: true })}
-                        />
-                        {errors.company && <span className="text-red-500 text-[10px] font-bold">Please list your institution name</span>}
-                      </div>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
-                      {/* Phone */}
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-xs font-bold text-slate-700 uppercase">Phone Number</label>
-                        <input
-                          type="tel"
-                          placeholder="Contact phone number"
-                          className={`bg-white border text-sm rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary/30 ${
-                            errors.phone ? "border-red-500" : "border-slate-200 focus:border-primary"
-                          }`}
-                          {...register("phone", { required: true, pattern: /^[0-9]{10}$/ })}
-                        />
-                        {errors.phone && <span className="text-red-500 text-[10px] font-bold">Provide a valid 10-digit number</span>}
-                      </div>
-
-                      {/* Email */}
-                      <div className="flex flex-col gap-1.5">
-                        <label className="text-xs font-bold text-slate-700 uppercase">Email Address</label>
-                        <input
-                          type="email"
-                          placeholder="Enter your email"
-                          className={`bg-white border text-sm rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary/30 ${
-                            errors.email ? "border-red-500" : "border-slate-200 focus:border-primary"
-                          }`}
-                          {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
-                        />
-                        {errors.email && <span className="text-red-500 text-[10px] font-bold">Provide a valid email address</span>}
-                      </div>
-                    </div>
-
-                    {/* Subject */}
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-bold text-slate-700 uppercase">Inquiry Subject</label>
-                      <input
-                        type="text"
-                        placeholder="e.g. Sourcing generic medicines catalog / Cold storage vaccines request"
-                        className={`bg-white border text-sm rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary/30 ${
-                          errors.subject ? "border-red-500" : "border-slate-200 focus:border-primary"
-                        }`}
-                        {...register("subject", { required: true })}
-                      />
-                      {errors.subject && <span className="text-red-500 text-[10px] font-bold">Please outline your request topic</span>}
-                    </div>
-
-                    {/* Message */}
-                    <div className="flex flex-col gap-1.5">
-                      <label className="text-xs font-bold text-slate-700 uppercase">Inquiry Details</label>
-                      <textarea
-                        rows="5"
-                        placeholder="Write details about your supply requirements..."
-                        className={`bg-white border text-sm rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-primary/30 ${
-                          errors.message ? "border-red-500" : "border-slate-200 focus:border-primary"
-                        }`}
-                        {...register("message", { required: true, minLength: 10 })}
-                      />
-                      {errors.message && <span className="text-red-500 text-[10px] font-bold">Please provide a detailed query message</span>}
-                    </div>
-
-                    <button
-                      type="submit"
-                      className="w-full sm:w-auto px-8 py-3.5 bg-primary hover:bg-primary-hover text-white text-sm font-bold rounded-xl shadow-md transition-colors cursor-pointer focus:outline-none text-center"
-                    >
-                      Send Message
-                    </button>
-                  </form>
-                )}
-              </AnimatePresence>
-            </div>
-
-          </div>
-
+      {/* ═══════════════════════════════════════════════════════
+          TILE 1 — HERO (Dark)
+      ═══════════════════════════════════════════════════════ */}
+      <section className="tile-dark section-pad">
+        <div className="container-content text-center flex flex-col items-center gap-6">
+          <p className="type-tagline" style={{ color: "var(--color-primary-on-dark)" }}>
+            Get in Touch
+          </p>
+          <h1 className="type-hero" style={{ color: "var(--color-on-dark)", margin: 0 }}>
+            Contact Us
+          </h1>
+          <p className="type-lead" style={{ color: "var(--color-body-muted)", maxWidth: "480px", margin: 0 }}>
+            Reach out for orders, enquiries, or partnerships.
+            Our team responds within one business day.
+          </p>
         </div>
       </section>
 
+      {/* ═══════════════════════════════════════════════════════
+          TILE 2 — CONTACT INFO + FORM (Light White)
+      ═══════════════════════════════════════════════════════ */}
+      <section className="tile-light section-pad">
+        <div className="container-wide">
+          <div className="grid gap-16 items-start" style={{ gridTemplateColumns: "1fr 1.6fr" }}>
 
-      {/* Sticky Call Button on Mobile */}
-      <div className="block sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 px-5 py-3 flex items-center justify-between shadow-lg">
-        <div className="text-left">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide block leading-none">Emergency Supply Line</span>
-          <span className="text-sm font-bold text-slate-800 tracking-tight leading-none mt-1.5 block">{CONTACT.phone.secondary}</span>
+            {/* Left — Contact Info */}
+            <div className="flex flex-col gap-8">
+              <div>
+                <h2 className="type-display-md" style={{ color: "var(--color-ink)", marginBottom: "8px" }}>
+                  Meenakshi Pharma Distributors
+                </h2>
+                <p className="type-body" style={{ color: "var(--color-ink-muted-48)" }}>
+                  Trichy, Tamil Nadu
+                </p>
+              </div>
+
+              {/* Info rows */}
+              <div className="flex flex-col gap-6">
+                {[
+                  {
+                    icon: Phone,
+                    label: "Phone",
+                    items: [
+                      { text: CONTACT.phone.primary, href: CONTACT.phone.primaryHref },
+                    ],
+                  },
+                  {
+                    icon: Mail,
+                    label: "Email",
+                    items: [
+                      { text: CONTACT.email.general, href: CONTACT.email.generalHref },
+                      { text: `${CONTACT.email.hr} (HR)`, href: CONTACT.email.hrHref },
+                    ],
+                  },
+                  {
+                    icon: MapPin,
+                    label: "Address",
+                    items: [
+                      { text: `${CONTACT.address.line2}, ${CONTACT.address.city}, ${CONTACT.address.state} – ${CONTACT.address.pincode}`, href: CONTACT.address.mapsUrl, external: true },
+                    ],
+                  },
+                  {
+                    icon: Clock,
+                    label: "Hours",
+                    items: [
+                      { text: CONTACT.hours.weekdays },
+                      { text: CONTACT.hours.sunday },
+                    ],
+                  },
+                ].map(({ icon: Icon, label, items }) => (
+                  <div key={label} className="flex gap-4">
+                    <div
+                      className="flex items-center justify-center flex-shrink-0"
+                      style={{
+                        width: "40px",
+                        height: "40px",
+                        borderRadius: "var(--radius-sm)",
+                        backgroundColor: "rgba(0,102,204,0.08)",
+                        color: "var(--color-primary)",
+                        marginTop: "2px",
+                      }}
+                    >
+                      <Icon size={16} strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <p className="type-fine-print" style={{ color: "var(--color-ink-muted-48)", textTransform: "uppercase", letterSpacing: "0.06em", marginBottom: "4px" }}>
+                        {label}
+                      </p>
+                      {items.map(({ text, href, external }) =>
+                        href ? (
+                          <a
+                            key={text}
+                            href={href}
+                            target={external ? "_blank" : undefined}
+                            rel={external ? "noopener noreferrer" : undefined}
+                            className="block type-body transition-colors duration-200"
+                            style={{ color: "var(--color-ink-muted-80)" }}
+                            onMouseEnter={e => (e.target.style.color = "var(--color-primary)")}
+                            onMouseLeave={e => (e.target.style.color = "var(--color-ink-muted-80)")}
+                          >
+                            {text}
+                          </a>
+                        ) : (
+                          <p key={text} className="type-body" style={{ color: "var(--color-ink-muted-80)" }}>{text}</p>
+                        )
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Portals */}
+              <div style={{ paddingTop: "24px", borderTop: "1px solid var(--color-hairline)" }}>
+                <p className="type-caption-strong" style={{ color: "var(--color-ink)", marginBottom: "12px" }}>
+                  Online Portals
+                </p>
+                <div className="flex flex-col gap-3">
+                  <a
+                    href={CONTACT.portals.webOrder.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-primary self-start"
+                  >
+                    Web Order Portal
+                  </a>
+                  <a
+                    href={CONTACT.portals.stockSales.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-ghost-pill self-start"
+                  >
+                    Stock & Sales Portal
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Right — Enquiry Form */}
+            <div
+              className="utility-card"
+              style={{ padding: "40px" }}
+            >
+              {submitted ? (
+                <div className="text-center flex flex-col items-center gap-6 py-12">
+                  <div
+                    style={{
+                      width: "56px",
+                      height: "56px",
+                      borderRadius: "50%",
+                      backgroundColor: "rgba(0,102,204,0.08)",
+                      color: "var(--color-primary)",
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    <Send size={24} />
+                  </div>
+                  <div>
+                    <h3 className="type-body-strong" style={{ color: "var(--color-ink)", marginBottom: "8px" }}>
+                      Message sent!
+                    </h3>
+                    <p className="type-body" style={{ color: "var(--color-ink-muted-48)" }}>
+                      Your email client should have opened. We'll get back to you shortly.
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setSubmitted(false)}
+                    className="text-link type-caption"
+                    style={{ background: "none", border: "none", cursor: "pointer" }}
+                  >
+                    Send another message
+                  </button>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="flex flex-col gap-5" noValidate>
+                  <div>
+                    <h3 className="type-body-strong" style={{ color: "var(--color-ink)", marginBottom: "4px" }}>
+                      Send an Enquiry
+                    </h3>
+                    <p className="type-caption" style={{ color: "var(--color-ink-muted-48)" }}>
+                      Fill in the form and we'll respond within one business day.
+                    </p>
+                  </div>
+
+                  <div className="grid gap-4" style={{ gridTemplateColumns: "1fr 1fr" }}>
+                    <div className="flex flex-col gap-1.5">
+                      <label
+                        htmlFor="contact-name"
+                        className="type-caption-strong"
+                        style={{ color: "var(--color-ink)" }}
+                      >
+                        Full Name *
+                      </label>
+                      <input
+                        id="contact-name"
+                        name="name"
+                        type="text"
+                        required
+                        placeholder="Dr. Ramesh Kumar"
+                        value={form.name}
+                        onChange={handleChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        style={inputStyle}
+                      />
+                    </div>
+                    <div className="flex flex-col gap-1.5">
+                      <label
+                        htmlFor="contact-phone"
+                        className="type-caption-strong"
+                        style={{ color: "var(--color-ink)" }}
+                      >
+                        Phone Number
+                      </label>
+                      <input
+                        id="contact-phone"
+                        name="phone"
+                        type="tel"
+                        placeholder="+91 98765 43210"
+                        value={form.phone}
+                        onChange={handleChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        style={inputStyle}
+                      />
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      htmlFor="contact-email"
+                      className="type-caption-strong"
+                      style={{ color: "var(--color-ink)" }}
+                    >
+                      Email Address *
+                    </label>
+                    <input
+                      id="contact-email"
+                      name="email"
+                      type="email"
+                      required
+                      placeholder="you@example.com"
+                      value={form.email}
+                      onChange={handleChange}
+                      onFocus={onFocus}
+                      onBlur={onBlur}
+                      style={inputStyle}
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <label
+                      htmlFor="contact-message"
+                      className="type-caption-strong"
+                      style={{ color: "var(--color-ink)" }}
+                    >
+                      Message *
+                    </label>
+                    <textarea
+                      id="contact-message"
+                      name="message"
+                      required
+                      placeholder="Tell us about your pharmacy / institution and the medicines you need…"
+                      value={form.message}
+                      onChange={handleChange}
+                      onFocus={onFocus}
+                      onBlur={onBlur}
+                      style={textareaStyle}
+                    />
+                  </div>
+
+                  <button
+                    id="contact-submit-btn"
+                    type="submit"
+                    className="btn-primary"
+                    style={{ alignSelf: "flex-start" }}
+                  >
+                    Send Message
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
         </div>
-        <a
-          href={CONTACT.phone.secondaryHref}
-          className="px-6 py-2 bg-primary hover:bg-primary-hover text-white text-xs font-bold rounded-lg shadow-md transition-colors"
-        >
-          Call Now
-        </a>
-      </div>
+        <style>{`
+          @media (max-width: 767px) {
+            .tile-light .grid { grid-template-columns: 1fr !important; }
+            .utility-card form .grid { grid-template-columns: 1fr !important; }
+          }
+        `}</style>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════
+          TILE 3 — MAP EMBED PLACEHOLDER (Parchment)
+      ═══════════════════════════════════════════════════════ */}
+      <section className="tile-parchment" style={{ paddingTop: 0, paddingBottom: "var(--space-section)" }}>
+        <div className="container-wide">
+          <a
+            href={CONTACT.address.mapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block"
+            style={{ borderRadius: "var(--radius-lg)", overflow: "hidden" }}
+          >
+            <div
+              style={{
+                height: "300px",
+                backgroundColor: "var(--color-surface-chip)",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: "12px",
+                cursor: "pointer",
+                transition: "opacity 0.2s ease",
+              }}
+              onMouseEnter={e => (e.currentTarget.style.opacity = "0.8")}
+              onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
+            >
+              <MapPin size={32} style={{ color: "var(--color-primary)" }} />
+              <p className="type-body-strong" style={{ color: "var(--color-ink)" }}>
+                Open in Google Maps
+              </p>
+              <p className="type-caption" style={{ color: "var(--color-ink-muted-48)" }}>
+                {CONTACT.address.line2}, {CONTACT.address.city}
+              </p>
+            </div>
+          </a>
+        </div>
+      </section>
 
     </div>
   );

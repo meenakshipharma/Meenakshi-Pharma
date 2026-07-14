@@ -1,101 +1,471 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+/* Google Fonts — Inter as SF Pro substitute on non-Apple platforms */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,600;0,14..32,700;1,14..32,400&display=swap');
 
+/* Tailwind base */
 @import "tailwindcss";
 
-@theme {
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+/* Import our single source-of-truth token file (after @import rules) */
+@import "./styles/tokens.css";
 
-  --color-primary: #1BD3E4;
-  --color-primary-hover: #16b3c2;
-  --color-accent: #10B981;
-  --color-accent-hover: #0d9488;
-  --color-bg-light: #F8FCFD;
-  --color-text-dark: #0F172A;
-  --color-dark-teal: #082529;
-  --color-dark-teal-hover: #061d20;
-  --color-text-muted: #475569;
-  --color-border-light: #E2E8F0;
+/* ============================================================
+   BASE STYLES
+============================================================ */
 
-  --shadow-premium: 0 10px 30px -10px rgba(27, 211, 228, 0.2), 0 1px 3px rgba(0, 0, 0, 0.04);
-  --shadow-hover-glow: 0 20px 40px -15px rgba(27, 211, 228, 0.35), 0 0 15px -3px rgba(27, 211, 228, 0.2);
-
-  --animate-marquee: marquee 50s linear infinite;
-  --animate-float: float 4s ease-in-out infinite;
-  --animate-float-slow: float-slow 6s ease-in-out infinite;
-  --animate-spin-slow: spin-slow 20s linear infinite;
-
-  @keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-
-  @keyframes float-slow {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    50% { transform: translateY(-15px) rotate(4deg); }
-  }
-
-  @keyframes spin-slow {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-/* Custom Scrollbar */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-text);
+  font-size: var(--type-body-size);
+  font-weight: var(--type-body-weight);
+  line-height: var(--type-body-lh);
+  letter-spacing: var(--type-body-ls);
+  color: var(--color-body);
+  background-color: var(--color-canvas);
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================================
+   SCROLLBAR
+============================================================ */
+
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F8FCFD;
+  background: var(--color-canvas-parchment);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #CBD5E1;
-  border-radius: 5px;
+  background: var(--color-surface-chip);
+  border-radius: var(--radius-pill);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1BD3E4;
+  background: var(--color-ink-muted-48);
 }
 
-/* Glassmorphism utility */
-.glass-panel {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(27, 211, 228, 0.15);
+/* ============================================================
+   TYPOGRAPHY UTILITIES
+============================================================ */
+
+.type-hero {
+  font-family: var(--font-display);
+  font-size: var(--type-hero-size);
+  font-weight: var(--type-hero-weight);
+  line-height: var(--type-hero-lh);
+  letter-spacing: var(--type-hero-ls);
 }
 
-.glass-panel-dark {
-  background: rgba(15, 23, 42, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+.type-display-lg {
+  font-family: var(--font-display);
+  font-size: var(--type-display-lg-size);
+  font-weight: var(--type-display-lg-weight);
+  line-height: var(--type-display-lg-lh);
+  letter-spacing: var(--type-display-lg-ls);
 }
 
-/* Base resets & layout tweaks */
-body {
-  font-family: var(--font-sans);
-  background-color: var(--color-bg-light);
-  color: var(--color-text-dark);
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+.type-display-md {
+  font-family: var(--font-text);
+  font-size: var(--type-display-md-size);
+  font-weight: var(--type-display-md-weight);
+  line-height: var(--type-display-md-lh);
+  letter-spacing: var(--type-display-md-ls);
 }
 
-/* Custom layout paddings */
-.section-padding {
+.type-lead {
+  font-family: var(--font-display);
+  font-size: var(--type-lead-size);
+  font-weight: var(--type-lead-weight);
+  line-height: var(--type-lead-lh);
+  letter-spacing: var(--type-lead-ls);
+}
+
+.type-lead-airy {
+  font-family: var(--font-text);
+  font-size: var(--type-lead-airy-size);
+  font-weight: var(--type-lead-airy-weight);
+  line-height: var(--type-lead-airy-lh);
+  letter-spacing: var(--type-lead-airy-ls);
+}
+
+.type-tagline {
+  font-family: var(--font-display);
+  font-size: var(--type-tagline-size);
+  font-weight: var(--type-tagline-weight);
+  line-height: var(--type-tagline-lh);
+  letter-spacing: var(--type-tagline-ls);
+}
+
+.type-body-strong {
+  font-family: var(--font-text);
+  font-size: var(--type-body-strong-size);
+  font-weight: var(--type-body-strong-weight);
+  line-height: var(--type-body-strong-lh);
+  letter-spacing: var(--type-body-strong-ls);
+}
+
+.type-body {
+  font-family: var(--font-text);
+  font-size: var(--type-body-size);
+  font-weight: var(--type-body-weight);
+  line-height: var(--type-body-lh);
+  letter-spacing: var(--type-body-ls);
+}
+
+.type-caption {
+  font-family: var(--font-text);
+  font-size: var(--type-caption-size);
+  font-weight: var(--type-caption-weight);
+  line-height: var(--type-caption-lh);
+  letter-spacing: var(--type-caption-ls);
+}
+
+.type-caption-strong {
+  font-family: var(--font-text);
+  font-size: var(--type-caption-strong-size);
+  font-weight: var(--type-caption-strong-weight);
+  line-height: var(--type-caption-strong-lh);
+  letter-spacing: var(--type-caption-strong-ls);
+}
+
+.type-fine-print {
+  font-family: var(--font-text);
+  font-size: var(--type-fine-print-size);
+  font-weight: var(--type-fine-print-weight);
+  line-height: var(--type-fine-print-lh);
+  letter-spacing: var(--type-fine-print-ls);
+}
+
+.type-nav-link {
+  font-family: var(--font-text);
+  font-size: var(--type-nav-link-size);
+  font-weight: var(--type-nav-link-weight);
+  line-height: var(--type-nav-link-lh);
+  letter-spacing: var(--type-nav-link-ls);
+}
+
+.type-dense-link {
+  font-family: var(--font-text);
+  font-size: var(--type-dense-link-size);
+  font-weight: var(--type-dense-link-weight);
+  line-height: var(--type-dense-link-lh);
+  letter-spacing: var(--type-dense-link-ls);
+}
+
+/* ============================================================
+   TILE SURFACES
+   Full-bleed section backgrounds. No border-radius (tiles are
+   always rectangular and edge-to-edge).
+============================================================ */
+
+.tile-light {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+}
+
+.tile-parchment {
+  background-color: var(--color-canvas-parchment);
+  color: var(--color-ink);
+}
+
+.tile-dark {
+  background-color: var(--color-surface-tile-1);
+  color: var(--color-on-dark);
+}
+
+.tile-dark-2 {
+  background-color: var(--color-surface-tile-2);
+  color: var(--color-on-dark);
+}
+
+.tile-dark-3 {
+  background-color: var(--color-surface-tile-3);
+  color: var(--color-on-dark);
+}
+
+.tile-black {
+  background-color: var(--color-surface-black);
+  color: var(--color-on-dark);
+}
+
+/* ============================================================
+   BUTTONS
+   Apple button grammar:
+   - pill = primary action (blue pill)
+   - ghost-pill = secondary action (outlined pill)
+   - utility = compact dark rect (nav actions)
+   Active state: scale(0.95) — the system-wide micro-interaction
+============================================================ */
+
+/* Primary Blue Pill */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+  color: var(--color-canvas);
+  font-family: var(--font-text);
+  font-size: var(--type-body-size);
+  font-weight: var(--type-body-weight);
+  line-height: var(--type-body-lh);
+  letter-spacing: var(--type-body-ls);
+  padding: 11px 22px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-focus);
+}
+
+.btn-primary:active {
+  transform: scale(0.95);
+}
+
+.btn-primary:focus-visible {
+  outline: 2px solid var(--color-primary-focus);
+  outline-offset: 2px;
+}
+
+/* Secondary Ghost Pill */
+.btn-ghost-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent;
+  color: var(--color-primary);
+  font-family: var(--font-text);
+  font-size: var(--type-body-size);
+  font-weight: var(--type-body-weight);
+  line-height: var(--type-body-lh);
+  letter-spacing: var(--type-body-ls);
+  padding: 10px 22px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-primary);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.btn-ghost-pill:hover {
+  background-color: rgba(0, 102, 204, 0.06);
+}
+
+.btn-ghost-pill:active {
+  transform: scale(0.95);
+}
+
+/* Dark Utility Button (nav actions) */
+.btn-utility {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-ink);
+  color: var(--color-on-dark);
+  font-family: var(--font-text);
+  font-size: var(--type-btn-utility-size);
+  font-weight: var(--type-btn-utility-weight);
+  line-height: var(--type-btn-utility-lh);
+  letter-spacing: var(--type-btn-utility-ls);
+  padding: 8px 15px;
+  border-radius: var(--radius-sm);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.btn-utility:active {
+  transform: scale(0.95);
+}
+
+/* Large Store Hero CTA */
+.btn-store-hero {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-primary);
+  color: var(--color-canvas);
+  font-family: var(--font-text);
+  font-size: var(--type-btn-large-size);
+  font-weight: var(--type-btn-large-weight);
+  line-height: var(--type-btn-large-lh);
+  letter-spacing: var(--type-btn-large-ls);
+  padding: 14px 28px;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+  white-space: nowrap;
+}
+
+.btn-store-hero:hover {
+  background-color: var(--color-primary-focus);
+}
+
+.btn-store-hero:active {
+  transform: scale(0.95);
+}
+
+/* ============================================================
+   LINKS
+============================================================ */
+
+.text-link {
+  color: var(--color-primary);
+  text-decoration: none;
+  font-family: var(--font-text);
+  font-size: var(--type-body-size);
+  font-weight: var(--type-body-weight);
+  line-height: var(--type-body-lh);
+  letter-spacing: var(--type-body-ls);
+  transition: opacity 0.2s ease;
+}
+
+.text-link:hover {
+  opacity: 0.75;
+}
+
+/* On dark tiles use Sky Link Blue */
+.text-link-on-dark {
+  color: var(--color-primary-on-dark);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+.text-link-on-dark:hover {
+  opacity: 0.75;
+}
+
+/* ============================================================
+   UTILITY CARD (store / service cards)
+   White bg, 18px radius, 1px hairline border, 24px padding
+   Shadow only appears on product imagery inside the card —
+   never on the card itself.
+============================================================ */
+
+.utility-card {
+  background-color: var(--color-canvas);
+  border: 1px solid var(--color-hairline);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+}
+
+/* ============================================================
+   PRODUCT SHADOW
+   The ONE shadow in the system — only on product renders.
+   Never on cards, buttons, or text.
+============================================================ */
+
+.product-shadow {
+  filter: drop-shadow(var(--shadow-product));
+}
+
+/* ============================================================
+   SECTION PADDING
+============================================================ */
+
+.section-pad {
+  padding-top: var(--space-section);
+  padding-bottom: var(--space-section);
+}
+
+.section-pad-lg {
   padding-top: 100px;
   padding-bottom: 100px;
 }
 
-/* Mask utility for marquee fade effect */
-.marquee-mask {
-  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
-  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+/* ============================================================
+   CONTAINER
+============================================================ */
+
+.container-wide {
+  max-width: 1440px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 48px;
+  padding-right: 48px;
+}
+
+.container-content {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+@media (max-width: 768px) {
+  .container-wide {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .container-content {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+}
+
+/* ============================================================
+   FROSTED GLASS (sub-nav / sticky bar)
+============================================================ */
+
+.frosted {
+  background-color: rgba(245, 245, 247, 0.80);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+}
+
+/* ============================================================
+   RESPONSIVE TYPOGRAPHY
+   Hero headline scales down gracefully across breakpoints
+============================================================ */
+
+@media (max-width: 1068px) {
+  .type-hero {
+    font-size: var(--type-display-lg-size);
+  }
+}
+
+@media (max-width: 640px) {
+  .type-hero {
+    font-size: 34px;
+    letter-spacing: -0.2px;
+  }
+
+  .type-display-lg {
+    font-size: 28px;
+  }
+
+  .section-pad {
+    padding-top: 48px;
+    padding-bottom: 48px;
+  }
+}
+
+@media (max-width: 419px) {
+  .type-hero {
+    font-size: 28px;
+    letter-spacing: -0.1px;
+  }
 }

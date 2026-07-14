@@ -1,0 +1,250 @@
+/* ============================================================
+   MEENAKSHI PHARMA — DESIGN TOKENS
+   Apple Design System Reference Implementation
+   ============================================================
+   This is the ONLY file you need to edit to change colors,
+   typography scale, spacing, or border-radius values.
+   Every CSS variable here propagates throughout the entire site.
+   ============================================================ */
+
+:root {
+  /* ----------------------------------------------------------
+     COLORS — Brand & Accent
+  ---------------------------------------------------------- */
+
+  /* Action Blue — the single brand-level interactive color.
+     All text links, pill CTAs, focus rings. */
+  --color-primary: #73d4b2;
+
+  /* Focus Blue — keyboard focus ring on buttons (outline: 2px solid) */
+  --color-primary-focus: #4dcba3;
+
+  /* Sky Link Blue — links on dark tiles only (Action Blue disappears on dark) */
+  --color-primary-on-dark: #2dae8e;
+
+  /* ----------------------------------------------------------
+     COLORS — Surfaces (Light)
+  ---------------------------------------------------------- */
+
+  /* Pure white — dominant canvas for content, cards, utility grids */
+  --color-canvas: #ffffff;
+
+  /* Parchment — Apple's signature off-white for alternating tiles,
+     footer, store utility sections */
+  --color-canvas-parchment: #f5f5f7;
+
+  /* Pearl — near-white fill for secondary "ghost" buttons */
+  --color-surface-pearl: #fafafc;
+
+  /* ----------------------------------------------------------
+     COLORS — Surfaces (Dark Tiles)
+  ---------------------------------------------------------- */
+
+  /* Near-Black Tile 1 — primary dark tile on the product grid */
+  --color-surface-tile-1: #272729;
+
+  /* Near-Black Tile 2 — micro-step lighter; stacked above/below Tile 1 */
+  --color-surface-tile-2: #2a2a2c;
+
+  /* Near-Black Tile 3 — micro-step darker; bottom of stack & video frames */
+  --color-surface-tile-3: #252527;
+
+  /* Pure Black — global nav bar background. Only place true black appears. */
+  --color-surface-black: #000000;
+
+  /* Translucent Chip Gray — circular button chips over photography
+     (in production use rgba(210, 210, 215, 0.64)) */
+  --color-surface-chip: #d2d2d7;
+  --color-surface-chip-rgba: rgba(210, 210, 215, 0.64);
+
+  /* ----------------------------------------------------------
+     COLORS — Text (Light Surfaces)
+  ---------------------------------------------------------- */
+
+  /* Near-Black Ink — all headlines, body paragraphs on light surfaces */
+  --color-ink: #1d1d1f;
+  --color-body: #1d1d1f;
+
+  /* Muted 80 — body text on Pearl Button surface */
+  --color-ink-muted-80: #333333;
+
+  /* Muted 48 — disabled text, legal fine-print */
+  --color-ink-muted-48: #7a7a7a;
+
+  /* ----------------------------------------------------------
+     COLORS — Text (Dark Surfaces)
+  ---------------------------------------------------------- */
+
+  /* White — all text on dark tiles and global nav */
+  --color-on-dark: #ffffff;
+  --color-body-on-dark: #ffffff;
+
+  /* Muted — secondary copy on dark tiles (pure white would be too loud) */
+  --color-body-muted: #cccccc;
+
+  /* ----------------------------------------------------------
+     COLORS — Borders & Hairlines
+  ---------------------------------------------------------- */
+
+  /* Divider Soft — secondary button ring shadow (not a hard line) */
+  --color-divider-soft: #f0f0f0;
+
+  /* Hairline — 1px border on store utility cards, configurator chips */
+  --color-hairline: #e0e0e0;
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY — Font Families
+  ---------------------------------------------------------- */
+
+  --font-display:
+    "SF Pro Display", system-ui, -apple-system, BlinkMacSystemFont, "Inter",
+    sans-serif;
+  --font-text:
+    "SF Pro Text", system-ui, -apple-system, BlinkMacSystemFont, "Inter",
+    sans-serif;
+
+  /* ----------------------------------------------------------
+     TYPOGRAPHY — Scale
+     Format: size / weight / line-height / letter-spacing
+  ---------------------------------------------------------- */
+
+  /* Hero display — 56px / 600 / 1.07 / -0.28px */
+  --type-hero-size: 56px;
+  --type-hero-weight: 600;
+  --type-hero-lh: 1.07;
+  --type-hero-ls: -0.28px;
+
+  /* Display LG — 40px / 600 / 1.10 / 0 */
+  --type-display-lg-size: 40px;
+  --type-display-lg-weight: 600;
+  --type-display-lg-lh: 1.1;
+  --type-display-lg-ls: 0px;
+
+  /* Display MD — 34px / 600 / 1.47 / -0.374px */
+  --type-display-md-size: 34px;
+  --type-display-md-weight: 600;
+  --type-display-md-lh: 1.47;
+  --type-display-md-ls: -0.374px;
+
+  /* Lead — 28px / 400 / 1.14 / 0.196px */
+  --type-lead-size: 28px;
+  --type-lead-weight: 400;
+  --type-lead-lh: 1.14;
+  --type-lead-ls: 0.196px;
+
+  /* Lead Airy — 24px / 300 / 1.5 / 0 */
+  --type-lead-airy-size: 24px;
+  --type-lead-airy-weight: 300;
+  --type-lead-airy-lh: 1.5;
+  --type-lead-airy-ls: 0px;
+
+  /* Tagline — 21px / 600 / 1.19 / 0.231px */
+  --type-tagline-size: 21px;
+  --type-tagline-weight: 600;
+  --type-tagline-lh: 1.19;
+  --type-tagline-ls: 0.231px;
+
+  /* Body Strong — 17px / 600 / 1.24 / -0.374px */
+  --type-body-strong-size: 17px;
+  --type-body-strong-weight: 600;
+  --type-body-strong-lh: 1.24;
+  --type-body-strong-ls: -0.374px;
+
+  /* Body — 17px / 400 / 1.47 / -0.374px */
+  --type-body-size: 17px;
+  --type-body-weight: 400;
+  --type-body-lh: 1.47;
+  --type-body-ls: -0.374px;
+
+  /* Dense Link — 17px / 400 / 2.41 / 0 (footer link columns) */
+  --type-dense-link-size: 17px;
+  --type-dense-link-weight: 400;
+  --type-dense-link-lh: 2.41;
+  --type-dense-link-ls: 0px;
+
+  /* Caption — 14px / 400 / 1.43 / -0.224px */
+  --type-caption-size: 14px;
+  --type-caption-weight: 400;
+  --type-caption-lh: 1.43;
+  --type-caption-ls: -0.224px;
+
+  /* Caption Strong — 14px / 600 / 1.29 / -0.224px */
+  --type-caption-strong-size: 14px;
+  --type-caption-strong-weight: 600;
+  --type-caption-strong-lh: 1.29;
+  --type-caption-strong-ls: -0.224px;
+
+  /* Button Large — 18px / 300 / 1.0 / 0 (store hero CTAs) */
+  --type-btn-large-size: 18px;
+  --type-btn-large-weight: 300;
+  --type-btn-large-lh: 1;
+  --type-btn-large-ls: 0px;
+
+  /* Button Utility — 14px / 400 / 1.29 / -0.224px */
+  --type-btn-utility-size: 14px;
+  --type-btn-utility-weight: 400;
+  --type-btn-utility-lh: 1.29;
+  --type-btn-utility-ls: -0.224px;
+
+  /* Fine Print — 12px / 400 / 1.0 / -0.12px */
+  --type-fine-print-size: 12px;
+  --type-fine-print-weight: 400;
+  --type-fine-print-lh: 1;
+  --type-fine-print-ls: -0.12px;
+
+  /* Micro Legal — 10px / 400 / 1.3 / -0.08px */
+  --type-micro-legal-size: 10px;
+  --type-micro-legal-weight: 400;
+  --type-micro-legal-lh: 1.3;
+  --type-micro-legal-ls: -0.08px;
+
+  /* Nav Link — 12px / 400 / 1.0 / -0.12px */
+  --type-nav-link-size: 12px;
+  --type-nav-link-weight: 400;
+  --type-nav-link-lh: 1;
+  --type-nav-link-ls: -0.12px;
+
+  /* ----------------------------------------------------------
+     BORDER RADIUS SCALE
+  ---------------------------------------------------------- */
+
+  --radius-none: 0px;
+  --radius-xs: 5px;
+  --radius-sm: 8px;
+  --radius-md: 11px;
+  --radius-lg: 18px;
+  --radius-pill: 9999px;
+  --radius-full: 9999px;
+
+  /* ----------------------------------------------------------
+     SPACING SCALE
+  ---------------------------------------------------------- */
+
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 17px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+  --space-xxl: 48px;
+  --space-section: 80px;
+
+  /* ----------------------------------------------------------
+     ELEVATION
+     Only ONE drop-shadow in the system — applied to product
+     renders/illustrations resting on a surface. Never on cards,
+     buttons, or text.
+  ---------------------------------------------------------- */
+
+  --shadow-product: rgba(0, 0, 0, 0.22) 3px 5px 30px 0px;
+  --shadow-hairline: 0 0 0 1px rgba(0, 0, 0, 0.08);
+
+  /* ----------------------------------------------------------
+     COMPONENT HEIGHTS
+  ---------------------------------------------------------- */
+
+  --height-global-nav: 44px;
+  --height-sub-nav: 52px;
+  --height-sticky-bar: 64px;
+  --height-touch-target: 44px;
+}
