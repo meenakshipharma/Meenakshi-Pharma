@@ -1,220 +1,96 @@
 import React, { useEffect, useRef, useState } from "react";
-import { BRANDS, BRAND_ROW_SIZES } from "../utils/data";
-import SVGLogo from "../components/SVGLogo";
+import { BRAND_LOGOS } from "../utils/data";
 
-/* ─── Split brands into rows for the staggered marquee layout ───────────── */
-function chunkBrands(brands, sizes) {
-  let i = 0;
-  return sizes.map((n) => brands.slice(i, (i += n)));
+function BrandCard({ brand, index }) {
+  const [isVisible, setIsVisible] = useState(false);
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    // Fallback for prefers-reduced-motion or environments without IntersectionObserver
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion || !window.IntersectionObserver) {
+      setIsVisible(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: 0.1, rootMargin: "50px" }
+    );
+
+    if (wrapperRef.current) {
+      observer.observe(wrapperRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <div
+      ref={wrapperRef}
+      className="will-change-transform motion-reduce:transition-none motion-reduce:transform-none"
+      style={{
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(20px)",
+        transition: "opacity 0.6s ease-out, transform 0.6s ease-out",
+        transitionDelay: `${(index % 5) * 0.05}s`,
+      }}
+    >
+      <div
+        className="group flex items-center justify-center bg-white rounded-[20px] border border-[#ECECEC] p-[24px] h-[120px] transition-all duration-250 hover:border-[#1BD3E4] hover:-translate-y-[2px] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#1BD3E4] focus:border-transparent"
+        tabIndex={0}
+        aria-label={brand.name || `Partner Brand ${index + 1}`}
+        title={brand.name}
+      >
+        <img
+          src={brand.url}
+          alt={brand.name || `Partner Brand ${index + 1}`}
+          loading="lazy"
+          className="w-full h-full object-contain filter transition-all duration-250 group-hover:scale-105"
+        />
+      </div>
+    </div>
+  );
 }
-const ROWS = chunkBrands(BRANDS, BRAND_ROW_SIZES);
 
-/* ─── Page ──────────────────────────────────────────────────────────────── */
 export default function Brands() {
   return (
-    <div
-      className="relative min-h-screen overflow-hidden"
-      style={{ background: "#F8FCFD" }}
-    >
-      {/* Subtle mesh background */}
-      <div
-        style={{
-          position: "fixed",
-          inset: 0,
-          backgroundImage: `
-            radial-gradient(circle at 15% 20%, rgba(27,211,228,0.07) 0%, transparent 40%),
-            radial-gradient(circle at 85% 75%, rgba(16,185,129,0.06) 0%, transparent 40%),
-            radial-gradient(circle at 50% 50%, rgba(27,211,228,0.03) 0%, transparent 60%)
-          `,
-          pointerEvents: "none",
-          zIndex: 0,
-        }}
-      />
+    <div className="bg-[#FFFFFF] min-h-screen text-[#111827]">
+      <section className="max-w-[1400px] mx-auto px-6 py-[120px]">
+        {/* Header Section */}
+        <div className="flex flex-col items-center text-center mb-[48px]">
+          <div className="w-12 h-1 bg-[#1BD3E4] mb-6 rounded-full" />
+          <h1 className="text-[32px] md:text-[40px] font-bold mb-4 tracking-tight text-[#111827]">
+            Our Trusted Brands
+          </h1>
+          <p className="text-[#6B7280] text-lg max-w-2xl">
+            Partnering with leading pharmaceutical companies.
+          </p>
+        </div>
 
-      {/* ── Hero ─────────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          position: "relative",
-          zIndex: 1,
-          paddingTop: "120px",
-          paddingBottom: "72px",
-          textAlign: "center",
-          maxWidth: "900px",
-          margin: "0 auto",
-          padding: "120px 24px 72px",
-        }}
-      >
-
-
-        <h1
-          style={{
-            fontSize: "clamp(32px, 5vw, 60px)",
-            fontWeight: "900",
-            lineHeight: "1.1",
-            color: "#0F172A",
-            margin: "0 0 18px",
-            letterSpacing: "-1px",
-          }}
-        >
-          Brands We{" "}
-          <span
-            style={{
-              background: "linear-gradient(90deg, #1BD3E4 0%, #10B981 100%)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Proudly Carry
-          </span>
-        </h1>
-
-
-      </section>
-
-      {/* ── Divider ───────────────────────────────────────────────────────── */}
-      <div style={{ maxWidth: "1300px", margin: "0 auto 56px", padding: "0 24px", position: "relative", zIndex: 1 }}>
+        {/* Logo Gallery */}
         <div
-          style={{
-            height: "1px",
-            background: "linear-gradient(to right, transparent, #CBD5E1 30%, #1BD3E4 50%, #CBD5E1 70%, transparent)",
-          }}
-        />
-      </div>
-
-      {/* ── Staggered Marquee Rows ────────────────────────────────────────── */}
-      <section style={{ position: "relative", zIndex: 1, paddingBottom: "100px", overflow: "hidden" }}>
-        {ROWS.map((rowBrands, rowIdx) => (
-          <MarqueeRow
-            key={rowIdx}
-            brands={rowBrands}
-            reverse={rowIdx % 2 !== 0}
-            speed={30 + rowIdx * 4}
-            rowIndex={rowIdx}
-          />
-        ))}
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[32px]"
+          role="region"
+          aria-label="Brand Logos Gallery"
+        >
+          {BRAND_LOGOS.map((brand, index) => (
+            <BrandCard key={brand.id} brand={brand} index={index} />
+          ))}
+        </div>
       </section>
 
-    
-    </div>
-  );
-}
-
-/* ─── Marquee Row ─────────────────────────────────────────────────────────── */
-function MarqueeRow({ brands, reverse, speed, rowIndex }) {
-  const duplicated = [...brands, ...brands, ...brands]; // triple for seamless loop
-  const animName = `marquee-${reverse ? "rev" : "fwd"}-${rowIndex}`;
-
-  return (
-    <div
-      style={{
-        position: "relative",
-        marginBottom: "14px",
-        maskImage:
-          "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
-        WebkitMaskImage:
-          "linear-gradient(to right, transparent 0%, black 6%, black 94%, transparent 100%)",
-      }}
-    >
+      {/* Tailwind handles standard utilities, but we inject a small style block to enforce 250ms duration if custom class is missing */}
       <style>{`
-        @keyframes ${animName} {
-          0%   { transform: translateX(${reverse ? "-33.333%" : "0%"}); }
-          100% { transform: translateX(${reverse ? "0%" : "-33.333%"}); }
+        .duration-250 {
+          transition-duration: 250ms;
         }
       `}</style>
-
-      <div
-        style={{
-          display: "flex",
-          gap: "12px",
-          animation: `${animName} ${speed}s linear infinite`,
-          width: "max-content",
-        }}
-      >
-        {duplicated.map((brand, i) => (
-          <LogoCard key={`${brand}-${i}`} brand={brand} rowIndex={rowIndex} />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ─── Logo Card ───────────────────────────────────────────────────────────── */
-function LogoCard({ brand, rowIndex }) {
-  const [hovered, setHovered] = useState(false);
-  const cardRef = useRef(null);
-
-  /* subtle 3-D tilt on hover */
-  const handleMouseMove = (e) => {
-    const rect = cardRef.current?.getBoundingClientRect();
-    if (!rect) return;
-    const x = ((e.clientX - rect.left) / rect.width - 0.5) * 14;
-    const y = ((e.clientY - rect.top) / rect.height - 0.5) * -14;
-    cardRef.current.style.transform = `perspective(500px) rotateX(${y}deg) rotateY(${x}deg) scale(1.06)`;
-  };
-  const handleMouseLeave = () => {
-    setHovered(false);
-    if (cardRef.current)
-      cardRef.current.style.transform =
-        "perspective(500px) rotateX(0deg) rotateY(0deg) scale(1)";
-  };
-
-  /* Pick accent color per row */
-  const accents = [
-    { border: "rgba(27,211,228,0.5)", glow: "rgba(27,211,228,0.15)", bg: "rgba(27,211,228,0.04)" },
-    { border: "rgba(16,185,129,0.5)", glow: "rgba(16,185,129,0.15)", bg: "rgba(16,185,129,0.04)" },
-    { border: "rgba(99,102,241,0.4)", glow: "rgba(99,102,241,0.12)", bg: "rgba(99,102,241,0.03)" },
-    { border: "rgba(245,158,11,0.4)", glow: "rgba(245,158,11,0.12)", bg: "rgba(245,158,11,0.03)" },
-    { border: "rgba(239,68,68,0.35)", glow: "rgba(239,68,68,0.10)", bg: "rgba(239,68,68,0.03)" },
-  ];
-  const accent = accents[rowIndex % accents.length];
-
-  return (
-    <div
-      ref={cardRef}
-      title={brand}
-      onMouseEnter={() => setHovered(true)}
-      onMouseLeave={handleMouseLeave}
-      onMouseMove={handleMouseMove}
-      style={{
-        position: "relative",
-        flexShrink: 0,
-        width: "190px",
-        height: "72px",
-        background: hovered ? accent.bg : "#ffffff",
-        border: `1px solid ${hovered ? accent.border : "#E8EEF4"}`,
-        borderRadius: "14px",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "10px 16px",
-        cursor: "default",
-        transition:
-          "background 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease",
-        boxShadow: hovered
-          ? `0 8px 32px ${accent.glow}, 0 2px 8px rgba(0,0,0,0.06)`
-          : "0 1px 4px rgba(0,0,0,0.04)",
-        willChange: "transform",
-        overflow: "hidden",
-      }}
-    >
-      {/* Shimmer top line on hover */}
-      {hovered && (
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: "20%",
-            right: "20%",
-            height: "2px",
-            background: accent.border,
-            borderRadius: "0 0 4px 4px",
-          }}
-        />
-      )}
-
-      {/* SVG logo — image only, no text below */}
-      <SVGLogo name={brand} className="h-10 w-full" />
     </div>
   );
 }

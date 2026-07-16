@@ -25,6 +25,71 @@ import ach20 from "../assets/images/achievements/IMG_1737.webp";
 import ach21 from "../assets/images/achievements/IMG_1741.webp";
 import ach22 from "../assets/images/achievements/IMG_1742.webp";
 
+// ─── BRAND LOGO IMPORTS ────────────────────────────────────────────────────────
+import img_cipla from "../assets/images/brands/cipla.webp";
+import img_wallace from "../assets/images/brands/wallace.webp";
+import img_gsk from "../assets/images/brands/gsk.webp";
+import img_zydus from "../assets/images/brands/zydus.webp";
+import img_torrent from "../assets/images/brands/torrent.webp";
+import img_alkem from "../assets/images/brands/alkem.webp";
+import img_reddy from "../assets/images/brands/reddy.webp";
+import img_apex from "../assets/images/brands/apex.webp";
+import img_glenmark from "../assets/images/brands/glenmark.webp";
+import img_mankind from "../assets/images/brands/mankind.webp";
+import img_lupin from "../assets/images/brands/lupin.webp";
+import img_achievaa from "../assets/images/brands/achievaa.webp";
+import img_akesiss from "../assets/images/brands/akesiss.webp";
+import img_altis from "../assets/images/brands/altis.webp";
+import img_amarix from "../assets/images/brands/amarix.webp";
+import img_aretaeus from "../assets/images/brands/aretaeus.webp";
+import img_bayer from "../assets/images/brands/bayer.webp";
+import img_beline from "../assets/images/brands/beline.webp";
+import img_biocon from "../assets/images/brands/biocon.webp";
+import img_biosis from "../assets/images/brands/biosis.webp";
+import img_bluehen from "../assets/images/brands/bluehen.webp";
+import img_boehringer from "../assets/images/brands/boehringer.webp";
+import img_brinton from "../assets/images/brands/brinton.webp";
+import img_brithish from "../assets/images/brands/brithish.webp";
+import img_canixa from "../assets/images/brands/canixa.webp";
+import img_careindia from "../assets/images/brands/careindia.webp";
+import img_daris from "../assets/images/brands/daris.webp";
+import img_ellora from "../assets/images/brands/ellora.webp";
+import img_h_h from "../assets/images/brands/h&h.webp";
+import img_healindia from "../assets/images/brands/healindia.webp";
+import img_henotic from "../assets/images/brands/henotic.webp";
+import img_hollyhock from "../assets/images/brands/hollyhock.webp";
+import img_icarus from "../assets/images/brands/icarus.webp";
+import img_indoco from "../assets/images/brands/indoco.webp";
+import img_johnson from "../assets/images/brands/johnson.webp";
+import img_kap from "../assets/images/brands/kap.webp";
+import img_karlin from "../assets/images/brands/karlin.webp";
+import img_kepler from "../assets/images/brands/kepler.webp";
+import img_kiosence from "../assets/images/brands/kiosence.webp";
+import img_lia from "../assets/images/brands/lia.webp";
+import img_lifegain from "../assets/images/brands/lifegain.webp";
+import img_lion from "../assets/images/brands/lion.webp";
+import img_macleods from "../assets/images/brands/macleods.webp";
+import img_merlion from "../assets/images/brands/merlion.webp";
+import img_mexican from "../assets/images/brands/mexican.webp";
+import img_microlabs from "../assets/images/brands/microlabs.webp";
+import img_oracion from "../assets/images/brands/oracion.webp";
+import img_orris from "../assets/images/brands/orris.webp";
+import img_ozone from "../assets/images/brands/ozone.webp";
+import img_p_g from "../assets/images/brands/p&g.webp";
+import img_pharmanova from "../assets/images/brands/pharmanova.webp";
+import img_pil from "../assets/images/brands/pil.webp";
+import img_risemarker from "../assets/images/brands/risemarker.webp";
+import img_sanz from "../assets/images/brands/sanz.webp";
+import img_skn from "../assets/images/brands/skn.webp";
+import img_stanford from "../assets/images/brands/stanford.webp";
+import img_trodran from "../assets/images/brands/trodran.webp";
+import img_winmedicare from "../assets/images/brands/winmedicare.webp";
+import img_worldwide from "../assets/images/brands/worldwide.webp";
+import img_zinnia from "../assets/images/brands/zinnia.webp";
+import img_zoetic from "../assets/images/brands/zoetic.webp";
+import img_zorvia from "../assets/images/brands/zorvia.webp";
+import img_cangrow from "../assets/images/brands/cangrow.webp";
+
 // ─── SITE META ────────────────────────────────────────────────────────────────
 export const SITE = {
   name: "Meenakshi Pharma",
@@ -396,98 +461,74 @@ export const FLANKED_SERVICES = [
   },
 ];
 
-// ─── BRANDS: 86 pharmaceutical companies ─────────────────────────────────────
-export const BRANDS = [
-  "Abbott Laboratories",
-  "Cipla Limited",
-  "Sun Pharmaceutical Industries",
-  "Dr. Reddy's Laboratories",
-  "Pfizer India",
-  "Lupin Limited",
-  "Glenmark Pharmaceuticals",
-  "Torrent Pharmaceuticals",
-  "Alkem Laboratories",
-  "Zydus Lifesciences",
-  "Biocon Limited",
-  "Mankind Pharma",
-  "Aurobindo Pharma",
-  "Intas Pharmaceuticals",
-  "Ipca Laboratories",
-  "FDC Limited",
-  "Micro Labs",
-  "USV Private Limited",
-  "Macleods Pharmaceuticals",
-  "Alembic Pharmaceuticals",
-  "Wockhardt",
-  "Sanofi India",
-  "GlaxoSmithKline (GSK)",
-  "Novartis India",
-  "AstraZeneca India",
-  "Roche India",
-  "Merck (MSD) India",
-  "Bayer India",
-  "Boehringer Ingelheim",
-  "Eli Lilly India",
-  "AbbVie India",
-  "Johnson & Johnson",
-  "Takeda India",
-  "Astellas Pharma",
-  "Daiichi Sankyo India",
-  "Eisai India",
-  "Otsuka Pharmaceutical",
-  "Shionogi India",
-  "Chugai Pharmaceutical",
-  "Kyowa Kirin",
-  "Ono Pharmaceutical",
-  "Mitsubishi Tanabe",
-  "Santen Pharmaceutical",
-  "Kissei Pharmaceutical",
-  "Kaken Pharmaceutical",
-  "Torii Pharmaceutical",
-  "Nichi-Iko Pharmaceutical",
-  "Sawai Pharmaceutical",
-  "Towa Pharmaceutical",
-  "Mochida Pharmaceutical",
-  "Nippon Shinyaku",
-  "Zeria Pharmaceutical",
-  "Senju Pharmaceutical",
-  "Rohto Pharmaceutical",
-  "Meiji Seika Pharma",
-  "Panacea Biotec",
-  "Jubilant Pharmova",
-  "Syngene International",
-  "Piramal Enterprises",
-  "Natco Pharma",
-  "Hikal Limited",
-  "Laurus Labs",
-  "Granules India",
-  "Strides Pharma Science",
-  "Suven Life Sciences",
-  "Ajanta Pharma",
-  "Caplin Point Laboratories",
-  "Dishman Carbogen Amcis",
-  "Eris Lifesciences",
-  "J. B. Chemicals & Pharmaceuticals",
-  "Indoco Remedies",
-  "Marksans Pharma",
-  "SMS Pharmaceuticals",
-  "Suven Pharmaceuticals",
-  "Unichem Laboratories",
-  "Blue Cross Laboratories",
-  "Albert David",
-  "RPG Life Sciences",
-  "Morepen Laboratories",
-  "Lincoln Pharmaceuticals",
-  "Jagsonpal Pharmaceuticals",
-  "Themis Medicare",
-  "Kopran Limited",
-  "Solara Active Pharma Sciences",
-  "Shilpa Medicare",
-  "Venus Remedies",
-];
 
-// ─── BRANDS: Row sizes for staggered marquee (must sum to BRANDS.length = 86) ─
-export const BRAND_ROW_SIZES = [10, 11, 10, 11, 10, 11, 11, 10, 2];
+
+// ─── BRAND LOGO IMAGES ───────────────────────────────────────────────────────
+export const BRAND_LOGOS = [
+  { id: 1, url: img_cipla, name: "Cipla Limited" },
+  { id: 2, url: img_wallace, name: "Wallace Pharmaceuticals" },
+  { id: 3, url: img_gsk, name: "GlaxoSmithKline (GSK)" },
+  { id: 4, url: img_zydus, name: "Zydus Lifesciences" },
+  { id: 5, url: img_torrent, name: "Torrent Pharmaceuticals" },
+  { id: 6, url: img_alkem, name: "Alkem Laboratories" },
+  { id: 7, url: img_reddy, name: "Dr. Reddy's Laboratories" },
+  { id: 8, url: img_apex, name: "Apex Laboratories" },
+  { id: 9, url: img_glenmark, name: "Glenmark Pharmaceuticals" },
+  { id: 10, url: img_mankind, name: "Mankind Pharma" },
+  { id: 11, url: img_lupin, name: "Lupin Limited" },
+  { id: 12, url: img_achievaa, name: "Achievaa" },
+  { id: 13, url: img_akesiss, name: "Akesiss" },
+  { id: 14, url: img_altis, name: "Altis" },
+  { id: 15, url: img_amarix, name: "Amarix" },
+  { id: 16, url: img_aretaeus, name: "Aretaeus" },
+  { id: 17, url: img_bayer, name: "Bayer" },
+  { id: 18, url: img_beline, name: "Beline" },
+  { id: 19, url: img_biocon, name: "Biocon" },
+  { id: 20, url: img_biosis, name: "Biosis" },
+  { id: 21, url: img_bluehen, name: "Bluehen" },
+  { id: 22, url: img_boehringer, name: "Boehringer" },
+  { id: 23, url: img_brinton, name: "Brinton" },
+  { id: 24, url: img_brithish, name: "Brithish" },
+  { id: 25, url: img_canixa, name: "Canixa" },
+  { id: 26, url: img_careindia, name: "Careindia" },
+  { id: 27, url: img_daris, name: "Daris" },
+  { id: 28, url: img_ellora, name: "Ellora" },
+  { id: 29, url: img_h_h, name: "H&H" },
+  { id: 30, url: img_healindia, name: "Healindia" },
+  { id: 31, url: img_henotic, name: "Henotic" },
+  { id: 32, url: img_hollyhock, name: "Hollyhock" },
+  { id: 33, url: img_icarus, name: "Icarus" },
+  { id: 34, url: img_indoco, name: "Indoco" },
+  { id: 35, url: img_johnson, name: "Johnson" },
+  { id: 36, url: img_kap, name: "KAP" },
+  { id: 37, url: img_karlin, name: "Karlin" },
+  { id: 38, url: img_kepler, name: "Kepler" },
+  { id: 39, url: img_kiosence, name: "Kiosence" },
+  { id: 40, url: img_lia, name: "Lia" },
+  { id: 41, url: img_lifegain, name: "Lifegain" },
+  { id: 42, url: img_lion, name: "Lion" },
+  { id: 43, url: img_macleods, name: "Macleods" },
+  { id: 44, url: img_merlion, name: "Merlion" },
+  { id: 45, url: img_mexican, name: "Mexican" },
+  { id: 46, url: img_microlabs, name: "Microlabs" },
+  { id: 47, url: img_oracion, name: "Oracion" },
+  { id: 48, url: img_orris, name: "Orris" },
+  { id: 49, url: img_ozone, name: "Ozone" },
+  { id: 50, url: img_p_g, name: "P&G" },
+  { id: 51, url: img_pharmanova, name: "Pharmanova" },
+  { id: 52, url: img_pil, name: "PIL" },
+  { id: 53, url: img_risemarker, name: "Risemarker" },
+  { id: 54, url: img_sanz, name: "Sanz" },
+  { id: 55, url: img_skn, name: "SKN" },
+  { id: 56, url: img_stanford, name: "Stanford" },
+  { id: 57, url: img_trodran, name: "Trodran" },
+  { id: 58, url: img_winmedicare, name: "Winmedicare" },
+  { id: 59, url: img_worldwide, name: "Worldwide" },
+  { id: 60, url: img_zinnia, name: "Zinnia" },
+  { id: 61, url: img_zoetic, name: "Zoetic" },
+  { id: 62, url: img_zorvia, name: "Zorvia" },
+  { id: 63, url: img_cangrow, name: "CanGrow" },
+];
 
 // ─── ACHIEVEMENTS (22 milestones gallery) ────────────────────────────────────
 export const ACHIEVEMENTS = [
