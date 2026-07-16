@@ -1,6 +1,3 @@
-// ─── Meenakshi Pharma — Central Contact Information ──────────────────────────
-// Update this file to reflect the latest contact details.
-// Import from here in any component/page — never hardcode contact info elsewhere.
 
 export const CONTACT = {
   // ── Phone numbers ────────────────────────────────────────────────────────

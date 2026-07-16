@@ -3,6 +3,7 @@ import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, Phone, Mail, Award, CheckCircle } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CONTACT } from "../utils/contact";
+import { NAV_ITEMS } from "../utils/data";
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -27,17 +28,7 @@ export default function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const navItems = [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Services", path: "/services" },
-    { name: "Brands", path: "/brands" },
-    { name: "Achievements", path: "/achievements" },
-    { name: "Web Order", path: "https://meenakshipharma.wondersoft.in/ro13.html", isExternal: true },
-    { name: "Stock & Sales", path: "http://meenakshipharma.wsweborder.com/StockAndSales/DistributorPages/Login4StockNSales.aspx", isExternal: true },
-    { name: "Career", path: "/career" },
-    { name: "Contact", path: "/contact" }
-  ];
+  const navItems = NAV_ITEMS;
 
   return (
     <>

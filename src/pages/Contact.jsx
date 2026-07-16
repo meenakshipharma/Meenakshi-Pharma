@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, Phone, Mail, Clock, CheckCircle2, Navigation } from "lucide-react";
 import { CONTACT } from "../utils/contact";
+import { CONTACT_PAGE_CONTENT } from "../utils/data";
 
 export default function Contact() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -29,12 +30,12 @@ export default function Contact() {
             {/* Left Column: Contact Details */}
             <div className="lg:col-span-5 text-left flex flex-col gap-8">
               <div>
-                <span className="text-xs font-bold text-primary uppercase tracking-widest mb-3 leading-none block">Inquiries</span>
+                <span className="text-xs font-bold text-primary uppercase tracking-widest mb-3 leading-none block">{CONTACT_PAGE_CONTENT.badge}</span>
                 <h2 className="text-3xl font-extrabold text-slate-900 tracking-tight leading-tight">
-                  Get in Touch Directly
+                  {CONTACT_PAGE_CONTENT.heading}
                 </h2>
                 <p className="text-slate-500 mt-3.5 leading-relaxed text-sm md:text-base">
-                  Our customer service relations officers are standing by to process your healthcare inventory requirements. Select your preferred channel below.
+                  {CONTACT_PAGE_CONTENT.subheading}
                 </p>
               </div>
 
@@ -120,8 +121,8 @@ export default function Contact() {
 
             {/* Right Column: Contact Form */}
             <div className="lg:col-span-7 bg-slate-50 border border-slate-200/80 p-6 md:p-8 rounded-[24px] shadow-sm text-left">
-              <span className="text-xs font-bold text-primary uppercase tracking-widest mb-2 block">Direct message</span>
-              <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 mb-6">Send an Inquiry Message</h3>
+              <span className="text-xs font-bold text-primary uppercase tracking-widest mb-2 block">{CONTACT_PAGE_CONTENT.formBadge}</span>
+              <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 mb-6">{CONTACT_PAGE_CONTENT.formHeading}</h3>
 
               <AnimatePresence mode="wait">
                 {isSubmitted ? (
@@ -136,7 +137,7 @@ export default function Contact() {
                     </div>
                     <h4 className="font-extrabold text-slate-900 text-lg md:text-xl">Inquiry Sent Successfully!</h4>
                     <p className="text-slate-500 text-xs md:text-sm mt-2 leading-relaxed max-w-sm">
-                      We have logged your query. A pharmaceutical coordinator will contact you via email or phone within the next 24 business hours.
+                      {CONTACT_PAGE_CONTENT.successMessage}
                     </p>
                   </motion.div>
                 ) : (
@@ -250,7 +251,7 @@ export default function Contact() {
       {/* Sticky Call Button on Mobile */}
       <div className="block sm:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-slate-200 px-5 py-3 flex items-center justify-between shadow-lg">
         <div className="text-left">
-          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide block leading-none">Emergency Supply Line</span>
+          <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wide block leading-none">{CONTACT_PAGE_CONTENT.mobileBarLabel}</span>
           <span className="text-sm font-bold text-slate-800 tracking-tight leading-none mt-1.5 block">{CONTACT.phone.secondary}</span>
         </div>
         <a

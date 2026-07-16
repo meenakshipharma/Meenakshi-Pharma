@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircle2, ArrowRight, Truck, ShieldCheck, Store, ThermometerSnowflake, FileText, ShoppingBag, ChevronLeft, ChevronRight, Tablet, Database, Check, Syringe, Pill, Sparkles } from "lucide-react";
 import AnimatedCounter from "../components/AnimatedCounter";
-import { SERVICES, ABOUT_CONTENT } from "../utils/data";
+import { ABOUT_CONTENT, ABOUT_CHECKLIST, HERO_SLIDES, COMPANY_STATS, HOME_SERVICES_CARDS } from "../utils/data";
 
 // Storyset Medical Illustration 1
 function MedicalStorageIllustration() {
@@ -194,10 +194,6 @@ function QualityIllustration() {
 }
 
 export default function Home() {
-  // Configurable external links
-  const WEB_ORDER_URL = "https://meenakshipharma.wondersoft.in/ro13.html";
-  const SALES_PORTAL_URL = "http://meenakshipharma.wsweborder.com/StockAndSales/DistributorPages/Login4StockNSales.aspx";
-
   // Slider State Management
   const [activeSlide, setActiveSlide] = useState(0);
   const [isHovered, setIsHovered] = useState(false);
@@ -227,27 +223,7 @@ export default function Home() {
     };
   }, [isHovered, activeSlide]);
 
-  const slides = [
-    {
-      id: 1,
-      badge: "Meenakshi Pharma",
-      heading: "Trichy's Leading Pharma Distributor",
-      type: "illustration-1"
-    },
-    {
-      id: 2,
-      badge: "Quick Logistics",
-      heading: "Get Your Medicines Now In a Fast, Secure & Safe Way",
-      type: "illustration-2"
-    },
-    {
-      id: 3,
-      badge: "Genuine Sourcing",
-      heading: "100% Genuine Healthcare Brands & Verified Cold Chain",
-      type: "illustration-3"
-    }
-  ];
-
+  const slides = HERO_SLIDES;
   const currentSlide = slides[activeSlide];
 
   return (
@@ -408,12 +384,7 @@ export default function Home() {
       <section className="bg-white border-y border-slate-100 py-16">
         <div className="max-w-[1280px] mx-auto px-6 md:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
-            {[
-              { val: "20", suffix: "+", label: "Years of Experience" },
-              { val: "1000", suffix: "+", label: "Customers Served" },
-              { val: "5000", suffix: "+", label: "Medicines Distributed" },
-              { val: "300", suffix: "+", label: "Partner Pharmacies" }
-            ].map((stat, i) => (
+            {COMPANY_STATS.map((stat, i) => (
               <div key={i} className="flex flex-col items-center text-center p-4 border-r last:border-0 border-slate-100 lg:odd:border-r lg:even:border-r">
                 <span className="text-3xl md:text-5xl font-black text-primary mb-2 flex items-center justify-center">
                   <AnimatedCounter value={stat.val} suffix={stat.suffix} />
@@ -481,14 +452,12 @@ export default function Home() {
 
               {/* Unique feature checklist grid */}
               <div className="grid grid-cols-2 gap-4 mt-8 w-full border-t border-slate-100 pt-6">
-                <div className="flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-full bg-cyan-50 border border-cyan-100 flex items-center justify-center text-primary text-xs font-bold">✓</span>
-                  <span className="text-xs font-bold text-slate-800">100% Genuine Sourcing</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-full bg-cyan-50 border border-cyan-100 flex items-center justify-center text-primary text-xs font-bold">✓</span>
-                  <span className="text-xs font-bold text-slate-800">2°C - 8°C Cold Storage</span>
-                </div>
+                {ABOUT_CHECKLIST.map((item) => (
+                  <div key={item.label} className="flex items-center gap-2">
+                    <span className="w-5 h-5 rounded-full bg-cyan-50 border border-cyan-100 flex items-center justify-center text-primary text-xs font-bold">✓</span>
+                    <span className="text-xs font-bold text-slate-800">{item.label}</span>
+                  </div>
+                ))}
               </div>
 
               <div className="mt-8">
@@ -517,75 +486,29 @@ export default function Home() {
             <div className="w-16 h-1 bg-[#1BD3E4] rounded-full mt-4" />
           </div>
 
-          {/* Single Row 3-Column Grid */}
+          {/* Single Row 3-Column Grid — data from HOME_SERVICES_CARDS in data.js */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10 items-stretch pt-8">
-            
-            {/* Card 1: Vaccines */}
-            <div className="bg-slate-50 border border-slate-300 rounded-[28px] p-8 md:p-10 text-left transition-all duration-300 hover:bg-white hover:shadow-xl hover:border-cyan-300 group relative flex flex-col justify-between h-full shadow-md min-h-[300px]">
-              {/* Translucent Sequence Number */}
-              <span className="absolute top-4 right-8 text-6xl font-mono font-black text-slate-200/40 select-none group-hover:text-primary/10 transition-colors duration-300">
-                01
-              </span>
-
-              <div>
-                {/* Floating Icon Container */}
-                <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-[#1BD3E4] flex items-center justify-center shadow-sm mb-6 group-hover:bg-dark-teal group-hover:text-[#1BD3E4] group-hover:border-dark-teal transition-all duration-300">
-                  <Syringe size={20} strokeWidth={2} />
+            {HOME_SERVICES_CARDS.map((card) => {
+              const IconNode = card.icon === "Syringe" ? <Syringe size={20} strokeWidth={2} /> : card.icon === "Pill" ? <Pill size={20} strokeWidth={2} /> : <Sparkles size={20} strokeWidth={2} />;
+              return (
+                <div key={card.id} className="bg-slate-50 border border-slate-300 rounded-[28px] p-8 md:p-10 text-left transition-all duration-300 hover:bg-white hover:shadow-xl hover:border-cyan-300 group relative flex flex-col justify-between h-full shadow-md min-h-[300px]">
+                  <span className="absolute top-4 right-8 text-6xl font-mono font-black text-slate-200/40 select-none group-hover:text-primary/10 transition-colors duration-300">
+                    {card.number}
+                  </span>
+                  <div>
+                    <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-[#1BD3E4] flex items-center justify-center shadow-sm mb-6 group-hover:bg-dark-teal group-hover:text-[#1BD3E4] group-hover:border-dark-teal transition-all duration-300">
+                      {IconNode}
+                    </div>
+                    <h3 className="text-lg font-black uppercase tracking-wider text-slate-900 mb-3 group-hover:text-primary transition-colors">
+                      {card.title}
+                    </h3>
+                    <p className="text-slate-500 text-xs md:text-sm leading-relaxed font-medium">
+                      {card.description}
+                    </p>
+                  </div>
                 </div>
-
-                <h3 className="text-lg font-black uppercase tracking-wider text-slate-900 mb-3 group-hover:text-primary transition-colors">
-                  Vaccines
-                </h3>
-                <p className="text-slate-500 text-xs md:text-sm leading-relaxed font-medium">
-                  Injectibles, mainly vaccines are kept in adequate stock with us. Supplied on regular orders from retailers or dispatched by Institutional delivery staff on urgent basis.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 2: Other Specialty Medicines (Clinical Folder Layout) */}
-            <div className="bg-slate-50 border border-slate-300 rounded-[28px] p-8 md:p-10 text-left transition-all duration-300 hover:bg-white hover:shadow-xl hover:border-cyan-300 group relative flex flex-col justify-between h-full shadow-md min-h-[300px]">
-              {/* Translucent Sequence Number */}
-              <span className="absolute top-4 right-8 text-6xl font-mono font-black text-slate-200/40 select-none group-hover:text-primary/10 transition-colors duration-300">
-                02
-              </span>
-
-              <div>
-                {/* Floating Icon Container */}
-                <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-[#1BD3E4] flex items-center justify-center shadow-sm mb-6 group-hover:bg-dark-teal group-hover:text-[#1BD3E4] group-hover:border-dark-teal transition-all duration-300">
-                  <Pill size={20} strokeWidth={2} />
-                </div>
-
-                <h3 className="text-lg font-black uppercase tracking-wider text-slate-900 mb-3 group-hover:text-primary transition-colors">
-                  Other Speciality Medicines
-                </h3>
-                <p className="text-slate-500 text-xs md:text-sm leading-relaxed font-medium">
-                  All speciality medicines like for nephrology, neurology, neuropsychiatry, urology, etc., and hormonal medicines which are promoted to medical professionals are available at all times.
-                </p>
-              </div>
-            </div>
-
-            {/* Card 3: Cosmetic Products (Clinical Folder Layout) */}
-            <div className="bg-slate-50 border border-slate-300 rounded-[28px] p-8 md:p-10 text-left transition-all duration-300 hover:bg-white hover:shadow-xl hover:border-cyan-300 group relative flex flex-col justify-between h-full shadow-md min-h-[300px]">
-              {/* Translucent Sequence Number */}
-              <span className="absolute top-4 right-8 text-6xl font-mono font-black text-slate-200/40 select-none group-hover:text-primary/10 transition-colors duration-300">
-                03
-              </span>
-
-              <div>
-                {/* Floating Icon Container */}
-                <div className="w-12 h-12 rounded-2xl bg-white border border-slate-200 text-[#1BD3E4] flex items-center justify-center shadow-sm mb-6 group-hover:bg-dark-teal group-hover:text-[#1BD3E4] group-hover:border-dark-teal transition-all duration-300">
-                  <Sparkles size={20} strokeWidth={2} />
-                </div>
-
-                <h3 className="text-lg font-black uppercase tracking-wider text-slate-900 mb-3 group-hover:text-primary transition-colors">
-                  Cosmetic Products
-                </h3>
-                <p className="text-slate-500 text-xs md:text-sm leading-relaxed font-medium">
-                  All ethically promoted Dermatologicals and Cosmetologicals from renowned companies. Skin, Hair, and Nail Doctor clinics/hospitals with own dispensing can approach for regular supplies.
-                </p>
-              </div>
-            </div>
-
+              );
+            })}
           </div>
         </div>
       </section>

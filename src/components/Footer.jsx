@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ArrowUp, Mail, Phone, MapPin } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CONTACT } from "../utils/contact";
+import { FOOTER_QUICK_LINKS, FOOTER_SERVICE_LINKS } from "../utils/data";
 
 export default function Footer() {
   const [showBackToTop, setShowBackToTop] = useState(false);
@@ -73,15 +74,7 @@ export default function Footer() {
           <div className="flex flex-col gap-6 lg:pl-8">
             <h4 className="text-white text-sm font-bold uppercase tracking-wider">Quick Links</h4>
             <ul className="flex flex-col gap-3 text-sm">
-              {[
-                { label: "Home", to: "/" },
-                { label: "About Us", to: "/about" },
-                { label: "Our Services", to: "/services" },
-                { label: "Brands We Deal", to: "/brands" },
-                { label: "Achievements", to: "/achievements" },
-                { label: "Careers", to: "/career" },
-                { label: "Contact", to: "/contact" },
-              ].map(({ label, to }) => (
+              {FOOTER_QUICK_LINKS.map(({ label, to }) => (
                 <li key={to}>
                   <Link to={to} className="hover:text-primary transition-colors duration-200">{label}</Link>
                 </li>
@@ -93,10 +86,11 @@ export default function Footer() {
           <div className="flex flex-col gap-6">
             <h4 className="text-white text-sm font-bold uppercase tracking-wider">Services</h4>
             <ul className="flex flex-col gap-3 text-sm">
-              <li><Link to="/services#distribution" className="hover:text-primary transition-colors duration-200">Pharmaceutical Distribution</Link></li>
-              <li><Link to="/services#hospital" className="hover:text-primary transition-colors duration-200">Hospital Supplies</Link></li>
-              <li><Link to="/services#retail" className="hover:text-primary transition-colors duration-200">Retail Chemists Logistics</Link></li>
-              <li><Link to="/services#logistics" className="hover:text-primary transition-colors duration-200">Cold Chain Logistics</Link></li>
+              {FOOTER_SERVICE_LINKS.map(({ label, to }) => (
+                <li key={to}>
+                  <Link to={to} className="hover:text-primary transition-colors duration-200">{label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 

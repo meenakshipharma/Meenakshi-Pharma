@@ -1,14 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
-import { BRANDS } from "../utils/data";
+import { BRANDS, BRAND_ROW_SIZES } from "../utils/data";
 import SVGLogo from "../components/SVGLogo";
 
 /* ─── Split brands into rows for the staggered marquee layout ───────────── */
-const ROW_SIZES = [10, 11, 10, 11, 10, 11, 11, 10, 2]; // sums to 86
 function chunkBrands(brands, sizes) {
   let i = 0;
   return sizes.map((n) => brands.slice(i, (i += n)));
 }
-const ROWS = chunkBrands(BRANDS, ROW_SIZES);
+const ROWS = chunkBrands(BRANDS, BRAND_ROW_SIZES);
 
 /* ─── Page ──────────────────────────────────────────────────────────────── */
 export default function Brands() {

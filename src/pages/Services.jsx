@@ -14,72 +14,9 @@ import {
   TrendingUp,
   Briefcase,
 } from "lucide-react";
-import { SERVICES } from "../utils/data";
+import { SERVICES, FLANKED_SERVICES } from "../utils/data";
 
-const FLANKED_SERVICES = [
-  // Left Column Nodes
-  {
-    id: 1,
-    side: "left",
-    title: "Oncology Products",
-    tagline: "Anti-Cancer Care",
-    description:
-      "Catering to specialized oncology requirements with genuine anti-cancer molecules and emergency sourcing protocols.",
-    icon: "Activity",
-    stats: "S.O.S Procured",
-  },
-  {
-    id: 2,
-    side: "left",
-    title: "Vaccines",
-    tagline: "Cold Chain Logistics",
-    description:
-      "Adequate stock of vital pediatric, adult, and travel vaccines kept under rigid temperature parameters.",
-    icon: "Syringe",
-    stats: "2°C - 8°C Monitored",
-  },
-  {
-    id: 3,
-    side: "left",
-    title: "General Medicines",
-    tagline: "450+ Brand Partners",
-    description:
-      "Over 100,000+ SKUs readily available in our temperature-controlled warehouse for prompt retail orders.",
-    icon: "Pill",
-    stats: "100k+ SKUs Stocked",
-  },
-  // Right Column Nodes
-  {
-    id: 4,
-    side: "right",
-    title: "Speciality Medicines",
-    tagline: "Super-Specialty Care",
-    description:
-      "Hormonal, nephrology, neurology, neuropsychiatry, and urology therapeutics promoted to professionals.",
-    icon: "Sparkles",
-    stats: "Specialist Approved",
-  },
-  {
-    id: 5,
-    side: "right",
-    title: "Cosmetic Products",
-    tagline: "Dermato-Cosmetic",
-    description:
-      "Ethically promoted dermatological solutions supplied directly to specialist doctors and skin clinics.",
-    icon: "Heart",
-    stats: "Direct Brand Sourced",
-  },
-  {
-    id: 6,
-    side: "right",
-    title: "Import & Export",
-    tagline: "Global Logistics Corridor",
-    description:
-      "International distribution supply channels facilitating imports and exports of vital pharmaceutical items.",
-    icon: "Truck",
-    stats: "Global Reach Ready",
-  },
-];
+
 
 export default function Services() {
   const [activeItem, setActiveItem] = useState(2); // Vaccines default active

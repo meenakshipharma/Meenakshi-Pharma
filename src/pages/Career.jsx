@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { motion, AnimatePresence } from "framer-motion";
 import { Mail, CheckCircle2, User, Phone, Paperclip, Send } from "lucide-react";
 import { CONTACT } from "../utils/contact";
+import { CAREER_CONTENT } from "../utils/data";
 
 export default function Career() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -65,15 +66,13 @@ ${data.fullName}`
           {/* Section badge + heading — matches other pages */}
           <div className="text-center mb-12">
             <span className="text-xs font-bold text-primary uppercase tracking-widest mb-3 block">
-              Join Our Team
+              {CAREER_CONTENT.badge}
             </span>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-slate-900 mb-4 leading-tight">
-              Apply at Meenakshi Pharma
+              {CAREER_CONTENT.heading}
             </h2>
             <p className="text-slate-500 text-sm md:text-base leading-relaxed max-w-xl mx-auto">
-              Fill in your basic details and click{" "}
-              <strong className="text-slate-700">"Send Application"</strong>. Your email client
-              opens pre-filled — just attach your resume and send.
+              {CAREER_CONTENT.description}
             </p>
           </div>
 

@@ -10,7 +10,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import Lightbox from "../components/Lightbox";
-import { TIMELINE, INFRASTRUCTURE, ABOUT_CONTENT } from "../utils/data";
+import { TIMELINE, INFRASTRUCTURE, ABOUT_CONTENT, VISION_MISSION, ABOUT_CHECKLIST } from "../utils/data";
 
 export default function About() {
   const [lightboxOpen, setLightboxOpen] = useState(false);
@@ -89,22 +89,16 @@ export default function About() {
 
               {/* Unique feature checklist grid */}
               <div className="grid grid-cols-2 gap-4 mt-8 w-full border-t border-slate-100 pt-6">
-                <div className="flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-full bg-cyan-50 border border-cyan-100 flex items-center justify-center text-primary text-xs font-bold">
-                    ✓
-                  </span>
-                  <span className="text-xs font-bold text-slate-800">
-                    100% Genuine Sourcing
-                  </span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <span className="w-5 h-5 rounded-full bg-cyan-50 border border-cyan-100 flex items-center justify-center text-primary text-xs font-bold">
-                    ✓
-                  </span>
-                  <span className="text-xs font-bold text-slate-800">
-                    2°C - 8°C Cold Storage
-                  </span>
-                </div>
+                {ABOUT_CHECKLIST.map((item) => (
+                  <div key={item.label} className="flex items-center gap-2">
+                    <span className="w-5 h-5 rounded-full bg-cyan-50 border border-cyan-100 flex items-center justify-center text-primary text-xs font-bold">
+                      ✓
+                    </span>
+                    <span className="text-xs font-bold text-slate-800">
+                      {item.label}
+                    </span>
+                  </div>
+                ))}
               </div>
 
               <div className="mt-8">
@@ -131,14 +125,10 @@ export default function About() {
                   <Eye size={24} />
                 </div>
                 <h3 className="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">
-                  Our Vision
+                  {VISION_MISSION.vision.heading}
                 </h3>
                 <p className="text-slate-500 text-sm md:text-base leading-relaxed">
-                  To establish ourselves as the most reliable, tech-integrated
-                  healthcare logistics and pharmaceutical distribution network
-                  in South India. We aim to ensure that every patient, clinic,
-                  and pharmacy has immediate access to genuine life-saving
-                  therapeutics, without supply chain delays.
+                  {VISION_MISSION.vision.text}
                 </p>
               </div>
             </div>
@@ -150,31 +140,15 @@ export default function About() {
                   <Target size={24} />
                 </div>
                 <h3 className="text-2xl font-extrabold text-slate-900 mb-4 tracking-tight">
-                  Our Mission
+                  {VISION_MISSION.mission.heading}
                 </h3>
                 <ul className="flex flex-col gap-4 text-slate-500 text-sm leading-relaxed">
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                    <span>
-                      Provide uncompromised medicine quality by enforcing 100%
-                      genuine sourcing directly from certified global brand
-                      manufacturers.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                    <span>
-                      Preserve critical cold chains (vaccines, serums) using
-                      continuous temperature tracking telemetry protocols.
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2.5">
-                    <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                    <span>
-                      Optimize client orders through modern automated invoice
-                      fulfillment and prompt regional delivery dispatch loops.
-                    </span>
-                  </li>
+                  {VISION_MISSION.mission.points.map((point, i) => (
+                    <li key={i} className="flex items-start gap-2.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                      <span>{point}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
