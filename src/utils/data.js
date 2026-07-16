@@ -1,4 +1,4 @@
-﻿// ─── Meenakshi Pharma — Central Static Data Store ────────────────────────────
+// ─── Meenakshi Pharma — Central Static Data Store ────────────────────────────
 // All static content for every page and component is stored here.
 // Import only what you need in each file. Never hardcode content elsewhere.
 
@@ -30,6 +30,7 @@ export const NAV_ITEMS = [
     path: "http://meenakshipharma.wsweborder.com/StockAndSales/DistributorPages/Login4StockNSales.aspx",
     isExternal: true,
   },
+  { name: "Partner With Us", path: "/partner" },
   { name: "Career", path: "/career" },
   { name: "Contact", path: "/contact" },
 ];
@@ -41,6 +42,7 @@ export const FOOTER_QUICK_LINKS = [
   { label: "Our Services", to: "/services" },
   { label: "Brands We Deal", to: "/brands" },
   { label: "Achievements", to: "/achievements" },
+  { label: "Partner With Us", to: "/partner" },
   { label: "Careers", to: "/career" },
   { label: "Contact", to: "/contact" },
 ];
@@ -392,4 +394,44 @@ export const CONTACT_PAGE_CONTENT = {
   formHeading: "Send an Inquiry Message",
   successMessage: "We have logged your query. A pharmaceutical coordinator will contact you via email or phone within the next 24 business hours.",
   mobileBarLabel: "Emergency Supply Line",
+};
+
+// ─── PARTNER WITH US PAGE CONTENT ────────────────────────────────────────────
+export const PARTNER_CONTENT = {
+  badge: "Partner With Us",
+  heading: "Become a Meenakshi Pharma Partner",
+  subheading:
+    "Join our growing network of trusted pharmacies, clinics, and hospitals. Fill in your business details and our team will get back to you within 1\u20132 business days.",
+  notice:
+    "Meenakshi Pharma supplies medicines only to licensed healthcare businesses. We do not sell medicines directly to individual consumers.",
+  successHeading: "Partnership Request Received!",
+  successMessage:
+    "Thank you for your interest in partnering with Meenakshi Pharma. Our team will verify your business details and contact you within 1\u20132 business days.",
+
+  businessTypes: [
+    { value: "retail_pharmacy", label: "Retail Pharmacy" },
+    { value: "clinic", label: "Clinic" },
+    { value: "hospital", label: "Hospital" },
+    { value: "healthcare_institution", label: "Healthcare Institution" },
+    { value: "other", label: "Other" },
+  ],
+
+  productCategories: [
+    { value: "general_medicines", label: "General Medicines" },
+    { value: "cosmetic_products", label: "Cosmetic Products" },
+    { value: "speciality_medicines", label: "Speciality Medicines" },
+    { value: "vaccines", label: "Vaccines" },
+  ],
+
+  purchaseRanges: [
+    { value: "below_25k", label: "Below \u20b925,000" },
+    { value: "25k_50k", label: "\u20b925,000\u2013\u20b950,000" },
+    { value: "50k_1l", label: "\u20b950,000\u2013\u20b91,00,000" },
+    { value: "above_1l", label: "Above \u20b91,00,000" },
+  ],
+
+  consentText:
+    "I confirm that I represent a licensed pharmacy, clinic, hospital, or healthcare institution and that the information provided is accurate.",
+
+  submitLabel: "Request Partnership",
 };

@@ -9,6 +9,7 @@ import Brands from "./pages/Brands";
 import Achievements from "./pages/Achievements";
 import Career from "./pages/Career";
 import Contact from "./pages/Contact";
+import Partner from "./pages/Partner";
 
 export default function App() {
   return (
@@ -30,6 +31,7 @@ export default function App() {
             <Route path="/achievements" element={<Achievements />} />
             <Route path="/career" element={<Career />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/partner" element={<Partner />} />
 
             {/* Fallback route for 404 handler */}
             <Route path="*" element={<Home />} />
