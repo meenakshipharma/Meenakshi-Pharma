@@ -2,6 +2,29 @@
 // All static content for every page and component is stored here.
 // Import only what you need in each file. Never hardcode content elsewhere.
 
+import ach1 from "../assets/images/achievements/IMG_1703.webp";
+import ach2 from "../assets/images/achievements/IMG_1704.webp";
+import ach3 from "../assets/images/achievements/IMG_1705.webp";
+import ach4 from "../assets/images/achievements/IMG_1706.webp";
+import ach5 from "../assets/images/achievements/IMG_1707.webp";
+import ach6 from "../assets/images/achievements/IMG_1708.webp";
+import ach7 from "../assets/images/achievements/IMG_1709.webp";
+import ach8 from "../assets/images/achievements/IMG_1710.webp";
+import ach9 from "../assets/images/achievements/IMG_1711.webp";
+import ach10 from "../assets/images/achievements/IMG_1712.webp";
+import ach11 from "../assets/images/achievements/IMG_1713.webp";
+import ach12 from "../assets/images/achievements/IMG_1714.webp";
+import ach13 from "../assets/images/achievements/IMG_1715.webp";
+import ach14 from "../assets/images/achievements/IMG_1716.webp";
+import ach15 from "../assets/images/achievements/IMG_1718.webp";
+import ach16 from "../assets/images/achievements/IMG_1720.webp";
+import ach17 from "../assets/images/achievements/IMG_1734.webp";
+import ach18 from "../assets/images/achievements/IMG_1735.webp";
+import ach19 from "../assets/images/achievements/IMG_1736.webp";
+import ach20 from "../assets/images/achievements/IMG_1737.webp";
+import ach21 from "../assets/images/achievements/IMG_1741.webp";
+import ach22 from "../assets/images/achievements/IMG_1742.webp";
+
 // ─── SITE META ────────────────────────────────────────────────────────────────
 export const SITE = {
   name: "Meenakshi Pharma",
@@ -311,88 +334,205 @@ export const HOME_SERVICES_CARDS = [
 
 // ─── SERVICES PAGE: FLANKED MINDMAP NODES ────────────────────────────────────
 export const FLANKED_SERVICES = [
-  { id: 1, side: "left", title: "Oncology Products", tagline: "Anti-Cancer Care", description: "Catering to specialized oncology requirements with genuine anti-cancer molecules and emergency sourcing protocols.", icon: "Activity", stats: "S.O.S Procured" },
-  { id: 2, side: "left", title: "Vaccines", tagline: "Cold Chain Logistics", description: "Adequate stock of vital pediatric, adult, and travel vaccines kept under rigid temperature parameters.", icon: "Syringe", stats: "2C - 8C Monitored" },
-  { id: 3, side: "left", title: "General Medicines", tagline: "450+ Brand Partners", description: "Over 100,000+ SKUs readily available in our temperature-controlled warehouse for prompt retail orders.", icon: "Pill", stats: "100k+ SKUs Stocked" },
-  { id: 4, side: "right", title: "Speciality Medicines", tagline: "Super-Specialty Care", description: "Hormonal, nephrology, neurology, neuropsychiatry, and urology therapeutics promoted to professionals.", icon: "Sparkles", stats: "Specialist Approved" },
-  { id: 5, side: "right", title: "Cosmetic Products", tagline: "Dermato-Cosmetic", description: "Ethically promoted dermatological solutions supplied directly to specialist doctors and skin clinics.", icon: "Heart", stats: "Direct Brand Sourced" },
-  { id: 6, side: "right", title: "Import & Export", tagline: "Global Logistics Corridor", description: "International distribution supply channels facilitating imports and exports of vital pharmaceutical items.", icon: "Truck", stats: "Global Reach Ready" },
+  {
+    id: 1,
+    side: "left",
+    title: "Oncology Products",
+    tagline: "Anti-Cancer Care",
+    description:
+      "Catering to specialized oncology requirements with genuine anti-cancer molecules and emergency sourcing protocols.",
+    icon: "Activity",
+    stats: "S.O.S Procured",
+  },
+  {
+    id: 2,
+    side: "left",
+    title: "Vaccines",
+    tagline: "Cold Chain Logistics",
+    description:
+      "Adequate stock of vital pediatric, adult, and travel vaccines kept under rigid temperature parameters.",
+    icon: "Syringe",
+    stats: "2C - 8C Monitored",
+  },
+  {
+    id: 3,
+    side: "left",
+    title: "General Medicines",
+    tagline: "450+ Brand Partners",
+    description:
+      "Over 100,000+ SKUs readily available in our temperature-controlled warehouse for prompt retail orders.",
+    icon: "Pill",
+    stats: "100k+ SKUs Stocked",
+  },
+  {
+    id: 4,
+    side: "right",
+    title: "Speciality Medicines",
+    tagline: "Super-Specialty Care",
+    description:
+      "Hormonal, nephrology, neurology, neuropsychiatry, and urology therapeutics promoted to professionals.",
+    icon: "Sparkles",
+    stats: "Specialist Approved",
+  },
+  {
+    id: 5,
+    side: "right",
+    title: "Cosmetic Products",
+    tagline: "Dermato-Cosmetic",
+    description:
+      "Ethically promoted dermatological solutions supplied directly to specialist doctors and skin clinics.",
+    icon: "Heart",
+    stats: "Direct Brand Sourced",
+  },
+  {
+    id: 6,
+    side: "right",
+    title: "Import & Export",
+    tagline: "Global Logistics Corridor",
+    description:
+      "International distribution supply channels facilitating imports and exports of vital pharmaceutical items.",
+    icon: "Truck",
+    stats: "Global Reach Ready",
+  },
 ];
 
 // ─── BRANDS: 86 pharmaceutical companies ─────────────────────────────────────
 export const BRANDS = [
-  "Abbott Laboratories","Cipla Limited","Sun Pharmaceutical Industries","Dr. Reddy's Laboratories",
-  "Pfizer India","Lupin Limited","Glenmark Pharmaceuticals","Torrent Pharmaceuticals",
-  "Alkem Laboratories","Zydus Lifesciences","Biocon Limited","Mankind Pharma",
-  "Aurobindo Pharma","Intas Pharmaceuticals","Ipca Laboratories","FDC Limited",
-  "Micro Labs","USV Private Limited","Macleods Pharmaceuticals","Alembic Pharmaceuticals",
-  "Wockhardt","Sanofi India","GlaxoSmithKline (GSK)","Novartis India",
-  "AstraZeneca India","Roche India","Merck (MSD) India","Bayer India",
-  "Boehringer Ingelheim","Eli Lilly India","AbbVie India","Johnson & Johnson",
-  "Takeda India","Astellas Pharma","Daiichi Sankyo India","Eisai India",
-  "Otsuka Pharmaceutical","Shionogi India","Chugai Pharmaceutical","Kyowa Kirin",
-  "Ono Pharmaceutical","Mitsubishi Tanabe","Santen Pharmaceutical","Kissei Pharmaceutical",
-  "Kaken Pharmaceutical","Torii Pharmaceutical","Nichi-Iko Pharmaceutical","Sawai Pharmaceutical",
-  "Towa Pharmaceutical","Mochida Pharmaceutical","Nippon Shinyaku","Zeria Pharmaceutical",
-  "Senju Pharmaceutical","Rohto Pharmaceutical","Meiji Seika Pharma","Panacea Biotec",
-  "Jubilant Pharmova","Syngene International","Piramal Enterprises","Natco Pharma",
-  "Hikal Limited","Laurus Labs","Granules India","Strides Pharma Science",
-  "Suven Life Sciences","Ajanta Pharma","Caplin Point Laboratories","Dishman Carbogen Amcis",
-  "Eris Lifesciences","J. B. Chemicals & Pharmaceuticals","Indoco Remedies","Marksans Pharma",
-  "SMS Pharmaceuticals","Suven Pharmaceuticals","Unichem Laboratories","Blue Cross Laboratories",
-  "Albert David","RPG Life Sciences","Morepen Laboratories","Lincoln Pharmaceuticals",
-  "Jagsonpal Pharmaceuticals","Themis Medicare","Kopran Limited","Solara Active Pharma Sciences",
-  "Shilpa Medicare","Venus Remedies",
+  "Abbott Laboratories",
+  "Cipla Limited",
+  "Sun Pharmaceutical Industries",
+  "Dr. Reddy's Laboratories",
+  "Pfizer India",
+  "Lupin Limited",
+  "Glenmark Pharmaceuticals",
+  "Torrent Pharmaceuticals",
+  "Alkem Laboratories",
+  "Zydus Lifesciences",
+  "Biocon Limited",
+  "Mankind Pharma",
+  "Aurobindo Pharma",
+  "Intas Pharmaceuticals",
+  "Ipca Laboratories",
+  "FDC Limited",
+  "Micro Labs",
+  "USV Private Limited",
+  "Macleods Pharmaceuticals",
+  "Alembic Pharmaceuticals",
+  "Wockhardt",
+  "Sanofi India",
+  "GlaxoSmithKline (GSK)",
+  "Novartis India",
+  "AstraZeneca India",
+  "Roche India",
+  "Merck (MSD) India",
+  "Bayer India",
+  "Boehringer Ingelheim",
+  "Eli Lilly India",
+  "AbbVie India",
+  "Johnson & Johnson",
+  "Takeda India",
+  "Astellas Pharma",
+  "Daiichi Sankyo India",
+  "Eisai India",
+  "Otsuka Pharmaceutical",
+  "Shionogi India",
+  "Chugai Pharmaceutical",
+  "Kyowa Kirin",
+  "Ono Pharmaceutical",
+  "Mitsubishi Tanabe",
+  "Santen Pharmaceutical",
+  "Kissei Pharmaceutical",
+  "Kaken Pharmaceutical",
+  "Torii Pharmaceutical",
+  "Nichi-Iko Pharmaceutical",
+  "Sawai Pharmaceutical",
+  "Towa Pharmaceutical",
+  "Mochida Pharmaceutical",
+  "Nippon Shinyaku",
+  "Zeria Pharmaceutical",
+  "Senju Pharmaceutical",
+  "Rohto Pharmaceutical",
+  "Meiji Seika Pharma",
+  "Panacea Biotec",
+  "Jubilant Pharmova",
+  "Syngene International",
+  "Piramal Enterprises",
+  "Natco Pharma",
+  "Hikal Limited",
+  "Laurus Labs",
+  "Granules India",
+  "Strides Pharma Science",
+  "Suven Life Sciences",
+  "Ajanta Pharma",
+  "Caplin Point Laboratories",
+  "Dishman Carbogen Amcis",
+  "Eris Lifesciences",
+  "J. B. Chemicals & Pharmaceuticals",
+  "Indoco Remedies",
+  "Marksans Pharma",
+  "SMS Pharmaceuticals",
+  "Suven Pharmaceuticals",
+  "Unichem Laboratories",
+  "Blue Cross Laboratories",
+  "Albert David",
+  "RPG Life Sciences",
+  "Morepen Laboratories",
+  "Lincoln Pharmaceuticals",
+  "Jagsonpal Pharmaceuticals",
+  "Themis Medicare",
+  "Kopran Limited",
+  "Solara Active Pharma Sciences",
+  "Shilpa Medicare",
+  "Venus Remedies",
 ];
 
 // ─── BRANDS: Row sizes for staggered marquee (must sum to BRANDS.length = 86) ─
 export const BRAND_ROW_SIZES = [10, 11, 10, 11, 10, 11, 11, 10, 2];
 
-// ─── ACHIEVEMENTS (25 milestones gallery) ────────────────────────────────────
+// ─── ACHIEVEMENTS (22 milestones gallery) ────────────────────────────────────
 export const ACHIEVEMENTS = [
-  { id: 1, url: "https://images.unsplash.com/photo-1582750433449-64c382817dea?q=80&w=600&auto=format&fit=crop", title: "ISO 9001:2015 Quality Management Certificate" },
-  { id: 2, url: "https://images.unsplash.com/photo-1579165466521-35b91b9e247b?q=80&w=600&auto=format&fit=crop", title: "Best Distributor Award 2024 - South India region" },
-  { id: 3, url: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?q=80&w=600&auto=format&fit=crop", title: "Outstanding Services in Cold Chain Distribution" },
-  { id: 4, url: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=600&auto=format&fit=crop", title: "20 Years of Trusted Healthcare Partnerships Milestone" },
-  { id: 5, url: "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=600&auto=format&fit=crop", title: "WHO Good Distribution Practice (GDP) Compliance" },
-  { id: 6, url: "https://images.unsplash.com/photo-1527613426441-4da17471b66d?q=80&w=600&auto=format&fit=crop", title: "Top Growth Partner Award - Cipla Pharma" },
-  { id: 7, url: "https://images.unsplash.com/photo-1628771065518-0d82f1938462?q=80&w=600&auto=format&fit=crop", title: "Fastest Delivering Distributor recognition - Trichy District" },
-  { id: 8, url: "https://images.unsplash.com/photo-1532187643603-ba119ca4109e?q=80&w=600&auto=format&fit=crop", title: "Quality Excellence in Vaccine Supply Chain Management" },
-  { id: 9, url: "https://images.unsplash.com/photo-1576086213369-97a306d36557?q=80&w=600&auto=format&fit=crop", title: "Special Recognition for 24/7 COVID-19 Emergency Supply Grid" },
-  { id: 10, url: "https://images.unsplash.com/photo-1607619056574-7b8d304f3c6f?q=80&w=600&auto=format&fit=crop", title: "Life-Saving Drug Distribution Excellence Badge" },
-  { id: 11, url: "https://images.unsplash.com/photo-1471864190281-a93a3070b6de?q=80&w=600&auto=format&fit=crop", title: "Pharma Logistics Innovation Award" },
-  { id: 12, url: "https://images.unsplash.com/photo-1553413719-87587a29173f?q=80&w=600&auto=format&fit=crop", title: "Best-in-class Temperature Control Systems Installation" },
-  { id: 13, url: "https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?q=80&w=600&auto=format&fit=crop", title: "Authorized Stockist Gold Partner - Abbott Laboratories" },
-  { id: 14, url: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?q=80&w=600&auto=format&fit=crop", title: "Leading supplier to Top 10 Hospitals in Trichy region" },
-  { id: 15, url: "https://images.unsplash.com/photo-1508962914676-134849a727f0?q=80&w=600&auto=format&fit=crop", title: "Zero-Defect Quality Check Certificate" },
-  { id: 16, url: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?q=80&w=600&auto=format&fit=crop", title: "Outstanding Performance in Generic Medicine Supplies" },
-  { id: 17, url: "https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=600&auto=format&fit=crop", title: "Healthcare Community Support Recognition" },
-  { id: 18, url: "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=600&auto=format&fit=crop", title: "Customer Support Excellence Certificate - 24/7 Operations" },
-  { id: 19, url: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=600&auto=format&fit=crop", title: "Leading Tech-Driven Supply Chain Integrator Award" },
-  { id: 20, url: "https://images.unsplash.com/photo-1595246140625-573b715d11dc?q=80&w=600&auto=format&fit=crop", title: "Cleanest Warehouse Facility Audit Rating" },
-  { id: 21, url: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=600&auto=format&fit=crop", title: "Trusted Partner Award - Dr. Reddy's Laboratories" },
-  { id: 22, url: "https://images.unsplash.com/photo-1512428559087-560fa5ceab42?q=80&w=600&auto=format&fit=crop", title: "Annual Safety Compliance Award" },
-  { id: 23, url: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=600&auto=format&fit=crop", title: "Skill Training & Pharmacist Workshops Facilitator Award" },
-  { id: 24, url: "https://images.unsplash.com/photo-1606857521015-7f9fcf423740?q=80&w=600&auto=format&fit=crop", title: "Green Logistics & Sustainable Operations Citation" },
-  { id: 25, url: "https://images.unsplash.com/photo-1427504494785-3a9ca7044f45?q=80&w=600&auto=format&fit=crop", title: "Best Pharmaceutical Distributor in Trichy Region 2025" },
+  { id: 1, url: ach1, title: "Certificate of association with Calpol Paracetamol" },
+  { id: 2, url: ach2, title: "Certificate of Appointment - CIPLA" },
+  { id: 3, url: ach3, title: "Business Partner Excellence - APEX" },
+  { id: 4, url: ach4, title: "Core Pillar of Alkem Altis @Trichy Year 2021-2022" },
+  { id: 5, url: ach5, title: "Silver Club Member-2020 - ZINCOVIT" },
+  { id: 6, url: ach6, title: "Zydus business partner" },
+  { id: 7, url: ach7, title: "Alkem 50 Years of Excellence" },
+  { id: 8, url: ach8, title: "Certificate of Appreciation - Merck India Healthcare" },
+  { id: 9, url: ach9, title: "Certificate of Recognition - STAR TRADE PARTNERS FY 2018-19" },
+  { id: 10, url: ach10, title: "Certificate of Appreciation - CIPLA" },
+  { id: 11, url: ach11, title: "Certificate of Gratitude - LUPIN" },
+  { id: 12, url: ach12, title: "Certificate of Appreciation - GSK" },
+  { id: 13, url: ach13, title: "Trusted Health Care Business Partner" },
+  { id: 14, url: ach14, title: "15 Years of Excellence - AKESISS" },
+  { id: 15, url: ach15, title: "Certificate of Appreciation - CIPLA" },
+  { id: 16, url: ach16, title: "Certificate of Appreciation - GLENMARK" },
+  { id: 17, url: ach17, title: "Corona Warrior" },
+  { id: 18, url: ach18, title: "Certificate of Honour" },
+  { id: 19, url: ach19, title: "Certificate of Appreciation - ALKEM" },
+  { id: 20, url: ach20, title: "Certificate of Appreciation - CIPLA" },
+  { id: 21, url: ach21, title: "Certificate of Appreciation - EVION" },
+  { id: 22, url: ach22, title: "10 Years of Excellence - AKESISS" },
 ];
-
 
 // ─── CAREER PAGE CONTENT ──────────────────────────────────────────────────────
 export const CAREER_CONTENT = {
   badge: "Join Our Team",
   heading: "Apply at Meenakshi Pharma",
-  description: 'Fill in your basic details and click "Send Application". Your email client opens pre-filled — just attach your resume and send.',
+  description:
+    'Fill in your basic details and click "Send Application". Your email client opens pre-filled — just attach your resume and send.',
 };
 
 // ─── CONTACT PAGE CONTENT ─────────────────────────────────────────────────────
 export const CONTACT_PAGE_CONTENT = {
   badge: "Inquiries",
   heading: "Get in Touch Directly",
-  subheading: "Our customer service relations officers are standing by to process your healthcare inventory requirements. Select your preferred channel below.",
+  subheading:
+    "Our customer service relations officers are standing by to process your healthcare inventory requirements. Select your preferred channel below.",
   formBadge: "Direct message",
   formHeading: "Send an Inquiry Message",
-  successMessage: "We have logged your query. A pharmaceutical coordinator will contact you via email or phone within the next 24 business hours.",
+  successMessage:
+    "We have logged your query. A pharmaceutical coordinator will contact you via email or phone within the next 24 business hours.",
   mobileBarLabel: "Emergency Supply Line",
 };
 
