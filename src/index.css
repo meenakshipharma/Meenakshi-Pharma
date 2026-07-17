@@ -1,23 +1,32 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", system-ui, -apple-system, sans-serif;
+  --font-sans: var(--theme-font-sans);
 
-  --color-primary: #1BD3E4;
-  --color-primary-hover: #16b3c2;
-  --color-accent: #10B981;
-  --color-accent-hover: #0d9488;
-  --color-bg-light: #F8FCFD;
-  --color-text-dark: #0F172A;
-  --color-dark-teal: #082529;
-  --color-dark-teal-hover: #061d20;
-  --color-text-muted: #475569;
-  --color-border-light: #E2E8F0;
+  --color-primary: var(--theme-color-primary);
+  --color-primary-hover: var(--theme-color-primary-hover);
+  --color-accent: var(--theme-color-accent);
+  --color-accent-hover: var(--theme-color-accent-hover);
+  --color-bg-light: var(--theme-color-bg-light);
+  --color-text-dark: var(--theme-color-text-dark);
+  --color-dark-teal: var(--theme-color-dark-teal);
+  --color-dark-teal-hover: var(--theme-color-dark-teal-hover);
+  --color-text-muted: var(--theme-color-text-muted);
+  --color-border-light: var(--theme-color-border-light);
 
-  --shadow-premium: 0 10px 30px -10px rgba(27, 211, 228, 0.2), 0 1px 3px rgba(0, 0, 0, 0.04);
-  --shadow-hover-glow: 0 20px 40px -15px rgba(27, 211, 228, 0.35), 0 0 15px -3px rgba(27, 211, 228, 0.2);
+  --text-sm: var(--theme-text-sm);
+  --text-base: var(--theme-text-base);
+  --text-lg: var(--theme-text-lg);
+  --text-xl: var(--theme-text-xl);
+  --text-2xl: var(--theme-text-2xl);
+  --text-3xl: var(--theme-text-3xl);
+  --text-4xl: var(--theme-text-4xl);
+  --text-5xl: var(--theme-text-5xl);
+
+
+  --shadow-premium: 0 10px 30px -10px color-mix(in srgb, var(--theme-color-primary) 20%, transparent), 0 1px 3px rgba(0, 0, 0, 0.04);
+  --shadow-hover-glow: 0 20px 40px -15px color-mix(in srgb, var(--theme-color-primary) 35%, transparent), 0 0 15px -3px color-mix(in srgb, var(--theme-color-primary) 20%, transparent);
 
   --animate-marquee: marquee 50s linear infinite;
   --animate-float: float 4s ease-in-out infinite;
@@ -52,7 +61,7 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #F8FCFD;
+  background: var(--theme-color-bg-light);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -61,7 +70,7 @@
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1BD3E4;
+  background: var(--theme-color-primary);
 }
 
 /* Glassmorphism utility */
@@ -69,7 +78,7 @@
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(27, 211, 228, 0.15);
+  border: 1px solid color-mix(in srgb, var(--theme-color-primary) 15%, transparent);
 }
 
 .glass-panel-dark {

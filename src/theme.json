@@ -1,0 +1,27 @@
+{
+  "colors": {
+    "primary": "#1BD3E4",
+    "primaryHover": "#16b3c2",
+    "accent": "#10B981",
+    "accentHover": "#0d9488",
+    "bgLight": "#F8FCFD",
+    "textDark": "#0F172A",
+    "darkTeal": "#082529",
+    "darkTealHover": "#061d20",
+    "textMuted": "#475569",
+    "borderLight": "#E2E8F0"
+  },
+  "fonts": {
+    "sans": "\"-apple-system\", BlinkMacSystemFont, \"SF Pro Display\", \"SF Pro Text\", \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif"
+  },
+  "textSizes": {
+    "sm": "0.875rem",
+    "base": "1rem",
+    "lg": "1.125rem",
+    "xl": "1.25rem",
+    "2xl": "1.5rem",
+    "3xl": "1.875rem",
+    "4xl": "2.25rem",
+    "5xl": "3rem"
+  }
+}
