@@ -29,29 +29,192 @@ const Services = () => {
         subtitle="Comprehensive Healthcare Distribution Solutions Tailored to Your Needs"
       />
 
-      {/* Services Grid */}
+      {/* Services Hub Grid */}
       <section className="section-padding bg-transparent">
         <div className="container-custom">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white p-10 rounded-2xl shadow-card hover:shadow-xl border border-gray-100 transition-all duration-300 group"
-              >
-                <div className="w-16 h-16 bg-brand-light rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  {service.icon}
+          <SectionTitle
+            title="Comprehensive Healthcare Solutions"
+            subtitle="Our Services"
+          />
+
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-0 mt-16 items-center">
+
+            {/* ── LEFT COLUMN ── */}
+            <div className="flex flex-col gap-14">
+              {[
+                {
+                  icon: <FiBox />,
+                  title: "Pharmaceutical Distribution",
+                  desc: "End-to-end distribution services ensuring products reach pharmacies and hospitals efficiently and safely.",
+                  color: "brand",
+                },
+                {
+                  icon: <FiActivity />,
+                  title: "Vaccines",
+                  desc: "Injectibles, mainly vaccines are kept in adequate stock with us, supplied on regular orders or dispatched by institutional delivery staff on an urgent basis.",
+                  color: "accent",
+                },
+                {
+                  icon: <FiUsers />,
+                  title: "General Medicines",
+                  desc: "Our biggest strength is our SKUs. We are direct stockists for about 450 companies with 100,000+ products readily available on our racks.",
+                  color: "brand",
+                },
+              ].map((service, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.15 }}
+                  className="flex items-start gap-5 group"
+                >
+                  {/* Text — right-aligned on desktop */}
+                  <div className="flex-1 text-right hidden lg:block">
+                    <h3
+                      className={`text-sm font-serif font-bold uppercase tracking-widest mb-2 ${
+                        service.color === "brand" ? "text-brand" : "text-accent"
+                      }`}
+                    >
+                      {service.title}
+                    </h3>
+                    <p className="text-text-light text-sm leading-relaxed">
+                      {service.desc}
+                    </p>
+                  </div>
+                  {/* Icon circle */}
+                  <div
+                    className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white shadow-lg group-hover:scale-110 transition-transform duration-300 ${
+                      service.color === "brand" ? "bg-brand" : "bg-accent"
+                    }`}
+                  >
+                    {service.icon}
+                  </div>
+                  {/* Text — below icon on mobile */}
+                  <div className="flex-1 lg:hidden">
+                    <h3
+                      className={`text-sm font-serif font-bold uppercase tracking-widest mb-2 ${
+                        service.color === "brand" ? "text-brand" : "text-accent"
+                      }`}
+                    >
+                      {service.title}
+                    </h3>
+                    <p className="text-text-light text-sm leading-relaxed">
+                      {service.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* ── CENTER WHEEL ── */}
+            <motion.div
+              className="hidden lg:flex items-center justify-center mx-12"
+              initial={{ opacity: 0, scale: 0.8, rotate: -20 }}
+              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 1, ease: "easeOut" }}
+            >
+              <div className="relative w-56 h-56">
+                {/* Outer ring */}
+                <div className="absolute inset-0 rounded-full border-4 border-gray-200 opacity-50" />
+                {/* Middle ring */}
+                <div className="absolute inset-5 rounded-full border-4 border-brand/20" />
+                {/* Inner filled circle */}
+                <div className="absolute inset-12 rounded-full bg-gradient-to-br from-brand/10 to-accent/10 border-4 border-brand/30 flex items-center justify-center">
+                  <svg
+                    viewBox="0 0 64 64"
+                    className="w-14 h-14 text-brand"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                  >
+                    <path d="M32 20a12 12 0 1 1 0 24 12 12 0 0 1 0-24z" />
+                    <path d="M32 4v8M32 52v8M4 32h8M52 32h8M11.03 11.03l5.66 5.66M47.31 47.31l5.66 5.66M11.03 52.97l5.66-5.66M47.31 16.69l5.66-5.66" />
+                  </svg>
                 </div>
-                <h3 className="text-2xl font-serif font-semibold mb-4 text-text">{service.title}</h3>
-                <p className="text-text-light mb-6 leading-relaxed">{service.desc}</p>
-              </motion.div>
-            ))}
+                {/* Spoke lines */}
+                {[0, 60, 120, 180, 240, 300].map((deg) => (
+                  <div
+                    key={deg}
+                    className="absolute top-1/2 left-1/2 w-1/2 h-px bg-brand/20 origin-left"
+                    style={{ transform: `rotate(${deg}deg)` }}
+                  />
+                ))}
+                {/* Dot connectors at spoke ends */}
+                {[0, 60, 120, 180, 240, 300].map((deg) => {
+                  const rad = (deg * Math.PI) / 180;
+                  const x = 50 + 46 * Math.cos(rad);
+                  const y = 50 + 46 * Math.sin(rad);
+                  return (
+                    <div
+                      key={deg}
+                      className="absolute w-3 h-3 bg-brand/50 rounded-full -translate-x-1/2 -translate-y-1/2"
+                      style={{ left: `${x}%`, top: `${y}%` }}
+                    />
+                  );
+                })}
+              </div>
+            </motion.div>
+
+            {/* ── RIGHT COLUMN ── */}
+            <div className="flex flex-col gap-14">
+              {[
+                {
+                  icon: <FiShield />,
+                  title: "Speciality Medicines",
+                  desc: "We offer a wide range of super-specialty medicines for transplant, nephrology, urology, cardiology, dermatology & hormonal medicines.",
+                  color: "accent",
+                },
+                {
+                  icon: <FiTruck />,
+                  title: "Cosmetic Products",
+                  desc: "All ethically promoted Dermatologicals / Cosmetologicals from renowned companies. Skin, Hair, and Nail Doctor clinics can approach us for regular supplies.",
+                  color: "brand",
+                },
+                {
+                  icon: <FiTrendingUp />,
+                  title: "Import & Export",
+                  desc: "We deal with import and export of general medicines, specialty drugs and other pharmaceutical products from and to various parts of the world.",
+                  color: "accent",
+                },
+              ].map((service, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 40 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.15 }}
+                  className="flex items-start gap-5 group"
+                >
+                  {/* Icon circle */}
+                  <div
+                    className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white shadow-lg group-hover:scale-110 transition-transform duration-300 ${
+                      service.color === "brand" ? "bg-brand" : "bg-accent"
+                    }`}
+                  >
+                    {service.icon}
+                  </div>
+                  {/* Text */}
+                  <div className="flex-1">
+                    <h3
+                      className={`text-sm font-serif font-bold uppercase tracking-widest mb-2 ${
+                        service.color === "brand" ? "text-brand" : "text-accent"
+                      }`}
+                    >
+                      {service.title}
+                    </h3>
+                    <p className="text-text-light text-sm leading-relaxed">
+                      {service.desc}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* Super-Specialty Care Spotlight */}
       <section className="section-padding bg-brand-light relative overflow-hidden">
