@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <rect width="800" height="600" fill="#D9A79C"/>
+  <rect x="20" y="20" width="760" height="560" fill="none" stroke="#ffffff55" stroke-width="2" stroke-dasharray="10 8"/>
+  <text x="400" y="290" font-family="Inter, sans-serif" font-size="26" fill="#ffffffcc" text-anchor="middle">Placeholder Image</text>
+  <text x="400" y="325" font-family="Inter, sans-serif" font-size="18" fill="#ffffff99" text-anchor="middle">Product 2</text>
+</svg>

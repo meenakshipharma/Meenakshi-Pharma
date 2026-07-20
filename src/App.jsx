@@ -1,0 +1,49 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Layout
+import Navbar from './components/layout/Navbar';
+import Footer from './components/layout/Footer';
+
+// Pages
+import Home from './pages/Home';
+import About from './pages/About';
+import Services from './pages/Services';
+import Brands from './pages/Brands';
+import Achievements from './pages/Achievements';
+import WebOrder from './pages/WebOrder';
+import StockSales from './pages/StockSales';
+import Partner from './pages/Partner';
+import Career from './pages/Career';
+import Contact from './pages/Contact';
+
+// Utils
+import ScrollToTop from './components/ScrollToTop';
+
+function App() {
+  return (
+    <Router>
+      <ScrollToTop />
+      <div className="flex flex-col min-h-screen">
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/services" element={<Services />} />
+            <Route path="/brands" element={<Brands />} />
+            <Route path="/achievements" element={<Achievements />} />
+            <Route path="/web-order" element={<WebOrder />} />
+            <Route path="/stock-sales" element={<StockSales />} />
+            <Route path="/partner" element={<Partner />} />
+            <Route path="/career" element={<Career />} />
+            <Route path="/contact" element={<Contact />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
