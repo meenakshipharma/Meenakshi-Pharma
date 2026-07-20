@@ -473,20 +473,20 @@ const Home = () => {
                 {/* Navigation Arrows */}
                 <button
                   onClick={() => setCurrentVideoIndex((prev) => (prev - 1 + testimonialVideos.length) % testimonialVideos.length)}
-                  className="absolute left-6 md:-left-16 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/90 hover:bg-white text-text rounded-full shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 active:scale-95 transition-all"
+                  className="absolute left-3 md:-left-16 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-12 md:h-12 bg-white/90 hover:bg-white text-text rounded-full shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 active:scale-95 transition-all"
                   aria-label="Previous testimonial"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-5 h-5">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-4.5 h-4.5 md:w-5 md:h-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
                   </svg>
                 </button>
 
                 <button
                   onClick={() => setCurrentVideoIndex((prev) => (prev + 1) % testimonialVideos.length)}
-                  className="absolute right-6 md:-right-16 top-1/2 -translate-y-1/2 z-30 w-12 h-12 bg-white/90 hover:bg-white text-text rounded-full shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 active:scale-95 transition-all"
+                  className="absolute right-3 md:-right-16 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-12 md:h-12 bg-white/90 hover:bg-white text-text rounded-full shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 active:scale-95 transition-all"
                   aria-label="Next testimonial"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-5 h-5">
+                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-4.5 h-4.5 md:w-5 md:h-5">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                   </svg>
                 </button>
