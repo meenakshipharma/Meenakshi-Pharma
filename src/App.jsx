@@ -1,24 +1,24 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Layout
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
+import Navbar from "./components/layout/Navbar";
+import Footer from "./components/layout/Footer";
 
 // Pages
-import Home from './pages/Home';
-import About from './pages/About';
-import Services from './pages/Services';
-import Brands from './pages/Brands';
-import Achievements from './pages/Achievements';
-import WebOrder from './pages/WebOrder';
-import StockSales from './pages/StockSales';
-import Partner from './pages/Partner';
-import Career from './pages/Career';
-import Contact from './pages/Contact';
+import Home from "./pages/Home";
+import About from "./pages/About";
+import Services from "./pages/Services";
+import Brands from "./pages/Brands";
+import Achievements from "./pages/Achievements";
+import WebOrder from "./pages/WebOrder";
+import StockSales from "./pages/StockSales";
+import Partner from "./pages/Partner";
+import Career from "./pages/Career";
+import Contact from "./pages/Contact";
 
 // Utils
-import ScrollToTop from './components/ScrollToTop';
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
@@ -33,8 +33,8 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/brands" element={<Brands />} />
             <Route path="/achievements" element={<Achievements />} />
-            <Route path="/web-order" element={<WebOrder />} />
-            <Route path="/stock-sales" element={<StockSales />} />
+            <Route path="https://meenakshipharma.wondersoft.in/ro13.html#/login" />
+            <Route path="http://meenakshipharma.wsweborder.com/StockAndSales/DistributorPages/Login4StockNSales.aspx" />
             <Route path="/partner" element={<Partner />} />
             <Route path="/career" element={<Career />} />
             <Route path="/contact" element={<Contact />} />
