@@ -1,5 +1,93 @@
 // Centralized content configuration for Meenakshi Pharma website
 
+import ach1 from "../assets/images/achievements/calpol_1.webp";
+import ach2 from "../assets/images/achievements/cipla_1.webp";
+import ach3 from "../assets/images/achievements/apex_1.webp";
+import ach4 from "../assets/images/achievements/alkem_1.webp";
+import ach5 from "../assets/images/achievements/zincovit_1.webp";
+import ach6 from "../assets/images/achievements/zydus_1.webp";
+import ach7 from "../assets/images/achievements/alkem_2.webp";
+import ach8 from "../assets/images/achievements/merck_1.webp";
+import ach9 from "../assets/images/achievements/oaknet_1.webp";
+import ach10 from "../assets/images/achievements/cipla_2.webp";
+import ach11 from "../assets/images/achievements/lupin_1.webp";
+import ach12 from "../assets/images/achievements/gsk_1.webp";
+import ach13 from "../assets/images/achievements/gsk_2.webp";
+import ach14 from "../assets/images/achievements/akesiss_1.webp";
+import ach15 from "../assets/images/achievements/cipla_3.webp";
+import ach16 from "../assets/images/achievements/glenmark_1.webp";
+import ach17 from "../assets/images/achievements/corona_warrior_1.webp";
+import ach18 from "../assets/images/achievements/lions_club_1.webp";
+import ach19 from "../assets/images/achievements/alkem_3.webp";
+import ach20 from "../assets/images/achievements/cipla_4.webp";
+import ach21 from "../assets/images/achievements/evion_1.webp";
+import ach22 from "../assets/images/achievements/akesiss_2.webp";
+
+// ─── BRAND LOGO IMPORTS ────────────────────────────────────────────────────────
+import img_cipla from "../assets/images/brands/cipla-removebg-preview.webp";
+import img_wallace from "../assets/images/brands/wallace-removebg-preview.webp";
+import img_gsk from "../assets/images/brands/gsk-removebg-preview.webp";
+import img_zydus from "../assets/images/brands/zydus-removebg-preview.webp";
+import img_torrent from "../assets/images/brands/torrent-removebg-preview.webp";
+import img_alkem from "../assets/images/brands/alkem-removebg-preview.webp";
+import img_reddy from "../assets/images/brands/reddy-removebg-preview.webp";
+import img_apex from "../assets/images/brands/apex-removebg-preview.webp";
+import img_glenmark from "../assets/images/brands/glenmark-removebg-preview.webp";
+import img_mankind from "../assets/images/brands/mankind-removebg-preview.webp";
+import img_lupin from "../assets/images/brands/lupin-removebg-preview.webp";
+import img_achievaa from "../assets/images/brands/achievaa.webp";
+import img_akesiss from "../assets/images/brands/akesiss-removebg-preview.webp";
+import img_altis from "../assets/images/brands/altis-removebg-preview.webp";
+import img_amarix from "../assets/images/brands/amarix-removebg-preview.webp";
+import img_aretaeus from "../assets/images/brands/aretaeus-removebg-preview.webp";
+import img_bayer from "../assets/images/brands/bayer-removebg-preview.webp";
+import img_beline from "../assets/images/brands/beline-removebg-preview.webp";
+import img_biocon from "../assets/images/brands/biocon-removebg-preview.webp";
+import img_biosis from "../assets/images/brands/biosis-removebg-preview.webp";
+import img_bluehen from "../assets/images/brands/bluehen.webp";
+import img_boehringer from "../assets/images/brands/boehringer-removebg-preview.webp";
+import img_brinton from "../assets/images/brands/brinton-removebg-preview.webp";
+import img_brithish from "../assets/images/brands/brithish-removebg-preview.webp";
+import img_canixa from "../assets/images/brands/canixa-removebg-preview.webp";
+import img_careindia from "../assets/images/brands/careindia.webp";
+import img_daris from "../assets/images/brands/daris-removebg-preview.webp";
+import img_ellora from "../assets/images/brands/ellora.webp";
+import img_h_h from "../assets/images/brands/h_h-removebg-preview.webp";
+import img_healindia from "../assets/images/brands/healindia.webp";
+import img_henotic from "../assets/images/brands/henotic-removebg-preview.webp";
+import img_hollyhock from "../assets/images/brands/hollyhock-removebg-preview.webp";
+import img_icarus from "../assets/images/brands/icarus-removebg-preview.webp";
+import img_indoco from "../assets/images/brands/indoco-removebg-preview.webp";
+import img_johnson from "../assets/images/brands/johnson-removebg-preview.webp";
+import img_kap from "../assets/images/brands/kap-removebg-preview.webp";
+import img_karlin from "../assets/images/brands/karlin.webp";
+import img_kepler from "../assets/images/brands/kepler.webp";
+import img_kiosence from "../assets/images/brands/kiosence-removebg-preview.webp";
+import img_lia from "../assets/images/brands/lia-removebg-preview.webp";
+import img_lifegain from "../assets/images/brands/lifegain-removebg-preview.webp";
+import img_lion from "../assets/images/brands/lion-removebg-preview.webp";
+import img_macleods from "../assets/images/brands/macleods-removebg-preview.webp";
+import img_merlion from "../assets/images/brands/merlion-removebg-preview.webp";
+import img_mexican from "../assets/images/brands/mexican-removebg-preview.webp";
+import img_microlabs from "../assets/images/brands/microlabs.webp";
+import img_oracion from "../assets/images/brands/oracion-removebg-preview.webp";
+import img_orris from "../assets/images/brands/orris-removebg-preview.webp";
+import img_ozone from "../assets/images/brands/ozone-removebg-preview.webp";
+import img_p_g from "../assets/images/brands/p_g-removebg-preview.webp";
+import img_pharmanova from "../assets/images/brands/pharmanova.webp";
+import img_pil from "../assets/images/brands/pil-removebg-preview.webp";
+import img_risemarker from "../assets/images/brands/risemarker.webp";
+import img_sanz from "../assets/images/brands/sanz-removebg-preview.webp";
+import img_skn from "../assets/images/brands/skn-removebg-preview.webp";
+import img_stanford from "../assets/images/brands/stanford.webp";
+import img_trodran from "../assets/images/brands/trodran.webp";
+import img_winmedicare from "../assets/images/brands/winmedicare.webp";
+import img_worldwide from "../assets/images/brands/worldwide-removebg-preview.webp";
+import img_zinnia from "../assets/images/brands/zinnia-removebg-preview.webp";
+import img_zoetic from "../assets/images/brands/zoetic-removebg-preview.webp";
+import img_zorvia from "../assets/images/brands/zorvia-removebg-preview.webp";
+import img_cangrow from "../assets/images/brands/cangrow.webp";
+
 // Navbar Links
 export const navigation = {
   navLinks: [
@@ -230,70 +318,6 @@ export const services = {
   ],
 };
 
-// Brands Page Content
-export const brands = {
-  seo: {
-    title: "Trusted Brands | Meenakshi Pharma",
-    description:
-      "Discover the extensive portfolio of trusted pharmaceutical brands we distribute.",
-  },
-  banner: {
-    title: "Our Trusted Partners",
-    subtitle:
-      "We collaborate with the world's leading pharmaceutical manufacturers to bring quality healthcare to you.",
-  },
-  totalBrands: 100,
-};
-
-// Achievements Page Content
-export const achievements = {
-  seo: {
-    title: "Achievements & Certificates | Meenakshi Pharma",
-    description: "View our awards, recognitions, and quality certificates.",
-  },
-  banner: {
-    title: "Our Achievements",
-    subtitle: "Recognitions that validate our commitment to excellence.",
-  },
-  awardsList: [
-    {
-      id: 1,
-      title: "Best Distributor 2023",
-      category: "Awards",
-      img: "https://images.unsplash.com/photo-1595113316349-9441133231fe?q=80&w=1472&auto=format&fit=crop",
-    },
-    {
-      id: 2,
-      title: "ISO 9001:2015",
-      category: "Certificates",
-      img: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?q=80&w=1470&auto=format&fit=crop",
-    },
-    {
-      id: 3,
-      title: "Excellence in Supply Chain",
-      category: "Awards",
-      img: "https://images.unsplash.com/photo-1595113316349-9441133231fe?q=80&w=1472&auto=format&fit=crop",
-    },
-    {
-      id: 4,
-      title: "WHO GMP Compliance",
-      category: "Certificates",
-      img: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?q=80&w=1470&auto=format&fit=crop",
-    },
-    {
-      id: 5,
-      title: "Outstanding Partner Award",
-      category: "Awards",
-      img: "https://images.unsplash.com/photo-1595113316349-9441133231fe?q=80&w=1472&auto=format&fit=crop",
-    },
-    {
-      id: 6,
-      title: "Quality Excellence 2022",
-      category: "Awards",
-      img: "https://images.unsplash.com/photo-1595113316349-9441133231fe?q=80&w=1472&auto=format&fit=crop",
-    },
-  ],
-};
 
 // Web Order Page Content
 export const webOrder = {
@@ -475,3 +499,99 @@ export const contact = {
     buttonText: "Send Message",
   },
 };
+
+
+// Brands Page Content
+
+export const brands = [
+  { id: 1, url: img_cipla, name: "Cipla Limited" },
+  { id: 2, url: img_wallace, name: "Wallace Pharmaceuticals" },
+  { id: 3, url: img_gsk, name: "GlaxoSmithKline (GSK)" },
+  { id: 4, url: img_zydus, name: "Zydus Lifesciences" },
+  { id: 5, url: img_torrent, name: "Torrent Pharmaceuticals" },
+  { id: 6, url: img_alkem, name: "Alkem Laboratories" },
+  { id: 7, url: img_reddy, name: "Dr. Reddy's Laboratories" },
+  { id: 8, url: img_apex, name: "Apex Laboratories" },
+  { id: 9, url: img_glenmark, name: "Glenmark Pharmaceuticals" },
+  { id: 10, url: img_mankind, name: "Mankind Pharma" },
+  { id: 11, url: img_lupin, name: "Lupin Limited" },
+  { id: 12, url: img_achievaa, name: "Achievaa" },
+  { id: 13, url: img_akesiss, name: "Akesiss" },
+  { id: 14, url: img_altis, name: "Altis" },
+  { id: 15, url: img_amarix, name: "Amarix" },
+  { id: 16, url: img_aretaeus, name: "Aretaeus" },
+  { id: 17, url: img_bayer, name: "Bayer" },
+  { id: 18, url: img_beline, name: "Beline" },
+  { id: 19, url: img_biocon, name: "Biocon" },
+  { id: 20, url: img_biosis, name: "Biosis" },
+  { id: 21, url: img_bluehen, name: "Bluehen" },
+  { id: 22, url: img_boehringer, name: "Boehringer" },
+  { id: 23, url: img_brinton, name: "Brinton" },
+  { id: 24, url: img_brithish, name: "Brithish" },
+  { id: 25, url: img_canixa, name: "Canixa" },
+  { id: 26, url: img_careindia, name: "Careindia" },
+  { id: 27, url: img_daris, name: "Daris" },
+  { id: 28, url: img_ellora, name: "Ellora" },
+  { id: 29, url: img_h_h, name: "H&H" },
+  { id: 30, url: img_healindia, name: "Healindia" },
+  { id: 31, url: img_henotic, name: "Henotic" },
+  { id: 32, url: img_hollyhock, name: "Hollyhock" },
+  { id: 33, url: img_icarus, name: "Icarus" },
+  { id: 34, url: img_indoco, name: "Indoco" },
+  { id: 35, url: img_johnson, name: "Johnson" },
+  { id: 36, url: img_kap, name: "KAP" },
+  { id: 37, url: img_karlin, name: "Karlin" },
+  { id: 38, url: img_kepler, name: "Kepler" },
+  { id: 39, url: img_kiosence, name: "Kiosence" },
+  { id: 40, url: img_lia, name: "Lia" },
+  { id: 41, url: img_lifegain, name: "Lifegain" },
+  { id: 42, url: img_lion, name: "Lion" },
+  { id: 43, url: img_macleods, name: "Macleods" },
+  { id: 44, url: img_merlion, name: "Merlion" },
+  { id: 45, url: img_mexican, name: "Mexican" },
+  { id: 46, url: img_microlabs, name: "Microlabs" },
+  { id: 47, url: img_oracion, name: "Oracion" },
+  { id: 48, url: img_orris, name: "Orris" },
+  { id: 49, url: img_ozone, name: "Ozone" },
+  { id: 50, url: img_p_g, name: "P&G" },
+  { id: 51, url: img_pharmanova, name: "Pharmanova" },
+  { id: 52, url: img_pil, name: "PIL" },
+  { id: 53, url: img_risemarker, name: "Risemarker" },
+  { id: 54, url: img_sanz, name: "Sanz" },
+  { id: 55, url: img_skn, name: "SKN" },
+  { id: 56, url: img_stanford, name: "Stanford" },
+  { id: 57, url: img_trodran, name: "Trodran" },
+  { id: 58, url: img_winmedicare, name: "Winmedicare" },
+  { id: 59, url: img_worldwide, name: "Worldwide" },
+  { id: 60, url: img_zinnia, name: "Zinnia" },
+  { id: 61, url: img_zoetic, name: "Zoetic" },
+  { id: 62, url: img_zorvia, name: "Zorvia" },
+  { id: 63, url: img_cangrow, name: "CanGrow" },
+];
+
+// Achievements Page Content
+
+export const achievements = [
+  { id: 1, url: ach1, title: "Certificate of association with Calpol Paracetamol" },
+  { id: 2, url: ach2, title: "Certificate of Appointment - CIPLA" },
+  { id: 3, url: ach3, title: "Business Partner Excellence - APEX" },
+  { id: 4, url: ach4, title: "Core Pillar of Alkem Altis @Trichy Year 2021-2022" },
+  { id: 5, url: ach5, title: "Silver Club Member-2020 - ZINCOVIT" },
+  { id: 6, url: ach6, title: "Zydus business partner" },
+  { id: 7, url: ach7, title: "Alkem 50 Years of Excellence" },
+  { id: 8, url: ach8, title: "Certificate of Appreciation - Merck India Healthcare" },
+  { id: 9, url: ach9, title: "Certificate of Recognition - STAR TRADE PARTNERS FY 2018-19" },
+  { id: 10, url: ach10, title: "Certificate of Appreciation - CIPLA" },
+  { id: 11, url: ach11, title: "Certificate of Gratitude - LUPIN" },
+  { id: 12, url: ach12, title: "Certificate of Appreciation - GSK" },
+  { id: 13, url: ach13, title: "Trusted Health Care Business Partner" },
+  { id: 14, url: ach14, title: "15 Years of Excellence - AKESISS" },
+  { id: 15, url: ach15, title: "Certificate of Appreciation - CIPLA" },
+  { id: 16, url: ach16, title: "Certificate of Appreciation - GLENMARK" },
+  { id: 17, url: ach17, title: "Corona Warrior" },
+  { id: 18, url: ach18, title: "Certificate of Honour" },
+  { id: 19, url: ach19, title: "Certificate of Appreciation - ALKEM" },
+  { id: 20, url: ach20, title: "Certificate of Appreciation - CIPLA" },
+  { id: 21, url: ach21, title: "Certificate of Appreciation - EVION" },
+  { id: 22, url: ach22, title: "10 Years of Excellence - AKESISS" },
+];

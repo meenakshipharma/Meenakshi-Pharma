@@ -3,20 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageBanner from '../components/PageBanner';
 import CTASection from '../components/CTASection';
+import { brands } from '../data/content';
 
 const Brands = () => {
-  const [searchTerm, setSearchTerm] = useState('');
-
-  // Generate mock brands (80-100 requested, displaying all on a single page)
-  const allBrands = Array.from({ length: 100 }, (_, i) => ({
-    id: i + 1,
-    name: `PharmaBrand ${i + 1}`,
-    image: `https://ui-avatars.com/api/?name=PB${i + 1}&background=random&color=fff&size=150&font-size=0.4`
-  }));
-
-  const filteredBrands = allBrands.filter(brand => 
-    brand.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  
 
   return (
     <>
@@ -33,24 +23,11 @@ const Brands = () => {
       <section className="section-padding bg-transparent min-h-screen">
         <div className="container-custom">
           
-          {/* Search Bar */}
-          <div className="max-w-md mx-auto mb-16 relative">
-            <input 
-              type="text" 
-              placeholder="Search brands..." 
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-6 py-4 rounded-full border border-gray-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-shadow text-text"
-            />
-            <div className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-400">
-              <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
-            </div>
-          </div>
 
           {/* Brand Grid */}
-          <motion.div layout className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+          <motion.div layout className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
             <AnimatePresence>
-              {filteredBrands.map((brand) => (
+              {brands.map((brand) => (
                 <motion.div
                   key={brand.id}
                   layout
@@ -58,19 +35,19 @@ const Brands = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.3 }}
-                  className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 flex items-center justify-center group cursor-pointer transition-all duration-300 transform hover:-translate-y-1"
+                  className="bg-white p-4 sm:p-6 rounded-2xl shadow-sm hover:shadow-xl border border-gray-100 flex items-center justify-center group cursor-pointer transition-all duration-300 transform hover:-translate-y-1 h-32 sm:h-40"
                 >
                   <img 
-                    src={brand.image} 
+                    src={brand.url} 
                     alt={brand.name} 
-                    className="max-w-full h-auto opacity-70 group-hover:opacity-100 group-hover:scale-110 transition-all duration-300 filter grayscale group-hover:grayscale-0"
+                    className="max-w-full max-h-full object-contain group-hover:scale-110 transition-transform duration-300"
                   />
                 </motion.div>
               ))}
             </AnimatePresence>
           </motion.div>
 
-          {filteredBrands.length === 0 && (
+          {brands.length === 0 && (
             <div className="text-center text-text-light py-20">
               No brands found matching your search.
             </div>

@@ -3,18 +3,10 @@ import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageBanner from '../components/PageBanner';
 import CTASection from '../components/CTASection';
+import { achievements as awards } from '../data/content';
 
 const Achievements = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-
-  const awards = [
-    { id: 1, title: 'Best Distributor 2023', category: 'Awards', img: 'https://images.unsplash.com/photo-1595113316349-9441133231fe?q=80&w=1472&auto=format&fit=crop' },
-    { id: 2, title: 'ISO 9001:2015', category: 'Certificates', img: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?q=80&w=1470&auto=format&fit=crop' },
-    { id: 3, title: 'Excellence in Supply Chain', category: 'Awards', img: 'https://images.unsplash.com/photo-1595113316349-9441133231fe?q=80&w=1472&auto=format&fit=crop' },
-    { id: 4, title: 'WHO GMP Compliance', category: 'Certificates', img: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?q=80&w=1470&auto=format&fit=crop' },
-    { id: 5, title: 'Outstanding Partner Award', category: 'Awards', img: 'https://images.unsplash.com/photo-1595113316349-9441133231fe?q=80&w=1472&auto=format&fit=crop' },
-    { id: 6, title: 'Quality Excellence 2022', category: 'Awards', img: 'https://images.unsplash.com/photo-1595113316349-9441133231fe?q=80&w=1472&auto=format&fit=crop' },
-  ];
 
   return (
     <>
@@ -39,11 +31,11 @@ const Achievements = () => {
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
                 className="group cursor-pointer"
-                onClick={() => setSelectedImage(award.img)}
+                onClick={() => setSelectedImage(award.url)}
               >
                 <div className="relative overflow-hidden rounded-2xl shadow-card aspect-[4/3] mb-4">
                   <img 
-                    src={award.img} 
+                    src={award.url} 
                     alt={award.title} 
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
@@ -54,7 +46,9 @@ const Achievements = () => {
                   </div>
                 </div>
                 <div className="text-center">
-                  <span className="text-xs font-bold uppercase tracking-wider text-accent mb-1 block">{award.category}</span>
+                  <span className="text-xs font-bold uppercase tracking-wider text-accent mb-1 block">
+                    {award.title.toLowerCase().includes('certificate') ? 'Certificate' : 'Award'}
+                  </span>
                   <h3 className="text-lg font-serif font-semibold text-text">{award.title}</h3>
                 </div>
               </motion.div>
