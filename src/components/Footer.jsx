@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import { FiFacebook, FiInstagram, FiLinkedin, FiTwitter, FiArrowRight } from 'react-icons/fi'
 import { brand, footer, navLinks } from '../data/content.js'
 import Reveal from './Reveal.jsx'
@@ -93,7 +94,14 @@ export default function Footer() {
 
       <div className="border-t border-white/10 py-6 px-6 md:px-12 lg:px-20 text-xs flex flex-col md:flex-row gap-2 justify-between container-max">
         <span>© {new Date().getFullYear()} {brand.name}. All rights reserved.</span>
-        <span>Designed &amp; built with care.</span>
+        <div className="flex gap-5">
+          <Link to="/privacy-policy" className="hover:text-coral transition-colors">
+            Privacy Policy
+          </Link>
+          <Link to="/terms-of-service" className="hover:text-coral transition-colors">
+            Terms of Service
+          </Link>
+        </div>
       </div>
     </footer>
   )

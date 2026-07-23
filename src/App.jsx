@@ -16,6 +16,8 @@ import StockSales from "./pages/StockSales";
 import Partner from "./pages/Partner";
 import Career from "./pages/Career";
 import Contact from "./pages/Contact";
+import PrivacyPolicy from "./pages/PrivacyInfo";
+import TermsOfService from "./pages/TermsOfService";
 
 // Utils
 import ScrollToTop from "./components/ScrollToTop";
@@ -38,6 +40,8 @@ function App() {
             <Route path="/partner" element={<Partner />} />
             <Route path="/career" element={<Career />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
           </Routes>
         </main>
         <Footer />
