@@ -26,17 +26,19 @@ const Achievements = () => {
             {awards.map((award, index) => (
               <motion.div
                 key={award.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '0px 0px -60px 0px' }}
+                transition={{ duration: 0.3, ease: 'easeOut' }}
                 className="group cursor-pointer"
                 onClick={() => setSelectedImage(award.url)}
               >
                 <div className="relative overflow-hidden rounded-2xl shadow-card aspect-[4/3] mb-4">
                   <img 
                     src={award.url} 
-                    alt={award.title} 
+                    alt={award.title}
+                    loading="eager"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-brand bg-opacity-0 group-hover:bg-opacity-40 transition-all duration-300 flex items-center justify-center">
