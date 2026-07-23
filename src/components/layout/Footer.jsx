@@ -172,12 +172,12 @@ const Footer = () => {
             &copy; {currentYear} Meenakshi Pharma. All rights reserved.
           </p>
           <div className="flex gap-4 text-sm text-gray-500">
-            <a href="#" className="hover:text-brand transition-colors">
+            <Link to="/privacy-policy" className="hover:text-brand transition-colors">
               Privacy Policy
-            </a>
-            <a href="#" className="hover:text-brand transition-colors">
+            </Link>
+            <Link to="/terms-of-service" className="hover:text-brand transition-colors">
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </div>
