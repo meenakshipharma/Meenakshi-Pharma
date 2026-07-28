@@ -1,109 +1,296 @@
-import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
-import { FiBriefcase } from 'react-icons/fi';
-import PageBanner from '../components/PageBanner';
-import Button from '../components/Button';
-import CTASection from '../components/CTASection';
+import React, { useState } from "react";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import { FiBriefcase } from "react-icons/fi";
+
+import PageBanner from "../components/PageBanner";
+import Button from "../components/Button";
+import CTASection from "../components/CTASection";
 
 const Career = () => {
   const [formData, setFormData] = useState({
-    fullName: '',
-    phone: '',
-    email: ''
+    fullName: "",
+    phone: "",
+    email: "",
+    resume: null,
   });
 
+  const [loading, setLoading] = useState(false);
+
+  const [status, setStatus] = useState({
+    success: false,
+    error: "",
+    message: "",
+  });
+
+  const resetForm = () => {
+    setFormData({
+      fullName: "",
+      phone: "",
+      email: "",
+      resume: null,
+    });
+
+    const resumeInput = document.getElementById("resume");
+
+    if (resumeInput) {
+      resumeInput.value = "";
+    }
+  };
+
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+    const { name, value, files } = e.target;
+
+    if (name === "resume") {
+      const file = files?.[0];
+
+      if (!file) return;
+
+      const allowedTypes = [
+        "application/pdf",
+        "application/msword",
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      ];
+
+      if (!allowedTypes.includes(file.type)) {
+        alert("Only PDF, DOC and DOCX files are allowed.");
+        return;
+      }
+
+      if (file.size > 5 * 1024 * 1024) {
+        alert("Maximum file size is 5MB.");
+        return;
+      }
+
+      setFormData((prev) => ({
+        ...prev,
+        resume: file,
+      }));
+
+      return;
+    }
+
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const subject = `Job Application - ${formData.fullName}`;
-    const body = `Name: ${formData.fullName}%0D%0APhone: ${formData.phone}%0D%0AEmail: ${formData.email}%0D%0A%0D%0APlease find my resume attached.`;
-    window.location.href = `mailto:hr@meenakshipharma.com?subject=${subject}&body=${body}`;
+
+    setLoading(true);
+
+    setStatus({
+      success: false,
+      error: "",
+      message: "",
+    });
+
+    try {
+      const data = new FormData();
+
+      data.append("fullName", formData.fullName);
+      data.append("phone", formData.phone);
+      data.append("email", formData.email);
+      data.append("resume", formData.resume);
+
+      const response = await fetch(
+        "/.netlify/functions/careers",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(
+          result.message || "Failed to submit application."
+        );
+      }
+
+      setStatus({
+        success: true,
+        error: "",
+        message:
+          "Your application has been submitted successfully. Our HR team will review your profile and contact you if shortlisted.",
+      });
+
+      resetForm();
+    } catch (error) {
+      console.error(error);
+
+      setStatus({
+        success: false,
+        error:
+          error.message ||
+          "Something went wrong. Please try again later.",
+        message: "",
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const inputClass = "w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all";
-
-  return (
+  const inputClass =
+    "w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all duration-300";
+      return (
     <>
       <Helmet>
-        <title>Career Opportunities | Meenakshi Pharma</title>
-        <meta name="description" content="Join our team and build a rewarding career in healthcare distribution." />
+        <title>Careers | Meenakshi Pharma</title>
+        <meta
+          name="description"
+          content="Join Meenakshi Pharma. Apply for career opportunities by submitting your details and resume."
+        />
       </Helmet>
 
-      <PageBanner 
-        title="Join Our Team" 
-        subtitle="Build a rewarding career with a company dedicated to improving healthcare access."
+      <PageBanner
+        title="Careers"
+        subtitle="Join our team and grow your career with Meenakshi Pharma."
       />
 
-      <section className="section-padding bg-transparent min-h-[60vh]">
-        <div className="container-custom">
-          
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
-            
-            <motion.div 
-              className="flex-1"
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-            >
-              <div className="w-16 h-16 bg-brand-light text-brand rounded-2xl flex items-center justify-center text-3xl mb-6">
-                <FiBriefcase />
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 max-w-4xl">
+
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 md:p-10"
+          >
+
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-12 h-12 rounded-full bg-brand/10 flex items-center justify-center">
+                <FiBriefcase className="text-brand text-xl" />
               </div>
-              <h2 className="text-3xl lg:text-4xl font-serif text-text mb-6">Shape the Future of Healthcare Logistics</h2>
-              <p className="text-lg text-text-light mb-6 leading-relaxed">
-                At Meenakshi Pharma, we believe our greatest asset is our people. We offer a dynamic work environment, opportunities for growth, and the chance to make a real difference in the healthcare supply chain.
-              </p>
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-brand"></span> Competitive Compensation</li>
-                <li className="flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-brand"></span> Professional Development</li>
-                <li className="flex items-center gap-3"><span className="w-2 h-2 rounded-full bg-brand"></span> Health & Wellness Benefits</li>
-              </ul>
-            </motion.div>
 
-            <motion.div 
-              className="flex-1 w-full max-w-lg"
-              initial={{ opacity: 0, x: 30 }}
-              animate={{ opacity: 1, x: 0 }}
-            >
-              <div className="bg-white p-8 md:p-10 rounded-3xl shadow-2xl border border-gray-100">
-                <h3 className="text-2xl font-serif font-bold mb-6 text-center">Application Form</h3>
-                
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-sm font-medium text-text-light mb-2">Full Name *</label>
-                    <input required type="text" name="fullName" value={formData.fullName} onChange={handleChange} className={inputClass} />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-text-light mb-2">Phone Number *</label>
-                    <input required type="tel" name="phone" value={formData.phone} onChange={handleChange} className={inputClass} />
-                  </div>
-                  
-                  <div>
-                    <label className="block text-sm font-medium text-text-light mb-2">Email Address *</label>
-                    <input required type="email" name="email" value={formData.email} onChange={handleChange} className={inputClass} />
-                  </div>
+              <div>
+                <h2 className="text-3xl font-bold text-gray-900">
+                  Apply Now
+                </h2>
 
-                  <div className="bg-blue-50 p-4 rounded-lg text-sm text-blue-800 border border-blue-100 mb-6">
-                    <p><strong>Note:</strong> Clicking submit will open your default email client. Please ensure you manually attach your resume before sending.</p>
-                  </div>
-
-                  <Button type="submit" className="w-full">Proceed to Email</Button>
-                </form>
+                <p className="text-gray-600">
+                  Fill in your details and upload your latest resume.
+                </p>
               </div>
-            </motion.div>
+            </div>
 
-          </div>
+            {status.success && (
+              <div className="mb-6 rounded-lg border border-green-300 bg-green-50 p-4 text-green-700">
+                {status.message}
+              </div>
+            )}
+
+            {status.error && (
+              <div className="mb-6 rounded-lg border border-red-300 bg-red-50 p-4 text-red-700">
+                {status.error}
+              </div>
+            )}
+
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6"
+              encType="multipart/form-data"
+            >
+
+              <div>
+                <label className="block mb-2 font-medium">
+                  Full Name
+                </label>
+
+                <input
+                  type="text"
+                  name="fullName"
+                  value={formData.fullName}
+                  onChange={handleChange}
+                  className={inputClass}
+                  placeholder="Enter your full name"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block mb-2 font-medium">
+                  Mobile Number
+                </label>
+
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className={inputClass}
+                  placeholder="Enter your mobile number"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block mb-2 font-medium">
+                  Email Address
+                </label>
+
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={inputClass}
+                  placeholder="Enter your email"
+                  required
+                />
+              </div>
+
+              <div>
+                <label className="block mb-2 font-medium">
+                  Upload Resume
+                </label>
+
+                <input
+                  id="resume"
+                  type="file"
+                  name="resume"
+                  accept=".pdf,.doc,.docx"
+                  onChange={handleChange}
+                  className="block w-full border border-gray-300 rounded-lg p-3"
+                  required
+                />
+
+                <p className="mt-2 text-sm text-gray-500">
+                  Accepted formats: PDF, DOC, DOCX (Maximum 5 MB)
+                </p>
+
+                {formData.resume && (
+                  <div className="mt-3 rounded-lg bg-gray-50 border p-3 text-sm">
+                    <span className="font-semibold">
+                      Selected File:
+                    </span>{" "}
+                    {formData.resume.name}
+                  </div>
+                )}
+              </div>
+
+              <Button
+                type="submit"
+                disabled={loading}
+                className="w-full"
+              >
+                {loading
+                  ? "Submitting Application..."
+                  : "Submit Application"}
+              </Button>
+
+            </form>
+          </motion.div>
         </div>
       </section>
+
       <CTASection />
     </>
   );
 };
 
 export default Career;
-
-
