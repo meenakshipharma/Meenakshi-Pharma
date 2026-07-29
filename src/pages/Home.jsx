@@ -111,7 +111,11 @@ const TestimonialVideoCard = ({ src, badge, title, desc, delay }) => {
         {/* Play/Pause center overlay (on hover) */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
           <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30 hover:scale-110 transition-transform">
-            {isPlaying ? <FiPause size={20} /> : <FiPlay size={20} className="ml-1" />}
+            {isPlaying ? (
+              <FiPause size={20} />
+            ) : (
+              <FiPlay size={20} className="ml-1" />
+            )}
           </div>
         </div>
 
@@ -477,22 +481,54 @@ const Home = () => {
 
                 {/* Navigation Arrows */}
                 <button
-                  onClick={() => setCurrentVideoIndex((prev) => (prev - 1 + testimonialVideos.length) % testimonialVideos.length)}
+                  onClick={() =>
+                    setCurrentVideoIndex(
+                      (prev) =>
+                        (prev - 1 + testimonialVideos.length) %
+                        testimonialVideos.length,
+                    )
+                  }
                   className="absolute left-3 md:-left-16 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-12 md:h-12 bg-white/90 hover:bg-white text-text rounded-full shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 active:scale-95 transition-all"
                   aria-label="Previous testimonial"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-4.5 h-4.5 md:w-5 md:h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2.5"
+                    stroke="currentColor"
+                    className="w-4.5 h-4.5 md:w-5 md:h-5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M15.75 19.5L8.25 12l7.5-7.5"
+                    />
                   </svg>
                 </button>
 
                 <button
-                  onClick={() => setCurrentVideoIndex((prev) => (prev + 1) % testimonialVideos.length)}
+                  onClick={() =>
+                    setCurrentVideoIndex(
+                      (prev) => (prev + 1) % testimonialVideos.length,
+                    )
+                  }
                   className="absolute right-3 md:-right-16 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-12 md:h-12 bg-white/90 hover:bg-white text-text rounded-full shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 active:scale-95 transition-all"
                   aria-label="Next testimonial"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2.5" stroke="currentColor" className="w-4.5 h-4.5 md:w-5 md:h-5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth="2.5"
+                    stroke="currentColor"
+                    className="w-4.5 h-4.5 md:w-5 md:h-5"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
+                    />
                   </svg>
                 </button>
 
@@ -503,7 +539,9 @@ const Home = () => {
                       key={index}
                       onClick={() => setCurrentVideoIndex(index)}
                       className={`h-2.5 rounded-full transition-all duration-300 ${
-                        currentVideoIndex === index ? "w-8 bg-brand" : "w-2.5 bg-gray-300 hover:bg-gray-400"
+                        currentVideoIndex === index
+                          ? "w-8 bg-brand"
+                          : "w-2.5 bg-gray-300 hover:bg-gray-400"
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
                     />
@@ -514,7 +552,6 @@ const Home = () => {
           })()}
         </div>
       </section>
-
 
       <CTASection />
     </>
