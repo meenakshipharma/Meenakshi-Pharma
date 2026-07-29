@@ -110,10 +110,10 @@ export const footer = {
   tagline:
     "Delivering excellence in pharmaceutical distribution with a commitment to quality, reliability, and healthcare advancement.",
   socials: [
-    { name: "Facebook", url: "#" },
-    { name: "Twitter", url: "#" },
+    { name: "Facebook", url: "https://www.facebook.com/profile.php?id=61581812965748&mibextid=wwXIfr&rdid=8A2HXgNFjNjny6O0&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CbnCvAh5N%2F%3Fmibextid%3DwwXIfr#" },
+    { name: "Twitter", url: "https://x.com/meenakshi_pharm" },
     { name: "LinkedIn", url: "#" },
-    { name: "Instagram", url: "#" },
+    { name: "Instagram", url: "https://www.instagram.com/meenakshi_pharma_" },
   ],
   quickLinks: [
     { name: "About Us", path: "/about" },
@@ -124,12 +124,12 @@ export const footer = {
     { name: "Career Opportunities", path: "/career" },
   ],
   contactInfo: {
-    address: "123 Pharma Avenue, Medical District, City, State, 123456",
-    phone: "+91 98765 43210",
-    email: "info@meenakshipharma.com",
+    address: "C-135-A,GROUND & 1ST FLOOR,5TH CROSS EAST, THILLAI NAGAR, TRICHY-620018",
+    phone: ["0431-2740311", "9942982301","9942982302"],
+    email: ["mpharma98@gmail.com","meenakshipharmatry@gmail.com"],
   },
   mapUrl:
-    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15228.618037135315!2d78.43575999999999!3d17.40434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb973e21014e3b%3A0xc387a2a5146c3b65!2sBanjara%20Hills%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1690000000000!5m2!1sen!2sin",
+    "https://maps.google.com/maps?q=Meenakshi%20Pharma,%20Trichy&t=&z=15&ie=UTF8&iwloc=&output=embed",
   copyright: "Meenakshi Pharma. All rights reserved.",
 };
 
@@ -466,17 +466,17 @@ export const contact = {
       {
         type: "address",
         label: "Office Address",
-        value: "123 Pharma Avenue, Medical District,\nCity, State, 123456",
+        value: "C-135-A,GROUND & 1ST FLOOR,5TH CROSS EAST, THILLAI NAGAR, TRICHY-620018",
       },
       {
         type: "phone",
         label: "Phone Numbers",
-        value: "+91 98765 43210\n+91 12345 67890",
+        value:["0431-2740311", "9942982301","9942982302"],
       },
       {
         type: "email",
         label: "Email Address",
-        value: "info@meenakshipharma.com\nsupport@meenakshipharma.com",
+        value: ["mpharma98@gmail.com","meenakshipharmatry@gmail.com"],
       },
       {
         type: "hours",
@@ -498,6 +498,8 @@ export const contact = {
     },
     buttonText: "Send Message",
   },
+   mapUrl:
+    "https://maps.app.goo.gl/oYmy6ZmxCDC1RDB68",
 };
 
 

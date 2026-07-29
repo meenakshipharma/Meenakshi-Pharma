@@ -11,8 +11,7 @@ import About from "./pages/About";
 import Services from "./pages/Services";
 import Brands from "./pages/Brands";
 import Achievements from "./pages/Achievements";
-import WebOrder from "./pages/WebOrder";
-import StockSales from "./pages/StockSales";
+
 import Partner from "./pages/Partner";
 import Career from "./pages/Career";
 import Contact from "./pages/Contact";

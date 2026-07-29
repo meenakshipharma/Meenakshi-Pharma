@@ -10,6 +10,7 @@ import {
   FiInstagram,
 } from "react-icons/fi";
 import logoImg from "../../assets/images/Logo.png";
+import { footer } from "../../data/content.js";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -34,12 +35,11 @@ const Footer = () => {
                 MP
               </div>
               <span className="font-serif font-bold text-2xl tracking-wide">
-                Meenakshi Pharma
+                {footer.companyName}
               </span>
             </div>
             <p className="text-gray-400 mb-6 leading-relaxed">
-              Delivering excellence in pharmaceutical distribution with a
-              commitment to quality, reliability, and healthcare advancement.
+              {footer.tagline}
             </p>
             <div className="flex gap-4">
               <a
@@ -135,16 +135,24 @@ const Footer = () => {
               <li className="flex items-start gap-3 text-gray-400">
                 <FiMapPin className="text-brand mt-1 flex-shrink-0" />
                 <span>
-                  123 Pharma Avenue, Medical District, City, State, 123456
+                  {footer.contactInfo.address}
                 </span>
               </li>
-              <li className="flex items-center gap-3 text-gray-400">
-                <FiPhone className="text-brand flex-shrink-0" />
-                <span>+91 98765 43210</span>
+              <li className="flex items-start gap-3 text-gray-400">
+                <FiPhone className="text-brand mt-1 flex-shrink-0" />
+                <div className="flex flex-col">
+                  {footer.contactInfo.phone.map((p, i) => (
+                    <span key={i}>{p}</span>
+                  ))}
+                </div>
               </li>
-              <li className="flex items-center gap-3 text-gray-400">
-                <FiMail className="text-brand flex-shrink-0" />
-                <span>info@meenakshipharma.com</span>
+              <li className="flex items-start gap-3 text-gray-400">
+                <FiMail className="text-brand mt-1 flex-shrink-0" />
+                <div className="flex flex-col">
+                  {footer.contactInfo.email.map((e, i) => (
+                    <span key={i}>{e}</span>
+                  ))}
+                </div>
               </li>
             </ul>
           </div>
@@ -152,9 +160,9 @@ const Footer = () => {
           {/* Map */}
           <div>
             <h3 className="font-serif text-xl font-semibold mb-6">Location</h3>
-            <div className="w-full aspect-square rounded-2xl overflow-hidden opacity-90 grayscale hover:grayscale-0 transition-all duration-500 shadow-lg">
+            <div className="w-full aspect-square rounded-2xl overflow-hidden opacity-90 transition-all duration-500 shadow-lg">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15228.618037135315!2d78.43575999999999!3d17.40434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb973e21014e3b%3A0xc387a2a5146c3b65!2sBanjara%20Hills%2C%20Hyderabad%2C%20Telangana!5e0!3m2!1sen!2sin!4v1690000000000!5m2!1sen!2sin"
+                src={footer.mapUrl}
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -169,7 +177,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-500 text-sm">
-            &copy; {currentYear} Meenakshi Pharma. All rights reserved.
+            &copy; {currentYear} {footer.copyright}
           </p>
           <div className="flex gap-4 text-sm text-gray-500">
             <Link to="/privacy-policy" className="hover:text-brand transition-colors">
