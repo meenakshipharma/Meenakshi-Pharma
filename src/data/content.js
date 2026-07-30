@@ -229,7 +229,7 @@ export const about = {
   },
   mission: {
     title: "Our Mission",
-    desc: "To strengthen healthcare by ensuring the seamless availability of genuine pharmaceutical products through a reliable, efficient, and customer-centric distribution network. We are committed to creating lasting value for pharmacies, hospitals, clinics, healthcare professionals, and our pharmaceutical partners by delivering operational excellence, uncompromising integrity, and dependable service—because every medicine we deliver has the potential to make a meaningful difference in someone's life.",
+    desc: "To strengthen healthcare by ensuring the seamless availability of genuine pharmaceutical products through a reliable, efficient, and customer-centric distribution network. We are committed to creating lasting value for pharmacies, hospitals, clinics, healthcare professionals, and our pharmaceutical partners by delivering operational excellence, uncompromising integrity, and dependable service because every medicine we deliver has the potential to make a meaningful difference in someone's life.",
   },
   legacy: {
     subtitle: "Our History",

@@ -133,13 +133,11 @@ const About = () => {
                   ></path>
                 </svg>
               </div>
-              <h2 className="text-3xl font-serif text-text mb-4">Our Vision</h2>
+              <h2 className="text-3xl font-serif text-text mb-4">
+                {about.vision.title}
+              </h2>
               <p className="text-text-light leading-relaxed text-lg font-light">
-                To be the most reliable and preferred pharmaceutical
-                distribution partner, ensuring every individual has access to
-                quality healthcare products when they need them the most. We
-                strive to build a healthier tomorrow through an efficient and
-                transparent supply chain.
+                {about.vision.desc}
               </p>
             </motion.div>
 
@@ -168,13 +166,10 @@ const About = () => {
                 </svg>
               </div>
               <h2 className="text-3xl font-serif text-text mb-4">
-                Our Mission
+                {about.mission.title}
               </h2>
               <p className="text-text-light leading-relaxed text-lg font-light">
-                To bridge the gap between healthcare manufacturers and providers
-                by offering unparalleled distribution services. We are committed
-                to maintaining the highest standards of quality, safety, and
-                compliance in every aspect of our operations.
+                {about.mission.desc}
               </p>
             </motion.div>
           </div>
