@@ -22,7 +22,8 @@ import testimonialVideo2 from "../assets/videos/srccc1.mp4";
 import testimonialVideo3 from "../assets/videos/srccc2.mp4";
 
 import { useMotionValue, useTransform, animate } from "framer-motion";
-
+import { home, about, services } from "../data/content";
+import { iconMap } from "../utils/iconMap";
 const Counter = ({ target, suffix = "" }) => {
   const count = useMotionValue(0);
   const [displayValue, setDisplayValue] = React.useState("0");
@@ -146,57 +147,39 @@ const TestimonialVideoCard = ({ src, badge, title, desc, delay }) => {
 
 const Home = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = React.useState(0);
-  const stats = [
-    { target: 15, suffix: "+", label: "Years Experience" },
-    { target: 5000, suffix: "+", label: "Customers Served" },
-    { target: 10, suffix: "M+", label: "Medicines Distributed" },
-    { target: 1200, suffix: "+", label: "Partner Pharmacies" },
-  ];
 
-  const services = [
-    {
-      icon: <FiBox className="text-4xl text-brand" />,
-      title: "Pharmaceutical Distribution",
-      desc: "Reliable and timely distribution of high-quality medicines.",
-    },
-    {
-      icon: <FiTruck className="text-4xl text-brand" />,
-      title: "Cold Chain Logistics",
-      desc: "Temperature-controlled supply chain for sensitive products.",
-    },
-    {
-      icon: <FiShield className="text-4xl text-brand" />,
-      title: "Quality Assurance",
-      desc: "Strict compliance with pharmaceutical safety standards.",
-    },
-    {
-      icon: <FiActivity className="text-4xl text-brand" />,
-      title: "Super-Specialty Care",
-      desc: "Providing life-saving critical care medications.",
-    },
-    {
-      icon: <FiUsers className="text-4xl text-brand" />,
-      title: "Retail Pharmacy Support",
-      desc: "Comprehensive support for our retail partners.",
-    },
-    {
-      icon: <FiTrendingUp className="text-4xl text-brand" />,
-      title: "Inventory Management",
-      desc: "Advanced tracking and stock management solutions.",
-    },
-  ];
-
-  const features = [
-    {
-      title: "Extensive Network",
-      desc: "Wide reach ensuring timely deliveries.",
-    },
-    {
-      title: "Competitive Pricing",
-      desc: "Best value for our healthcare partners.",
-    },
-    { title: "24/7 Support", desc: "Dedicated customer service team." },
-  ];
+  // const services = [
+  //   {
+  //     icon: <FiBox className="text-4xl text-brand" />,
+  //     title: "Pharmaceutical Distribution",
+  //     desc: "Reliable and timely distribution of high-quality medicines.",
+  //   },
+  //   {
+  //     icon: <FiTruck className="text-4xl text-brand" />,
+  //     title: "Cold Chain Logistics",
+  //     desc: "Temperature-controlled supply chain for sensitive products.",
+  //   },
+  //   {
+  //     icon: <FiShield className="text-4xl text-brand" />,
+  //     title: "Quality Assurance",
+  //     desc: "Strict compliance with pharmaceutical safety standards.",
+  //   },
+  //   {
+  //     icon: <FiActivity className="text-4xl text-brand" />,
+  //     title: "Super-Specialty Care",
+  //     desc: "Providing life-saving critical care medications.",
+  //   },
+  //   {
+  //     icon: <FiUsers className="text-4xl text-brand" />,
+  //     title: "Retail Pharmacy Support",
+  //     desc: "Comprehensive support for our retail partners.",
+  //   },
+  //   {
+  //     icon: <FiTrendingUp className="text-4xl text-brand" />,
+  //     title: "Inventory Management",
+  //     desc: "Advanced tracking and stock management solutions.",
+  //   },
+  // ];
 
   return (
     <>
@@ -283,7 +266,7 @@ const Home = () => {
       <section className="py-12 bg-transparent relative z-20 -mt-10">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            {stats.map((stat, index) => (
+            {home.stats.map((stat, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -293,7 +276,11 @@ const Home = () => {
                 className="glass-card p-6 text-center shadow-lg transform hover:-translate-y-2 transition-transform duration-300"
               >
                 <h3 className="text-4xl md:text-5xl font-serif font-bold text-brand mb-2">
-                  <Counter target={stat.target} suffix={stat.suffix} />
+                  <Counter
+                    prefix={stat.prefix}
+                    target={stat.target}
+                    suffix={stat.suffix}
+                  />
                 </h3>
                 <p className="text-text-light font-medium">{stat.label}</p>
               </motion.div>
@@ -332,22 +319,22 @@ const Home = () => {
               viewport={{ once: true }}
             >
               <SectionTitle
-                title="A Legacy of Trust in Healthcare"
+                title={about.introduction.title}
                 subtitle="About Meenakshi Pharma"
                 align="left"
               />
-              <p className="text-text-light mb-6 leading-relaxed">
-                Since our inception, Meenakshi Pharma has been dedicated to
-                bridging the gap between pharmaceutical manufacturers and
-                healthcare providers. We pride ourselves on a robust
-                distribution network that ensures vital medicines reach those
-                who need them most.
-              </p>
-              <p className="text-text-light mb-10 leading-relaxed">
-                Our state-of-the-art warehousing facilities, stringent quality
-                control measures, and dedicated team make us the preferred
-                partner for leading pharmaceutical brands.
-              </p>
+              <p
+                className="text-text-light leading-relaxed mb-6"
+                dangerouslySetInnerHTML={{
+                  __html: about.introduction.desc1,
+                }}
+              />
+              <p
+                className="text-text-light leading-relaxed mb-6"
+                dangerouslySetInnerHTML={{
+                  __html: about.introduction.desc2,
+                }}
+              />
               <Button to="/about">Read Our Story</Button>
             </motion.div>
           </div>
@@ -363,26 +350,38 @@ const Home = () => {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.slice(0, 3).map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-white p-10 rounded-2xl shadow-card hover:shadow-xl transition-all duration-300 group border border-gray-100"
-              >
-                <div className="w-16 h-16 bg-brand-light rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
-                  {service.icon}
-                </div>
-                <h3 className="text-2xl font-serif font-semibold mb-4 text-text">
-                  {service.title}
-                </h3>
-                <p className="text-text-light leading-relaxed">
-                  {service.desc}
-                </p>
-              </motion.div>
-            ))}
+            {services.list.slice(0, 3).map((service, index) => {
+              const Icon = iconMap[service.icon];
+
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-white p-10 rounded-2xl shadow-card hover:shadow-xl transition-all duration-300 group border border-gray-100"
+                >
+                  <div className="flex items-center gap-4 mb-6">
+                    <div
+                      className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white flex-shrink-0 ${
+                        index % 2 === 0 ? "bg-brand" : "bg-accent"
+                      }`}
+                    >
+                      {Icon && <Icon />}
+                    </div>
+
+                    <h3 className="text-2xl font-serif font-semibold text-text">
+                      {service.title}
+                    </h3>
+                  </div>
+
+                  <p className="text-text-light leading-relaxed">
+                    {service.desc}
+                  </p>
+                </motion.div>
+              );
+            })}
           </div>
           <div className="text-center mt-12">
             <Button to="/services" variant="secondary">
@@ -396,9 +395,12 @@ const Home = () => {
 
       <section className="section-padding bg-transparent">
         <div className="container-custom text-center">
-          <SectionTitle title="Why Partner With Us" subtitle="Our Strengths" />
+          <SectionTitle
+            title={home.whyChooseUs.title}
+            subtitle="Our Strengths"
+          />
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-            {features.map((feature, index) => (
+            {home.whyChooseUs.features.map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.95 }}
@@ -408,10 +410,8 @@ const Home = () => {
                 className="glass-card p-10 relative overflow-hidden"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand opacity-5 rounded-full -mr-10 -mt-10"></div>
-                <h3 className="text-xl font-serif font-bold mb-4">
-                  {feature.title}
-                </h3>
-                <p className="text-text-light">{feature.desc}</p>
+                <h3 className="text-xl font-serif mb-4">{feature}</h3>
+                {/* <p className="text-text-light">{feature.desc}</p> */}
               </motion.div>
             ))}
           </div>
