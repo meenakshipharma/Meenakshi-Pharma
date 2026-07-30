@@ -1,31 +1,42 @@
-import React from 'react';
-import { Helmet } from 'react-helmet-async';
-import { motion } from 'framer-motion';
-import { FiActivity, FiTruck, FiShield, FiUsers, FiBox, FiTrendingUp } from 'react-icons/fi';
-import PageBanner from '../components/PageBanner';
-import SectionTitle from '../components/SectionTitle';
-import Button from '../components/Button';
-import CTASection from '../components/CTASection';
-
+import React from "react";
+import { Helmet } from "react-helmet-async";
+import { motion } from "framer-motion";
+import {
+  FiActivity,
+  FiTruck,
+  FiShield,
+  FiUsers,
+  FiBox,
+  FiTrendingUp,
+} from "react-icons/fi";
+import PageBanner from "../components/PageBanner";
+import SectionTitle from "../components/SectionTitle";
+import Button from "../components/Button";
+import CTASection from "../components/CTASection";
+import { services } from "../data/content";
+import { iconMap } from "../utils/iconMap";
 const Services = () => {
-  const services = [
-    { icon: <FiBox className="text-4xl text-brand" />, title: 'Pharmaceutical Distribution', desc: 'End-to-end distribution services ensuring products reach pharmacies and hospitals efficiently and safely.' },
-    { icon: <FiTruck className="text-4xl text-brand" />, title: 'Cold Chain Logistics', desc: 'Specialized temperature-controlled transportation for sensitive medications and vaccines.' },
-    { icon: <FiShield className="text-4xl text-brand" />, title: 'Quality Assurance', desc: 'Rigorous quality checks at every stage to ensure compliance with pharmaceutical standards.' },
-    { icon: <FiActivity className="text-4xl text-brand" />, title: 'Super-Specialty Care', desc: 'Dedicated supply lines for life-saving critical care and specialty medications.' },
-    { icon: <FiUsers className="text-4xl text-brand" />, title: 'Retail Pharmacy Support', desc: 'Comprehensive support including inventory forecasting and prompt deliveries for retail partners.' },
-    { icon: <FiTrendingUp className="text-4xl text-brand" />, title: 'Inventory Management', desc: 'Advanced software solutions for tracking stock, reducing wastage, and ensuring availability.' },
-  ];
+  // const services = [
+  //   { icon: <FiBox className="text-4xl text-brand" />, title: 'Pharmaceutical Distribution', desc: 'End-to-end distribution services ensuring products reach pharmacies and hospitals efficiently and safely.' },
+  //   { icon: <FiTruck className="text-4xl text-brand" />, title: 'Cold Chain Logistics', desc: 'Specialized temperature-controlled transportation for sensitive medications and vaccines.' },
+  //   { icon: <FiShield className="text-4xl text-brand" />, title: 'Quality Assurance', desc: 'Rigorous quality checks at every stage to ensure compliance with pharmaceutical standards.' },
+  //   { icon: <FiActivity className="text-4xl text-brand" />, title: 'Super-Specialty Care', desc: 'Dedicated supply lines for life-saving critical care and specialty medications.' },
+  //   { icon: <FiUsers className="text-4xl text-brand" />, title: 'Retail Pharmacy Support', desc: 'Comprehensive support including inventory forecasting and prompt deliveries for retail partners.' },
+  //   { icon: <FiTrendingUp className="text-4xl text-brand" />, title: 'Inventory Management', desc: 'Advanced software solutions for tracking stock, reducing wastage, and ensuring availability.' },
+  // ];
 
   return (
     <>
       <Helmet>
         <title>Our Services | Meenakshi Pharma</title>
-        <meta name="description" content="Explore our comprehensive pharmaceutical distribution and logistics services." />
+        <meta
+          name="description"
+          content="Explore our comprehensive pharmaceutical distribution and logistics services."
+        />
       </Helmet>
 
-      <PageBanner 
-        title="Our Services" 
+      <PageBanner
+        title="Our Services"
         subtitle="Comprehensive Healthcare Distribution Solutions Tailored to Your Needs"
       />
 
@@ -38,73 +49,47 @@ const Services = () => {
           />
 
           <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-0 mt-16 items-center">
-
             {/* ── LEFT COLUMN ── */}
-            <div className="flex flex-col gap-14">
-              {[
-                {
-                  icon: <FiBox />,
-                  title: "Pharmaceutical Distribution",
-                  desc: "End-to-end distribution services ensuring products reach pharmacies and hospitals efficiently and safely.",
-                  color: "brand",
-                },
-                {
-                  icon: <FiActivity />,
-                  title: "Vaccines",
-                  desc: "Injectibles, mainly vaccines are kept in adequate stock with us, supplied on regular orders or dispatched by institutional delivery staff on an urgent basis.",
-                  color: "accent",
-                },
-                {
-                  icon: <FiUsers />,
-                  title: "General Medicines",
-                  desc: "Our biggest strength is our SKUs. We are direct stockists for about 450 companies with 100,000+ products readily available on our racks.",
-                  color: "brand",
-                },
-              ].map((service, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
-                  className="flex items-start gap-5 group"
-                >
-                  {/* Text — right-aligned on desktop */}
-                  <div className="flex-1 text-right hidden lg:block">
-                    <h3
-                      className={`text-sm font-serif font-bold uppercase tracking-widest mb-2 ${
-                        service.color === "brand" ? "text-brand" : "text-accent"
-                      }`}
-                    >
-                      {service.title}
-                    </h3>
-                    <p className="text-text-light text-sm leading-relaxed">
-                      {service.desc}
-                    </p>
-                  </div>
-                  {/* Icon circle */}
-                  <div
-                    className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white shadow-lg group-hover:scale-110 transition-transform duration-300 ${
-                      service.color === "brand" ? "bg-brand" : "bg-accent"
-                    }`}
+            <div className="flex flex-col gap-14 ">
+              {services.list.slice(0, 2).map((service, i) => {
+                const Icon = iconMap[service.icon];
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.15 }}
+                    className="flex items-start gap-5 group"
                   >
-                    {service.icon}
-                  </div>
-                  {/* Text — below icon on mobile */}
-                  <div className="flex-1 lg:hidden">
-                    <h3
-                      className={`text-sm font-serif font-bold uppercase tracking-widest mb-2 ${
-                        service.color === "brand" ? "text-brand" : "text-accent"
+                    
+
+                    <div className="flex-1 text-right min-w-0">
+                      <h3
+                        className={`text-sm font-serif font-bold uppercase tracking-widest mb-2 ${
+                          service.color === "brand"
+                            ? "text-brand"
+                            : "text-accent"
+                        }`}
+                      >
+                        {service.title}
+                      </h3>
+
+                      <p className="text-text-light text-justify text-sm leading-relaxed">
+                        {service.desc}
+                      </p>
+                      
+                    </div>
+                    <div
+                      className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white ${
+                        service.color === "brand" ? "bg-brand" : "bg-accent"
                       }`}
                     >
-                      {service.title}
-                    </h3>
-                    <p className="text-text-light text-sm leading-relaxed">
-                      {service.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+                      {Icon && <Icon />}
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
 
             {/* ── CENTER WHEEL ── */}
@@ -158,93 +143,96 @@ const Services = () => {
             </motion.div>
 
             {/* ── RIGHT COLUMN ── */}
-            <div className="flex flex-col gap-14">
-              {[
-                {
-                  icon: <FiShield />,
-                  title: "Speciality Medicines",
-                  desc: "We offer a wide range of super-specialty medicines for transplant, nephrology, urology, cardiology, dermatology & hormonal medicines.",
-                  color: "accent",
-                },
-                {
-                  icon: <FiTruck />,
-                  title: "Cosmetic Products",
-                  desc: "All ethically promoted Dermatologicals / Cosmetologicals from renowned companies. Skin, Hair, and Nail Doctor clinics can approach us for regular supplies.",
-                  color: "brand",
-                },
-                {
-                  icon: <FiTrendingUp />,
-                  title: "Import & Export",
-                  desc: "We deal with import and export of general medicines, specialty drugs and other pharmaceutical products from and to various parts of the world.",
-                  color: "accent",
-                },
-              ].map((service, i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.15 }}
-                  className="flex items-start gap-5 group"
-                >
-                  {/* Icon circle */}
-                  <div
-                    className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white shadow-lg group-hover:scale-110 transition-transform duration-300 ${
-                      service.color === "brand" ? "bg-brand" : "bg-accent"
-                    }`}
+            <div className="flex flex-col gap-14 mt-[-50px]">
+              {services.list.slice(2, 4).map((service, i) => {
+                const Icon = iconMap[service.icon];
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, x: -40 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: i * 0.15 }}
+                    className="flex items-start gap-5 group"
                   >
-                    {service.icon}
-                  </div>
-                  {/* Text */}
-                  <div className="flex-1">
-                    <h3
-                      className={`text-sm font-serif font-bold uppercase tracking-widest mb-2 ${
-                        service.color === "brand" ? "text-brand" : "text-accent"
+                    <div
+                      className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white ${
+                        service.color === "brand" ? "bg-brand" : "bg-accent"
                       }`}
                     >
-                      {service.title}
-                    </h3>
-                    <p className="text-text-light text-sm leading-relaxed">
-                      {service.desc}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+                      {Icon && <Icon />}
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <h3
+                        className={`text-sm font-serif font-bold uppercase tracking-widest mb-2 ${
+                          service.color === "brand"
+                            ? "text-brand"
+                            : "text-accent"
+                        }`}
+                      >
+                        {service.title}
+                      </h3>
+
+                      <p className="text-text-light text-justify text-sm leading-relaxed">
+                        {service.desc}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
         </div>
       </section>
-
 
       {/* Super-Specialty Care Spotlight */}
       <section className="section-padding bg-brand-light relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-brand opacity-5 skew-x-12"></div>
         <div className="container-custom relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12 bg-white rounded-3xl p-8 lg:p-12 shadow-2xl">
-            <motion.div 
+            <motion.div
               className="flex-1"
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-3xl lg:text-4xl font-serif text-brand mb-6">Super-Specialty Care Focus</h2>
+              <h2 className="text-3xl lg:text-4xl font-serif text-brand mb-6">
+                Super-Specialty Care Focus
+              </h2>
               <p className="text-lg text-text-light mb-6 leading-relaxed">
-                We understand the critical nature of super-specialty medications. Our dedicated division ensures the uninterrupted supply of life-saving drugs for oncology, nephrology, cardiology, and other specialized fields.
+                We understand the critical nature of super-specialty
+                medications. Our dedicated division ensures the uninterrupted
+                supply of life-saving drugs for oncology, nephrology,
+                cardiology, and other specialized fields.
               </p>
               <ul className="space-y-4 mb-8">
-                <li className="flex items-center gap-3"><span className="text-brand">âœ“</span> Priority handling and dispatch</li>
-                <li className="flex items-center gap-3"><span className="text-brand">âœ“</span> Strict temperature compliance</li>
-                <li className="flex items-center gap-3"><span className="text-brand">âœ“</span> Direct-to-hospital delivery options</li>
+                <li className="flex items-center gap-3">
+                  <span className="text-brand">âœ“</span> Priority handling and
+                  dispatch
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-brand">âœ“</span> Strict temperature
+                  compliance
+                </li>
+                <li className="flex items-center gap-3">
+                  <span className="text-brand">âœ“</span> Direct-to-hospital
+                  delivery options
+                </li>
               </ul>
               <Button to="/contact">Enquire Now</Button>
             </motion.div>
-            <motion.div 
+            <motion.div
               className="flex-1 rounded-2xl overflow-hidden shadow-lg"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <img src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?q=80&w=1479&auto=format&fit=crop" alt="Super Specialty Care" className="w-full h-full object-cover" />
+              <img
+                src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?q=80&w=1479&auto=format&fit=crop"
+                alt="Super Specialty Care"
+                className="w-full h-full object-cover"
+              />
             </motion.div>
           </div>
         </div>
@@ -255,5 +243,3 @@ const Services = () => {
 };
 
 export default Services;
-
-

@@ -6,7 +6,7 @@ import { FiBriefcase } from "react-icons/fi";
 import PageBanner from "../components/PageBanner";
 import Button from "../components/Button";
 import CTASection from "../components/CTASection";
-
+import { career } from "../data/content";
 const Career = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -95,20 +95,15 @@ const Career = () => {
       data.append("email", formData.email);
       data.append("resume", formData.resume);
 
-      const response = await fetch(
-        "/.netlify/functions/careers",
-        {
-          method: "POST",
-          body: data,
-        }
-      );
+      const response = await fetch("/.netlify/functions/careers", {
+        method: "POST",
+        body: data,
+      });
 
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(
-          result.message || "Failed to submit application."
-        );
+        throw new Error(result.message || "Failed to submit application.");
       }
 
       setStatus({
@@ -124,9 +119,7 @@ const Career = () => {
 
       setStatus({
         success: false,
-        error:
-          error.message ||
-          "Something went wrong. Please try again later.",
+        error: error.message || "Something went wrong. Please try again later.",
         message: "",
       });
     } finally {
@@ -136,10 +129,10 @@ const Career = () => {
 
   const inputClass =
     "w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all duration-300";
-      return (
+  return (
     <>
       <Helmet>
-        <title>Careers | Meenakshi Pharma</title>
+        <title>{career.seo.title}</title>
         <meta
           name="description"
           content="Join Meenakshi Pharma. Apply for career opportunities by submitting your details and resume."
@@ -147,13 +140,12 @@ const Career = () => {
       </Helmet>
 
       <PageBanner
-        title="Careers"
-        subtitle="Join our team and grow your career with Meenakshi Pharma."
+        title={career.banner.title}
+        subtitle={career.banner.subtitle}
       />
 
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
-
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -161,16 +153,13 @@ const Career = () => {
             viewport={{ once: true }}
             className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 md:p-10"
           >
-
             <div className="flex items-center gap-3 mb-6">
               <div className="w-12 h-12 rounded-full bg-brand/10 flex items-center justify-center">
                 <FiBriefcase className="text-brand text-xl" />
               </div>
 
               <div>
-                <h2 className="text-3xl font-bold text-gray-900">
-                  Apply Now
-                </h2>
+                <h2 className="text-3xl font-bold text-gray-900">Apply Now</h2>
 
                 <p className="text-gray-600">
                   Fill in your details and upload your latest resume.
@@ -195,11 +184,8 @@ const Career = () => {
               className="space-y-6"
               encType="multipart/form-data"
             >
-
               <div>
-                <label className="block mb-2 font-medium">
-                  Full Name
-                </label>
+                <label className="block mb-2 font-medium">Full Name</label>
 
                 <input
                   type="text"
@@ -213,9 +199,7 @@ const Career = () => {
               </div>
 
               <div>
-                <label className="block mb-2 font-medium">
-                  Mobile Number
-                </label>
+                <label className="block mb-2 font-medium">Mobile Number</label>
 
                 <input
                   type="tel"
@@ -229,9 +213,7 @@ const Career = () => {
               </div>
 
               <div>
-                <label className="block mb-2 font-medium">
-                  Email Address
-                </label>
+                <label className="block mb-2 font-medium">Email Address</label>
 
                 <input
                   type="email"
@@ -245,9 +227,7 @@ const Career = () => {
               </div>
 
               <div>
-                <label className="block mb-2 font-medium">
-                  Upload Resume
-                </label>
+                <label className="block mb-2 font-medium">Upload Resume</label>
 
                 <input
                   id="resume"
@@ -265,24 +245,15 @@ const Career = () => {
 
                 {formData.resume && (
                   <div className="mt-3 rounded-lg bg-gray-50 border p-3 text-sm">
-                    <span className="font-semibold">
-                      Selected File:
-                    </span>{" "}
+                    <span className="font-semibold">Selected File:</span>{" "}
                     {formData.resume.name}
                   </div>
                 )}
               </div>
 
-              <Button
-                type="submit"
-                disabled={loading}
-                className="w-full"
-              >
-                {loading
-                  ? "Submitting Application..."
-                  : "Submit Application"}
+              <Button type="submit" disabled={loading} className="w-full">
+                {loading ? "Submitting Application..." : "Submit Application"}
               </Button>
-
             </form>
           </motion.div>
         </div>

@@ -88,6 +88,8 @@ import img_zoetic from "../assets/images/brands/zoetic-removebg-preview.webp";
 import img_zorvia from "../assets/images/brands/zorvia-removebg-preview.webp";
 import img_cangrow from "../assets/images/brands/cangrow.webp";
 
+
+
 // Navbar Links
 export const navigation = {
   navLinks: [
@@ -110,7 +112,10 @@ export const footer = {
   tagline:
     "Delivering excellence in pharmaceutical distribution with a commitment to quality, reliability, and healthcare advancement.",
   socials: [
-    { name: "Facebook", url: "https://www.facebook.com/profile.php?id=61581812965748&mibextid=wwXIfr&rdid=8A2HXgNFjNjny6O0&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CbnCvAh5N%2F%3Fmibextid%3DwwXIfr#" },
+    {
+      name: "Facebook",
+      url: "https://www.facebook.com/profile.php?id=61581812965748&mibextid=wwXIfr&rdid=8A2HXgNFjNjny6O0&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CbnCvAh5N%2F%3Fmibextid%3DwwXIfr#",
+    },
     { name: "Twitter", url: "https://x.com/meenakshi_pharm" },
     { name: "LinkedIn", url: "#" },
     { name: "Instagram", url: "https://www.instagram.com/meenakshi_pharma_" },
@@ -124,9 +129,10 @@ export const footer = {
     { name: "Career Opportunities", path: "/career" },
   ],
   contactInfo: {
-    address: "C-135-A,GROUND & 1ST FLOOR,5TH CROSS EAST, THILLAI NAGAR, TRICHY-620018",
-    phone: ["0431-2740311", "9942982301","9942982302"],
-    email: ["mpharma98@gmail.com","meenakshipharmatry@gmail.com"],
+    address:
+      "C-135-A,GROUND & 1ST FLOOR,5TH CROSS EAST, THILLAI NAGAR, TRICHY-620018",
+    phone: ["0431-2740311", "9942982301", "9942982302"],
+    email: ["mpharma98@gmail.com", "meenakshipharmatry@gmail.com"],
   },
   mapUrl:
     "https://maps.google.com/maps?q=Meenakshi%20Pharma,%20Trichy&t=&z=15&ie=UTF8&iwloc=&output=embed",
@@ -159,18 +165,18 @@ export const home = {
     },
   },
   stats: [
-    { target: 15, suffix: "+", label: "Years Experience" },
-    { target: 5000, suffix: "+", label: "Customers Served" },
-    { target: 10, suffix: "M+", label: "Medicines Distributed" },
-    { target: 1200, suffix: "+", label: "Partner Pharmacies" },
+    { target: 28, suffix: "+", label: "Years in  Industry " },
+    { target: 86, suffix: "+", label: "Pharmaceutical Brands" },
+    { target: 650, suffix: "+", label: "Healthcare Partners" },
+    { target: 5, suffix: "M plus", label: "Medicine Units Distributed" },
   ],
   aboutTeaser: {
     subtitle: "About Meenakshi Pharma",
-    title: "A Legacy of Trust in Healthcare",
+    title: "From a Small Room to a Trusted Healthcare Partner",
     desc1:
-      "Since our inception, Meenakshi Pharma has been dedicated to bridging the gap between pharmaceutical manufacturers and healthcare providers. We pride ourselves on a robust distribution network that ensures vital medicines reach those who need them most.",
+      "Established in 1998, Meenakshi Pharma began its journey from a modest 10 × 10 ft room in Thillai Nagar, Tiruchirappalli. Built on determination, integrity, and a vision to improve healthcare access, we have grown into one of the region's trusted pharmaceutical distribution companies.",
     desc2:
-      "Our state-of-the-art warehousing facilities, stringent quality control measures, and dedicated team make us the preferred partner for leading pharmaceutical brands.",
+      "Today, we proudly serve retail pharmacies, hospitals, and clinics across Trichy and surrounding regions as an authorized stockist for leading pharmaceutical brands. Every medicine we deliver reflects our commitment to trust, quality, and long-lasting partnerships.",
     buttonText: "Read Our Story",
     imageUrl:
       "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1470&auto=format&fit=crop",
@@ -178,16 +184,12 @@ export const home = {
   whyChooseUs: {
     subtitle: "Our Strengths",
     title: "Why Partner With Us",
-    features: [
-      {
-        title: "Extensive Network",
-        desc: "Wide reach ensuring timely deliveries.",
-      },
-      {
-        title: "Competitive Pricing",
-        desc: "Best value for our healthcare partners.",
-      },
-      { title: "24/7 Support", desc: "Dedicated customer service team." },
+    features: ["Wide range of Stock availablity",
+                "Competitive Pricing",
+                "Smooth order processing",
+                "Exceptional customer support",
+                "Safest packing",
+                "fastest delivery"
     ],
   },
 };
@@ -204,13 +206,30 @@ export const about = {
     subtitle:
       "A trusted name in pharmaceutical distribution and healthcare logistics.",
   },
+  introduction: {
+    subtitle: "About Meenakshi Pharma",
+    title: "Delivering Trust Since 1998",
+    desc1:
+      "Founded in <strong>1998</strong>, Meenakshi Pharma began its journey in a humble <strong>10 × 10 ft room in Thillai Nagar, Tiruchirappalli</strong>, with a small investment but a bold vision to build a trusted pharmaceutical distribution company that supports healthcare providers with quality medicines, dependable service, and ultimately helps save lives.",
+    desc2:
+      "Driven by years of hard work,<strong> countless sleepless nights</strong>, unwavering dedication, and the collective efforts of our management, employees, warehouse team, and delivery executives, Meenakshi Pharma has grown into one of the region's leading pharmaceutical wholesale distributors, operating from our own facility in Thillai Nagar.",
+    desc3:
+      "Today, we are proud to be an authorized stockist for leading pharmaceutical companies including <strong>Cipla, Wallace, Torrent, GSK, Zydus, Dr. Reddy's, Lupin, Alkem, Apex, Glenmark, Mankind</strong>, and many more.",
+    desc4:
+      "For over <strong> 28 years, we have been a trusted supply partner to retail pharmacies, hospitals, and clinics</strong> across Trichy and the surrounding regions, ensuring the timely availability of genuine medicines. Our commitment to quality, reliability, and customer satisfaction continues to make us a trusted name in pharmaceutical distribution.",
+    desc5:
+      "More than medicines, we deliver trust, reliability, and lasting partnerships.",
+      imageUrl:
+      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1470&auto=format&fit=crop",
+  },
+
   vision: {
     title: "Our Vision",
-    desc: "To be the most reliable and preferred pharmaceutical distribution partner, ensuring every individual has access to quality healthcare products when they need them the most. We strive to build a healthier tomorrow through an efficient and transparent supply chain.",
+    desc: "To be one of India's most trusted and respected pharmaceutical distribution companies, setting new standards in reliability, operational excellence, and customer experience. We aspire to strengthen the healthcare supply chain through continuous innovation, strategic partnerships, and sustainable growth, ensuring that quality medicines reach every community we serve with speed, trust, and excellence.",
   },
   mission: {
     title: "Our Mission",
-    desc: "To bridge the gap between healthcare manufacturers and providers by offering unparalleled distribution services. We are committed to maintaining the highest standards of quality, safety, and compliance in every aspect of our operations.",
+    desc: "To strengthen healthcare by ensuring the seamless availability of genuine pharmaceutical products through a reliable, efficient, and customer-centric distribution network. We are committed to creating lasting value for pharmacies, hospitals, clinics, healthcare professionals, and our pharmaceutical partners by delivering operational excellence, uncompromising integrity, and dependable service—because every medicine we deliver has the potential to make a meaningful difference in someone's life.",
   },
   legacy: {
     subtitle: "Our History",
@@ -280,143 +299,33 @@ export const services = {
   },
   list: [
     {
-      title: "Pharmaceutical Distribution",
-      desc: "We represent and distribute products for over 100+ top pharmaceutical manufacturers, ensuring a complete and steady inventory of primary care medications.",
-      points: [
-        "Vast product catalog covering all therapeutic classes",
-        "Direct sourcing from global manufacturers",
-        "Fulfillment accuracy above 98%",
-      ],
+      icon: "activity",
+      color:"brand",
+      title: "Cosmetic Products",
+      desc: "Meenakshi Pharma offers an extensive portfolio of dermatology and cosmetology products from leading pharmaceutical companies. We supply skincare, haircare, personal care, and prescription cosmetic products to retail pharmacies, dermatology clinics, and healthcare institutions, ensuring consistent availability and dependable service.",
     },
     {
-      title: "Cold Chain Logistics",
-      desc: "We specialize in handling sensitive temperature-controlled biologicals, vaccines, and insulin using validated state-of-the-art active and passive cooling containers.",
-      points: [
-        "Continuous digital temperature monitoring",
-        "Dedicated cold storage facilities",
-        "Rapid dispatch in customized insulated vans",
-      ],
+      icon:"shield",
+      color:"accent",
+      title: "Speciality Medicines",
+      desc: "We supply a comprehensive range of specialty pharmaceutical products to support hospitals, clinics, and retail pharmacies. Our portfolio includes medicines across critical therapeutic segments such as oncology, nephrology, cardiology, neurology, gastroenterology, endocrinology, dermatology, and other specialized treatments. Through our trusted distribution network, we ensure the timely availability of genuine medicines whenever they are needed."},
+    
+    {
+       icon: "box",
+       color:"accent",
+      title: "General Medicines",
+      desc: "As an authorized stockist for leading pharmaceutical brands, we maintain a comprehensive inventory of general medicines covering a wide range of therapeutic categories. Our efficient inventory management and streamlined distribution network enable us to provide prompt deliveries, helping pharmacies and healthcare providers maintain uninterrupted patient care.",
     },
     {
-      title: "Super-Specialty Care Solutions",
-      desc: "Our dedicated division handles high-value critical care, oncology, and nephrology medications requiring direct-to-institution logistics control.",
-      points: [
-        "Specialized handling and secure storage protocol",
-        "Direct delivery to ICU/OT units",
-        "24/7 emergency request response team",
-      ],
-    },
-    {
-      title: "Inventory & ERP Integration",
-      desc: "Registered retail pharmacies and hospital chains can query live product availability, pricing, and batch details via our API dashboard integrations.",
-      points: [
-        "Real-time stock query tools",
-        "Digital invoices and delivery tracking",
-        "Batch tracking for compliance audits",
-      ],
-    },
+      icon: "truck",
+      color:"brand",
+      title: "Nutritional Products",
+      desc: "We distribute a wide selection of nutritional supplements, vitamins, minerals, protein formulations, pediatric nutrition, and wellness products from trusted pharmaceutical manufacturers. Our nutritional portfolio supports every stage of health and well-being, with reliable product availability and timely delivery for pharmacies and healthcare providers.",
+    }
   ],
 };
 
 
-// Web Order Page Content
-export const webOrder = {
-  seo: {
-    title: "Web Order | Meenakshi Pharma",
-    description: "Learn how to place orders online through our B2B B2B portal.",
-  },
-  banner: {
-    title: "Web Order System",
-    subtitle: "Streamlined online ordering for our registered partners.",
-  },
-  stepsTitle: { title: "How It Works", subtitle: "Simple Ordering Process" },
-  steps: [
-    {
-      title: "1. Register / Login",
-      desc: "Access our B2B portal with your approved credentials.",
-    },
-    {
-      title: "2. Browse Catalog",
-      desc: "Search for products by name, brand, or category.",
-    },
-    {
-      title: "3. Add to Cart",
-      desc: "Select quantities and add items to your digital cart.",
-    },
-    {
-      title: "4. Checkout & Pay",
-      desc: "Review your order and proceed to secure checkout.",
-    },
-  ],
-  benefitsTitle: { title: "Why Order Online?", subtitle: "Benefits" },
-  benefits: [
-    {
-      title: "24/7 Ordering",
-      desc: "Place orders anytime, anywhere, at your convenience.",
-    },
-    {
-      title: "Live Inventory",
-      desc: "See real-time stock availability before ordering.",
-    },
-    {
-      title: "Mobile Friendly",
-      desc: "Order seamlessly from your smartphone or tablet.",
-    },
-  ],
-  cta: {
-    heading: "Ready to start ordering?",
-    desc: "If you are already a registered partner, click below to access the B2B portal. If not, please apply to partner with us first.",
-    btnPrimary: "Access B2B Portal",
-    btnSecondary: "Become a Partner",
-  },
-};
-
-// Stock & Sales Page Content
-export const stockSales = {
-  seo: {
-    title: "Stock & Sales | Meenakshi Pharma",
-    description:
-      "Dashboard view of our inventory capabilities and sales distribution network.",
-  },
-  banner: {
-    title: "Stock & Sales Dashboard",
-    subtitle:
-      "Transparent overview of our distribution capabilities and inventory strength.",
-  },
-  kpis: [
-    { label: "Active SKUs", value: "12,450+", border: "border-brand" },
-    { label: "Daily Orders Processed", value: "850+", border: "border-accent" },
-    { label: "Fulfillment Rate", value: "98.5%", border: "border-brand-dark" },
-    { label: "Delivery Fleet", value: "45+ Vans", border: "border-blue-500" },
-  ],
-  categories: {
-    title: "Category Distribution",
-    labels: [
-      "Cardio",
-      "Neuro",
-      "Diabetic",
-      "Antibiotics",
-      "Derma",
-      "Ortho",
-      "OTC",
-    ],
-    values: [40, 70, 45, 90, 60, 30, 80],
-  },
-  coverage: {
-    title: "Coverage Area",
-    desc: "Our distribution network spans across 15+ districts, ensuring deep market penetration and accessibility.",
-    percentage: "85%",
-    label: "85% Regional Coverage",
-  },
-  delivery: {
-    title: "Delivery Timelines",
-    timelines: [
-      { area: "Local City", time: "Same Day" },
-      { area: "Neighboring Districts", time: "Next Day (24h)" },
-      { area: "Rural Areas", time: "48 Hours" },
-    ],
-  },
-};
 
 // Career Page Content
 export const career = {
@@ -466,17 +375,18 @@ export const contact = {
       {
         type: "address",
         label: "Office Address",
-        value: "C-135-A,GROUND & 1ST FLOOR,5TH CROSS EAST, THILLAI NAGAR, TRICHY-620018",
+        value:
+          "C-135-A,GROUND & 1ST FLOOR,5TH CROSS EAST, THILLAI NAGAR, TRICHY-620018",
       },
       {
         type: "phone",
         label: "Phone Numbers",
-        value:["0431-2740311", "9942982301","9942982302"],
+        value: ["0431-2740311", "9942982301", "9942982302"],
       },
       {
         type: "email",
         label: "Email Address",
-        value: ["mpharma98@gmail.com","meenakshipharmatry@gmail.com"],
+        value: ["mpharma98@gmail.com", "meenakshipharmatry@gmail.com"],
       },
       {
         type: "hours",
@@ -498,10 +408,8 @@ export const contact = {
     },
     buttonText: "Send Message",
   },
-   mapUrl:
-    "https://maps.app.goo.gl/oYmy6ZmxCDC1RDB68",
+  mapUrl: "https://maps.app.goo.gl/oYmy6ZmxCDC1RDB68",
 };
-
 
 // Brands Page Content
 
@@ -574,15 +482,31 @@ export const brands = [
 // Achievements Page Content
 
 export const achievements = [
-  { id: 1, url: ach1, title: "Certificate of association with Calpol Paracetamol" },
+  {
+    id: 1,
+    url: ach1,
+    title: "Certificate of association with Calpol Paracetamol",
+  },
   { id: 2, url: ach2, title: "Certificate of Appointment - CIPLA" },
   { id: 3, url: ach3, title: "Business Partner Excellence - APEX" },
-  { id: 4, url: ach4, title: "Core Pillar of Alkem Altis @Trichy Year 2021-2022" },
+  {
+    id: 4,
+    url: ach4,
+    title: "Core Pillar of Alkem Altis @Trichy Year 2021-2022",
+  },
   { id: 5, url: ach5, title: "Silver Club Member-2020 - ZINCOVIT" },
   { id: 6, url: ach6, title: "Zydus business partner" },
   { id: 7, url: ach7, title: "Alkem 50 Years of Excellence" },
-  { id: 8, url: ach8, title: "Certificate of Appreciation - Merck India Healthcare" },
-  { id: 9, url: ach9, title: "Certificate of Recognition - STAR TRADE PARTNERS FY 2018-19" },
+  {
+    id: 8,
+    url: ach8,
+    title: "Certificate of Appreciation - Merck India Healthcare",
+  },
+  {
+    id: 9,
+    url: ach9,
+    title: "Certificate of Recognition - STAR TRADE PARTNERS FY 2018-19",
+  },
   { id: 10, url: ach10, title: "Certificate of Appreciation - CIPLA" },
   { id: 11, url: ach11, title: "Certificate of Gratitude - LUPIN" },
   { id: 12, url: ach12, title: "Certificate of Appreciation - GSK" },
