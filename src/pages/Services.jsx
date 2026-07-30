@@ -187,7 +187,7 @@ const Services = () => {
       </section>
 
       {/* Super-Specialty Care Spotlight */}
-      <section className="section-padding bg-brand-light relative overflow-hidden">
+      {/* <section className="section-padding bg-brand-light relative overflow-hidden">
         <div className="absolute top-0 right-0 w-1/2 h-full bg-brand opacity-5 skew-x-12"></div>
         <div className="container-custom relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12 bg-white rounded-3xl p-8 lg:p-12 shadow-2xl">
@@ -236,7 +236,7 @@ const Services = () => {
             </motion.div>
           </div>
         </div>
-      </section>
+      </section> */}
       <CTASection />
     </>
   );

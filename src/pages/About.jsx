@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import PageBanner from "../components/PageBanner";
 import SectionTitle from "../components/SectionTitle";
 import CTASection from "../components/CTASection";
+import heroImg from "../assets/images/hero.png";
 import { about } from "../data/content";
 const About = () => {
   return (
@@ -34,7 +35,7 @@ const About = () => {
             >
               <div className="rounded-3xl overflow-hidden shadow-2xl">
                 <img
-                  src={about.introduction.imageUrl}
+                  src={heroImg}
                   alt="Meenakshi Pharma"
                   className="w-full h-full object-cover"
                 />
@@ -227,51 +228,6 @@ const About = () => {
         </div>
       </section>
 
-      {/* Timeline */}
-      <section className="section-padding bg-transparent">
-        <div className="container-custom text-center">
-          <SectionTitle title="Our Journey" subtitle="Milestones" />
-          <div className="max-w-4xl mx-auto mt-12 relative border-l-2 border-brand-light pl-8 text-left">
-            {[
-              {
-                year: "2010",
-                title: "Inception",
-                desc: "Started operations with a small team and a vision to transform healthcare distribution.",
-              },
-              {
-                year: "2015",
-                title: "Expansion",
-                desc: "Expanded our reach across multiple districts and partnered with top-tier brands.",
-              },
-              {
-                year: "2020",
-                title: "Modernization",
-                desc: "Upgraded to state-of-the-art climate-controlled facilities and digital inventory systems.",
-              },
-              {
-                year: "2024",
-                title: "Market Leaders",
-                desc: "Recognized as one of the most reliable pharma distributors in the region.",
-              },
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                className="mb-10 relative"
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-              >
-                <div className="absolute -left-[41px] top-1 w-5 h-5 rounded-full bg-brand border-4 border-white"></div>
-                <h4 className="text-xl font-bold text-brand mb-2">
-                  {item.year} - {item.title}
-                </h4>
-                <p className="text-text-light">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
       <CTASection />
     </>
   );

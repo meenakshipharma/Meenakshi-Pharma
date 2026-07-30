@@ -391,7 +391,7 @@ export const contact = {
       {
         type: "hours",
         label: "Working Hours",
-        value: "Mon - Sat: 9:00 AM - 7:00 PM\nSunday: Closed",
+        value: "Mon - Sat: 9:00 AM - 9:00 PM\nSunday: Closed",
       },
     ],
     buttonText: "Open in Google Maps",
