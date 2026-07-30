@@ -5,6 +5,7 @@ import PageBanner from "../components/PageBanner";
 import Button from "../components/Button";
 import SectionTitle from "../components/SectionTitle";
 import CTASection from "../components/CTASection";
+import { partner } from "../data/content";
 
 const Partner = () => {
   const [formData, setFormData] = useState({
@@ -29,6 +30,7 @@ const Partner = () => {
     gstCertificate: null,
   });
 
+  const [formErrors, setFormErrors] = useState({});
   const [sameAsOwner, setSameAsOwner] = useState(false);
   const [sameAsMobile, setSameAsMobile] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -38,8 +40,113 @@ const Partner = () => {
     error: "",
     message: "",
   });
+
+  // ── Validation rules ──────────────────────────────────────────────────────
+  const validateField = (name, value) => {
+    switch (name) {
+      case "businessName":
+        if (!value || !value.toString().trim())
+          return "Business / Pharmacy / Clinic Name is required.";
+        break;
+      case "ownerName":
+        if (!value || !value.toString().trim())
+          return "Proprietor / Owner Name is required.";
+        break;
+      case "contactName":
+        if (!value || !value.toString().trim())
+          return "Contact Person Name is required.";
+        break;
+      case "mobile":
+        if (!value || !value.toString().trim())
+          return "Mobile Number is required.";
+        if (!/^[6-9]\d{9}$/.test(value.toString().trim()))
+          return "Enter a valid 10-digit Indian mobile number.";
+        break;
+case "whatsapp":
+  if (!value || !value.toString().trim()) {
+    return "WhatsApp Number is required.";
+  }
+
+  if (!/^[6-9]\d{9}$/.test(value.toString().trim())) {
+    return "Enter a valid 10-digit WhatsApp number.";
+  }
+
+  break;
+      case "email":
+        if (!value || !value.toString().trim())
+          return "Email Address is required.";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.toString().trim()))
+          return "Enter a valid email address.";
+        break;
+      case "address":
+        if (!value || !value.toString().trim())
+          return "Full Business Address is required.";
+        break;
+      case "city":
+        if (!value || !value.toString().trim()) return "City is required.";
+        break;
+      case "district":
+        if (!value || !value.toString().trim()) return "District is required.";
+        break;
+      case "state":
+        if (!value || !value.toString().trim()) return "State is required.";
+        break;
+      case "pincode":
+        if (!value || !value.toString().trim())
+          return "PIN Code is required.";
+        if (!/^\d{6}$/.test(value.toString().trim()))
+          return "Enter a valid 6-digit PIN code.";
+        break;
+      case "drugLicense":
+        if (!value) return "Drug Licence document is required.";
+        break;
+      case "gstCertificate":
+        if (!value) return "GST Certificate document is required.";
+        break;
+      case "agreeTerms":
+        if (!value)
+          return "You must agree to the declaration before submitting.";
+        break;
+      default:
+        return "";
+    }
+    return "";
+  };
+
+  const validateAll = () => {
+    const requiredFields = [
+      "businessName",
+      "ownerName",
+      "contactName",
+      "mobile",
+      "whatsapp",
+      "email",
+      "address",
+      "city",
+      "district",
+      "state",
+      "pincode",
+      "drugLicense",
+      "gstCertificate",
+      "agreeTerms",
+    ];
+
+    const newErrors = {};
+    requiredFields.forEach((field) => {
+      const error = validateField(field, formData[field]);
+      if (error) newErrors[field] = error;
+    });
+
+    setFormErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // ── Handlers ──────────────────────────────────────────────────────────────
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
+
+    // Clear error for this field as the user types / changes
+    setFormErrors((prev) => ({ ...prev, [name]: "" }));
 
     if (type === "file") {
       const file = files?.[0];
@@ -54,40 +161,66 @@ const Partner = () => {
       ];
 
       if (!allowedTypes.includes(file.type)) {
-        alert("Only PDF, JPG, JPEG and PNG files are allowed.");
+        setFormErrors((prev) => ({
+          ...prev,
+          [name]: "Only PDF, JPG, JPEG and PNG files are allowed.",
+        }));
         return;
       }
 
       if (file.size > 5 * 1024 * 1024) {
-        alert("Maximum file size is 5MB.");
+        setFormErrors((prev) => ({
+          ...prev,
+          [name]: "Maximum file size is 5MB.",
+        }));
         return;
       }
 
-      setFormData((prev) => ({
-        ...prev,
-        [name]: file,
-      }));
-
+      setFormData((prev) => ({ ...prev, [name]: file }));
       return;
     }
-
-    setFormData((prev) => {
-      const updated = {
-        ...prev,
-        [name]: type === "checkbox" ? checked : value,
-      };
-
-      if (sameAsOwner && name === "ownerName") {
-        updated.contactName = value;
-      }
-
-      if (sameAsMobile && name === "mobile") {
-        updated.whatsapp = value;
-      }
-
-      return updated;
-    });
+setFormData((prev) => {
+  const updated = {
+    ...prev,
+    [name]: type === "checkbox" ? checked : value,
   };
+
+  if (sameAsOwner && name === "ownerName") {
+    updated.contactName = value;
+  }
+
+  if (sameAsMobile && name === "mobile") {
+    updated.whatsapp = value;
+  }
+
+  // Validate current field
+  const error = validateField(name, updated[name]);
+
+  setFormErrors((prevErrors) => ({
+    ...prevErrors,
+    [name]: error,
+  }));
+
+  // Validate WhatsApp if it changes automatically
+  if (sameAsMobile && name === "mobile") {
+    const whatsappError = validateField("whatsapp", updated.whatsapp);
+
+    setFormErrors((prevErrors) => ({
+      ...prevErrors,
+      whatsapp: whatsappError,
+    }));
+  }
+
+  return updated;
+});
+  };
+
+
+  const handleFocus = (e) => {
+    const { name } = e.target;
+    setFormErrors((prev) => ({ ...prev, [name]: "" }));
+  };
+
   const resetForm = () => {
     setFormData({
       businessName: "",
@@ -111,11 +244,17 @@ const Partner = () => {
       gstCertificate: null,
     });
 
+    setFormErrors({});
+
     document.querySelector('input[name="drugLicense"]').value = "";
     document.querySelector('input[name="gstCertificate"]').value = "";
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const isValid = validateAll();
+    if (!isValid) return;
 
     setLoading(true);
 
@@ -163,10 +302,25 @@ const Partner = () => {
       setLoading(false);
     }
   };
+
+  // ── Styles ────────────────────────────────────────────────────────────────
   const inputClass =
     "w-full bg-white bg-opacity-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all";
+  const inputErrorClass =
+    "w-full bg-white bg-opacity-50 border border-red-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all";
   const labelClass = "block text-sm font-medium text-text-light mb-2";
 
+  const getInputClass = (fieldName) =>
+    formErrors[fieldName] ? inputErrorClass : inputClass;
+
+  const ErrorMsg = ({ field }) =>
+    formErrors[field] ? (
+      <p className="mt-1 text-xs text-red-600 font-medium">
+        {formErrors[field]}
+      </p>
+    ) : null;
+
+  // ── Render ────────────────────────────────────────────────────────────────
   return (
     <>
       <Helmet>
@@ -178,8 +332,9 @@ const Partner = () => {
       </Helmet>
 
       <PageBanner
-        title="Partner With Us"
-        subtitle="Join our growing network of healthcare providers and experience seamless distribution."
+        title={partner.banner.title}
+        subtitle={partner.banner.subtitle}
+        subsubtitle={partner.banner.subsubtitle}
       />
 
       <section className="section-padding bg-gradient-to-br from-gray-50 to-brand-light">
@@ -199,35 +354,48 @@ const Partner = () => {
                   with * are required.
                 </p>
               </div>
+
               {status.success && (
                 <div className="mb-6 rounded-lg border border-green-300 bg-green-50 p-4 text-green-700">
                   {status.message}
                 </div>
               )}
+
+              {status.error && (
+                <div className="mb-6 rounded-lg border border-red-300 bg-red-50 p-4 text-red-700">
+                  {status.error}
+                </div>
+              )}
+
               <form
                 onSubmit={handleSubmit}
+                noValidate
                 className="space-y-8"
                 encType="multipart/form-data"
               >
-                {/* Business Details */}
+                {/* ── Business Details ───────────────────────────────── */}
                 <div>
                   <h3 className="text-xl font-serif border-b border-gray-200 pb-2 mb-6">
                     Business Details
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Business Name */}
                     <div>
                       <label className={labelClass}>
                         Business / Pharmacy / Clinic Name *
                       </label>
                       <input
-                        required
                         type="text"
                         name="businessName"
                         value={formData.businessName}
                         onChange={handleChange}
-                        className={inputClass}
+                        onFocus={handleFocus}
+                        className={getInputClass("businessName")}
                       />
+                      <ErrorMsg field="businessName" />
                     </div>
+
+                    {/* Business Type */}
                     <div>
                       <label className={labelClass}>Business Type *</label>
                       <select
@@ -242,52 +410,40 @@ const Partner = () => {
                         <option>Wholesale</option>
                       </select>
                     </div>
+
+                    {/* Owner Name */}
                     <div>
                       <label className={labelClass}>
                         Proprietor / Owner Name *
                       </label>
                       <input
-                        required
                         type="text"
                         name="ownerName"
                         value={formData.ownerName}
                         onChange={handleChange}
-                        className={inputClass}
+                        onFocus={handleFocus}
+                        className={getInputClass("ownerName")}
                       />
+                      <ErrorMsg field="ownerName" />
                     </div>
-                    {/* <div>
-                      <label className={labelClass}>
-                        Contact Person Name *
-                      </label>
-                      <input
-                        required
-                        type="text"
-                        name="contactName"
-                        disabled={sameAsOwner}
-                        value={formData.contactName}
-                        onChange={handleChange}
-                        className={`${inputClass} ${
-                          sameAsOwner ? "bg-gray-300 cursor-not-allowed" : ""
-                        }`}
-                      />
-                    </div> */}
+
+                    {/* Contact Person Name */}
                     <div>
                       <label className={labelClass}>
                         Contact Person Name *
                       </label>
-
                       <input
-                        required
                         type="text"
                         name="contactName"
                         value={formData.contactName}
                         onChange={handleChange}
+                        onFocus={handleFocus}
                         disabled={sameAsOwner}
-                        className={`${inputClass} ${
+                        className={`${getInputClass("contactName")} ${
                           sameAsOwner ? "bg-gray-200 cursor-not-allowed" : ""
                         }`}
                       />
-
+                      <ErrorMsg field="contactName" />
                       <div className="mt-2 flex items-center gap-2">
                         <input
                           type="checkbox"
@@ -295,16 +451,19 @@ const Partner = () => {
                           checked={sameAsOwner}
                           onChange={(e) => {
                             const checked = e.target.checked;
-
                             setSameAsOwner(checked);
-
                             setFormData((prev) => ({
                               ...prev,
                               contactName: checked ? prev.ownerName : "",
                             }));
+                            if (checked) {
+                              setFormErrors((prev) => ({
+                                ...prev,
+                                contactName: "",
+                              }));
+                            }
                           }}
                         />
-
                         <label
                           htmlFor="sameAsOwner"
                           className="text-sm text-text-light"
@@ -316,23 +475,27 @@ const Partner = () => {
                   </div>
                 </div>
 
-                {/* Contact Information */}
+                {/* ── Contact Information ─────────────────────────────── */}
                 <div>
                   <h3 className="text-xl font-serif border-b border-gray-200 pb-2 mb-6">
                     Contact Information
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Mobile */}
                     <div>
                       <label className={labelClass}>Mobile Number *</label>
                       <input
-                        required
                         type="tel"
                         name="mobile"
                         value={formData.mobile}
                         onChange={handleChange}
-                        className={inputClass}
+                        onFocus={handleFocus}
+                        className={getInputClass("mobile")}
                       />
+                      <ErrorMsg field="mobile" />
                     </div>
+
+                    {/* WhatsApp */}
                     <div>
                       <label className={labelClass}>WhatsApp Number</label>
                       <input
@@ -340,11 +503,14 @@ const Partner = () => {
                         name="whatsapp"
                         value={formData.whatsapp}
                         onChange={handleChange}
+                        onFocus={handleFocus}
                         disabled={sameAsMobile}
-                        className={`${inputClass} ${
-                          sameAsMobile ? "bg-gray-200 cursor-not-allowed" : ""
-                        }`}
-                      />
+className={`${
+    sameAsMobile
+      ? inputClass + " bg-gray-200 cursor-not-allowed"
+      : getInputClass("whatsapp")
+  }`}                      />
+                      <ErrorMsg field="whatsapp" />
                       <div className="mt-2 flex items-center gap-2">
                         <input
                           type="checkbox"
@@ -352,16 +518,16 @@ const Partner = () => {
                           checked={sameAsMobile}
                           onChange={(e) => {
                             const checked = e.target.checked;
-
                             setSameAsMobile(checked);
-
                             setFormData((prev) => ({
                               ...prev,
                               whatsapp: checked ? prev.mobile : "",
                             }));
+                            if (checked) {
+                              setFormErrors((prev) => ({ ...prev, whatsapp: "" }));
+                            }
                           }}
                         />
-
                         <label
                           htmlFor="sameAsMobile"
                           className="text-sm text-text-light"
@@ -370,17 +536,22 @@ const Partner = () => {
                         </label>
                       </div>
                     </div>
+
+                    {/* Email */}
                     <div>
                       <label className={labelClass}>Email Address *</label>
                       <input
-                        required
                         type="email"
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className={inputClass}
+                        onFocus={handleFocus}
+                        className={getInputClass("email")}
                       />
+                      <ErrorMsg field="email" />
                     </div>
+
+                    {/* Landline */}
                     <div>
                       <label className={labelClass}>Landline Number</label>
                       <input
@@ -394,86 +565,100 @@ const Partner = () => {
                   </div>
                 </div>
 
-                {/* Address Details */}
+                {/* ── Address Details ─────────────────────────────────── */}
                 <div>
                   <h3 className="text-xl font-serif border-b border-gray-200 pb-2 mb-6">
                     Address Details
                   </h3>
                   <div className="space-y-6">
+                    {/* Full Address */}
                     <div>
                       <label className={labelClass}>
                         Full Business Address *
                       </label>
                       <textarea
-                        required
                         name="address"
                         rows="3"
                         value={formData.address}
                         onChange={handleChange}
-                        className={inputClass}
+                        onFocus={handleFocus}
+                        className={getInputClass("address")}
                       ></textarea>
+                      <ErrorMsg field="address" />
                     </div>
+
                     <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                      {/* City */}
                       <div>
                         <label className={labelClass}>City *</label>
                         <input
-                          required
                           type="text"
                           name="city"
                           value={formData.city}
                           onChange={handleChange}
-                          className={inputClass}
+                          onFocus={handleFocus}
+                            className={getInputClass("city")}
                         />
+                        <ErrorMsg field="city" />
                       </div>
+
+                      {/* District */}
                       <div>
                         <label className={labelClass}>District *</label>
                         <input
-                          required
                           type="text"
                           name="district"
                           value={formData.district}
                           onChange={handleChange}
-                          className={inputClass}
+                          onFocus={handleFocus}
+                            className={getInputClass("district")}
                         />
+                        <ErrorMsg field="district" />
                       </div>
+
+                      {/* State */}
                       <div>
                         <label className={labelClass}>State *</label>
                         <input
-                          required
                           type="text"
                           name="state"
                           value={formData.state}
                           onChange={handleChange}
-                          className={inputClass}
+                          onFocus={handleFocus}
+                            className={getInputClass("state")}
                         />
+                        <ErrorMsg field="state" />
                       </div>
+
+                      {/* Pincode */}
                       <div>
                         <label className={labelClass}>PIN Code *</label>
                         <input
-                          required
                           type="text"
                           name="pincode"
                           value={formData.pincode}
                           onChange={handleChange}
-                          className={inputClass}
+                          onFocus={handleFocus}
+                            className={getInputClass("pincode")}
                         />
+                        <ErrorMsg field="pincode" />
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Documents & Requirements */}
+                {/* ── Documents & Business Info ───────────────────────── */}
                 <div>
                   <h3 className="text-xl font-serif border-b border-gray-200 pb-2 mb-6">
                     Documents & Business Info
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    {/* Drug License */}
                     <div>
                       <label className={labelClass}>
                         Drug Licence Upload (PDF/JPG) *
                       </label>
                       <input
-                        required
                         type="file"
                         name="drugLicense"
                         accept=".pdf,.jpg,.jpeg,.png"
@@ -485,14 +670,15 @@ const Partner = () => {
                           Selected: {formData.drugLicense.name}
                         </p>
                       )}
+                      <ErrorMsg field="drugLicense" />
                     </div>
 
+                    {/* GST Certificate */}
                     <div>
                       <label className={labelClass}>
                         GST Certificate Upload (PDF/JPG) *
                       </label>
                       <input
-                        required
                         type="file"
                         name="gstCertificate"
                         accept=".pdf,.jpg,.jpeg,.png"
@@ -504,10 +690,12 @@ const Partner = () => {
                           Selected: {formData.gstCertificate.name}
                         </p>
                       )}
+                      <ErrorMsg field="gstCertificate" />
                     </div>
                   </div>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    {/* Categories */}
                     <div>
                       <label className={labelClass}>
                         Interested Product Categories
@@ -521,6 +709,8 @@ const Partner = () => {
                         className={inputClass}
                       />
                     </div>
+
+                    {/* Monthly Purchase */}
                     <div>
                       <label className={labelClass}>
                         Estimated Monthly Purchase Value
@@ -539,6 +729,7 @@ const Partner = () => {
                     </div>
                   </div>
 
+                  {/* Requirements */}
                   <div>
                     <label className={labelClass}>
                       Specific Requirements or Comments
@@ -553,23 +744,27 @@ const Partner = () => {
                   </div>
                 </div>
 
-                <div className="flex items-start gap-3 mt-8">
-                  <input
-                    required
-                    type="checkbox"
-                    id="agree"
-                    name="agreeTerms"
-                    checked={formData.agreeTerms}
-                    onChange={handleChange}
-                    className="mt-1 w-4 h-4 text-brand bg-gray-100 border-gray-300 rounded focus:ring-brand"
-                  />
-                  <label htmlFor="agree" className="text-sm text-text-light">
-                    I declare that the information provided above is true and
-                    correct. I authorize Meenakshi Pharma to contact me
-                    regarding this partnership application.
-                  </label>
+                {/* ── Declaration ─────────────────────────────────────── */}
+                <div className="mt-8">
+                  <div className="flex items-start gap-3">
+                    <input
+                      type="checkbox"
+                      id="agree"
+                      name="agreeTerms"
+                      checked={formData.agreeTerms}
+                      onChange={handleChange}
+                      className="mt-1 w-4 h-4 text-brand bg-gray-100 border-gray-300 rounded focus:ring-brand"
+                    />
+                    <label htmlFor="agree" className="text-sm text-text-light">
+                      I declare that the information provided above is true and
+                      correct. I authorize Meenakshi Pharma to contact me
+                      regarding this partnership application.
+                    </label>
+                  </div>
+                  <ErrorMsg field="agreeTerms" />
                 </div>
 
+                {/* ── Submit ──────────────────────────────────────────── */}
                 <div className="pt-6 text-center">
                   <Button
                     type="submit"
@@ -584,7 +779,7 @@ const Partner = () => {
           </div>
         </div>
       </section>
-      <CTASection />
+      {/* <CTASection /> */}
     </>
   );
 };

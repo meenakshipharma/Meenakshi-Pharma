@@ -336,8 +336,8 @@ export const career = {
   },
   banner: {
     title: "Join Our Team",
-    subtitle:
-      "Build a rewarding career with a company dedicated to improving healthcare access.",
+    subtitle: "Be the Reason Healthcare Never Stops.",
+    subsubtitle:"Every role you play helps ensure medicines reach those who need them, when they need them   below join our team"
   },
   details: {
     title: "Shape the Future of Healthcare Logistics",
@@ -521,3 +521,11 @@ export const achievements = [
   { id: 21, url: ach21, title: "Certificate of Appreciation - EVION" },
   { id: 22, url: ach22, title: "10 Years of Excellence - AKESISS" },
 ];
+
+export const partner={
+   banner: {
+    title: "Partner With Us",
+    subtitle: "Powering Healthcare Through Reliable Distribution",
+    subsubtitle:"Partner with Meenakshi Pharma to ensure pharmacies, hospitals, and clinics receive genuine medicines with speed, reliability, and care."
+ },
+}
