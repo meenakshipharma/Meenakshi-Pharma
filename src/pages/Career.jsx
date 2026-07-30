@@ -142,6 +142,8 @@ const Career = () => {
       <PageBanner
         title={career.banner.title}
         subtitle={career.banner.subtitle}
+        subsubtitle={career.banner.subsubtitle}
+        a
       />
 
       <section className="py-20 bg-white">
@@ -235,7 +237,7 @@ const Career = () => {
                   name="resume"
                   accept=".pdf,.doc,.docx"
                   onChange={handleChange}
-                  className="block w-full border border-gray-300 rounded-lg p-3"
+                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-light file:text-brand hover:file:bg-brand hover:file:text-white transition-colors"
                   required
                 />
 

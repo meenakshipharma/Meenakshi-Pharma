@@ -1,7 +1,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const PageBanner = ({ title, subtitle, bgImage }) => {
+const PageBanner = ({ title, subtitle,subsubtitle, bgImage }) => {
   return (
     <div className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden bg-brand-light">
       {/* Background patterns/shapes could go here */}
@@ -22,6 +22,11 @@ const PageBanner = ({ title, subtitle, bgImage }) => {
           {subtitle && (
             <p className="text-lg md:text-xl text-text-light max-w-2xl mx-auto font-light">
               {subtitle}
+            </p>
+          )}
+            {subsubtitle && (
+            <p className="text-lg md:text-xl text-text-light max-w-2xl mx-auto font-light">
+              {subsubtitle}
             </p>
           )}
         </motion.div>
