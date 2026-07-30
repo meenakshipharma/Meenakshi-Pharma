@@ -11,7 +11,7 @@ export default async (request) => {
       }),
       {
         status: 405,
-      }
+      },
     );
   }
 
@@ -31,7 +31,7 @@ export default async (request) => {
         },
         {
           status: 400,
-        }
+        },
       );
     }
 
@@ -70,7 +70,7 @@ export default async (request) => {
         },
         {
           status: 500,
-        }
+        },
       );
     }
 
@@ -100,7 +100,6 @@ export default async (request) => {
       success: true,
       message: "Application Submitted Successfully",
     });
-
   } catch (err) {
     console.error(err);
 
@@ -111,7 +110,7 @@ export default async (request) => {
       },
       {
         status: 500,
-      }
+      },
     );
   }
 };

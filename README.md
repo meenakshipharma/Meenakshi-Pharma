@@ -8,7 +8,7 @@ cards, soft shadows, Playfair Display + Inter type, Framer Motion animations).
 
 ```bash
 npm install
-npm run dev
+netlify dev
 ```
 
 Open the local URL Vite prints (usually `http://localhost:5173`).
