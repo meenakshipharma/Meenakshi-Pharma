@@ -306,13 +306,13 @@ export const services = {
     },
     {
       icon:"shield",
-      color:"accent",
+      color:"secondary",
       title: "Speciality Medicines",
       desc: "We supply a comprehensive range of specialty pharmaceutical products to support hospitals, clinics, and retail pharmacies. Our portfolio includes medicines across critical therapeutic segments such as oncology, nephrology, cardiology, neurology, gastroenterology, endocrinology, dermatology, and other specialized treatments. Through our trusted distribution network, we ensure the timely availability of genuine medicines whenever they are needed."},
     
     {
        icon: "box",
-       color:"accent",
+       color:"secondary",
       title: "General Medicines",
       desc: "As an authorized stockist for leading pharmaceutical brands, we maintain a comprehensive inventory of general medicines covering a wide range of therapeutic categories. Our efficient inventory management and streamlined distribution network enable us to provide prompt deliveries, helping pharmacies and healthcare providers maintain uninterrupted patient care.",
     },

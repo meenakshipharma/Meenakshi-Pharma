@@ -38,34 +38,30 @@ const Footer = () => {
                 {footer.companyName}
               </span>
             </div>
-            <p className="text-gray-400 mb-6 leading-relaxed">
+            <p className="text-text-muted mb-6 leading-relaxed">
               {footer.tagline}
             </p>
             <div className="flex gap-4">
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white transition-colors"
-              >
-                <FiFacebook />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white transition-colors"
-              >
-                <FiTwitter />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white transition-colors"
-              >
-                <FiLinkedin />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-full bg-gray-800 flex items-center justify-center text-gray-400 hover:bg-brand hover:text-white transition-colors"
-              >
-                <FiInstagram />
-              </a>
+              {footer.socials.map((social) => {
+                const iconMap = {
+                  Facebook: <FiFacebook />,
+                  Twitter: <FiTwitter />,
+                  LinkedIn: <FiLinkedin />,
+                  Instagram: <FiInstagram />,
+                };
+                return (
+                  <a
+                    key={social.name}
+                    href={social.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.name}
+                    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-text-muted hover:bg-brand hover:text-white transition-colors"
+                  >
+                    {iconMap[social.name] || <FiFacebook />}
+                  </a>
+                );
+              })}
             </div>
           </div>
 
@@ -78,7 +74,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/about"
-                  className="text-gray-400 hover:text-brand transition-colors"
+                  className="text-text-muted hover:text-brand transition-colors"
                 >
                   About Us
                 </Link>
@@ -86,31 +82,35 @@ const Footer = () => {
               <li>
                 <Link
                   to="/services"
-                  className="text-gray-400 hover:text-brand transition-colors"
+                  className="text-text-muted hover:text-brand transition-colors"
                 >
                   Our Services
                 </Link>
               </li>
               <li>
-                <Link
-                  to="/stock-sales"
-                  className="text-gray-400 hover:text-brand transition-colors"
+                <a
+                  href="http://meenakshipharma.wsweborder.com/StockAndSales/DistributorPages/Login4StockNSales.aspx"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-text-muted hover:text-brand transition-colors"
                 >
                   Stock & Sales
-                </Link>
+                </a>
               </li>
               <li>
-                <Link
-                  to="/web-order"
-                  className="text-gray-400 hover:text-brand transition-colors"
+                <a
+                  href="https://meenakshipharma.wondersoft.in/ro13.html#/login"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-text-muted hover:text-brand transition-colors"
                 >
                   Web Order
-                </Link>
+                </a>
               </li>
               <li>
                 <Link
                   to="/partner"
-                  className="text-gray-400 hover:text-brand transition-colors"
+                  className="text-text-muted hover:text-brand transition-colors"
                 >
                   Partner With Us
                 </Link>
@@ -118,7 +118,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/career"
-                  className="text-gray-400 hover:text-brand transition-colors"
+                  className="text-text-muted hover:text-brand transition-colors"
                 >
                   Career Opportunities
                 </Link>
@@ -142,7 +142,13 @@ const Footer = () => {
                 <FiPhone className="text-brand mt-1 flex-shrink-0" />
                 <div className="flex flex-col">
                   {footer.contactInfo.phone.map((p, i) => (
-                    <span key={i}>{p}</span>
+                    <a
+                      key={i}
+                      href={`tel:${p.replace(/[^0-9+]/g, "")}`}
+                      className="hover:text-white transition-colors duration-200"
+                    >
+                      {p}
+                    </a>
                   ))}
                 </div>
               </li>
@@ -150,7 +156,13 @@ const Footer = () => {
                 <FiMail className="text-brand mt-1 flex-shrink-0" />
                 <div className="flex flex-col">
                   {footer.contactInfo.email.map((e, i) => (
-                    <span key={i}>{e}</span>
+                    <a
+                      key={i}
+                      href={`mailto:${e}`}
+                      className="hover:text-white transition-colors duration-200"
+                    >
+                      {e}
+                    </a>
                   ))}
                 </div>
               </li>

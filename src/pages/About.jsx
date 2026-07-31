@@ -143,14 +143,14 @@ const About = () => {
             </motion.div>
 
             <motion.div
-              className="flex-1 bg-white p-10 rounded-3xl shadow-card border-l-8 border-accent hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+              className="flex-1 bg-white p-10 rounded-3xl shadow-card border-l-8 border-secondary hover:shadow-xl transition-all duration-300 relative overflow-hidden"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
             >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-accent opacity-5 rounded-full -mr-6 -mt-6"></div>
-              <div className="w-14 h-14 bg-accent-light text-accent rounded-2xl flex items-center justify-center text-2xl mb-6">
+              <div className="absolute top-0 right-0 w-24 h-24 bg-secondary opacity-5 rounded-full -mr-6 -mt-6"></div>
+              <div className="w-14 h-14 bg-secondary-light text-secondary rounded-2xl flex items-center justify-center text-2xl mb-6">
                 <svg
                   width="24"
                   height="24"

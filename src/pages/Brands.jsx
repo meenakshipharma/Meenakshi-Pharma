@@ -3,6 +3,7 @@ import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageBanner from '../components/PageBanner';
 import CTASection from '../components/CTASection';
+import Button from '../components/Button';
 import { brands } from '../data/content';
 
 const Brands = () => {
@@ -18,7 +19,11 @@ const Brands = () => {
       <PageBanner 
         title="Our Trusted Partners" 
         subtitle="We collaborate with the world's leading pharmaceutical manufacturers to bring quality healthcare to you."
-      />
+      >
+        <Button to="/partner" variant="primary">
+          Partner With Us
+        </Button>
+      </PageBanner>
 
       <section className="section-padding bg-transparent min-h-screen">
         <div className="container-custom">

@@ -7,7 +7,7 @@ const CTASection = () => {
     <section className="py-24 bg-gradient-to-br from-white via-brand-light/30 to-brand-light/70 text-center relative overflow-hidden border-t border-brand-light">
       <div className="absolute top-0 left-0 w-full h-full opacity-20">
         <div className="absolute top-0 left-10 w-96 h-96 rounded-full bg-brand blur-3xl mix-blend-multiply"></div>
-        <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-accent blur-3xl mix-blend-multiply"></div>
+        <div className="absolute bottom-10 right-10 w-80 h-80 rounded-full bg-secondary blur-3xl mix-blend-multiply"></div>
       </div>
       <div className="container-custom relative z-10">
         <motion.div

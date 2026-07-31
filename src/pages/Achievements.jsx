@@ -48,7 +48,7 @@ const Achievements = () => {
                   </div>
                 </div>
                 <div className="text-center">
-                  <span className="text-xs font-bold uppercase tracking-wider text-accent mb-1 block">
+                  <span className="text-xs font-bold uppercase tracking-wider text-secondary mb-1 block">
                     {award.title.toLowerCase().includes('certificate') ? 'Certificate' : 'Award'}
                   </span>
                   <h3 className="text-lg font-serif font-semibold text-text">{award.title}</h3>

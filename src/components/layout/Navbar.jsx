@@ -46,9 +46,8 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-white shadow-md py-3" : "bg-transparent py-5"
-      }`}
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md py-3" : "bg-transparent py-5"
+        }`}
     >
       <div className="container-custom flex justify-between items-center">
         {/* Logo */}
@@ -59,22 +58,19 @@ const Navbar = () => {
           <img
             src={logoImg}
             alt="Meenakshi Pharma Logo"
-            className="h-12 w-auto object-contain"
+            className="h-16 w-auto object-contain"
             onError={(e) => {
               e.target.style.display = "none";
               e.target.nextSibling.style.display = "flex";
             }}
           />
-          <div className="hidden items-center justify-center w-12 h-12 bg-brand rounded-full text-white font-serif font-bold text-xl">
-            MP
-          </div>
-          <span
+          {/* <span
             className={`font-serif font-bold text-2xl tracking-wide ${
               isScrolled ? "text-text" : "text-text lg:text-text"
             }`}
           >
-            Meenakshi Pharma
-          </span>
+            Meenakshi Phvarma
+          </span> */}
         </Link>
 
         {/* Desktop Navigation */}
@@ -94,20 +90,18 @@ const Navbar = () => {
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-sm font-medium transition-colors hover:text-brand ${
-                  location.pathname === link.path
+                className={`text-sm font-medium transition-colors hover:text-brand ${location.pathname === link.path
                     ? "text-brand"
                     : isScrolled
                       ? "text-text-light"
                       : "text-text-light"
-                }`}
+                  }`}
               >
                 {link.name}
               </Link>
             )
           )}
         </nav>
-
         {/* Mobile Menu Button */}
         <button
           className="lg:hidden text-2xl z-50 text-text"
@@ -142,11 +136,10 @@ const Navbar = () => {
                     <Link
                       key={link.name}
                       to={link.path}
-                      className={`text-base font-medium transition-colors hover:text-brand ${
-                        location.pathname === link.path
+                      className={`text-base font-medium transition-colors hover:text-brand ${location.pathname === link.path
                           ? "text-brand"
                           : "text-text"
-                      }`}
+                        }`}
                     >
                       {link.name}
                     </Link>

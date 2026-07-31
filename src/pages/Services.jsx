@@ -68,23 +68,23 @@ const Services = () => {
                       <h3
                         className={`text-sm font-serif font-bold uppercase tracking-widest mb-2 ${
                           service.color === "brand"
-                            ? "text-brand"
-                            : "text-accent"
-                        }`}
-                      >
-                        {service.title}
-                      </h3>
-
-                      <p className="text-text-light text-justify text-sm leading-relaxed">
-                        {service.desc}
-                      </p>
-                      
-                    </div>
-                    <div
-                      className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white ${
-                        service.color === "brand" ? "bg-brand" : "bg-accent"
+                          ? "text-brand"
+                          : "text-secondary"
                       }`}
                     >
+                      {service.title}
+                    </h3>
+
+                    <p className="text-text-light text-justify text-sm leading-relaxed">
+                      {service.desc}
+                    </p>
+                    
+                  </div>
+                  <div
+                    className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white ${
+                      service.color === "brand" ? "bg-brand" : "bg-secondary"
+                    }`}
+                  >
                       {Icon && <Icon />}
                     </div>
                   </motion.div>
@@ -106,7 +106,7 @@ const Services = () => {
                 {/* Middle ring */}
                 <div className="absolute inset-5 rounded-full border-4 border-brand/20" />
                 {/* Inner filled circle */}
-                <div className="absolute inset-12 rounded-full bg-gradient-to-br from-brand/10 to-accent/10 border-4 border-brand/30 flex items-center justify-center">
+                <div className="absolute inset-12 rounded-full bg-gradient-to-br from-brand/10 to-secondary/10 border-4 border-brand/30 flex items-center justify-center">
                   <svg
                     viewBox="0 0 64 64"
                     className="w-14 h-14 text-brand"
@@ -157,7 +157,7 @@ const Services = () => {
                   >
                     <div
                       className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white ${
-                        service.color === "brand" ? "bg-brand" : "bg-accent"
+                        service.color === "brand" ? "bg-brand" : "bg-secondary"
                       }`}
                     >
                       {Icon && <Icon />}
@@ -168,7 +168,7 @@ const Services = () => {
                         className={`text-sm font-serif font-bold uppercase tracking-widest mb-2 ${
                           service.color === "brand"
                             ? "text-brand"
-                            : "text-accent"
+                            : "text-secondary"
                         }`}
                       >
                         {service.title}

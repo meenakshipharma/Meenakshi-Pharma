@@ -94,9 +94,9 @@ function SectionCard({ section, index, id }) {
               {section.list.map((item, li) => (
                 <li
                   key={li}
-                  className="flex items-start gap-2.5 bg-slate-50 rounded-xl px-4 py-3 text-[14px] text-slate-600"
+                  className="flex items-start gap-2.5 bg-background-section rounded-xl px-4 py-3 text-[14px] text-text-light"
                 >
-                  <span className="mt-1 shrink-0 w-1.5 h-1.5 rounded-full bg-accent" />
+                  <span className="mt-1 shrink-0 w-1.5 h-1.5 rounded-full bg-secondary" />
                   {item}
                 </li>
               ))}
@@ -222,8 +222,8 @@ const LegalPage = ({ data, metaDescription }) => {
             </h1>
 
             <div className="flex items-center gap-3 mt-5">
-              <span className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500 bg-slate-100 px-3 py-1.5 rounded-full">
-                <span className="w-1.5 h-1.5 rounded-full bg-accent inline-block" />
+              <span className="inline-flex items-center gap-1.5 text-xs font-medium text-text-muted bg-background-section px-3 py-1.5 rounded-full">
+                <span className="w-1.5 h-1.5 rounded-full bg-secondary inline-block" />
                 Last updated: {data.lastUpdated}
               </span>
               <span className="text-slate-300">·</span>

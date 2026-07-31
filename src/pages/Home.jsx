@@ -16,6 +16,7 @@ import {
 import Button from "../components/Button";
 import SectionTitle from "../components/SectionTitle";
 import CTASection from "../components/CTASection";
+import HeroCarousel from "../components/HeroCarousel";
 import heroImg from "../assets/images/hero.png";
 import testimonialVideo1 from "../assets/videos/srccc.mp4";
 import testimonialVideo2 from "../assets/videos/srccc1.mp4";
@@ -148,39 +149,7 @@ const TestimonialVideoCard = ({ src, badge, title, desc, delay }) => {
 const Home = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = React.useState(0);
 
-  // const services = [
-  //   {
-  //     icon: <FiBox className="text-4xl text-brand" />,
-  //     title: "Pharmaceutical Distribution",
-  //     desc: "Reliable and timely distribution of high-quality medicines.",
-  //   },
-  //   {
-  //     icon: <FiTruck className="text-4xl text-brand" />,
-  //     title: "Cold Chain Logistics",
-  //     desc: "Temperature-controlled supply chain for sensitive products.",
-  //   },
-  //   {
-  //     icon: <FiShield className="text-4xl text-brand" />,
-  //     title: "Quality Assurance",
-  //     desc: "Strict compliance with pharmaceutical safety standards.",
-  //   },
-  //   {
-  //     icon: <FiActivity className="text-4xl text-brand" />,
-  //     title: "Super-Specialty Care",
-  //     desc: "Providing life-saving critical care medications.",
-  //   },
-  //   {
-  //     icon: <FiUsers className="text-4xl text-brand" />,
-  //     title: "Retail Pharmacy Support",
-  //     desc: "Comprehensive support for our retail partners.",
-  //   },
-  //   {
-  //     icon: <FiTrendingUp className="text-4xl text-brand" />,
-  //     title: "Inventory Management",
-  //     desc: "Advanced tracking and stock management solutions.",
-  //   },
-  // ];
-
+ 
   return (
     <>
       <Helmet>
@@ -194,7 +163,7 @@ const Home = () => {
       {/* Hero Section */}
       <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-transparent">
         <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-brand opacity-5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-accent opacity-5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary opacity-5 rounded-full blur-3xl"></div>
 
         <div className="container-custom relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
           <motion.div
@@ -229,35 +198,7 @@ const Home = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-square border-8 border-white/50 backdrop-blur-sm">
-              <img
-                src={heroImg}
-                alt="Meenakshi Pharma Facility"
-                className="w-full h-full object-cover"
-              />
-              <div className="absolute inset-0 bg-brand mix-blend-overlay opacity-20"></div>
-            </div>
-            {/* Floating Card */}
-            <motion.div
-              className="absolute -bottom-10 -left-10 bg-white p-6 rounded-2xl shadow-xl glass-card hidden md:block"
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ delay: 1, duration: 0.5 }}
-            >
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-accent-light rounded-full flex items-center justify-center text-accent">
-                  <FiShield className="text-2xl" />
-                </div>
-                <div>
-                  <p className="text-sm text-text-light font-medium">
-                    Certified
-                  </p>
-                  <p className="font-serif font-bold text-lg text-text">
-                    Quality Assured
-                  </p>
-                </div>
-              </div>
-            </motion.div>
+            <HeroCarousel />
           </motion.div>
         </div>
       </section>
@@ -301,7 +242,7 @@ const Home = () => {
             >
               <div className="relative aspect-square rounded-3xl overflow-hidden shadow-soft">
                 <img
-                  src="https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1470&auto=format&fit=crop"
+                  src={heroImg}
                   alt="About Us"
                   className="w-full h-full object-cover"
                 />
@@ -365,7 +306,7 @@ const Home = () => {
                   <div className="flex items-center gap-4 mb-6">
                     <div
                       className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white flex-shrink-0 ${
-                        index % 2 === 0 ? "bg-brand" : "bg-accent"
+                        index % 2 === 0 ? "bg-brand" : "bg-secondary"
                       }`}
                     >
                       {Icon && <Icon />}

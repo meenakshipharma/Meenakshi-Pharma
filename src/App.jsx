@@ -34,8 +34,6 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/brands" element={<Brands />} />
             <Route path="/achievements" element={<Achievements />} />
-            <Route path="https://meenakshipharma.wondersoft.in/ro13.html#/login" />
-            <Route path="http://meenakshipharma.wsweborder.com/StockAndSales/DistributorPages/Login4StockNSales.aspx" />
             <Route path="/partner" element={<Partner />} />
             <Route path="/career" element={<Career />} />
             <Route path="/contact" element={<Contact />} />
