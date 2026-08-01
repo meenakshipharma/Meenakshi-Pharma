@@ -84,7 +84,7 @@ const HeroCarousel = () => {
             <p className="text-xs uppercase tracking-wider font-semibold text-blue-200 mb-0.5">
               Meenakshi Pharma
             </p>
-            <h3 className="text-base sm:text-lg font-serif font-semibold leading-snug">
+            <h3 className="text-base text-white sm:text-lg font-serif font-semibold leading-snug">
               {slides[currentIndex].title}
             </h3>
           </div>

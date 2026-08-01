@@ -4,32 +4,11 @@ import { FiMenu, FiX } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 
 import logoImg from "../../assets/images/Logo.png";
-
+import  {navigation } from "../../data/content";
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-
-  const navLinks = [
-    { name: "Home", path: "/", blank: false },
-    { name: "About", path: "/about", blank: false },
-    { name: "Services", path: "/services", blank: false },
-    { name: "Brands", path: "/brands", blank: false },
-    { name: "Achievements", path: "/achievements", blank: false },
-    {
-      name: "Web Order",
-      path: "https://meenakshipharma.wondersoft.in/ro13.html#/login",
-      blank: true,
-    },
-    {
-      name: "Stock & Sales",
-      path: "http://meenakshipharma.wsweborder.com/StockAndSales/DistributorPages/Login4StockNSales.aspx",
-      blank: true,
-    },
-    { name: "Partner With Us", path: "/partner", blank: false },
-    { name: "Career", path: "/career", blank: false },
-    { name: "Contact", path: "/contact", blank: false },
-  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -46,14 +25,14 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md py-3" : "bg-transparent py-5"
+      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md py-1" : "bg-transparent py-1"
         }`}
     >
       <div className="container-custom flex justify-between items-center">
         {/* Logo */}
         <Link
           to="/"
-          className="flex items-center gap-3 z-50"
+          className="flex items-center gap-2 z-50"
         >
           <img
             src={logoImg}
@@ -75,7 +54,7 @@ const Navbar = () => {
 
         {/* Desktop Navigation */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-          {navLinks.map((link) =>
+          {navigation.map((link) =>
             link.blank ? (
               <a
                 key={link.name}
@@ -121,7 +100,7 @@ const Navbar = () => {
               className="absolute top-full left-0 w-full bg-white shadow-lg lg:hidden"
             >
               <div className="flex flex-col py-4 px-6 gap-4">
-                {navLinks.map((link) =>
+                {navigation.map((link) =>
                   link.blank ? (
                     <a
                       key={link.name}
