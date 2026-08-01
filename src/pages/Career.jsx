@@ -14,7 +14,7 @@ const Career = () => {
     email: "",
     resume: null,
   });
-
+  const [formErrors, setFormErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
   const [status, setStatus] = useState({
@@ -23,6 +23,53 @@ const Career = () => {
     message: "",
   });
 
+  const validateField = (name, value) => {
+    switch (name) {
+      case "fullName": {
+        const name = value?.toString().trim();
+
+        if (!name) return "Full Name is required.";
+
+        if (!/^[A-Za-z\s.'-]{2,50}$/.test(name))
+          return "Enter a valid full name.";
+
+        break;
+      }
+      case "phone":
+        if (!value || !value.toString().trim())
+          return "Phone Number is required.";
+        if (!/^[6-9]\d{9}$/.test(value.toString().trim()))
+          return "Enter a valid 10-digit Indian phone number.";
+        break;
+      case "email":
+        if (!value || !value.toString().trim())
+          return "Email Address is required.";
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.toString().trim()))
+          return "Enter a valid email address.";
+        break;
+      case "resume":
+        if (!value) return "Resume is required.";
+        if (value.size > 5 * 1024 * 1024)
+    return "Maximum file size is 5MB.";
+        break;
+      default:
+        return "";
+    }
+    return "";
+  };
+
+  const validateAll = () => {
+    const requiredFields = ["fullName", "phone", "email", "resume"];
+
+    const newErrors = {};
+    requiredFields.forEach((field) => {
+      const error = validateField(field, formData[field]);
+      if (error) newErrors[field] = error;
+    });
+
+    setFormErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
   const resetForm = () => {
     setFormData({
       fullName: "",
@@ -41,6 +88,7 @@ const Career = () => {
   const handleChange = (e) => {
     const { name, value, files } = e.target;
 
+    setFormErrors((prev) => ({ ...prev, [name]: "" }));
     if (name === "resume") {
       const file = files?.[0];
 
@@ -53,12 +101,26 @@ const Career = () => {
       ];
 
       if (!allowedTypes.includes(file.type)) {
-        alert("Only PDF, DOC and DOCX files are allowed.");
+        e.target.value = "";
+
+        setFormData((prev) => ({
+          ...prev,
+          resume: null,
+        }));
+
+        setFormErrors((prev) => ({
+          ...prev,
+          resume: "Only PDF, DOC and DOCX files are allowed.",
+        }));
+
         return;
       }
 
       if (file.size > 5 * 1024 * 1024) {
-        alert("Maximum file size is 5MB.");
+        setFormErrors((prev) => ({
+          ...prev,
+          [name]: "Maximum file size is 5MB.",
+        }));
         return;
       }
 
@@ -70,15 +132,30 @@ const Career = () => {
       return;
     }
 
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => {
+      const updated = { ...prev, [name]: value };
+
+      const error = validateField(name, updated[name]);
+
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: error,
+      }));
+      return updated;
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    setStatus({
+    success: false,
+    error: "",
+    message: "",
+});
+    if (!validateAll()) {
+      return;
+    }
     setLoading(true);
 
     setStatus({
@@ -90,9 +167,9 @@ const Career = () => {
     try {
       const data = new FormData();
 
-      data.append("fullName", formData.fullName);
-      data.append("phone", formData.phone);
-      data.append("email", formData.email);
+      data.append("fullName", formData.fullName.trim());
+      data.append("phone", formData.phone.trim());
+      data.append("email", formData.email.trim());
       data.append("resume", formData.resume);
 
       const response = await fetch("/.netlify/functions/careers", {
@@ -194,10 +271,16 @@ const Career = () => {
                   name="fullName"
                   value={formData.fullName}
                   onChange={handleChange}
-                  className={inputClass}
                   placeholder="Enter your full name"
-                  required
+                  className={`${inputClass} ${
+                    formErrors.fullName ? "border-red-500" : ""
+                  }`}
                 />
+                {formErrors.fullName && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {formErrors.fullName}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -208,10 +291,14 @@ const Career = () => {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className={inputClass}
+                  className={`${inputClass} ${formErrors.phone ? "border-red-500" : ""}`}
                   placeholder="Enter your mobile number"
-                  required
                 />
+                {formErrors.phone && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {formErrors.phone}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -222,10 +309,14 @@ const Career = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={inputClass}
+                  className={`${inputClass} ${formErrors.email ? "border-red-500" : ""}`}
                   placeholder="Enter your email"
-                  required
                 />
+                {formErrors.email && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {formErrors.email}
+                  </p>
+                )}
               </div>
 
               <div>
@@ -237,14 +328,18 @@ const Career = () => {
                   name="resume"
                   accept=".pdf,.doc,.docx"
                   onChange={handleChange}
-                  className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-light file:text-brand hover:file:bg-brand hover:file:text-white transition-colors"
-                  required
+                  className={`w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-light file:text-brand hover:file:bg-brand hover:file:text-white transition-colors ${formErrors.resume ? "border border-red-500 rounded-lg" : ""}`}
                 />
 
                 <p className="mt-2 text-sm text-gray-500">
                   Accepted formats: PDF, DOC, DOCX (Maximum 5 MB)
                 </p>
 
+                {formErrors.resume && (
+                  <p className="mt-1 text-sm text-red-600">
+                    {formErrors.resume}
+                  </p>
+                )}
                 {formData.resume && (
                   <div className="mt-3 rounded-lg bg-gray-50 border p-3 text-sm">
                     <span className="font-semibold">Selected File:</span>{" "}
