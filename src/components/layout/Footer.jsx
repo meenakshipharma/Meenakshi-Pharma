@@ -38,7 +38,7 @@ const Footer = () => {
               <div className="hidden items-center justify-center w-12 h-12 bg-[#1C8A3C] rounded-full text-white font-bold text-xl">
                 MP
               </div>
-              <span className="font-bold text-2xl tracking-wide text-white">
+              <span className="font-bold text-xl tracking-wide text-white">
                 {footer.companyName}
               </span>
             </div>
