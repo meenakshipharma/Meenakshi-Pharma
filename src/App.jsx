@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 // Layout
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
+import themeJson from "./theme.json";
 
 // Pages
 import Home from "./pages/Home";
@@ -20,8 +21,15 @@ import TermsOfService from "./pages/TermsOfService";
 
 // Utils
 import ScrollToTop from "./components/ScrollToTop";
-
+import usePageLoader from "./hooks/usePageLoader";
+import Logo3DSplash from "./components/loader/Logo3DSplash";
 function App() {
+  const loading = usePageLoader({
+    minDuration: 2500,
+  });
+  if (loading) {
+    return <Logo3DSplash theme={themeJson} />;
+  }
   return (
     <Router>
       <ScrollToTop />

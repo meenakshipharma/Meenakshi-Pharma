@@ -83,8 +83,8 @@ const HeroCarousel = () => {
           <div className="absolute bottom-10 left-6 right-6 z-10 text-white drop-shadow-md hidden sm:block">
             <span className="inline-block text-[11px] uppercase tracking-widest font-semibold px-2.5 py-0.5 rounded-full bg-[#1C8A3C] text-white mb-2 shadow-xs">
               Meenakshi Pharma
-            </span>
-            <h3 className="text-base sm:text-lg lg:text-xl font-bold leading-snug text-white">
+            </p>
+            <h3 className="text-base text-white sm:text-lg font-serif font-semibold leading-snug">
               {slides[currentIndex].title}
             </h3>
           </div>

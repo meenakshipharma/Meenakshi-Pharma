@@ -91,20 +91,26 @@ import img_cangrow from "../assets/images/brands/cangrow.webp";
 
 
 // Navbar Links
-export const navigation = {
-  navLinks: [
-    { name: "Home", path: "/" },
-    { name: "About", path: "/about" },
-    { name: "Services", path: "/services" },
-    { name: "Brands", path: "/brands" },
-    { name: "Achievements", path: "/achievements" },
-    { name: "Web Order", path: "/web-order" },
-    { name: "Stock & Sales", path: "/stock-sales" },
-    { name: "Partner With Us", path: "/partner" },
-    { name: "Career", path: "/career" },
-    { name: "Contact", path: "/contact" },
-  ],
-};
+export const navigation = [
+   { name: "Home", path: "/", blank: false },
+    { name: "About", path: "/about", blank: false },
+    { name: "Services", path: "/services", blank: false },
+    { name: "Brands", path: "/brands", blank: false },
+    { name: "Achievements", path: "/achievements", blank: false },
+    {
+      name: "Web Order",
+      path: "https://meenakshipharma.wondersoft.in/ro13.html#/login",
+      blank: true,
+    },
+    {
+      name: "Stock & Sales",
+      path: "http://meenakshipharma.wsweborder.com/StockAndSales/DistributorPages/Login4StockNSales.aspx",
+      blank: true,
+    },
+    { name: "Partner With Us", path: "/partner", blank: false },
+    { name: "Career", path: "/career", blank: false },
+    { name: "Contact", path: "/contact", blank: false },
+  ];
 
 // Footer Content
 export const footer = {
@@ -337,7 +343,7 @@ export const career = {
   banner: {
     title: "Join Our Team",
     subtitle: "Be the Reason Healthcare Never Stops.",
-    subsubtitle:"Every role you play helps ensure medicines reach those who need them, when they need them   below join our team"
+    subsubtitle:"Every role you play helps ensure medicines reach those who need them, when they need them   "
   },
   details: {
     title: "Shape the Future of Healthcare Logistics",
@@ -526,6 +532,6 @@ export const partner={
    banner: {
     title: "Partner With Us",
     subtitle: "Powering Healthcare Through Reliable Distribution",
-    subsubtitle:"Partner with Meenakshi Pharma to ensure pharmacies, hospitals, and clinics receive genuine medicines with speed, reliability, and care."
+    subsubtitle:"Partner with Meenakshi Pharma to ensure your pharmacies, hospitals, and clinics receive genuine medicines with speed, reliability, and care."
  },
 }
