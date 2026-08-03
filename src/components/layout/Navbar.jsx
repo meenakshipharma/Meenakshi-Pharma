@@ -48,29 +48,32 @@ const Navbar = () => {
     <header
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white shadow-md border-b border-slate-200 py-3"
-          : "bg-white/95 backdrop-blur-md border-b border-slate-100 py-4"
+          ? "bg-white shadow-md border-b border-slate-200 py-2.5 md:py-3"
+          : "bg-white/95 backdrop-blur-md border-b border-slate-100 py-3 md:py-4"
       }`}
     >
       <div className="container-custom flex justify-between items-center">
-        {/* Logo */}
+        {/* Logo with Meenakshi Pharma Title */}
         <Link
           to="/"
-          className="flex items-center gap-3 z-50 group focus:outline-none"
+          className="flex items-center gap-2.5 sm:gap-3 z-50 group focus:outline-none"
         >
           <img
             src={logoImg}
             alt="Meenakshi Pharma Logo"
-            className="h-12 md:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+            className="h-10 sm:h-12 md:h-13 xl:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             onError={(e) => {
               e.target.style.display = "none";
-              e.target.nextSibling.style.display = "flex";
+              if (e.target.nextSibling) e.target.nextSibling.style.display = "flex";
             }}
           />
+          <span className="font-extrabold text-base sm:text-lg md:text-xl lg:text-2xl text-[#0B4E8C] tracking-tight group-hover:text-[#1C8A3C] transition-colors whitespace-nowrap">
+            Meenakshi Pharma
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5">
           {navLinks.map((link) => {
             const isActive = location.pathname === link.path;
             return link.blank ? (
@@ -79,16 +82,16 @@ const Navbar = () => {
                 href={link.path}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 px-3 py-2 text-xs xl:text-sm font-semibold rounded-lg text-[#0B4E8C] hover:text-[#1C8A3C] hover:bg-[#E8F5EB] transition-all duration-200"
+                className="inline-flex items-center gap-1 px-2 py-1.5 xl:px-3 xl:py-2 text-[11px] xl:text-xs 2xl:text-sm font-semibold rounded-lg text-[#0B4E8C] hover:text-[#1C8A3C] hover:bg-[#E8F5EB] transition-all duration-200 whitespace-nowrap"
               >
                 <span>{link.name}</span>
-                <FiExternalLink className="text-[#1C8A3C] text-xs" />
+                <FiExternalLink className="text-[#1C8A3C] text-xs shrink-0" />
               </a>
             ) : (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`relative px-3 py-2 text-xs xl:text-sm font-semibold rounded-lg transition-all duration-200 ${
+                className={`relative px-2 py-1.5 xl:px-3 xl:py-2 text-[11px] xl:text-xs 2xl:text-sm font-semibold rounded-lg transition-all duration-200 whitespace-nowrap ${
                   isActive
                     ? "text-[#0B4E8C] bg-[#E8F1F9] font-bold shadow-xs"
                     : "text-[#0B4E8C] hover:text-[#1C8A3C] hover:bg-[#F5F7FA]"
@@ -109,11 +112,11 @@ const Navbar = () => {
 
         {/* Mobile Menu Toggle Button */}
         <button
-          className="lg:hidden p-2.5 rounded-xl bg-slate-100 text-[#0B4E8C] hover:bg-[#E8F5EB] hover:text-[#1C8A3C] focus:outline-none transition-colors z-50"
+          className="lg:hidden p-2 sm:p-2.5 rounded-xl bg-slate-100 text-[#0B4E8C] hover:bg-[#E8F5EB] hover:text-[#1C8A3C] focus:outline-none transition-colors z-50 cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Navigation Menu"
         >
-          {isOpen ? <FiX className="text-2xl" /> : <FiMenu className="text-2xl" />}
+          {isOpen ? <FiX className="text-xl sm:text-2xl" /> : <FiMenu className="text-xl sm:text-2xl" />}
         </button>
 
         {/* Mobile Navigation Dropdown */}
@@ -126,7 +129,7 @@ const Navbar = () => {
               transition={{ duration: 0.25, ease: "easeInOut" }}
               className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-xl overflow-hidden lg:hidden"
             >
-              <div className="flex flex-col py-4 px-6 gap-1 max-h-[80vh] overflow-y-auto">
+              <div className="flex flex-col py-4 px-5 sm:px-6 gap-1 max-h-[80vh] overflow-y-auto">
                 {navLinks.map((link) => {
                   const isActive = location.pathname === link.path;
                   return link.blank ? (
@@ -135,7 +138,7 @@ const Navbar = () => {
                       href={link.path}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between py-2.5 px-4 rounded-xl text-base font-semibold text-[#0B4E8C] hover:bg-[#E8F5EB] hover:text-[#1C8A3C] transition-colors"
+                      className="flex items-center justify-between py-2.5 px-4 rounded-xl text-sm sm:text-base font-semibold text-[#0B4E8C] hover:bg-[#E8F5EB] hover:text-[#1C8A3C] transition-colors"
                     >
                       <span>{link.name}</span>
                       <FiExternalLink className="text-[#1C8A3C]" />
@@ -144,7 +147,7 @@ const Navbar = () => {
                     <Link
                       key={link.name}
                       to={link.path}
-                      className={`py-2.5 px-4 rounded-xl text-base font-semibold transition-colors ${
+                      className={`py-2.5 px-4 rounded-xl text-sm sm:text-base font-semibold transition-colors ${
                         isActive
                           ? "bg-[#0B4E8C] text-white font-bold shadow-md shadow-[#0B4E8C]/20"
                           : "text-[#0B4E8C] hover:bg-[#F5F7FA] hover:text-[#1C8A3C]"
