@@ -13,7 +13,7 @@
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-heading font-bold text-[#0B4E8C] tracking-tight;
+    @apply font-bold text-[#0B4E8C] tracking-tight;
     font-family: 'Plus Jakarta Sans', sans-serif;
   }
 }

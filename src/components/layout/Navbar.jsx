@@ -52,11 +52,11 @@ const Navbar = () => {
           : "bg-white/95 backdrop-blur-md border-b border-slate-100 py-3 md:py-4"
       }`}
     >
-      <div className="container-custom flex justify-between items-center">
-        {/* Logo with Meenakshi Pharma Title */}
+      <div className="w-full px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 flex justify-between items-center">
+        {/* Logo with Meenakshi Pharma Title - Left Corner */}
         <Link
           to="/"
-          className="flex items-center gap-2.5 sm:gap-3 z-50 group focus:outline-none"
+          className="flex items-center gap-2.5 sm:gap-3 z-50 group focus:outline-none shrink-0"
         >
           <img
             src={logoImg}
@@ -72,8 +72,8 @@ const Navbar = () => {
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5">
+        {/* Desktop Navigation - Right Corner */}
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5 ml-auto">
           {navLinks.map((link) => {
             const isActive = location.pathname === link.path;
             return link.blank ? (
