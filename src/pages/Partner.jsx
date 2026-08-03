@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import PageBanner from "../components/PageBanner";
 import Button from "../components/Button";
 import { partner } from "../data/content";
 
+const CATEGORY_OPTIONS = [
+  "General Medicines",
+  "Specialty Medicines",
+  "Cosmetic Products",
+  "Nutritional Products",
+];
+
 const Partner = () => {
   const [formData, setFormData] = useState({
     businessName: "",
-    businessType: "Pharmacy",
+    businessType: "Retail Pharmacy",
     ownerName: "",
     contactName: "",
     mobile: "",
@@ -20,7 +27,7 @@ const Partner = () => {
     district: "",
     state: "",
     pincode: "",
-    categories: "",
+    categories: [],
     monthlyPurchase: "",
     requirements: "",
     agreeTerms: false,
@@ -32,6 +39,21 @@ const Partner = () => {
   const [sameAsOwner, setSameAsOwner] = useState(false);
   const [sameAsMobile, setSameAsMobile] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [categoriesOpen, setCategoriesOpen] = useState(false);
+  const dropdownRef = useRef(null);
+  const formContainerRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setCategoriesOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   const [status, setStatus] = useState({
     success: false,
@@ -99,6 +121,15 @@ const Partner = () => {
       case "gstCertificate":
         if (!value) return "GST Certificate document is required.";
         break;
+      case "categories":
+        if (
+          !value ||
+          (Array.isArray(value) && value.length === 0) ||
+          (typeof value === "string" && !value.trim())
+        ) {
+          return "Interested Product Categories is required.";
+        }
+        break;
       case "agreeTerms":
         if (!value)
           return "You must agree to the declaration before submitting.";
@@ -122,6 +153,7 @@ const Partner = () => {
       "district",
       "state",
       "pincode",
+      "categories",
       "drugLicense",
       "gstCertificate",
       "agreeTerms",
@@ -213,10 +245,27 @@ const Partner = () => {
     setFormErrors((prev) => ({ ...prev, [name]: "" }));
   };
 
+  const handleCategoryToggle = (category) => {
+    setFormData((prev) => {
+      const current = Array.isArray(prev.categories) ? prev.categories : [];
+      const updated = current.includes(category)
+        ? current.filter((item) => item !== category)
+        : [...current, category];
+
+      const error = validateField("categories", updated);
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        categories: error,
+      }));
+
+      return { ...prev, categories: updated };
+    });
+  };
+
   const resetForm = () => {
     setFormData({
       businessName: "",
-      businessType: "Pharmacy",
+      businessType: "Retail Pharmacy",
       ownerName: "",
       contactName: "",
       mobile: "",
@@ -228,7 +277,7 @@ const Partner = () => {
       district: "",
       state: "",
       pincode: "",
-      categories: "",
+      categories: [],
       monthlyPurchase: "",
       requirements: "",
       agreeTerms: false,
@@ -236,6 +285,7 @@ const Partner = () => {
       gstCertificate: null,
     });
 
+    setCategoriesOpen(false);
     setFormErrors({});
 
     const dlInput = document.querySelector('input[name="drugLicense"]');
@@ -262,7 +312,11 @@ const Partner = () => {
       const data = new FormData();
 
       Object.entries(formData).forEach(([key, value]) => {
-        data.append(key, value);
+        if (Array.isArray(value)) {
+          value.forEach((v) => data.append(key, v));
+        } else {
+          data.append(key, value);
+        }
       });
 
       const response = await fetch("/.netlify/functions/partner", {
@@ -284,6 +338,15 @@ const Partner = () => {
       });
 
       resetForm();
+
+      setTimeout(() => {
+        if (formContainerRef.current) {
+          formContainerRef.current.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      }, 50);
     } catch (err) {
       console.error(err);
 
@@ -334,38 +397,115 @@ const Partner = () => {
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <motion.div
+              ref={formContainerRef}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-200 border-t-4 border-t-[#0B4E8C]"
             >
-              <div className="text-center mb-10">
-                <h2 className="text-2xl md:text-3xl font-bold text-[#0B4E8C] mb-3">
-                  Partnership Application Form
-                </h2>
-                <p className="text-[#333333] text-sm md:text-base">
-                  Please fill in your business details below. All fields marked
-                  with * are required.
-                </p>
-              </div>
+              {status.success ? (
+                <div className="text-center py-6 px-4">
+                  <div className="w-20 h-20 bg-[#E8F5EB] text-[#1C8A3C] rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-[#1C8A3C]/20 shadow-xs">
+                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
 
-              {status.success && (
-                <div className="mb-6 rounded-2xl border border-[#1C8A3C]/30 bg-[#E8F5EB] p-4 text-[#1C8A3C] text-sm font-medium">
-                  {status.message}
+                  <h2 className="text-2xl md:text-3xl font-bold text-[#0B4E8C] mb-4">
+                    Thank You for Your Interest in Partnering with Meenakshi Pharma
+                  </h2>
+
+                  <div className="inline-block bg-[#E8F5EB] border border-[#1C8A3C]/30 text-[#1C8A3C] font-bold text-sm md:text-base px-6 py-3 rounded-2xl mb-8">
+                    Your partnership request has been submitted successfully.
+                  </div>
+
+                  <div className="max-w-2xl mx-auto space-y-4 text-[#333333] text-sm md:text-base leading-relaxed text-left bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200 shadow-xs mb-8">
+                    <p>
+                      Our team will review the information you have provided and verify your Drug License and GST Certificate as part of our standard onboarding process. Once the verification is complete, one of our representatives will contact you to discuss the next steps.
+                    </p>
+                    <p>
+                      We appreciate your interest in partnering with Meenakshi Pharma and look forward to building a trusted, long-term business relationship.
+                    </p>
+                    <p className="font-semibold text-[#0B4E8C] pt-2">
+                      Thank you for choosing Meenakshi Pharma as your pharmaceutical supply partner.
+                    </p>
+                  </div>
+
+                  <Button
+                    variant="primary"
+                    onClick={() => {
+                      setStatus({ success: false, error: "", message: "" });
+                      window.scrollTo({ top: 400, behavior: "smooth" });
+                    }}
+                    className="px-8"
+                  >
+                    Submit Another Application
+                  </Button>
                 </div>
-              )}
+              ) : (
+                <>
+                  <div className="text-center mb-8">
+                    <h2 className="text-2xl md:text-3xl font-bold text-[#0B4E8C] mb-3">
+                      Partnership Application Form
+                    </h2>
+                    <p className="text-[#333333] text-sm md:text-base">
+                      Please fill in your business details below. All fields marked
+                      with * are required.
+                    </p>
+                  </div>
 
-              {status.error && (
-                <div className="mb-6 rounded-2xl border border-[#E31E24]/30 bg-[#FDE8E9] p-4 text-[#E31E24] text-sm font-medium">
-                  {status.error}
-                </div>
-              )}
+                  {/* ── Important Notice / Warning Box ───────────────────── */}
+                  <div className="mb-8 rounded-2xl border border-[#FDE68A] bg-[#FEFCE8] p-4 md:p-5 shadow-xs flex items-start gap-3.5">
+                    <svg
+                      className="w-5 h-5 text-[#D97706] shrink-0 mt-0.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <circle cx="12" cy="12" r="9" strokeWidth="2" />
+                      <line
+                        x1="12"
+                        y1="8"
+                        x2="12"
+                        y2="12"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                      <line
+                        x1="12"
+                        y1="16"
+                        x2="12.01"
+                        y2="16"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                      />
+                    </svg>
+                    <div className="text-xs md:text-sm text-[#78350F] leading-relaxed">
+                      <p className="mb-2">
+                        <strong className="font-bold text-[#92400E]">Important Notice:</strong>{" "}
+                        Meenakshi Pharma is a licensed pharmaceutical wholesale distributor.
+                        We supply medicines only to licensed retail pharmacies, hospitals,
+                        and clinics holding a valid Drug License. We do not sell medicines
+                        directly to the general public or individual consumers.
+                      </p>
+                      <p className="font-semibold text-[#92400E]">
+                        Please complete the form below if you are an eligible healthcare
+                        business interested in partnering with us.
+                      </p>
+                    </div>
+                  </div>
 
-              <form
-                onSubmit={handleSubmit}
-                noValidate
-                className="space-y-8"
-                encType="multipart/form-data"
-              >
+                  {status.error && (
+                    <div className="mb-6 rounded-2xl border border-[#E31E24]/30 bg-[#FDE8E9] p-4 text-[#E31E24] text-sm font-medium">
+                      {status.error}
+                    </div>
+                  )}
+
+                  <form
+                    onSubmit={handleSubmit}
+                    noValidate
+                    className="space-y-8"
+                    encType="multipart/form-data"
+                  >
                 {/* ── Business Details ───────────────────────────────── */}
                 <div>
                   <h3 className="text-lg font-bold text-[#0B4E8C] border-b border-slate-200 pb-3 mb-6">
@@ -397,10 +537,9 @@ const Partner = () => {
                         onChange={handleChange}
                         className={inputClass}
                       >
-                        <option>Pharmacy</option>
-                        <option>Hospital</option>
-                        <option>Clinic</option>
-                        <option>Wholesale</option>
+                        <option value="Retail Pharmacy">Retail Pharmacy</option>
+                        <option value="Hospital">Hospital</option>
+                        <option value="Clinic">Clinic</option>
                       </select>
                     </div>
 
@@ -491,7 +630,7 @@ const Partner = () => {
 
                     {/* WhatsApp */}
                     <div>
-                      <label className={labelClass}>WhatsApp Number</label>
+                      <label className={labelClass}>WhatsApp Number *</label>
                       <input
                         type="tel"
                         name="whatsapp"
@@ -692,18 +831,84 @@ const Partner = () => {
 
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                     {/* Categories */}
-                    <div>
+                    <div className="relative" ref={dropdownRef}>
                       <label className={labelClass}>
-                        Interested Product Categories
+                        Interested Product Categories *
                       </label>
-                      <input
-                        type="text"
-                        name="categories"
-                        placeholder="e.g. Cardio, Derma, General"
-                        value={formData.categories}
-                        onChange={handleChange}
-                        className={inputClass}
-                      />
+                      <div
+                        onClick={() => setCategoriesOpen((prev) => !prev)}
+                        className={`${getInputClass("categories")} cursor-pointer flex items-center justify-between min-h-[46px]`}
+                      >
+                        {Array.isArray(formData.categories) && formData.categories.length > 0 ? (
+                          <div className="flex flex-wrap gap-1.5 py-0.5">
+                            {formData.categories.map((cat) => (
+                              <span
+                                key={cat}
+                                className="inline-flex items-center gap-1 bg-[#E8F5EB] text-[#1C8A3C] text-xs font-semibold px-2.5 py-1 rounded-lg border border-[#1C8A3C]/20"
+                              >
+                                {cat}
+                                <button
+                                  type="button"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleCategoryToggle(cat);
+                                  }}
+                                  className="hover:text-[#0E5824] focus:outline-none ml-0.5"
+                                >
+                                  ✕
+                                </button>
+                              </span>
+                            ))}
+                          </div>
+                        ) : (
+                          <span className="text-slate-400">Select product categories...</span>
+                        )}
+                        <svg
+                          className={`w-4 h-4 text-slate-500 transition-transform shrink-0 ml-2 ${
+                            categoriesOpen ? "rotate-180" : ""
+                          }`}
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
+                            d="M19 9l-7 7-7-7"
+                          />
+                        </svg>
+                      </div>
+                      <ErrorMsg field="categories" />
+
+                      {categoriesOpen && (
+                        <div className="absolute z-20 top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-xl shadow-lg p-2 space-y-1">
+                          {CATEGORY_OPTIONS.map((option) => {
+                            const isSelected =
+                              Array.isArray(formData.categories) &&
+                              formData.categories.includes(option);
+                            return (
+                              <div
+                                key={option}
+                                onClick={() => handleCategoryToggle(option)}
+                                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer text-sm transition-colors ${
+                                  isSelected
+                                    ? "bg-[#E8F5EB] text-[#1C8A3C] font-semibold"
+                                    : "hover:bg-slate-50 text-[#333333]"
+                                }`}
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={isSelected}
+                                  onChange={() => {}}
+                                  className="w-4 h-4 text-[#1C8A3C] rounded border-slate-300 focus:ring-[#1C8A3C] cursor-pointer"
+                                />
+                                <span>{option}</span>
+                              </div>
+                            );
+                          })}
+                        </div>
+                      )}
                     </div>
 
                     {/* Monthly Purchase */}
@@ -772,6 +977,8 @@ const Partner = () => {
                   </Button>
                 </div>
               </form>
+            </>
+          )}
             </motion.div>
           </div>
         </div>
