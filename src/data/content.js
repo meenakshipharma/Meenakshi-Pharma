@@ -87,30 +87,50 @@ import img_zinnia from "../assets/images/brands/zinnia-removebg-preview.webp";
 import img_zoetic from "../assets/images/brands/zoetic-removebg-preview.webp";
 import img_zorvia from "../assets/images/brands/zorvia-removebg-preview.webp";
 import img_cangrow from "../assets/images/brands/cangrow.webp";
-
-
+import img_astley from "../assets/images/brands/astley.webp";
+import img_biomiicron from "../assets/images/brands/biomiicron.webp";
+import img_biozenix from "../assets/images/brands/biozenix.webp";
+import img_cliaes from "../assets/images/brands/cliaes.webp";
+import img_duodream from "../assets/images/brands/duodream.webp";
+import img_elben from "../assets/images/brands/elben.webp";
+import img_finemed from "../assets/images/brands/finemed.webp";
+import img_ishaanav from "../assets/images/brands/ishaanav.webp";
+import img_lindern from "../assets/images/brands/lindern.webp";
+import img_massive from "../assets/images/brands/massive.webp";
+import img_menarini from "../assets/images/brands/menarini.webp";
+import img_nano from "../assets/images/brands/nano.webp";
+import img_pharma from "../assets/images/brands/pharma.webp";
+import img_priomed from "../assets/images/brands/priomed.webp";
+import img_savom from "../assets/images/brands/savom.webp";
+import img_stanmax from "../assets/images/brands/stanmax.webp";
+import img_track from "../assets/images/brands/track.webp";
+import img_versa from "../assets/images/brands/versa.webp";
+import img_werck from "../assets/images/brands/werck.webp";
+import img_who from "../assets/images/brands/who.webp";
+import img_wk from "../assets/images/brands/wk.webp";
+import img_zeneth from "../assets/images/brands/zeneth.webp";
 
 // Navbar Links
 export const navigation = [
-   { name: "Home", path: "/", blank: false },
-    { name: "About", path: "/about", blank: false },
-    { name: "Services", path: "/services", blank: false },
-    { name: "Brands", path: "/brands", blank: false },
-    { name: "Achievements", path: "/achievements", blank: false },
-    {
-      name: "Web Order",
-      path: "https://meenakshipharma.wondersoft.in/ro13.html#/login",
-      blank: true,
-    },
-    {
-      name: "Stock & Sales",
-      path: "http://meenakshipharma.wsweborder.com/StockAndSales/DistributorPages/Login4StockNSales.aspx",
-      blank: true,
-    },
-    { name: "Partner With Us", path: "/partner", blank: false },
-    { name: "Career", path: "/career", blank: false },
-    { name: "Contact", path: "/contact", blank: false },
-  ];
+  { name: "Home", path: "/", blank: false },
+  { name: "About", path: "/about", blank: false },
+  { name: "Services", path: "/services", blank: false },
+  { name: "Brands", path: "/brands", blank: false },
+  { name: "Achievements", path: "/achievements", blank: false },
+  {
+    name: "Web Order",
+    path: "https://meenakshipharma.wondersoft.in/ro13.html#/login",
+    blank: true,
+  },
+  {
+    name: "Stock & Sales",
+    path: "http://meenakshipharma.wsweborder.com/StockAndSales/DistributorPages/Login4StockNSales.aspx",
+    blank: true,
+  },
+  { name: "Partner With Us", path: "/partner", blank: false },
+  { name: "Career", path: "/career", blank: false },
+  { name: "Contact", path: "/contact", blank: false },
+];
 
 // Footer Content
 export const footer = {
@@ -136,7 +156,7 @@ export const footer = {
   ],
   contactInfo: {
     address:
-     "C-135-A,Ground & 1st Floor ,5th Cross East, Thillai Nagar, Trichy-620018",
+      "C-135-A,Ground & 1st Floor ,5th Cross East, Thillai Nagar, Trichy-620018",
     phone: ["0431-2740311", "9942982301", "9942982302"],
     email: ["mpharma98@gmail.com", "meenakshipharmatry@gmail.com"],
   },
@@ -190,12 +210,13 @@ export const home = {
   whyChooseUs: {
     subtitle: "Our Strengths",
     title: "Why Partner With Us",
-    features: ["Wide range of Stock availablity",
-                "Competitive Pricing",
-                "Smooth order processing",
-                "Exceptional customer support",
-                "Safest packing",
-                "Fastest delivery"
+    features: [
+      "Wide range of Stock availablity",
+      "Competitive Pricing",
+      "Smooth order processing",
+      "Exceptional customer support",
+      "Safest packing",
+      "Fastest delivery",
     ],
   },
 };
@@ -225,7 +246,7 @@ export const about = {
       "For over <strong> 28 years, we have been a trusted supply partner to retail pharmacies, hospitals, and clinics</strong> across Trichy and the surrounding regions, ensuring the timely availability of genuine medicines. Our commitment to quality, reliability, and customer satisfaction continues to make us a trusted name in pharmaceutical distribution.",
     desc5:
       "More than medicines, we deliver trust, reliability, and lasting partnerships.",
-      imageUrl:
+    imageUrl:
       "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1470&auto=format&fit=crop",
   },
 
@@ -306,32 +327,31 @@ export const services = {
   list: [
     {
       icon: "activity",
-      color:"brand",
+      color: "brand",
       title: "Cosmetic Products",
       desc: "Meenakshi Pharma offers an extensive portfolio of dermatology and cosmetology products from leading pharmaceutical companies. We supply skincare, haircare, personal care, and prescription cosmetic products to retail pharmacies, dermatology clinics, and healthcare institutions, ensuring consistent availability and dependable service.",
     },
     {
-      icon:"shield",
-      color:"secondary",
+      icon: "shield",
+      color: "secondary",
       title: "Speciality Medicines",
-      desc: "We supply a comprehensive range of specialty pharmaceutical products to support hospitals, clinics, and retail pharmacies. Our portfolio includes medicines across critical therapeutic segments such as oncology, nephrology, cardiology, neurology, gastroenterology, endocrinology, dermatology, and other specialized treatments. Through our trusted distribution network, we ensure the timely availability of genuine medicines whenever they are needed."},
-    
+      desc: "We supply a comprehensive range of specialty pharmaceutical products to support hospitals, clinics, and retail pharmacies. Our portfolio includes medicines across critical therapeutic segments such as oncology, nephrology, cardiology, neurology, gastroenterology, endocrinology, dermatology, and other specialized treatments. Through our trusted distribution network, we ensure the timely availability of genuine medicines whenever they are needed.",
+    },
+
     {
-       icon: "box",
-       color:"secondary",
+      icon: "box",
+      color: "secondary",
       title: "General Medicines",
       desc: "As an authorized stockist for leading pharmaceutical brands, we maintain a comprehensive inventory of general medicines covering a wide range of therapeutic categories. Our efficient inventory management and streamlined distribution network enable us to provide prompt deliveries, helping pharmacies and healthcare providers maintain uninterrupted patient care.",
     },
     {
       icon: "truck",
-      color:"brand",
+      color: "brand",
       title: "Nutritional Products",
       desc: "We distribute a wide selection of nutritional supplements, vitamins, minerals, protein formulations, pediatric nutrition, and wellness products from trusted pharmaceutical manufacturers. Our nutritional portfolio supports every stage of health and well-being, with reliable product availability and timely delivery for pharmacies and healthcare providers.",
-    }
+    },
   ],
 };
-
-
 
 // Career Page Content
 export const career = {
@@ -343,7 +363,8 @@ export const career = {
   banner: {
     title: "Join Our Team",
     subtitle: "Be the Reason Healthcare Never Stops.",
-    subsubtitle:"Every role you play helps ensure medicines reach those who need them, when they need them   "
+    subsubtitle:
+      "Every role you play helps ensure medicines reach those who need them, when they need them   ",
   },
   details: {
     title: "Shape the Future of Healthcare Logistics",
@@ -483,6 +504,28 @@ export const brands = [
   { id: 61, url: img_zoetic, name: "Zoetic" },
   { id: 62, url: img_zorvia, name: "Zorvia" },
   { id: 63, url: img_cangrow, name: "CanGrow" },
+  { id: 64, url: img_astley, name: "Astley" },
+  { id: 65, url: img_biomiicron, name: "Biomiicron" },
+  { id: 66, url: img_biozenix, name: "Biozenix" },
+  { id: 67, url: img_cliaes, name: "Cliaes" },
+  { id: 68, url: img_duodream, name: "Duodream" },
+  { id: 69, url: img_elben, name: "Elben" },
+  { id: 70, url: img_finemed, name: "Finemed" },
+  { id: 71, url: img_ishaanav, name: "Ishaanav" },
+  { id: 72, url: img_lindern, name: "Lindern" },
+  { id: 73, url: img_massive, name: "Massive" },
+  { id: 74, url: img_menarini, name: "Menarini" },
+  { id: 75, url: img_nano, name: "Nano" },
+  { id: 76, url: img_pharma, name: "Pharma" },
+  { id: 77, url: img_priomed, name: "Priomed" },
+  { id: 78, url: img_savom, name: "Savom" },
+  { id: 79, url: img_stanmax, name: "Stanmax" },
+  { id: 80, url: img_track, name: "Track" },
+  { id: 81, url: img_versa, name: "Versa" },
+  { id: 82, url: img_werck, name: "Werck" },
+  { id: 83, url: img_who, name: "WHO" },
+  { id: 84, url: img_wk, name: "WK" },
+  { id: 85, url: img_zeneth, name: "Zeneth" }
 ];
 
 // Achievements Page Content
@@ -528,10 +571,11 @@ export const achievements = [
   { id: 22, url: ach22, title: "10 Years of Excellence - AKESISS" },
 ];
 
-export const partner={
-   banner: {
+export const partner = {
+  banner: {
     title: "Partner With Us",
     subtitle: "Powering Healthcare Through Reliable Distribution",
-    subsubtitle:"Partner with Meenakshi Pharma to ensure your pharmacies, hospitals, and clinics receive genuine medicines with speed, reliability, and care."
- },
-}
+    subsubtitle:
+      "Partner with Meenakshi Pharma to ensure your pharmacies, hospitals, and clinics receive genuine medicines with speed, reliability, and care.",
+  },
+};
