@@ -253,8 +253,20 @@ const Career = () => {
   const inputClass =
     "w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#0B4E8C] focus:border-[#0B4E8C] transition-all text-sm shadow-xs";
 
+  const inputErrorClass =
+    "w-full bg-[#FDE8E9]/20 border border-[#E31E24] rounded-xl px-4 py-3 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#E31E24] focus:border-[#E31E24] transition-all text-sm shadow-xs";
+
   const selectClass =
     "w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#0B4E8C] focus:border-[#0B4E8C] transition-all text-sm shadow-xs cursor-pointer";
+
+  const selectErrorClass =
+    "w-full bg-[#FDE8E9]/20 border border-[#E31E24] rounded-xl px-4 py-3 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#E31E24] focus:border-[#E31E24] transition-all text-sm shadow-xs cursor-pointer";
+
+  const getInputClass = (fieldName) =>
+    formErrors[fieldName] ? inputErrorClass : inputClass;
+
+  const getSelectClass = (fieldName) =>
+    formErrors[fieldName] ? selectErrorClass : selectClass;
 
   return (
     <>
@@ -360,9 +372,7 @@ const Career = () => {
                         value={formData.fullName}
                         onChange={handleChange}
                         placeholder="Enter your full name"
-                        className={`${inputClass} ${
-                          formErrors.fullName ? "border-[#E31E24] bg-[#FDE8E9]/20" : ""
-                        }`}
+                        className={getInputClass("fullName")}
                       />
                       {formErrors.fullName && (
                         <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
@@ -399,9 +409,7 @@ const Career = () => {
                           value={formData.phone}
                           onChange={handleChange}
                           placeholder="Enter your mobile number"
-                          className={`${inputClass} ${
-                            formErrors.phone ? "border-[#E31E24] bg-[#FDE8E9]/20" : ""
-                          }`}
+                          className={getInputClass("phone")}
                         />
                         {formErrors.phone && (
                           <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
@@ -422,9 +430,7 @@ const Career = () => {
                           value={formData.email}
                           onChange={handleChange}
                           placeholder="Enter your email"
-                          className={`${inputClass} ${
-                            formErrors.email ? "border-[#E31E24] bg-[#FDE8E9]/20" : ""
-                          }`}
+                          className={getInputClass("email")}
                         />
                         {formErrors.email && (
                           <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
@@ -443,9 +449,7 @@ const Career = () => {
                           value={formData.location}
                           onChange={handleChange}
                           placeholder="Enter your city"
-                          className={`${inputClass} ${
-                            formErrors.location ? "border-[#E31E24] bg-[#FDE8E9]/20" : ""
-                          }`}
+                          className={getInputClass("location")}
                         />
                         {formErrors.location && (
                           <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
@@ -472,9 +476,7 @@ const Career = () => {
                           name="position"
                           value={formData.position}
                           onChange={handleChange}
-                          className={`${selectClass} ${
-                            formErrors.position ? "border-[#E31E24] bg-[#FDE8E9]/20" : ""
-                          }`}
+                          className={getSelectClass("position")}
                         >
                           <option value="">Select Position</option>
                           <option value="Delivery Executive">Delivery Executive</option>
@@ -508,9 +510,7 @@ const Career = () => {
                           name="experience"
                           value={formData.experience}
                           onChange={handleChange}
-                          className={`${selectClass} ${
-                            formErrors.experience ? "border-[#E31E24] bg-[#FDE8E9]/20" : ""
-                          }`}
+                          className={getSelectClass("experience")}
                         >
                           <option value="">Select Experience</option>
                           <option value="Fresher">Fresher</option>
@@ -567,9 +567,7 @@ const Career = () => {
                           name="expectedSalary"
                           value={formData.expectedSalary}
                           onChange={handleChange}
-                          className={`${selectClass} ${
-                            formErrors.expectedSalary ? "border-[#E31E24] bg-[#FDE8E9]/20" : ""
-                          }`}
+                          className={getSelectClass("expectedSalary")}
                         >
                           <option value="">Select Expected Salary</option>
                           <option value="Below ₹15,000">Below ₹15,000</option>
@@ -596,9 +594,7 @@ const Career = () => {
                           name="noticePeriod"
                           value={formData.noticePeriod}
                           onChange={handleChange}
-                          className={`${selectClass} ${
-                            formErrors.noticePeriod ? "border-[#E31E24] bg-[#FDE8E9]/20" : ""
-                          }`}
+                          className={getSelectClass("noticePeriod")}
                         >
                           <option value="">Select Notice Period</option>
                           <option value="Immediate">Immediate</option>
@@ -634,8 +630,8 @@ const Career = () => {
                       name="resume"
                       accept=".pdf,.doc,.docx"
                       onChange={handleChange}
-                      className={`w-full text-sm text-[#333333] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#E8F5EB] file:text-[#1C8A3C] hover:file:bg-[#1C8A3C] hover:file:text-white transition-colors cursor-pointer ${
-                        formErrors.resume ? "border border-[#E31E24] rounded-xl" : ""
+                      className={`w-full text-sm text-[#333333] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#E8F5EB] file:text-[#1C8A3C] hover:file:bg-[#1C8A3C] hover:file:text-white transition-colors cursor-pointer p-1.5 ${
+                        formErrors.resume ? "border border-[#E31E24] bg-[#FDE8E9]/20 rounded-xl" : ""
                       }`}
                     />
                     <p className="mt-2 text-xs text-[#555555]">
@@ -687,7 +683,9 @@ const Career = () => {
                       name="declarationConfirmed"
                       checked={formData.declarationConfirmed}
                       onChange={handleChange}
-                      className="mt-1 w-4 h-4 text-[#0B4E8C] rounded border-slate-300 focus:ring-[#0B4E8C] cursor-pointer"
+                      className={`mt-1 w-4 h-4 text-[#0B4E8C] rounded border-slate-300 focus:ring-[#0B4E8C] cursor-pointer ${
+                        formErrors.declarationConfirmed ? "ring-2 ring-[#E31E24] border-[#E31E24]" : ""
+                      }`}
                     />
                     <label
                       htmlFor="declarationConfirmed"
@@ -703,8 +701,13 @@ const Career = () => {
                   )}
                 </div>
 
-                <div className="pt-4">
-                  <Button type="submit" variant="primary" disabled={loading} className="w-full">
+                <div className="pt-6 text-center">
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    disabled={loading}
+                    className="w-full md:w-auto md:px-16"
+                  >
                     {loading ? "Submitting Application..." : "Submit Application"}
                   </Button>
                 </div>

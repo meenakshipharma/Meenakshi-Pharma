@@ -798,7 +798,9 @@ const Partner = () => {
                         name="drugLicense"
                         accept=".pdf,.jpg,.jpeg,.png"
                         onChange={handleChange}
-                        className="w-full text-sm text-[#333333] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#E8F5EB] file:text-[#1C8A3C] hover:file:bg-[#1C8A3C] hover:file:text-white transition-colors cursor-pointer"
+                        className={`w-full text-sm text-[#333333] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#E8F5EB] file:text-[#1C8A3C] hover:file:bg-[#1C8A3C] hover:file:text-white transition-colors cursor-pointer p-1.5 ${
+                          formErrors.drugLicense ? "border border-[#E31E24] bg-[#FDE8E9]/20 rounded-xl" : ""
+                        }`}
                       />
                       {formData.drugLicense && (
                         <p className="mt-2 text-xs font-semibold text-[#1C8A3C]">
@@ -818,7 +820,9 @@ const Partner = () => {
                         name="gstCertificate"
                         accept=".pdf,.jpg,.jpeg,.png"
                         onChange={handleChange}
-                        className="w-full text-sm text-[#333333] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#E8F5EB] file:text-[#1C8A3C] hover:file:bg-[#1C8A3C] hover:file:text-white transition-colors cursor-pointer"
+                        className={`w-full text-sm text-[#333333] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#E8F5EB] file:text-[#1C8A3C] hover:file:bg-[#1C8A3C] hover:file:text-white transition-colors cursor-pointer p-1.5 ${
+                          formErrors.gstCertificate ? "border border-[#E31E24] bg-[#FDE8E9]/20 rounded-xl" : ""
+                        }`}
                       />
                       {formData.gstCertificate && (
                         <p className="mt-2 text-xs font-semibold text-[#1C8A3C]">
