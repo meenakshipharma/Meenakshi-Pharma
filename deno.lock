@@ -11,6 +11,8 @@
   "workspace": {
     "packageJson": {
       "dependencies": [
+        "npm:@react-three/drei@^9.122.0",
+        "npm:@react-three/fiber@^8.18.0",
         "npm:@types/react-dom@^18.3.1",
         "npm:@types/react@^18.3.12",
         "npm:@vitejs/plugin-react@^4.3.4",
@@ -27,6 +29,7 @@
         "npm:resend@^6.18.0",
         "npm:swiper@^14.0.5",
         "npm:tailwindcss@^3.4.19",
+        "npm:three@~0.185.1",
         "npm:vite@^5.4.11"
       ]
     }
