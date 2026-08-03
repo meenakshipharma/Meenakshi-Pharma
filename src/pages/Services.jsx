@@ -128,7 +128,7 @@ const Services = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.15 }}
-                    className="bg-white p-8 rounded-2xl border border-slate-200 border-t-4 border-t-[#1C8A3C] shadow-soft hover:shadow-card-hover hover:border-t-[#0B4E8C] transition-all duration-300 flex flex-col md:flex-row items-start gap-6 group"
+                    className="bg-white p-8 rounded-2xl border border-slate-200 border-t-4 border-t-[#1C8A3C] shadow-soft hover:shadow-card-hover hover:border-t-[#0B4E8C] transition-all duration-300 flex flex-col md:flex-row items-start lg:items-center gap-6 group"
                   >
                     <div
                       className={`flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center text-2xl text-white shadow-md ${

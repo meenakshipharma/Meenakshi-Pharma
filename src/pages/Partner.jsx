@@ -395,7 +395,7 @@ const Partner = () => {
 
       <section className="section-padding bg-[#F5F7FA]">
         <div className="container-custom">
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <motion.div
               ref={formContainerRef}
               initial={{ opacity: 0, y: 30 }}
