@@ -1,0 +1,129 @@
+/* .loader {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--loader-bg, #f8fafc);
+  overflow: hidden;
+  z-index: 999999;
+}
+
+.spread {
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--loader-glow-1, #0056b3) 0%,
+    var(--loader-glow-2, #2e8b57) 45%,
+    var(--loader-glow-3, #dcebff) 70%,
+    transparent 80%
+  );
+  filter: blur(8px);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.glow {
+  position: absolute;
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--loader-glow-1, rgba(0, 86, 179, 0.35)) 0%,
+    var(--loader-glow-2, rgba(46, 139, 87, 0.18)) 45%,
+    transparent 75%
+  );
+  filter: blur(30px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.logoWrapper {
+  width: 220px;
+  height: 220px;
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+} */
+
+.loader {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background: white;
+
+    z-index: 999999;
+}
+
+/* Expanding Brand Color */
+
+.spreadCircle {
+    position: absolute;
+
+    width: 120px;
+    height: 120px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg,
+            #0F4C81,
+            #2563EB,
+            #3B82F6);
+}
+
+/* Glow */
+
+.glow {
+    position: absolute;
+
+    width: 260px;
+    height: 260px;
+
+    border-radius: 50%;
+
+    background: radial-gradient(circle,
+            rgba(14, 165, 91, .35),
+            rgba(14, 165, 91, .15),
+            transparent);
+
+    filter: blur(40px);
+}
+
+.logoWrapper {
+
+    width: 220px;
+    height: 220px;
+
+    position: relative;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 10;
+}
+
+.logo {
+
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
