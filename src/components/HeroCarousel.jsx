@@ -55,7 +55,7 @@ const HeroCarousel = () => {
 
   return (
     <div
-      className="relative rounded-3xl overflow-hidden shadow-2xl aspect-square border-8 border-white/50 backdrop-blur-sm group select-none"
+      className="relative rounded-3xl overflow-hidden shadow-2xl aspect-square border-4 border-white backdrop-blur-md group select-none ring-1 ring-slate-200"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -76,12 +76,12 @@ const HeroCarousel = () => {
             transition={{ duration: 4.8, ease: "linear" }}
             className="w-full h-full object-cover"
           />
-          {/* Professional Healthcare Blue/Dark Overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/60 via-brand/10 to-transparent"></div>
+          {/* Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#0B4E8C]/80 via-slate-900/20 to-transparent"></div>
 
           {/* Subtitle Caption */}
-          <div className="absolute bottom-12 left-6 right-6 z-10 text-white drop-shadow-md hidden sm:block">
-            <p className="text-xs uppercase tracking-wider font-semibold text-blue-200 mb-0.5">
+          <div className="absolute bottom-10 left-6 right-6 z-10 text-white drop-shadow-md hidden sm:block">
+            <span className="inline-block text-[11px] uppercase tracking-widest font-semibold px-2.5 py-0.5 rounded-full bg-[#1C8A3C] text-white mb-2 shadow-xs">
               Meenakshi Pharma
             </p>
             <h3 className="text-base text-white sm:text-lg font-serif font-semibold leading-snug">
@@ -91,10 +91,10 @@ const HeroCarousel = () => {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation Arrows (Desktop only, hidden on mobile) */}
+      {/* Navigation Arrows */}
       <button
         onClick={handlePrev}
-        className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/80 hover:bg-white text-brand items-center justify-center shadow-md backdrop-blur-md transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 cursor-pointer"
+        className="hidden md:flex absolute left-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white text-[#0B4E8C] hover:bg-[#1C8A3C] hover:text-white items-center justify-center shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 cursor-pointer border border-slate-100"
         aria-label="Previous Slide"
       >
         <FiChevronLeft className="text-xl" />
@@ -102,22 +102,22 @@ const HeroCarousel = () => {
 
       <button
         onClick={handleNext}
-        className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 z-20 w-9 h-9 rounded-full bg-white/80 hover:bg-white text-brand items-center justify-center shadow-md backdrop-blur-md transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 cursor-pointer"
+        className="hidden md:flex absolute right-3 top-1/2 -translate-y-1/2 z-20 w-10 h-10 rounded-full bg-white text-[#0B4E8C] hover:bg-[#1C8A3C] hover:text-white items-center justify-center shadow-lg transition-all duration-300 opacity-0 group-hover:opacity-100 hover:scale-110 cursor-pointer border border-slate-100"
         aria-label="Next Slide"
       >
         <FiChevronRight className="text-xl" />
       </button>
 
-      {/* Small Clickable Pagination Dots (Bottom Center) */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-slate-900/30 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
+      {/* Pagination Dots */}
+      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-[#0B4E8C]/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
               index === currentIndex
-                ? "w-6 bg-white shadow-sm"
-                : "w-2 bg-white/50 hover:bg-white/80"
+                ? "w-6 bg-[#1C8A3C] shadow-sm"
+                : "w-2 bg-white/60 hover:bg-white"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

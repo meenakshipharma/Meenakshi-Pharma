@@ -11,7 +11,7 @@ function ReadingProgress() {
   return (
     <motion.div
       style={{ scaleX, transformOrigin: 'left' }}
-      className="fixed top-0 left-0 right-0 h-[3px] bg-brand z-[200]"
+      className="fixed top-0 left-0 right-0 h-[3px] bg-[#1C8A3C] z-[200]"
     />
   );
 }
@@ -20,7 +20,7 @@ function ReadingProgress() {
 function TableOfContents({ sections, activeId }) {
   return (
     <nav className="space-y-1">
-      <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-slate-400 mb-4 pl-3">
+      <p className="text-[10px] uppercase tracking-[0.18em] font-semibold text-[#0B4E8C] mb-4 pl-3">
         Contents
       </p>
       {sections.map((section, i) => {
@@ -33,13 +33,13 @@ function TableOfContents({ sections, activeId }) {
             href={`#${id}`}
             className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-200 group ${
               isActive
-                ? 'bg-brand/8 text-brand font-semibold'
-                : 'text-slate-500 hover:text-text hover:bg-slate-50'
+                ? 'bg-[#E8F5EB] text-[#1C8A3C] font-semibold border-l-2 border-[#1C8A3C]'
+                : 'text-[#333333] hover:text-[#0B4E8C] hover:bg-[#F5F7FA]'
             }`}
           >
             <span
               className={`shrink-0 w-5 h-5 rounded-full text-[10px] font-bold flex items-center justify-center transition-colors ${
-                isActive ? 'bg-brand text-white' : 'bg-slate-100 text-slate-400 group-hover:bg-slate-200'
+                isActive ? 'bg-[#1C8A3C] text-white' : 'bg-slate-100 text-slate-400 group-hover:bg-slate-200'
               }`}
             >
               {i + 1}
@@ -74,8 +74,8 @@ function SectionCard({ section, index, id }) {
       <div className="relative z-10 pt-6">
         {/* Heading row */}
         <div className="flex items-center gap-3 mb-5">
-          <div className="w-1 h-7 rounded-full bg-brand shrink-0" />
-          <h2 className="text-lg font-bold text-text tracking-tight">
+          <div className="w-1.5 h-7 rounded-full bg-[#0B4E8C] shrink-0" />
+          <h2 className="text-xl font-bold text-[#0B4E8C] tracking-tight">
             {section.heading.replace(/^\d+\.\s*/, '')}
           </h2>
         </div>
@@ -84,19 +84,19 @@ function SectionCard({ section, index, id }) {
         <div className="pl-4 space-y-4">
           {section.content &&
             section.content.split('\n\n').map((para, pi) => (
-              <p key={pi} className="text-slate-600 leading-relaxed text-[15px]">
+              <p key={pi} className="text-[#333333] leading-relaxed text-[15px]">
                 {para}
               </p>
             ))}
 
           {section.list && (
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-2">
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 mt-2">
               {section.list.map((item, li) => (
                 <li
                   key={li}
-                  className="flex items-start gap-2.5 bg-background-section rounded-xl px-4 py-3 text-[14px] text-text-light"
+                  className="flex items-start gap-2.5 bg-[#F5F7FA] border border-slate-200 rounded-xl px-4 py-3 text-[14px] text-[#333333]"
                 >
-                  <span className="mt-1 shrink-0 w-1.5 h-1.5 rounded-full bg-secondary" />
+                  <span className="mt-1.5 shrink-0 w-2 h-2 rounded-full bg-[#1C8A3C]" />
                   {item}
                 </li>
               ))}
@@ -110,29 +110,29 @@ function SectionCard({ section, index, id }) {
           )}
 
           {section.contact && (
-            <div className="mt-4 rounded-2xl overflow-hidden border border-slate-100">
-              <div className="bg-slate-50 px-5 py-3 border-b border-slate-100">
-                <p className="font-semibold text-text text-sm">{section.contact.name}</p>
+            <div className="mt-4 rounded-2xl overflow-hidden border border-slate-200 bg-white shadow-soft">
+              <div className="bg-[#F5F7FA] px-5 py-3 border-b border-slate-200">
+                <p className="font-semibold text-[#0B4E8C] text-sm">{section.contact.name}</p>
               </div>
               <div className="px-5 py-4 space-y-3">
-                <div className="flex items-start gap-3 text-sm text-slate-600">
-                  <FiMapPin size={14} className="mt-0.5 shrink-0 text-brand" />
+                <div className="flex items-start gap-3 text-sm text-[#333333]">
+                  <FiMapPin size={14} className="mt-0.5 shrink-0 text-[#1C8A3C]" />
                   {section.contact.address}
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <FiPhone size={14} className="shrink-0 text-brand" />
+                  <FiPhone size={14} className="shrink-0 text-[#1C8A3C]" />
                   <a
                     href={`tel:${section.contact.phone}`}
-                    className="text-slate-600 hover:text-brand transition-colors"
+                    className="text-[#333333] hover:text-[#0B4E8C] transition-colors"
                   >
                     {section.contact.phone}
                   </a>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <FiMail size={14} className="shrink-0 text-brand" />
+                  <FiMail size={14} className="shrink-0 text-[#1C8A3C]" />
                   <a
                     href={`mailto:${section.contact.email}`}
-                    className="text-slate-600 hover:text-brand transition-colors"
+                    className="text-[#333333] hover:text-[#0B4E8C] transition-colors"
                   >
                     {section.contact.email}
                   </a>
@@ -142,7 +142,7 @@ function SectionCard({ section, index, id }) {
           )}
         </div>
 
-        {/* Divider (not on last) */}
+        {/* Divider */}
         <div className="mt-10 border-b border-dashed border-slate-200" />
       </div>
     </motion.div>
@@ -187,47 +187,36 @@ const LegalPage = ({ data, metaDescription }) => {
       <ReadingProgress />
 
       {/* ── Hero ───────────────────────────────────────────────── */}
-      <div className="pt-32 pb-16 bg-gradient-to-b from-slate-50 to-white relative overflow-hidden">
-        {/* Decorative rings */}
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full border border-slate-100 -translate-y-1/2 translate-x-1/2 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[350px] h-[350px] rounded-full border border-slate-100 -translate-y-1/3 translate-x-1/3 pointer-events-none" />
-        <div className="absolute top-0 right-0 w-[200px] h-[200px] rounded-full bg-brand/4 -translate-y-1/4 translate-x-1/4 blur-2xl pointer-events-none" />
+      <div className="pt-32 pb-16 bg-[#F5F7FA] relative overflow-hidden border-b border-slate-200">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full bg-[#0B4E8C]/5 blur-3xl pointer-events-none" />
 
         <div className="container-custom relative z-10">
-          {/* <Link
-            to="/"
-            className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-brand transition-colors mb-10 group"
-          >
-            <FiArrowLeft size={14} className="group-hover:-translate-x-0.5 transition-transform" />
-            Back to Home
-          </Link> */}
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
             {/* Icon + label */}
-            <div className="flex items-center gap-3 mb-5">
-              <div className="w-10 h-10 rounded-2xl bg-brand/10 flex items-center justify-center">
-                <Icon size={18} className="text-brand" />
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-10 h-10 rounded-xl bg-[#E8F5EB] text-[#1C8A3C] flex items-center justify-center border border-[#1C8A3C]/20">
+                <Icon size={20} />
               </div>
-              <span className="text-xs font-bold uppercase tracking-[0.2em] text-brand">
+              <span className="text-xs font-bold uppercase tracking-wider text-[#1C8A3C]">
                 {accentLabel}
               </span>
             </div>
 
-            <h1 className="text-3xl md:text-5xl font-serif font-bold text-text mb-4 leading-tight">
+            <h1 className="text-3xl md:text-5xl font-bold text-[#0B4E8C] mb-4 leading-tight">
               {data.title}
             </h1>
 
-            <div className="flex items-center gap-3 mt-5">
-              <span className="inline-flex items-center gap-1.5 text-xs font-medium text-text-muted bg-background-section px-3 py-1.5 rounded-full">
-                <span className="w-1.5 h-1.5 rounded-full bg-secondary inline-block" />
+            <div className="flex items-center gap-3 mt-4">
+              <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#333333] bg-white border border-slate-200 px-3 py-1.5 rounded-full shadow-xs">
+                <span className="w-2 h-2 rounded-full bg-[#1C8A3C] inline-block" />
                 Last updated: {data.lastUpdated}
               </span>
               <span className="text-slate-300">·</span>
-              <span className="text-xs text-slate-400">{data.sections.length} sections</span>
+              <span className="text-xs text-[#555555] font-medium">{data.sections.length} sections</span>
             </div>
           </motion.div>
         </div>
@@ -262,11 +251,11 @@ const LegalPage = ({ data, metaDescription }) => {
                 transition={{ duration: 0.5 }}
                 className="pt-6 flex items-center gap-4"
               >
-                <div className="flex-1 h-px bg-slate-100" />
+                <div className="flex-1 h-px bg-slate-200" />
                 <span className="text-xs text-slate-400 font-medium whitespace-nowrap">
                   End of {data.title}
                 </span>
-                <div className="flex-1 h-px bg-slate-100" />
+                <div className="flex-1 h-px bg-slate-200" />
               </motion.div>
             </div>
           </div>

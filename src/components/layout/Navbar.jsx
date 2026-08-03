@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { FiMenu, FiX } from "react-icons/fi";
+import { FiMenu, FiX, FiExternalLink } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 
 import logoImg from "../../assets/images/Logo.png";
@@ -12,7 +12,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 20);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
@@ -29,7 +29,7 @@ const Navbar = () => {
         }`}
     >
       <div className="container-custom flex justify-between items-center">
-        {/* Logo */}
+        {/* Logo with Meenakshi Pharma Title */}
         <Link
           to="/"
           className="flex items-center gap-2 z-50"
@@ -37,19 +37,15 @@ const Navbar = () => {
           <img
             src={logoImg}
             alt="Meenakshi Pharma Logo"
-            className="h-16 w-auto object-contain"
+            className="h-10 sm:h-12 md:h-13 xl:h-14 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             onError={(e) => {
               e.target.style.display = "none";
-              e.target.nextSibling.style.display = "flex";
+              if (e.target.nextSibling) e.target.nextSibling.style.display = "flex";
             }}
           />
-          {/* <span
-            className={`font-serif font-bold text-2xl tracking-wide ${
-              isScrolled ? "text-text" : "text-text lg:text-text"
-            }`}
-          >
-            Meenakshi Phvarma
-          </span> */}
+          <span className="font-extrabold text-base sm:text-lg md:text-xl lg:text-2xl text-[#0B4E8C] tracking-tight group-hover:text-[#1C8A3C] transition-colors whitespace-nowrap">
+            Meenakshi Pharma
+          </span>
         </Link>
 
         {/* Desktop Navigation */}
@@ -61,43 +57,52 @@ const Navbar = () => {
                 href={link.path}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-sm font-medium transition-colors hover:text-brand text-text-light"
+                className="inline-flex items-center gap-1 px-2 py-1.5 xl:px-3 xl:py-2 text-[11px] xl:text-xs 2xl:text-sm font-semibold rounded-lg text-[#0B4E8C] hover:text-[#1C8A3C] hover:bg-[#E8F5EB] transition-all duration-200 whitespace-nowrap"
               >
-                {link.name}
+                <span>{link.name}</span>
+                <FiExternalLink className="text-[#1C8A3C] text-xs shrink-0" />
               </a>
             ) : (
               <Link
                 key={link.name}
                 to={link.path}
-                className={`text-sm font-medium transition-colors hover:text-brand ${location.pathname === link.path
-                    ? "text-brand"
-                    : isScrolled
-                      ? "text-text-light"
-                      : "text-text-light"
-                  }`}
+                className={`relative px-2 py-1.5 xl:px-3 xl:py-2 text-[11px] xl:text-xs 2xl:text-sm font-semibold rounded-lg transition-all duration-200 whitespace-nowrap ${
+                  isActive
+                    ? "text-[#0B4E8C] bg-[#E8F1F9] font-bold shadow-xs"
+                    : "text-[#0B4E8C] hover:text-[#1C8A3C] hover:bg-[#F5F7FA]"
+                }`}
               >
                 {link.name}
+                {isActive && (
+                  <motion.div
+                    layoutId="activeNavIndicator"
+                    className="absolute bottom-0 left-2 right-2 h-0.5 bg-[#1C8A3C] rounded-full"
+                    transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                  />
+                )}
               </Link>
-            )
-          )}
+            );
+          })}
         </nav>
-        {/* Mobile Menu Button */}
+
+        {/* Mobile Menu Toggle Button */}
         <button
-          className="lg:hidden text-2xl z-50 text-text"
+          className="lg:hidden p-2 sm:p-2.5 rounded-xl bg-slate-100 text-[#0B4E8C] hover:bg-[#E8F5EB] hover:text-[#1C8A3C] focus:outline-none transition-colors z-50 cursor-pointer"
           onClick={() => setIsOpen(!isOpen)}
+          aria-label="Toggle Navigation Menu"
         >
-          {isOpen ? <FiX /> : <FiMenu />}
+          {isOpen ? <FiX className="text-xl sm:text-2xl" /> : <FiMenu className="text-xl sm:text-2xl" />}
         </button>
 
         {/* Mobile Navigation Dropdown */}
         <AnimatePresence>
           {isOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.2 }}
-              className="absolute top-full left-0 w-full bg-white shadow-lg lg:hidden"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: "easeInOut" }}
+              className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-xl overflow-hidden lg:hidden"
             >
               <div className="flex flex-col py-4 px-6 gap-4">
                 {navigation.map((link) =>
@@ -107,23 +112,25 @@ const Navbar = () => {
                       href={link.path}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-base font-medium transition-colors hover:text-brand text-text"
+                      className="flex items-center justify-between py-2.5 px-4 rounded-xl text-sm sm:text-base font-semibold text-[#0B4E8C] hover:bg-[#E8F5EB] hover:text-[#1C8A3C] transition-colors"
                     >
-                      {link.name}
+                      <span>{link.name}</span>
+                      <FiExternalLink className="text-[#1C8A3C]" />
                     </a>
                   ) : (
                     <Link
                       key={link.name}
                       to={link.path}
-                      className={`text-base font-medium transition-colors hover:text-brand ${location.pathname === link.path
-                          ? "text-brand"
-                          : "text-text"
-                        }`}
+                      className={`py-2.5 px-4 rounded-xl text-sm sm:text-base font-semibold transition-colors ${
+                        isActive
+                          ? "bg-[#0B4E8C] text-white font-bold shadow-md shadow-[#0B4E8C]/20"
+                          : "text-[#0B4E8C] hover:bg-[#F5F7FA] hover:text-[#1C8A3C]"
+                      }`}
                     >
                       {link.name}
                     </Link>
-                  )
-                )}
+                  );
+                })}
               </div>
             </motion.div>
           )}

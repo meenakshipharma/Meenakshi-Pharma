@@ -3,36 +3,35 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 const Button = ({ children, to, variant = 'primary', className = '', onClick, type = 'button' }) => {
-  const baseClasses = "relative inline-flex items-center justify-center font-medium transition-all duration-300 overflow-hidden group";
+  const baseClasses = "relative inline-flex items-center justify-center font-semibold transition-all duration-300 overflow-hidden group select-none cursor-pointer tracking-wide";
 
   const variants = {
-    primary: "px-8 py-4 bg-brand text-white rounded-full shadow-md hover:shadow-xl hover:bg-brand-dark",
-    secondary: "px-8 py-4 bg-white text-brand border border-brand rounded-full shadow-sm hover:bg-brand-light",
-    outline: "px-8 py-4 bg-transparent text-text border border-gray-300 rounded-full hover:border-brand hover:text-brand",
-    link: "text-brand hover:text-brand-dark hover:underline p-0"
+    primary: "px-7 py-3.5 bg-[#1C8A3C] hover:bg-[#156D2F] text-white rounded-xl shadow-md shadow-[#1C8A3C]/25 hover:shadow-lg hover:shadow-[#1C8A3C]/35 hover:-translate-y-0.5",
+    secondary: "px-7 py-3.5 bg-white text-[#0B4E8C] border-2 border-[#0B4E8C] hover:bg-[#0B4E8C] hover:text-white rounded-xl shadow-sm hover:-translate-y-0.5",
+    outline: "px-7 py-3.5 bg-transparent text-[#0B4E8C] border-2 border-[#0B4E8C]/30 hover:border-[#0B4E8C] hover:bg-[#0B4E8C]/5 rounded-xl hover:-translate-y-0.5",
+    accent: "px-7 py-3.5 bg-[#E31E24] hover:bg-[#B81419] text-white rounded-xl shadow-md hover:-translate-y-0.5",
+    link: "text-[#0B4E8C] hover:text-[#1C8A3C] hover:underline p-0 font-semibold"
   };
 
-  const buttonClasses = `${baseClasses} ${variants[variant]} ${className}`;
+  const buttonClasses = `${baseClasses} ${variants[variant] || variants.primary} ${className}`;
 
-  // Shimmer sweep — slides across the button on hover via CSS group-hover
-  const shimmer = (
+  const shimmer = variant !== 'link' && (
     <span
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/25 to-transparent skew-x-[-20deg]"
+      className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-[-20deg]"
     />
   );
 
   if (to) {
     return (
-      <Link to={to}>
+      <Link to={to} className="inline-block focus:outline-none">
         <motion.div
-          whileHover={{ boxShadow: "0 0 0 3px rgba(233,51,48,0.18)" }}
           whileTap={{ scale: 0.97 }}
-          className="inline-block rounded-full"
+          className="inline-block rounded-xl"
         >
           <button type={type} className={buttonClasses} onClick={onClick}>
             {shimmer}
-            {children}
+            <span className="relative z-10 flex items-center gap-2">{children}</span>
           </button>
         </motion.div>
       </Link>
@@ -41,14 +40,13 @@ const Button = ({ children, to, variant = 'primary', className = '', onClick, ty
 
   return (
     <motion.button
-      whileHover={{ boxShadow: "0 0 0 3px rgba(233,51,48,0.18)" }}
       whileTap={{ scale: 0.97 }}
       type={type}
       className={buttonClasses}
       onClick={onClick}
     >
       {shimmer}
-      {children}
+      <span className="relative z-10 flex items-center gap-2">{children}</span>
     </motion.button>
   );
 };

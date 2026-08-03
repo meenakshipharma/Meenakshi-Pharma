@@ -2,25 +2,20 @@ import { motion } from 'framer-motion'
 import { FiAward } from 'react-icons/fi'
 
 /**
- * BadgeCard — medal/seal-style card used for certifications. The notched
- * "ribbon" bottom edge is the section's signature visual detail.
+ * BadgeCard — seal-style card used for certifications with thin top accent.
  */
 export default function BadgeCard({ name, description }) {
   return (
     <motion.div
-      whileHover={{ y: -6, rotate: -1 }}
+      whileHover={{ y: -6, scale: 1.02 }}
       transition={{ duration: 0.3 }}
-      className="relative flex flex-col items-center text-center gap-3 bg-white rounded-2xl px-6 pt-8 pb-10 shadow-card"
-      style={{
-        clipPath:
-          'polygon(0% 0%, 100% 0%, 100% 88%, 92% 100%, 84% 88%, 76% 100%, 68% 88%, 60% 100%, 52% 88%, 44% 100%, 36% 88%, 28% 100%, 20% 88%, 12% 100%, 4% 88%, 0% 100%)',
-      }}
+      className="relative flex flex-col items-center text-center gap-3 bg-white border border-slate-200 border-t-4 border-t-[#1C8A3C] rounded-2xl p-6 md:p-8 shadow-soft hover:shadow-card-hover transition-all duration-300"
     >
-      <span className="flex h-14 w-14 items-center justify-center rounded-full bg-blush text-coral text-2xl">
+      <span className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#E8F5EB] text-[#1C8A3C] text-3xl shadow-xs border border-[#1C8A3C]/20">
         <FiAward />
       </span>
-      <h3 className="font-display text-base font-semibold text-ink">{name}</h3>
-      <p className="text-xs text-inkSoft leading-relaxed">{description}</p>
+      <h3 className="text-lg font-bold text-[#0B4E8C] mt-2">{name}</h3>
+      <p className="text-xs md:text-sm text-[#333333] leading-relaxed">{description}</p>
     </motion.div>
   )
 }

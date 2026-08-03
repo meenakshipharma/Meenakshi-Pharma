@@ -1,30 +1,14 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import {
-  FiActivity,
-  FiTruck,
-  FiShield,
-  FiUsers,
-  FiBox,
-  FiTrendingUp,
-} from "react-icons/fi";
 import PageBanner from "../components/PageBanner";
 import SectionTitle from "../components/SectionTitle";
 import Button from "../components/Button";
 import CTASection from "../components/CTASection";
 import { services } from "../data/content";
 import { iconMap } from "../utils/iconMap";
-const Services = () => {
-  // const services = [
-  //   { icon: <FiBox className="text-4xl text-brand" />, title: 'Pharmaceutical Distribution', desc: 'End-to-end distribution services ensuring products reach pharmacies and hospitals efficiently and safely.' },
-  //   { icon: <FiTruck className="text-4xl text-brand" />, title: 'Cold Chain Logistics', desc: 'Specialized temperature-controlled transportation for sensitive medications and vaccines.' },
-  //   { icon: <FiShield className="text-4xl text-brand" />, title: 'Quality Assurance', desc: 'Rigorous quality checks at every stage to ensure compliance with pharmaceutical standards.' },
-  //   { icon: <FiActivity className="text-4xl text-brand" />, title: 'Super-Specialty Care', desc: 'Dedicated supply lines for life-saving critical care and specialty medications.' },
-  //   { icon: <FiUsers className="text-4xl text-brand" />, title: 'Retail Pharmacy Support', desc: 'Comprehensive support including inventory forecasting and prompt deliveries for retail partners.' },
-  //   { icon: <FiTrendingUp className="text-4xl text-brand" />, title: 'Inventory Management', desc: 'Advanced software solutions for tracking stock, reducing wastage, and ensuring availability.' },
-  // ];
 
+const Services = () => {
   return (
     <>
       <Helmet>
@@ -41,16 +25,16 @@ const Services = () => {
       />
 
       {/* Services Hub Grid */}
-      <section className="section-padding bg-transparent">
+      <section className="section-padding bg-[#F5F7FA]">
         <div className="container-custom">
           <SectionTitle
             title="Comprehensive Healthcare Solutions"
             subtitle="Our Services"
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-0 mt-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-12 mt-12 items-center">
             {/* ── LEFT COLUMN ── */}
-            <div className="flex flex-col gap-14 ">
+            <div className="flex flex-col gap-8">
               {services.list.slice(0, 2).map((service, i) => {
                 const Icon = iconMap[service.icon];
                 return (
@@ -60,31 +44,22 @@ const Services = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.15 }}
-                    className="flex items-start gap-5 group"
+                    className="bg-white p-8 rounded-2xl border border-slate-200 border-t-4 border-t-[#0B4E8C] shadow-soft hover:shadow-card-hover hover:border-t-[#1C8A3C] transition-all duration-300 flex flex-col md:flex-row items-start lg:items-center gap-6 group"
                   >
-                    
+                    <div className="flex-1 text-left lg:text-right order-2 lg:order-1">
+                      <h3 className="text-lg md:text-xl font-bold uppercase tracking-wider mb-2 text-[#0B4E8C] group-hover:text-[#1C8A3C] transition-colors">
+                        {service.title}
+                      </h3>
 
-                    <div className="flex-1 text-right min-w-0">
-                      <h3
-                        className={`text-sm font-serif font-bold uppercase tracking-widest mb-2 ${
-                          service.color === "brand"
-                          ? "text-brand"
-                          : "text-secondary"
+                      <p className="text-[#333333] text-sm md:text-base leading-relaxed">
+                        {service.desc}
+                      </p>
+                    </div>
+                    <div
+                      className={`flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center text-2xl text-white shadow-md order-1 lg:order-2 ${
+                        service.color === "brand" ? "bg-[#0B4E8C] shadow-[#0B4E8C]/20" : "bg-[#1C8A3C] shadow-[#1C8A3C]/20"
                       }`}
                     >
-                      {service.title}
-                    </h3>
-
-                    <p className="text-text-light text-justify text-sm leading-relaxed">
-                      {service.desc}
-                    </p>
-                    
-                  </div>
-                  <div
-                    className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white ${
-                      service.color === "brand" ? "bg-brand" : "bg-secondary"
-                    }`}
-                  >
                       {Icon && <Icon />}
                     </div>
                   </motion.div>
@@ -94,22 +69,22 @@ const Services = () => {
 
             {/* ── CENTER WHEEL ── */}
             <motion.div
-              className="hidden lg:flex items-center justify-center mx-12"
-              initial={{ opacity: 0, scale: 0.8, rotate: -20 }}
-              whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+              className="hidden lg:flex items-center justify-center mx-4"
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 1, ease: "easeOut" }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
             >
               <div className="relative w-56 h-56">
                 {/* Outer ring */}
-                <div className="absolute inset-0 rounded-full border-4 border-gray-200 opacity-50" />
+                <div className="absolute inset-0 rounded-full border-4 border-slate-200 shadow-xs" />
                 {/* Middle ring */}
-                <div className="absolute inset-5 rounded-full border-4 border-brand/20" />
+                <div className="absolute inset-5 rounded-full border-4 border-[#0B4E8C]/30" />
                 {/* Inner filled circle */}
-                <div className="absolute inset-12 rounded-full bg-gradient-to-br from-brand/10 to-secondary/10 border-4 border-brand/30 flex items-center justify-center">
+                <div className="absolute inset-12 rounded-full bg-gradient-to-br from-[#0B4E8C]/10 to-[#1C8A3C]/10 border-4 border-[#0B4E8C]/40 flex items-center justify-center shadow-inner">
                   <svg
                     viewBox="0 0 64 64"
-                    className="w-14 h-14 text-brand"
+                    className="w-14 h-14 text-[#0B4E8C]"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2.5"
@@ -122,7 +97,7 @@ const Services = () => {
                 {[0, 60, 120, 180, 240, 300].map((deg) => (
                   <div
                     key={deg}
-                    className="absolute top-1/2 left-1/2 w-1/2 h-px bg-brand/20 origin-left"
+                    className="absolute top-1/2 left-1/2 w-1/2 h-px bg-[#0B4E8C]/20 origin-left"
                     style={{ transform: `rotate(${deg}deg)` }}
                   />
                 ))}
@@ -134,7 +109,7 @@ const Services = () => {
                   return (
                     <div
                       key={deg}
-                      className="absolute w-3 h-3 bg-brand/50 rounded-full -translate-x-1/2 -translate-y-1/2"
+                      className="absolute w-3 h-3 bg-[#1C8A3C] rounded-full -translate-x-1/2 -translate-y-1/2 shadow-xs"
                       style={{ left: `${x}%`, top: `${y}%` }}
                     />
                   );
@@ -143,38 +118,32 @@ const Services = () => {
             </motion.div>
 
             {/* ── RIGHT COLUMN ── */}
-            <div className="flex flex-col gap-14 mt-[-50px]">
+            <div className="flex flex-col gap-8">
               {services.list.slice(2, 4).map((service, i) => {
                 const Icon = iconMap[service.icon];
                 return (
                   <motion.div
                     key={i}
-                    initial={{ opacity: 0, x: -40 }}
+                    initial={{ opacity: 0, x: 40 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.15 }}
-                    className="flex items-start gap-5 group"
+                    className="bg-white p-8 rounded-2xl border border-slate-200 border-t-4 border-t-[#1C8A3C] shadow-soft hover:shadow-card-hover hover:border-t-[#0B4E8C] transition-all duration-300 flex flex-col md:flex-row items-start gap-6 group"
                   >
                     <div
-                      className={`flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white ${
-                        service.color === "brand" ? "bg-brand" : "bg-secondary"
+                      className={`flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center text-2xl text-white shadow-md ${
+                        service.color === "brand" ? "bg-[#0B4E8C] shadow-[#0B4E8C]/20" : "bg-[#1C8A3C] shadow-[#1C8A3C]/20"
                       }`}
                     >
                       {Icon && <Icon />}
                     </div>
 
-                    <div className="flex-1 min-w-0">
-                      <h3
-                        className={`text-sm font-serif font-bold uppercase tracking-widest mb-2 ${
-                          service.color === "brand"
-                            ? "text-brand"
-                            : "text-secondary"
-                        }`}
-                      >
+                    <div className="flex-1 text-left">
+                      <h3 className="text-lg md:text-xl font-bold uppercase tracking-wider mb-2 text-[#0B4E8C] group-hover:text-[#1C8A3C] transition-colors">
                         {service.title}
                       </h3>
 
-                      <p className="text-text-light text-justify text-sm leading-relaxed">
+                      <p className="text-[#333333] text-sm md:text-base leading-relaxed">
                         {service.desc}
                       </p>
                     </div>
@@ -186,57 +155,6 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Super-Specialty Care Spotlight */}
-      {/* <section className="section-padding bg-brand-light relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-brand opacity-5 skew-x-12"></div>
-        <div className="container-custom relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-12 bg-white rounded-3xl p-8 lg:p-12 shadow-2xl">
-            <motion.div
-              className="flex-1"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl lg:text-4xl font-serif text-brand mb-6">
-                Super-Specialty Care Focus
-              </h2>
-              <p className="text-lg text-text-light mb-6 leading-relaxed">
-                We understand the critical nature of super-specialty
-                medications. Our dedicated division ensures the uninterrupted
-                supply of life-saving drugs for oncology, nephrology,
-                cardiology, and other specialized fields.
-              </p>
-              <ul className="space-y-4 mb-8">
-                <li className="flex items-center gap-3">
-                  <span className="text-brand">âœ“</span> Priority handling and
-                  dispatch
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-brand">âœ“</span> Strict temperature
-                  compliance
-                </li>
-                <li className="flex items-center gap-3">
-                  <span className="text-brand">âœ“</span> Direct-to-hospital
-                  delivery options
-                </li>
-              </ul>
-              <Button to="/contact">Enquire Now</Button>
-            </motion.div>
-            <motion.div
-              className="flex-1 rounded-2xl overflow-hidden shadow-lg"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-            >
-              <img
-                src="https://images.unsplash.com/photo-1631549916768-4119b2e5f926?q=80&w=1479&auto=format&fit=crop"
-                alt="Super Specialty Care"
-                className="w-full h-full object-cover"
-              />
-            </motion.div>
-          </div>
-        </div>
-      </section> */}
       <CTASection />
     </>
   );
