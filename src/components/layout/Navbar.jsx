@@ -4,11 +4,32 @@ import { FiMenu, FiX, FiExternalLink } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 
 import logoImg from "../../assets/images/Logo.png";
-import  {navigation } from "../../data/content";
+
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+
+  const navLinks = [
+    { name: "Home", path: "/", blank: false },
+    { name: "About", path: "/about", blank: false },
+    { name: "Services", path: "/services", blank: false },
+    { name: "Brands", path: "/brands", blank: false },
+    { name: "Achievements", path: "/achievements", blank: false },
+    {
+      name: "Web Order",
+      path: "https://meenakshipharma.wondersoft.in/ro13.html#/login",
+      blank: true,
+    },
+    {
+      name: "Stock & Sales",
+      path: "http://meenakshipharma.wsweborder.com/StockAndSales/DistributorPages/Login4StockNSales.aspx",
+      blank: true,
+    },
+    { name: "Partner With Us", path: "/partner", blank: false },
+    { name: "Career", path: "/career", blank: false },
+    { name: "Contact", path: "/contact", blank: false },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,14 +46,17 @@ const Navbar = () => {
 
   return (
     <header
-      className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? "bg-white shadow-md py-1" : "bg-transparent py-1"
-        }`}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        isScrolled
+          ? "bg-white shadow-md border-b border-slate-200 py-2.5 md:py-3"
+          : "bg-white/95 backdrop-blur-md border-b border-slate-100 py-3 md:py-4"
+      }`}
     >
       <div className="container-custom flex justify-between items-center">
         {/* Logo with Meenakshi Pharma Title */}
         <Link
           to="/"
-          className="flex items-center gap-2 z-50"
+          className="flex items-center gap-2.5 sm:gap-3 z-50 group focus:outline-none"
         >
           <img
             src={logoImg}
@@ -49,9 +73,10 @@ const Navbar = () => {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-          {navigation.map((link) =>
-            link.blank ? (
+        <nav className="hidden lg:flex items-center gap-1 xl:gap-1.5">
+          {navLinks.map((link) => {
+            const isActive = location.pathname === link.path;
+            return link.blank ? (
               <a
                 key={link.name}
                 href={link.path}
@@ -104,9 +129,10 @@ const Navbar = () => {
               transition={{ duration: 0.25, ease: "easeInOut" }}
               className="absolute top-full left-0 w-full bg-white border-b border-slate-200 shadow-xl overflow-hidden lg:hidden"
             >
-              <div className="flex flex-col py-4 px-6 gap-4">
-                {navigation.map((link) =>
-                  link.blank ? (
+              <div className="flex flex-col py-4 px-5 sm:px-6 gap-1 max-h-[80vh] overflow-y-auto">
+                {navLinks.map((link) => {
+                  const isActive = location.pathname === link.path;
+                  return link.blank ? (
                     <a
                       key={link.name}
                       href={link.path}
