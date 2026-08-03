@@ -2,42 +2,48 @@
   "colors": {
     "primary": {
       "DEFAULT": "#FFFFFF",
-      "dark": "#F8FAFC"
+      "dark": "#F5F7FA"
     },
     "brand": {
-      "light": "#DCEBFF",
-      "DEFAULT": "#0056B3",
-      "dark": "#004494"
+      "light": "#E8F1F9",
+      "DEFAULT": "#0B4E8C",
+      "dark": "#083B6A"
     },
     "secondary": {
-      "light": "#D8F5E6",
-      "DEFAULT": "#2E8B57",
-      "dark": "#237046"
+      "light": "#E8F5EB",
+      "DEFAULT": "#1C8A3C",
+      "dark": "#156D2F"
+    },
+    "accent": {
+      "light": "#FDE8E9",
+      "DEFAULT": "#E31E24",
+      "dark": "#B81419"
     },
     "danger": {
-      "light": "#FEE2E2",
-      "DEFAULT": "#E53935",
-      "dark": "#C62828"
+      "light": "#FDE8E9",
+      "DEFAULT": "#E31E24",
+      "dark": "#B81419"
     },
     "text": {
-      "DEFAULT": "#1E293B",
-      "light": "#475569",
-      "muted": "#64748B",
+      "DEFAULT": "#333333",
+      "heading": "#0B4E8C",
+      "light": "#555555",
+      "muted": "#777777",
       "white": "#FFFFFF"
     },
     "background": {
-      "DEFAULT": "#F8FAFC",
+      "DEFAULT": "#FFFFFF",
       "card": "#FFFFFF",
-      "section": "#F1F5F9"
+      "section": "#F5F7FA"
     },
     "border": {
       "DEFAULT": "#E2E8F0",
-      "light": "#F1F5F9"
+      "light": "#F5F7FA"
     },
     "icon": {
-      "blue": "#0056B3",
-      "green": "#2E8B57",
-      "red": "#E53935"
+      "blue": "#0B4E8C",
+      "green": "#1C8A3C",
+      "red": "#E31E24"
     }
   }
 }

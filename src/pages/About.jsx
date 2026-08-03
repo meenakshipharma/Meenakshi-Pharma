@@ -6,6 +6,7 @@ import SectionTitle from "../components/SectionTitle";
 import CTASection from "../components/CTASection";
 import heroImg from "../assets/images/hero.png";
 import { about } from "../data/content";
+
 const About = () => {
   return (
     <>
@@ -21,10 +22,11 @@ const About = () => {
         title="About Meenakshi Pharma"
         subtitle="A Legacy of Trust and Excellence in Pharmaceutical Distribution"
       />
+
       {/* About Story */}
-      <section className="section-padding bg-transparent">
+      <section className="section-padding bg-[#F5F7FA]">
         <div className="container-custom">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Image */}
             <motion.div
               initial={{ opacity: 0, x: -40 }}
@@ -33,21 +35,13 @@ const About = () => {
               transition={{ duration: 0.6 }}
               className="relative"
             >
-              <div className="rounded-3xl overflow-hidden shadow-2xl">
+              <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
                 <img
                   src={heroImg}
                   alt="Meenakshi Pharma"
                   className="w-full h-full object-cover"
                 />
               </div>
-
-              {/* Floating Badge */}
-              {/* <div className="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl px-8 py-5">
-                <h3 className="text-4xl font-bold text-brand">28+</h3>
-                <p className="text-sm text-text-light">
-                  Years of Trusted Service
-                </p>
-              </div> */}
             </motion.div>
 
             {/* Content */}
@@ -57,62 +51,59 @@ const About = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-brand font-semibold uppercase tracking-widest">
+              <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E8F5EB] border border-[#1C8A3C]/30 text-[#1C8A3C] font-bold uppercase tracking-wider text-xs mb-4">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#E31E24]"></span>
                 {about.introduction.subtitle}
               </span>
 
-              <h2 className="text-3xl lg:text-4xl font-serif mt-3 mb-8">
+              <h2 className="text-3xl lg:text-4xl font-bold text-[#0B4E8C] mt-2 mb-6 leading-tight">
                 {about.introduction.title}
               </h2>
 
-              <p
-                className="text-text-light leading-relaxed mb-6"
-                dangerouslySetInnerHTML={{
-                  __html: about.introduction.desc1,
-                }}
-              />
-
-              <p
-                className="text-text-light leading-relaxed mb-6"
-                dangerouslySetInnerHTML={{
-                  __html: about.introduction.desc2,
-                }}
-              />
-
-              <p
-                className="text-text-light leading-relaxed mb-6"
-                dangerouslySetInnerHTML={{
-                  __html: about.introduction.desc3,
-                }}
-              />
-              <p
-                className="text-text-light leading-relaxed mb-6"
-                dangerouslySetInnerHTML={{
-                  __html: about.introduction.desc4,
-                }}
-              />
-              <p
-                className="text-text-light leading-relaxed"
-                dangerouslySetInnerHTML={{
-                  __html: about.introduction.desc5,
-                }}
-              />
+              <div className="space-y-4 text-[#333333] leading-relaxed text-base">
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: about.introduction.desc1,
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: about.introduction.desc2,
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: about.introduction.desc3,
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: about.introduction.desc4,
+                  }}
+                />
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: about.introduction.desc5,
+                  }}
+                />
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
+
       {/* Vision & Mission */}
-      <section className="section-padding bg-transparent">
+      <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="flex flex-col md:flex-row gap-12">
+          <div className="flex flex-col md:flex-row gap-8">
             <motion.div
-              className="flex-1 bg-white p-10 rounded-3xl shadow-card border-l-8 border-brand hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+              className="flex-1 bg-white p-8 lg:p-10 rounded-3xl border border-slate-200 border-t-4 border-t-[#0B4E8C] shadow-soft hover:shadow-card-hover hover:border-t-[#1C8A3C] transition-all duration-300 relative overflow-hidden group"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
             >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-brand opacity-5 rounded-full -mr-6 -mt-6"></div>
-              <div className="w-14 h-14 bg-brand-light text-brand rounded-2xl flex items-center justify-center text-2xl mb-6">
+              <div className="absolute top-0 right-0 w-28 h-28 bg-[#0B4E8C]/10 rounded-full -mr-8 -mt-8 pointer-events-none group-hover:scale-125 transition-transform"></div>
+              <div className="w-14 h-14 bg-[#0B4E8C] text-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-md shadow-[#0B4E8C]/20">
                 <svg
                   width="24"
                   height="24"
@@ -134,23 +125,23 @@ const About = () => {
                   ></path>
                 </svg>
               </div>
-              <h2 className="text-3xl font-serif text-text mb-4">
+              <h2 className="text-2xl lg:text-3xl font-bold text-[#0B4E8C] mb-4">
                 {about.vision.title}
               </h2>
-              <p className="text-text-light leading-relaxed text-lg font-light">
+              <p className="text-[#333333] leading-relaxed text-base md:text-lg">
                 {about.vision.desc}
               </p>
             </motion.div>
 
             <motion.div
-              className="flex-1 bg-white p-10 rounded-3xl shadow-card border-l-8 border-secondary hover:shadow-xl transition-all duration-300 relative overflow-hidden"
+              className="flex-1 bg-white p-8 lg:p-10 rounded-3xl border border-slate-200 border-t-4 border-t-[#1C8A3C] shadow-soft hover:shadow-card-hover hover:border-t-[#0B4E8C] transition-all duration-300 relative overflow-hidden group"
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.15 }}
             >
-              <div className="absolute top-0 right-0 w-24 h-24 bg-secondary opacity-5 rounded-full -mr-6 -mt-6"></div>
-              <div className="w-14 h-14 bg-secondary-light text-secondary rounded-2xl flex items-center justify-center text-2xl mb-6">
+              <div className="absolute top-0 right-0 w-28 h-28 bg-[#1C8A3C]/10 rounded-full -mr-8 -mt-8 pointer-events-none group-hover:scale-125 transition-transform"></div>
+              <div className="w-14 h-14 bg-[#1C8A3C] text-white rounded-2xl flex items-center justify-center text-2xl mb-6 shadow-md shadow-[#1C8A3C]/20">
                 <svg
                   width="24"
                   height="24"
@@ -166,10 +157,10 @@ const About = () => {
                   ></path>
                 </svg>
               </div>
-              <h2 className="text-3xl font-serif text-text mb-4">
+              <h2 className="text-2xl lg:text-3xl font-bold text-[#0B4E8C] mb-4">
                 {about.mission.title}
               </h2>
-              <p className="text-text-light leading-relaxed text-lg font-light">
+              <p className="text-[#333333] leading-relaxed text-base md:text-lg">
                 {about.mission.desc}
               </p>
             </motion.div>
@@ -178,36 +169,36 @@ const About = () => {
       </section>
 
       {/* Infrastructure */}
-      <section className="section-padding bg-transparent">
+      <section className="section-padding bg-[#F5F7FA]">
         <div className="container-custom">
           <SectionTitle
             title="Our Infrastructure"
             subtitle="State-of-the-Art Facilities"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-serif mb-4">Modern Warehousing</h3>
-              <p className="text-text-light mb-6">
+              <h3 className="text-2xl font-bold text-[#0B4E8C] mb-4">Modern Warehousing</h3>
+              <p className="text-[#333333] leading-relaxed mb-6">
                 Our facilities are equipped with the latest technology for
                 inventory management and climate control, ensuring that all
                 pharmaceutical products are stored under optimal conditions.
               </p>
               <ul className="space-y-4">
-                <li className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-brand"></span>{" "}
+                <li className="flex items-center gap-3 text-[#333333] font-semibold">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#1C8A3C]"></span>{" "}
                   Temperature-controlled zones
                 </li>
-                <li className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-brand"></span>{" "}
+                <li className="flex items-center gap-3 text-[#333333] font-semibold">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#0B4E8C]"></span>{" "}
                   Advanced security systems
                 </li>
-                <li className="flex items-center gap-3">
-                  <span className="w-2 h-2 rounded-full bg-brand"></span>{" "}
+                <li className="flex items-center gap-3 text-[#333333] font-semibold">
+                  <span className="w-2.5 h-2.5 rounded-full bg-[#1C8A3C]"></span>{" "}
                   Automated inventory tracking
                 </li>
               </ul>
@@ -216,7 +207,7 @@ const About = () => {
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              className="rounded-3xl overflow-hidden shadow-xl aspect-video"
+              className="rounded-3xl overflow-hidden shadow-2xl aspect-video border-4 border-white"
             >
               <img
                 src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1473&auto=format&fit=crop"

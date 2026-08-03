@@ -1,40 +1,46 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply font-sans text-text antialiased leading-relaxed tracking-wide bg-gradient-to-br from-white via-brand-light/40 to-brand-light/90 bg-fixed min-h-screen;
-    font-family: "SF Pro Text", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Poppins", sans-serif;
+    @apply font-sans text-[#333333] antialiased leading-relaxed tracking-tight bg-[#FFFFFF] min-h-screen selection:bg-[#0B4E8C] selection:text-white;
+    font-family: 'Plus Jakarta Sans', 'Inter', 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
   }
   
   h1, h2, h3, h4, h5, h6 {
-    @apply font-serif font-bold text-text tracking-tight;
-    font-family: "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont, "Poppins", sans-serif;
+    @apply font-heading font-bold text-[#0B4E8C] tracking-tight;
+    font-family: 'Plus Jakarta Sans', sans-serif;
   }
 }
 
 @layer components {
   .glass-card {
-    @apply bg-white bg-opacity-80 backdrop-blur-lg border border-gray-100 shadow-soft rounded-2xl;
+    @apply bg-white border border-slate-200/80 shadow-soft rounded-2xl transition-all duration-300;
   }
   
+  .glass-card-hover {
+    @apply glass-card hover:shadow-card-hover hover:-translate-y-1 hover:border-[#0B4E8C]/40;
+  }
+
   .btn-primary {
-    @apply px-8 py-3.5 bg-brand text-white font-semibold rounded shadow-md hover:shadow-lg hover:bg-brand-dark transition-all duration-300 tracking-wide;
+    @apply inline-flex items-center justify-center px-7 py-3.5 bg-[#1C8A3C] hover:bg-[#156D2F] text-white font-semibold rounded-xl shadow-md shadow-[#1C8A3C]/20 hover:shadow-lg hover:shadow-[#1C8A3C]/30 active:scale-[0.98] transition-all duration-300 tracking-wide text-sm md:text-base cursor-pointer;
   }
   
   .btn-secondary {
-    @apply px-8 py-3.5 bg-white text-brand border-2 border-brand font-semibold rounded shadow-sm hover:bg-brand-light transition-all duration-300 tracking-wide;
+    @apply inline-flex items-center justify-center px-7 py-3.5 bg-white text-[#0B4E8C] border-2 border-[#0B4E8C] hover:bg-[#0B4E8C] hover:text-white font-semibold rounded-xl shadow-sm active:scale-[0.98] transition-all duration-300 tracking-wide text-sm md:text-base cursor-pointer;
   }
 
   .section-padding {
-    @apply py-24 md:py-32;
+    @apply py-16 md:py-24 lg:py-28;
   }
 
   .container-custom {
-    @apply max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-12;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 }
 
@@ -43,12 +49,12 @@
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #f1f1f1; 
+  background: #F5F7FA; 
 }
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1; 
-  border-radius: 4px;
+  background: #CBD5E1; 
+  border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8; 
+  background: #0B4E8C; 
 }

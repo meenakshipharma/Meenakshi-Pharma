@@ -11,13 +11,16 @@ export default {
     extend: {
       colors: themeConfig.colors,
       fontFamily: {
-        // sans: ['"SF Pro Text"', '"SF Pro Display"', '-apple-system', 'BlinkMacSystemFont', 'Poppins', 'sans-serif'],
-        // serif: ['"SF Pro Display"', '"SF Pro Text"', '-apple-system', 'BlinkMacSystemFont', 'Poppins', 'sans-serif'],
-        poppins: ['Poppins', '"SF Pro Display"', '"SF Pro Text"', 'sans-serif'],
+        sans: ['"Plus Jakarta Sans"', 'Inter', 'Poppins', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
+        heading: ['"Plus Jakarta Sans"', 'sans-serif'],
+        serif: ['"Plus Jakarta Sans"', 'sans-serif'],
+        poppins: ['"Plus Jakarta Sans"', 'sans-serif'],
       },
       boxShadow: {
-        'soft': '0 10px 40px -10px rgba(0,0,0,0.08)',
-        'card': '0 4px 20px -2px rgba(0,0,0,0.05)',
+        'soft': '0 6px 25px -5px rgba(11, 78, 140, 0.08), 0 2px 10px rgba(0, 0, 0, 0.03)',
+        'card': '0 4px 20px -2px rgba(11, 78, 140, 0.06)',
+        'glow': '0 0 25px -5px rgba(28, 138, 60, 0.3)',
+        'card-hover': '0 16px 32px -8px rgba(11, 78, 140, 0.14), 0 6px 16px -4px rgba(0, 0, 0, 0.04)',
       }
     },
   },

@@ -15,12 +15,11 @@ const icons = {
 
 const renderContactValue = (type, v) => {
   if (type === "phone") {
-    // Keep numbers and the plus sign for country code
     const cleanPhone = v.replace(/[^0-9+]/g, "");
     return (
       <a
         href={`tel:${cleanPhone}`}
-        className="hover:text-brand transition-colors"
+        className="hover:text-[#1C8A3C] transition-colors py-0.5 inline-block font-medium"
       >
         {v}
       </a>
@@ -28,7 +27,7 @@ const renderContactValue = (type, v) => {
   }
   if (type === "email") {
     return (
-      <a href={`mailto:${v}`} className="hover:text-brand transition-colors">
+      <a href={`mailto:${v}`} className="hover:text-[#1C8A3C] transition-colors py-0.5 inline-block font-medium">
         {v}
       </a>
     );
@@ -64,7 +63,7 @@ const Contact = () => {
   };
 
   const inputClass =
-    "w-full bg-white border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand transition-all";
+    "w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#0B4E8C] focus:border-[#0B4E8C] transition-all text-sm shadow-xs";
 
   return (
     <>
@@ -81,28 +80,28 @@ const Contact = () => {
         subtitle={contact.banner.subtitle}
       />
 
-      <section className="section-padding bg-transparent">
+      <section className="section-padding bg-[#F5F7FA]">
         <div className="container-custom">
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
             {/* Left Side Info */}
             <motion.div
-              className="flex-1"
+              className="flex-1 w-full"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
             >
-              <h2 className="text-3xl font-serif text-text mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#0B4E8C] mb-8">
                 {contact.details.title}
               </h2>
 
-              <div className="space-y-8">
+              <div className="space-y-6">
                 {contact.details.info.map((item, index) => (
-                  <div key={index} className="flex gap-4">
-                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center text-brand shadow-sm shrink-0 text-xl">
+                  <div key={index} className="flex gap-4 p-5 rounded-2xl bg-white border border-slate-200 border-l-4 border-l-[#1C8A3C] shadow-soft hover:shadow-card-hover transition-all duration-300">
+                    <div className="w-12 h-12 bg-[#E8F5EB] text-[#1C8A3C] rounded-2xl flex items-center justify-center shadow-xs shrink-0 text-xl border border-[#1C8A3C]/20">
                       {icons[item.type]}
                     </div>
                     <div>
-                      <h4 className="font-bold text-lg mb-1">{item.label}</h4>
-                      <p className="text-text-light">
+                      <h4 className="font-bold text-[#0B4E8C] text-base mb-1">{item.label}</h4>
+                      <div className="text-[#333333] text-sm leading-relaxed">
                         {Array.isArray(item.value)
                           ? item.value.map((v, i) => (
                               <React.Fragment key={i}>
@@ -116,19 +115,20 @@ const Contact = () => {
                                 {i < arr.length - 1 && <br />}
                               </React.Fragment>
                             ))}
-                      </p>
+                      </div>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-10">
+              <div className="mt-8">
                 <a
                   href={contact.mapUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="inline-block"
                 >
-                  <Button variant="outline" className="gap-2">
+                  <Button variant="secondary" className="gap-2">
                     <FiMapPin /> {contact.details.buttonText}
                   </Button>
                 </a>
@@ -137,19 +137,19 @@ const Contact = () => {
 
             {/* Right Side Form */}
             <motion.div
-              className="flex-[1.5]"
+              className="flex-[1.4] w-full"
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
             >
-              <div className="bg-white p-8 md:p-10 rounded-3xl shadow-xl">
-                <h3 className="text-2xl font-serif font-bold mb-6">
+              <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-200 border-t-4 border-t-[#0B4E8C]">
+                <h3 className="text-2xl font-bold text-[#0B4E8C] mb-6">
                   {contact.form.title}
                 </h3>
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-text-light mb-2">
-                        {contact.form.fields.name}
+                      <label className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
+                        {contact.form.fields.name} *
                       </label>
                       <input
                         required
@@ -161,7 +161,7 @@ const Contact = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-text-light mb-2">
+                      <label className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
                         {contact.form.fields.hospital}
                       </label>
                       <input
@@ -175,8 +175,8 @@ const Contact = () => {
                   </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <div>
-                      <label className="block text-sm font-medium text-text-light mb-2">
-                        {contact.form.fields.phone}
+                      <label className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
+                        {contact.form.fields.phone} *
                       </label>
                       <input
                         required
@@ -188,8 +188,8 @@ const Contact = () => {
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-text-light mb-2">
-                        {contact.form.fields.email}
+                      <label className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
+                        {contact.form.fields.email} *
                       </label>
                       <input
                         required
@@ -202,8 +202,8 @@ const Contact = () => {
                     </div>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-text-light mb-2">
-                      {contact.form.fields.subject}
+                    <label className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
+                      {contact.form.fields.subject} *
                     </label>
                     <input
                       required
@@ -215,8 +215,8 @@ const Contact = () => {
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-text-light mb-2">
-                      {contact.form.fields.message}
+                    <label className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
+                      {contact.form.fields.message} *
                     </label>
                     <textarea
                       required
@@ -227,7 +227,7 @@ const Contact = () => {
                       className={inputClass}
                     ></textarea>
                   </div>
-                  <Button type="submit" className="w-full md:w-auto px-10">
+                  <Button type="submit" variant="primary" className="w-full md:w-auto px-10">
                     {contact.form.buttonText}
                   </Button>
                 </form>

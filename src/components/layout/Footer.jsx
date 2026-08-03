@@ -16,32 +16,36 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-text text-white pt-20 pb-10 mt-auto">
-      <div className="container-custom">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+    <footer className="bg-[#083B6A] text-white pt-20 pb-10 mt-auto border-t border-[#0B4E8C] relative overflow-hidden">
+      {/* Background Subtle Medical Glow */}
+      <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[#1C8A3C]/10 rounded-full blur-3xl pointer-events-none"></div>
+      <div className="absolute top-0 left-0 w-[400px] h-[400px] bg-[#0B4E8C]/20 rounded-full blur-3xl pointer-events-none"></div>
+
+      <div className="container-custom relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-12 mb-16">
           {/* Company Info */}
           <div>
             <div className="flex items-center gap-3 mb-6">
               <img
                 src={logoImg}
                 alt="Meenakshi Pharma Logo"
-                className="h-12 w-auto object-contain"
+                className="h-12 w-auto object-contain bg-white p-1 rounded-lg shadow-sm"
                 onError={(e) => {
                   e.target.style.display = "none";
                   e.target.nextSibling.style.display = "flex";
                 }}
               />
-              <div className="hidden items-center justify-center w-12 h-12 bg-brand rounded-full text-white font-serif font-bold text-xl">
+              <div className="hidden items-center justify-center w-12 h-12 bg-[#1C8A3C] rounded-full text-white font-bold text-xl">
                 MP
               </div>
-              <span className="font-serif font-bold text-2xl tracking-wide">
+              <span className="font-bold text-2xl tracking-wide text-white">
                 {footer.companyName}
               </span>
             </div>
-            <p className="text-text-muted mb-6 leading-relaxed">
+            <p className="text-slate-200 mb-6 leading-relaxed text-sm">
               {footer.tagline}
             </p>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               {footer.socials.map((social) => {
                 const iconMap = {
                   Facebook: <FiFacebook />,
@@ -56,7 +60,7 @@ const Footer = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={social.name}
-                    className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-text-muted hover:bg-brand hover:text-white transition-colors"
+                    className="w-10 h-10 rounded-xl bg-white/10 border border-white/15 flex items-center justify-center text-white hover:bg-[#1C8A3C] hover:border-[#1C8A3C] hover:scale-105 transition-all duration-300"
                   >
                     {iconMap[social.name] || <FiFacebook />}
                   </a>
@@ -67,14 +71,14 @@ const Footer = () => {
 
           {/* Quick Links & Services */}
           <div>
-            <h3 className="font-serif text-xl font-semibold mb-6">
+            <h3 className="text-lg font-bold text-white mb-6 tracking-wide border-l-4 border-[#1C8A3C] pl-3">
               Quick Links
             </h3>
-            <ul className="flex flex-col gap-3">
+            <ul className="flex flex-col gap-2.5 text-sm">
               <li>
                 <Link
                   to="/about"
-                  className="text-text-muted hover:text-brand transition-colors"
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block py-1"
                 >
                   About Us
                 </Link>
@@ -82,7 +86,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/services"
-                  className="text-text-muted hover:text-brand transition-colors"
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block py-1"
                 >
                   Our Services
                 </Link>
@@ -92,7 +96,7 @@ const Footer = () => {
                   href="http://meenakshipharma.wsweborder.com/StockAndSales/DistributorPages/Login4StockNSales.aspx"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-text-muted hover:text-brand transition-colors"
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block py-1"
                 >
                   Stock & Sales
                 </a>
@@ -102,7 +106,7 @@ const Footer = () => {
                   href="https://meenakshipharma.wondersoft.in/ro13.html#/login"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-text-muted hover:text-brand transition-colors"
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block py-1"
                 >
                   Web Order
                 </a>
@@ -110,7 +114,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/partner"
-                  className="text-text-muted hover:text-brand transition-colors"
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block py-1"
                 >
                   Partner With Us
                 </Link>
@@ -118,7 +122,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/career"
-                  className="text-text-muted hover:text-brand transition-colors"
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block py-1"
                 >
                   Career Opportunities
                 </Link>
@@ -128,38 +132,38 @@ const Footer = () => {
 
           {/* Contact Info */}
           <div>
-            <h3 className="font-serif text-xl font-semibold mb-6">
+            <h3 className="text-lg font-bold text-white mb-6 tracking-wide border-l-4 border-[#1C8A3C] pl-3">
               Contact Us
             </h3>
-            <ul className="flex flex-col gap-4">
-              <li className="flex items-start gap-3 text-gray-400">
-                <FiMapPin className="text-brand mt-1 flex-shrink-0" />
-                <span>
+            <ul className="flex flex-col gap-4 text-sm">
+              <li className="flex items-start gap-3 text-slate-200">
+                <FiMapPin className="text-[#1C8A3C] bg-white rounded-full p-0.5 mt-1 flex-shrink-0 text-lg" />
+                <span className="leading-relaxed">
                   {footer.contactInfo.address}
                 </span>
               </li>
-              <li className="flex items-start gap-3 text-gray-400">
-                <FiPhone className="text-brand mt-1 flex-shrink-0" />
+              <li className="flex items-start gap-3 text-slate-200">
+                <FiPhone className="text-[#1C8A3C] bg-white rounded-full p-0.5 mt-1 flex-shrink-0 text-lg" />
                 <div className="flex flex-col">
                   {footer.contactInfo.phone.map((p, i) => (
                     <a
                       key={i}
                       href={`tel:${p.replace(/[^0-9+]/g, "")}`}
-                      className="hover:text-white transition-colors duration-200"
+                      className="hover:text-white transition-colors duration-200 py-0.5"
                     >
                       {p}
                     </a>
                   ))}
                 </div>
               </li>
-              <li className="flex items-start gap-3 text-gray-400">
-                <FiMail className="text-brand mt-1 flex-shrink-0" />
+              <li className="flex items-start gap-3 text-slate-200">
+                <FiMail className="text-[#1C8A3C] bg-white rounded-full p-0.5 mt-1 flex-shrink-0 text-lg" />
                 <div className="flex flex-col">
                   {footer.contactInfo.email.map((e, i) => (
                     <a
                       key={i}
                       href={`mailto:${e}`}
-                      className="hover:text-white transition-colors duration-200"
+                      className="hover:text-white transition-colors duration-200 py-0.5"
                     >
                       {e}
                     </a>
@@ -171,8 +175,8 @@ const Footer = () => {
 
           {/* Map */}
           <div>
-            <h3 className="font-serif text-xl font-semibold mb-6">Location</h3>
-            <div className="w-full aspect-square rounded-2xl overflow-hidden opacity-90 transition-all duration-500 shadow-lg">
+            <h3 className="text-lg font-bold text-white mb-6 tracking-wide border-l-4 border-[#1C8A3C] pl-3">Location</h3>
+            <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-white/10 group hover:border-[#1C8A3C] transition-all duration-300">
               <iframe
                 src={footer.mapUrl}
                 width="100%"
@@ -182,20 +186,21 @@ const Footer = () => {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="Google Maps Location"
+                className="w-full h-full grayscale group-hover:grayscale-0 transition-all duration-500"
               ></iframe>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-gray-500 text-sm">
+        <div className="border-t border-white/15 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-300">
+          <p>
             &copy; {currentYear} {footer.copyright}
           </p>
-          <div className="flex gap-4 text-sm text-gray-500">
-            <Link to="/privacy-policy" className="hover:text-brand transition-colors">
+          <div className="flex gap-6">
+            <Link to="/privacy-policy" className="hover:text-white transition-colors">
               Privacy Policy
             </Link>
-            <Link to="/terms-of-service" className="hover:text-brand transition-colors">
+            <Link to="/terms-of-service" className="hover:text-white transition-colors">
               Terms of Service
             </Link>
           </div>

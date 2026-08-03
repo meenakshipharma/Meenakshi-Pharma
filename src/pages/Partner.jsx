@@ -3,8 +3,6 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import PageBanner from "../components/PageBanner";
 import Button from "../components/Button";
-import SectionTitle from "../components/SectionTitle";
-import CTASection from "../components/CTASection";
 import { partner } from "../data/content";
 
 const Partner = () => {
@@ -62,16 +60,14 @@ const Partner = () => {
         if (!/^[6-9]\d{9}$/.test(value.toString().trim()))
           return "Enter a valid 10-digit Indian mobile number.";
         break;
-case "whatsapp":
-  if (!value || !value.toString().trim()) {
-    return "WhatsApp Number is required.";
-  }
-
-  if (!/^[6-9]\d{9}$/.test(value.toString().trim())) {
-    return "Enter a valid 10-digit WhatsApp number.";
-  }
-
-  break;
+      case "whatsapp":
+        if (!value || !value.toString().trim()) {
+          return "WhatsApp Number is required.";
+        }
+        if (!/^[6-9]\d{9}$/.test(value.toString().trim())) {
+          return "Enter a valid 10-digit WhatsApp number.";
+        }
+        break;
       case "email":
         if (!value || !value.toString().trim())
           return "Email Address is required.";
@@ -145,7 +141,6 @@ case "whatsapp":
   const handleChange = (e) => {
     const { name, value, type, checked, files } = e.target;
 
-    // Clear error for this field as the user types / changes
     setFormErrors((prev) => ({ ...prev, [name]: "" }));
 
     if (type === "file") {
@@ -179,42 +174,39 @@ case "whatsapp":
       setFormData((prev) => ({ ...prev, [name]: file }));
       return;
     }
-setFormData((prev) => {
-  const updated = {
-    ...prev,
-    [name]: type === "checkbox" ? checked : value,
+    setFormData((prev) => {
+      const updated = {
+        ...prev,
+        [name]: type === "checkbox" ? checked : value,
+      };
+
+      if (sameAsOwner && name === "ownerName") {
+        updated.contactName = value;
+      }
+
+      if (sameAsMobile && name === "mobile") {
+        updated.whatsapp = value;
+      }
+
+      const error = validateField(name, updated[name]);
+
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: error,
+      }));
+
+      if (sameAsMobile && name === "mobile") {
+        const whatsappError = validateField("whatsapp", updated.whatsapp);
+
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          whatsapp: whatsappError,
+        }));
+      }
+
+      return updated;
+    });
   };
-
-  if (sameAsOwner && name === "ownerName") {
-    updated.contactName = value;
-  }
-
-  if (sameAsMobile && name === "mobile") {
-    updated.whatsapp = value;
-  }
-
-  // Validate current field
-  const error = validateField(name, updated[name]);
-
-  setFormErrors((prevErrors) => ({
-    ...prevErrors,
-    [name]: error,
-  }));
-
-  // Validate WhatsApp if it changes automatically
-  if (sameAsMobile && name === "mobile") {
-    const whatsappError = validateField("whatsapp", updated.whatsapp);
-
-    setFormErrors((prevErrors) => ({
-      ...prevErrors,
-      whatsapp: whatsappError,
-    }));
-  }
-
-  return updated;
-});
-  };
-
 
   const handleFocus = (e) => {
     const { name } = e.target;
@@ -246,8 +238,10 @@ setFormData((prev) => {
 
     setFormErrors({});
 
-    document.querySelector('input[name="drugLicense"]').value = "";
-    document.querySelector('input[name="gstCertificate"]').value = "";
+    const dlInput = document.querySelector('input[name="drugLicense"]');
+    if (dlInput) dlInput.value = "";
+    const gstInput = document.querySelector('input[name="gstCertificate"]');
+    if (gstInput) gstInput.value = "";
   };
 
   const handleSubmit = async (e) => {
@@ -305,22 +299,21 @@ setFormData((prev) => {
 
   // ── Styles ────────────────────────────────────────────────────────────────
   const inputClass =
-    "w-full bg-white bg-opacity-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all";
+    "w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#0B4E8C] focus:border-[#0B4E8C] transition-all text-sm shadow-xs";
   const inputErrorClass =
-    "w-full bg-white bg-opacity-50 border border-red-400 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all";
-  const labelClass = "block text-sm font-medium text-text-light mb-2";
+    "w-full bg-red-50/30 border border-[#E31E24] rounded-xl px-4 py-3 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#E31E24] focus:border-[#E31E24] transition-all text-sm";
+  const labelClass = "block text-sm font-semibold text-[#0B4E8C] mb-1.5";
 
   const getInputClass = (fieldName) =>
     formErrors[fieldName] ? inputErrorClass : inputClass;
 
   const ErrorMsg = ({ field }) =>
     formErrors[field] ? (
-      <p className="mt-1 text-xs text-red-600 font-medium">
+      <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
         {formErrors[field]}
       </p>
     ) : null;
 
-  // ── Render ────────────────────────────────────────────────────────────────
   return (
     <>
       <Helmet>
@@ -337,32 +330,32 @@ setFormData((prev) => {
         subsubtitle={partner.banner.subsubtitle}
       />
 
-      <section className="section-padding bg-gradient-to-br from-gray-50 to-brand-light">
+      <section className="section-padding bg-[#F5F7FA]">
         <div className="container-custom">
           <div className="max-w-4xl mx-auto">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white bg-opacity-80 backdrop-blur-xl p-8 md:p-12 rounded-3xl shadow-2xl border border-white"
+              className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-200 border-t-4 border-t-[#0B4E8C]"
             >
               <div className="text-center mb-10">
-                <h2 className="text-3xl font-serif text-brand mb-4">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#0B4E8C] mb-3">
                   Partnership Application Form
                 </h2>
-                <p className="text-text-light">
+                <p className="text-[#333333] text-sm md:text-base">
                   Please fill in your business details below. All fields marked
                   with * are required.
                 </p>
               </div>
 
               {status.success && (
-                <div className="mb-6 rounded-xl border border-secondary/30 bg-secondary-light p-4 text-secondary-dark font-medium">
+                <div className="mb-6 rounded-2xl border border-[#1C8A3C]/30 bg-[#E8F5EB] p-4 text-[#1C8A3C] text-sm font-medium">
                   {status.message}
                 </div>
               )}
 
               {status.error && (
-                <div className="mb-6 rounded-xl border border-danger/30 bg-danger-light p-4 text-danger-dark font-medium">
+                <div className="mb-6 rounded-2xl border border-[#E31E24]/30 bg-[#FDE8E9] p-4 text-[#E31E24] text-sm font-medium">
                   {status.error}
                 </div>
               )}
@@ -375,7 +368,7 @@ setFormData((prev) => {
               >
                 {/* ── Business Details ───────────────────────────────── */}
                 <div>
-                  <h3 className="text-xl font-serif border-b border-gray-200 pb-2 mb-6">
+                  <h3 className="text-lg font-bold text-[#0B4E8C] border-b border-slate-200 pb-3 mb-6">
                     Business Details
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -440,7 +433,7 @@ setFormData((prev) => {
                         onFocus={handleFocus}
                         disabled={sameAsOwner}
                         className={`${getInputClass("contactName")} ${
-                          sameAsOwner ? "bg-gray-200 cursor-not-allowed" : ""
+                          sameAsOwner ? "bg-slate-100 cursor-not-allowed" : ""
                         }`}
                       />
                       <ErrorMsg field="contactName" />
@@ -463,10 +456,11 @@ setFormData((prev) => {
                               }));
                             }
                           }}
+                          className="w-4 h-4 text-[#1C8A3C] rounded focus:ring-[#1C8A3C]"
                         />
                         <label
                           htmlFor="sameAsOwner"
-                          className="text-sm text-text-light"
+                          className="text-xs text-[#333333] font-medium cursor-pointer"
                         >
                           Same as Proprietor / Owner
                         </label>
@@ -477,7 +471,7 @@ setFormData((prev) => {
 
                 {/* ── Contact Information ─────────────────────────────── */}
                 <div>
-                  <h3 className="text-xl font-serif border-b border-gray-200 pb-2 mb-6">
+                  <h3 className="text-lg font-bold text-[#0B4E8C] border-b border-slate-200 pb-3 mb-6">
                     Contact Information
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -505,11 +499,12 @@ setFormData((prev) => {
                         onChange={handleChange}
                         onFocus={handleFocus}
                         disabled={sameAsMobile}
-className={`${
-    sameAsMobile
-      ? inputClass + " bg-gray-200 cursor-not-allowed"
-      : getInputClass("whatsapp")
-  }`}                      />
+                        className={`${
+                          sameAsMobile
+                            ? inputClass + " bg-slate-100 cursor-not-allowed"
+                            : getInputClass("whatsapp")
+                        }`}
+                      />
                       <ErrorMsg field="whatsapp" />
                       <div className="mt-2 flex items-center gap-2">
                         <input
@@ -527,10 +522,11 @@ className={`${
                               setFormErrors((prev) => ({ ...prev, whatsapp: "" }));
                             }
                           }}
+                          className="w-4 h-4 text-[#1C8A3C] rounded focus:ring-[#1C8A3C]"
                         />
                         <label
                           htmlFor="sameAsMobile"
-                          className="text-sm text-text-light"
+                          className="text-xs text-[#333333] font-medium cursor-pointer"
                         >
                           Same as Mobile Number
                         </label>
@@ -567,7 +563,7 @@ className={`${
 
                 {/* ── Address Details ─────────────────────────────────── */}
                 <div>
-                  <h3 className="text-xl font-serif border-b border-gray-200 pb-2 mb-6">
+                  <h3 className="text-lg font-bold text-[#0B4E8C] border-b border-slate-200 pb-3 mb-6">
                     Address Details
                   </h3>
                   <div className="space-y-6">
@@ -597,7 +593,7 @@ className={`${
                           value={formData.city}
                           onChange={handleChange}
                           onFocus={handleFocus}
-                            className={getInputClass("city")}
+                          className={getInputClass("city")}
                         />
                         <ErrorMsg field="city" />
                       </div>
@@ -611,7 +607,7 @@ className={`${
                           value={formData.district}
                           onChange={handleChange}
                           onFocus={handleFocus}
-                            className={getInputClass("district")}
+                          className={getInputClass("district")}
                         />
                         <ErrorMsg field="district" />
                       </div>
@@ -625,7 +621,7 @@ className={`${
                           value={formData.state}
                           onChange={handleChange}
                           onFocus={handleFocus}
-                            className={getInputClass("state")}
+                          className={getInputClass("state")}
                         />
                         <ErrorMsg field="state" />
                       </div>
@@ -639,7 +635,7 @@ className={`${
                           value={formData.pincode}
                           onChange={handleChange}
                           onFocus={handleFocus}
-                            className={getInputClass("pincode")}
+                          className={getInputClass("pincode")}
                         />
                         <ErrorMsg field="pincode" />
                       </div>
@@ -649,7 +645,7 @@ className={`${
 
                 {/* ── Documents & Business Info ───────────────────────── */}
                 <div>
-                  <h3 className="text-xl font-serif border-b border-gray-200 pb-2 mb-6">
+                  <h3 className="text-lg font-bold text-[#0B4E8C] border-b border-slate-200 pb-3 mb-6">
                     Documents & Business Info
                   </h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
@@ -663,10 +659,10 @@ className={`${
                         name="drugLicense"
                         accept=".pdf,.jpg,.jpeg,.png"
                         onChange={handleChange}
-                        className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-light file:text-brand hover:file:bg-brand hover:file:text-white transition-colors"
+                        className="w-full text-sm text-[#333333] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#E8F5EB] file:text-[#1C8A3C] hover:file:bg-[#1C8A3C] hover:file:text-white transition-colors cursor-pointer"
                       />
                       {formData.drugLicense && (
-                        <p className="mt-2 text-sm text-green-700">
+                        <p className="mt-2 text-xs font-semibold text-[#1C8A3C]">
                           Selected: {formData.drugLicense.name}
                         </p>
                       )}
@@ -683,10 +679,10 @@ className={`${
                         name="gstCertificate"
                         accept=".pdf,.jpg,.jpeg,.png"
                         onChange={handleChange}
-                        className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-light file:text-brand hover:file:bg-brand hover:file:text-white transition-colors"
+                        className="w-full text-sm text-[#333333] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#E8F5EB] file:text-[#1C8A3C] hover:file:bg-[#1C8A3C] hover:file:text-white transition-colors cursor-pointer"
                       />
                       {formData.gstCertificate && (
-                        <p className="mt-2 text-sm text-green-700">
+                        <p className="mt-2 text-xs font-semibold text-[#1C8A3C]">
                           Selected: {formData.gstCertificate.name}
                         </p>
                       )}
@@ -753,9 +749,9 @@ className={`${
                       name="agreeTerms"
                       checked={formData.agreeTerms}
                       onChange={handleChange}
-                      className="mt-1 w-4 h-4 text-brand bg-gray-100 border-gray-300 rounded focus:ring-brand"
+                      className="mt-1 w-4 h-4 text-[#1C8A3C] bg-slate-100 border-slate-300 rounded focus:ring-[#1C8A3C]"
                     />
-                    <label htmlFor="agree" className="text-sm text-text-light">
+                    <label htmlFor="agree" className="text-xs md:text-sm text-[#333333] leading-relaxed cursor-pointer">
                       I declare that the information provided above is true and
                       correct. I authorize Meenakshi Pharma to contact me
                       regarding this partnership application.
@@ -768,6 +764,7 @@ className={`${
                 <div className="pt-6 text-center">
                   <Button
                     type="submit"
+                    variant="primary"
                     disabled={loading}
                     className="w-full md:w-auto md:px-16"
                   >
@@ -779,7 +776,6 @@ className={`${
           </div>
         </div>
       </section>
-      {/* <CTASection /> */}
     </>
   );
 };

@@ -22,9 +22,10 @@ import testimonialVideo1 from "../assets/videos/srccc.mp4";
 import testimonialVideo2 from "../assets/videos/srccc1.mp4";
 import testimonialVideo3 from "../assets/videos/srccc2.mp4";
 
-import { useMotionValue, useTransform, animate } from "framer-motion";
+import { useMotionValue, animate } from "framer-motion";
 import { home, about, services } from "../data/content";
 import { iconMap } from "../utils/iconMap";
+
 const Counter = ({ target, suffix = "" }) => {
   const count = useMotionValue(0);
   const [displayValue, setDisplayValue] = React.useState("0");
@@ -74,7 +75,7 @@ const TestimonialVideoCard = ({ src, badge, title, desc, delay }) => {
 
   return (
     <motion.div
-      className="relative rounded-3xl overflow-hidden shadow-xl bg-slate-900 group h-full w-full flex flex-col md:flex-row cursor-pointer"
+      className="relative rounded-3xl overflow-hidden shadow-2xl bg-[#083B6A] group h-full w-full flex flex-col md:flex-row cursor-pointer border border-[#0B4E8C]"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -82,21 +83,21 @@ const TestimonialVideoCard = ({ src, badge, title, desc, delay }) => {
       onClick={togglePlay}
     >
       {/* LEFT SIDE (Desktop Text) */}
-      <div className="hidden md:flex md:w-[45%] flex-col justify-center p-8 lg:p-12 text-left bg-gradient-to-b from-slate-900 to-slate-950 z-20 select-none">
-        <span className="inline-block self-start bg-brand text-white text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-4">
+      <div className="hidden md:flex md:w-[45%] flex-col justify-center p-8 lg:p-12 text-left bg-[#083B6A] z-20 select-none">
+        <span className="inline-block self-start bg-[#1C8A3C] text-white text-[11px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-4 shadow-sm">
           {badge}
         </span>
-        <h4 className="text-white text-2xl lg:text-3xl font-serif font-bold mb-4 leading-snug">
+        <h4 className="text-white text-2xl lg:text-3xl font-bold mb-4 leading-snug">
           {title}
         </h4>
-        <p className="text-white/70 text-sm lg:text-base leading-relaxed">
+        <p className="text-slate-100 text-sm lg:text-base leading-relaxed">
           {desc}
         </p>
       </div>
 
       {/* RIGHT SIDE (Video Player) */}
       <div className="relative w-full h-full md:w-[55%] bg-black flex items-center justify-center overflow-hidden">
-        {/* Video (Centered, maintaining its own portrait aspect ratio on desktop, filling on mobile) */}
+        {/* Video */}
         <video
           ref={videoRef}
           className="w-full h-full md:h-full md:w-auto md:aspect-[3/4] object-cover md:object-contain"
@@ -107,10 +108,10 @@ const TestimonialVideoCard = ({ src, badge, title, desc, delay }) => {
           playsInline
         />
 
-        {/* Gradient overlay for mobile (layered text) */}
+        {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/35 group-hover:via-black/10 transition-all duration-300 pointer-events-none md:bg-gradient-to-t md:from-black/40 md:via-transparent md:to-black/10"></div>
 
-        {/* Play/Pause center overlay (on hover) */}
+        {/* Play/Pause center overlay */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
           <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30 hover:scale-110 transition-transform">
             {isPlaying ? (
@@ -124,20 +125,20 @@ const TestimonialVideoCard = ({ src, badge, title, desc, delay }) => {
         {/* Mute/Unmute button top-right */}
         <button
           onClick={toggleMute}
-          className="absolute top-4 right-4 z-30 w-10 h-10 bg-black/40 backdrop-blur-md text-white rounded-full flex items-center justify-center border border-white/10 hover:bg-black/60 transition-colors"
+          className="absolute top-4 right-4 z-30 w-10 h-10 bg-black/50 backdrop-blur-md text-white rounded-full flex items-center justify-center border border-white/20 hover:bg-black/80 transition-colors"
         >
           {isMuted ? <FiVolumeX size={16} /> : <FiVolume2 size={16} />}
         </button>
 
         {/* Text overlay bottom (Mobile only) */}
         <div className="absolute bottom-6 left-6 right-6 z-20 pointer-events-none md:hidden">
-          <span className="inline-block bg-brand text-white text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-2">
+          <span className="inline-block bg-[#1C8A3C] text-white text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-2">
             {badge}
           </span>
-          <h4 className="text-white text-lg font-serif font-bold mb-1 leading-snug drop-shadow-md">
+          <h4 className="text-white text-lg font-bold mb-1 leading-snug drop-shadow-md">
             {title}
           </h4>
-          <p className="text-white/80 text-xs leading-relaxed max-w-sm drop-shadow-md">
+          <p className="text-slate-100 text-xs leading-relaxed max-w-sm drop-shadow-md">
             {desc}
           </p>
         </div>
@@ -149,7 +150,6 @@ const TestimonialVideoCard = ({ src, badge, title, desc, delay }) => {
 const Home = () => {
   const [currentVideoIndex, setCurrentVideoIndex] = React.useState(0);
 
- 
   return (
     <>
       <Helmet>
@@ -161,31 +161,29 @@ const Home = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative pt-24 pb-16 lg:pt-32 lg:pb-24 overflow-hidden bg-transparent">
-        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-brand opacity-5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-secondary opacity-5 rounded-full blur-3xl"></div>
+      <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-gradient-to-b from-[#E8F1F9] via-[#F5F7FA] to-white">
+        <div className="absolute top-10 right-0 w-[500px] h-[500px] bg-[#0B4E8C]/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#1C8A3C]/5 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div className="container-custom relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+        <div className="container-custom relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
           <motion.div
             className="flex-1 text-center lg:text-left"
-            initial={{ opacity: 0, x: -50 }}
+            initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7 }}
           >
-            <span className="inline-block py-1 px-3 rounded-full bg-brand-light text-brand font-medium text-xl mb-6">
+            <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-[#E8F5EB] border border-[#1C8A3C]/30 text-[#1C8A3C] font-semibold text-sm mb-6 shadow-xs">
+              <span className="w-2 h-2 rounded-full bg-[#E31E24] animate-pulse"></span>
               Meenakshi Pharma
             </span>
-            <h1 className="text-5xl lg:text-6xl xl:text-7xl font-serif text-text leading-tight mb-6">
-              Delivering <span className="text-brand">Excellence</span> in
-              Healthcare
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#0B4E8C] leading-tight tracking-tight mb-6">
+              Delivering <span className="text-[#1C8A3C]">Excellence</span> in Healthcare
             </h1>
-            <p className="text-lg text-text-light mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-              Your trusted partner in pharmaceutical distribution. We ensure
-              safe, reliable, and timely access to quality healthcare products
-              across the region.
+            <p className="text-base sm:text-lg text-[#333333] mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+              Your trusted partner in pharmaceutical distribution. We ensure safe, reliable, and timely access to quality healthcare products across the region.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-              <Button to="/services">Explore Services</Button>
+              <Button to="/services" variant="primary">Explore Services</Button>
               <Button to="/partner" variant="secondary">
                 Partner With Us
               </Button>
@@ -193,10 +191,10 @@ const Home = () => {
           </motion.div>
 
           <motion.div
-            className="flex-1 relative w-full max-w-md mx-auto lg:max-w-lg lg:ml-auto mt-10 lg:mt-0"
-            initial={{ opacity: 0, x: 50 }}
+            className="flex-1 relative w-full max-w-md mx-auto lg:max-w-lg lg:ml-auto mt-6 lg:mt-0"
+            initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
+            transition={{ duration: 0.7, delay: 0.15 }}
           >
             <HeroCarousel />
           </motion.div>
@@ -204,7 +202,7 @@ const Home = () => {
       </section>
 
       {/* Statistics Counter */}
-      <section className="py-12 bg-transparent relative z-20 -mt-10">
+      <section className="py-12 bg-[#F5F7FA] relative z-20 border-y border-slate-200 shadow-xs">
         <div className="container-custom">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {home.stats.map((stat, index) => (
@@ -214,16 +212,16 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="glass-card p-6 text-center shadow-lg transform hover:-translate-y-2 transition-transform duration-300"
+                className="bg-white border border-slate-200 border-t-4 border-t-[#0B4E8C] p-6 md:p-8 rounded-2xl text-center shadow-soft hover:shadow-card-hover hover:border-t-[#1C8A3C] hover:-translate-y-1 transition-all duration-300 group"
               >
-                <h3 className="text-4xl md:text-5xl font-serif font-bold text-brand mb-2">
+                <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B4E8C] group-hover:text-[#1C8A3C] mb-2 tracking-tight">
                   <Counter
                     prefix={stat.prefix}
                     target={stat.target}
                     suffix={stat.suffix}
                   />
                 </h3>
-                <p className="text-text-light font-medium">{stat.label}</p>
+                <p className="text-[#333333] font-semibold text-sm md:text-base">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -231,26 +229,21 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="section-padding bg-transparent">
+      <section className="section-padding bg-white">
         <div className="container-custom">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             <motion.div
               className="flex-1 w-full"
-              initial={{ opacity: 0, scale: 0.9 }}
+              initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
             >
-              <div className="relative aspect-square rounded-3xl overflow-hidden shadow-soft">
+              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-[#F5F7FA]">
                 <img
                   src={heroImg}
                   alt="About Us"
                   className="w-full h-full object-cover"
                 />
-                {/* <img
-                  src={heroImg}
-                  alt="Meenakshi Pharma Facility"
-                  className="w-full h-full object-cover"
-                /> */}
               </div>
             </motion.div>
             <motion.div
@@ -265,25 +258,25 @@ const Home = () => {
                 align="left"
               />
               <p
-                className="text-text-light leading-relaxed mb-6"
+                className="text-[#333333] leading-relaxed mb-6 text-base"
                 dangerouslySetInnerHTML={{
                   __html: about.introduction.desc1,
                 }}
               />
               <p
-                className="text-text-light leading-relaxed mb-6"
+                className="text-[#333333] leading-relaxed mb-8 text-base"
                 dangerouslySetInnerHTML={{
                   __html: about.introduction.desc2,
                 }}
               />
-              <Button to="/about">Read Our Story</Button>
+              <Button to="/about" variant="primary">Read Our Story</Button>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="section-padding bg-transparent">
+      <section className="section-padding bg-[#F5F7FA]">
         <div className="container-custom">
           <SectionTitle
             title="Comprehensive Healthcare Solutions"
@@ -301,25 +294,27 @@ const Home = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white p-10 rounded-2xl shadow-card hover:shadow-xl transition-all duration-300 group border border-gray-100"
+                  className="bg-white p-8 md:p-10 rounded-2xl shadow-soft hover:shadow-card-hover border border-slate-200 border-t-4 border-t-[#0B4E8C] hover:border-t-[#1C8A3C] transition-all duration-300 group flex flex-col justify-between"
                 >
-                  <div className="flex items-center gap-4 mb-6">
-                    <div
-                      className={`w-14 h-14 rounded-full flex items-center justify-center text-2xl text-white flex-shrink-0 ${
-                        index % 2 === 0 ? "bg-brand" : "bg-secondary"
-                      }`}
-                    >
-                      {Icon && <Icon />}
+                  <div>
+                    <div className="flex items-center gap-4 mb-6">
+                      <div
+                        className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl text-white flex-shrink-0 shadow-md ${
+                          index % 2 === 0 ? "bg-[#0B4E8C]" : "bg-[#1C8A3C]"
+                        }`}
+                      >
+                        {Icon && <Icon />}
+                      </div>
+
+                      <h3 className="text-xl md:text-2xl font-bold text-[#0B4E8C] group-hover:text-[#1C8A3C] transition-colors">
+                        {service.title}
+                      </h3>
                     </div>
 
-                    <h3 className="text-2xl font-serif font-semibold text-text">
-                      {service.title}
-                    </h3>
+                    <p className="text-[#333333] leading-relaxed text-sm md:text-base">
+                      {service.desc}
+                    </p>
                   </div>
-
-                  <p className="text-text-light leading-relaxed">
-                    {service.desc}
-                  </p>
                 </motion.div>
               );
             })}
@@ -333,33 +328,32 @@ const Home = () => {
       </section>
 
       {/* Why Choose Us */}
-
-      <section className="section-padding bg-transparent">
+      <section className="section-padding bg-white">
         <div className="container-custom text-center">
           <SectionTitle
             title={home.whyChooseUs.title}
             subtitle="Our Strengths"
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
             {home.whyChooseUs.features.map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.2 }}
-                className="glass-card p-10 relative overflow-hidden"
+                transition={{ delay: index * 0.15 }}
+                className="bg-white p-8 md:p-10 rounded-2xl border border-slate-200 border-t-4 border-t-[#1C8A3C] shadow-soft hover:shadow-card-hover hover:border-t-[#0B4E8C] transition-all duration-300 relative overflow-hidden group"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-brand opacity-5 rounded-full -mr-10 -mt-10"></div>
-                <h3 className="text-xl font-serif mb-4">{feature}</h3>
-                {/* <p className="text-text-light">{feature.desc}</p> */}
+                <div className="absolute top-0 right-0 w-24 h-24 bg-[#1C8A3C]/10 rounded-full -mr-8 -mt-8 pointer-events-none group-hover:scale-125 transition-transform"></div>
+                <h3 className="text-xl font-bold text-[#0B4E8C] group-hover:text-[#1C8A3C] transition-colors">{feature}</h3>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
+
       {/* Testimonial Video Section */}
-      <section className="section-padding bg-transparent overflow-hidden">
+      <section className="section-padding bg-[#F5F7FA] overflow-hidden">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -397,9 +391,9 @@ const Home = () => {
             ];
 
             return (
-              <div className="relative mt-12 w-full max-w-sm md:max-w-4xl lg:max-w-5xl mx-auto px-4 md:px-0">
+              <div className="relative mt-8 w-full max-w-sm md:max-w-4xl lg:max-w-5xl mx-auto px-4 md:px-0">
                 {/* Carousel Track */}
-                <div className="relative overflow-hidden rounded-3xl aspect-[3/4] md:aspect-[2/1] lg:aspect-[2.2/1] shadow-2xl bg-slate-900 group">
+                <div className="relative overflow-hidden rounded-3xl aspect-[3/4] md:aspect-[2/1] lg:aspect-[2.2/1] shadow-2xl bg-[#083B6A] group">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={currentVideoIndex}
@@ -429,7 +423,7 @@ const Home = () => {
                         testimonialVideos.length,
                     )
                   }
-                  className="absolute left-3 md:-left-16 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-12 md:h-12 bg-white/90 hover:bg-white text-text rounded-full shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 active:scale-95 transition-all"
+                  className="absolute left-3 md:-left-16 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 bg-white text-[#0B4E8C] rounded-full shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#1C8A3C] hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
                   aria-label="Previous testimonial"
                 >
                   <svg
@@ -438,7 +432,7 @@ const Home = () => {
                     viewBox="0 0 24 24"
                     strokeWidth="2.5"
                     stroke="currentColor"
-                    className="w-4.5 h-4.5 md:w-5 md:h-5"
+                    className="w-5 h-5"
                   >
                     <path
                       strokeLinecap="round"
@@ -454,7 +448,7 @@ const Home = () => {
                       (prev) => (prev + 1) % testimonialVideos.length,
                     )
                   }
-                  className="absolute right-3 md:-right-16 top-1/2 -translate-y-1/2 z-30 w-9 h-9 md:w-12 md:h-12 bg-white/90 hover:bg-white text-text rounded-full shadow-lg flex items-center justify-center border border-gray-100 hover:scale-110 active:scale-95 transition-all"
+                  className="absolute right-3 md:-right-16 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 bg-white text-[#0B4E8C] rounded-full shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#1C8A3C] hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
                   aria-label="Next testimonial"
                 >
                   <svg
@@ -463,7 +457,7 @@ const Home = () => {
                     viewBox="0 0 24 24"
                     strokeWidth="2.5"
                     stroke="currentColor"
-                    className="w-4.5 h-4.5 md:w-5 md:h-5"
+                    className="w-5 h-5"
                   >
                     <path
                       strokeLinecap="round"
@@ -479,10 +473,10 @@ const Home = () => {
                     <button
                       key={index}
                       onClick={() => setCurrentVideoIndex(index)}
-                      className={`h-2.5 rounded-full transition-all duration-300 ${
+                      className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                         currentVideoIndex === index
-                          ? "w-8 bg-brand"
-                          : "w-2.5 bg-gray-300 hover:bg-gray-400"
+                          ? "w-8 bg-[#1C8A3C]"
+                          : "w-2.5 bg-slate-300 hover:bg-slate-400"
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
                     />

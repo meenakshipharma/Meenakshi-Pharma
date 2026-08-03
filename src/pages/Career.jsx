@@ -7,6 +7,7 @@ import PageBanner from "../components/PageBanner";
 import Button from "../components/Button";
 import CTASection from "../components/CTASection";
 import { career } from "../data/content";
+
 const Career = () => {
   const [formData, setFormData] = useState({
     fullName: "",
@@ -26,11 +27,11 @@ const Career = () => {
   const validateField = (name, value) => {
     switch (name) {
       case "fullName": {
-        const name = value?.toString().trim();
+        const val = value?.toString().trim();
 
-        if (!name) return "Full Name is required.";
+        if (!val) return "Full Name is required.";
 
-        if (!/^[A-Za-z\s.'-]{2,50}$/.test(name))
+        if (!/^[A-Za-z\s.'-]{2,50}$/.test(val))
           return "Enter a valid full name.";
 
         break;
@@ -50,7 +51,7 @@ const Career = () => {
       case "resume":
         if (!value) return "Resume is required.";
         if (value.size > 5 * 1024 * 1024)
-    return "Maximum file size is 5MB.";
+          return "Maximum file size is 5MB.";
         break;
       default:
         return "";
@@ -70,6 +71,7 @@ const Career = () => {
     setFormErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+
   const resetForm = () => {
     setFormData({
       fullName: "",
@@ -79,7 +81,6 @@ const Career = () => {
     });
 
     const resumeInput = document.getElementById("resume");
-
     if (resumeInput) {
       resumeInput.value = "";
     }
@@ -149,20 +150,15 @@ const Career = () => {
     e.preventDefault();
 
     setStatus({
-    success: false,
-    error: "",
-    message: "",
-});
-    if (!validateAll()) {
-      return;
-    }
-    setLoading(true);
-
-    setStatus({
       success: false,
       error: "",
       message: "",
     });
+
+    if (!validateAll()) {
+      return;
+    }
+    setLoading(true);
 
     try {
       const data = new FormData();
@@ -205,7 +201,8 @@ const Career = () => {
   };
 
   const inputClass =
-    "w-full bg-gray-50 border border-gray-200 rounded-lg px-4 py-3 focus:outline-none focus:ring-2 focus:ring-brand focus:border-transparent transition-all duration-300";
+    "w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#0B4E8C] focus:border-[#0B4E8C] transition-all text-sm shadow-xs";
+
   return (
     <>
       <Helmet>
@@ -220,40 +217,38 @@ const Career = () => {
         title={career.banner.title}
         subtitle={career.banner.subtitle}
         subsubtitle={career.banner.subsubtitle}
-        a
       />
 
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 max-w-4xl">
+      <section className="py-16 md:py-24 bg-[#F5F7FA]">
+        <div className="container mx-auto px-4 max-w-3xl">
           <motion.div
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className="bg-white rounded-2xl shadow-xl border border-gray-100 p-8 md:p-10"
+            className="bg-white rounded-3xl shadow-xl border border-slate-200 border-t-4 border-t-[#0B4E8C] p-8 md:p-12"
           >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-12 h-12 rounded-full bg-brand/10 flex items-center justify-center">
-                <FiBriefcase className="text-brand text-xl" />
+            <div className="flex items-center gap-4 mb-8">
+              <div className="w-12 h-12 rounded-2xl bg-[#E8F5EB] text-[#1C8A3C] flex items-center justify-center border border-[#1C8A3C]/20 shadow-xs shrink-0">
+                <FiBriefcase className="text-2xl" />
               </div>
 
               <div>
-                <h2 className="text-3xl font-bold text-gray-900">Apply Now</h2>
-
-                <p className="text-gray-600">
+                <h2 className="text-2xl md:text-3xl font-bold text-[#0B4E8C]">Apply Now</h2>
+                <p className="text-[#333333] text-sm md:text-base">
                   Fill in your details and upload your latest resume.
                 </p>
               </div>
             </div>
 
             {status.success && (
-              <div className="mb-6 rounded-xl border border-secondary/30 bg-secondary-light p-4 text-secondary-dark font-medium">
+              <div className="mb-6 rounded-2xl border border-[#1C8A3C]/30 bg-[#E8F5EB] p-4 text-[#1C8A3C] text-sm font-medium">
                 {status.message}
               </div>
             )}
 
             {status.error && (
-              <div className="mb-6 rounded-xl border border-danger/30 bg-danger-light p-4 text-danger-dark font-medium">
+              <div className="mb-6 rounded-2xl border border-[#E31E24]/30 bg-[#FDE8E9] p-4 text-[#E31E24] text-sm font-medium">
                 {status.error}
               </div>
             )}
@@ -264,7 +259,7 @@ const Career = () => {
               encType="multipart/form-data"
             >
               <div>
-                <label className="block mb-2 font-medium">Full Name</label>
+                <label className="block mb-2 font-semibold text-[#0B4E8C] text-sm">Full Name *</label>
 
                 <input
                   type="text"
@@ -273,54 +268,54 @@ const Career = () => {
                   onChange={handleChange}
                   placeholder="Enter your full name"
                   className={`${inputClass} ${
-                    formErrors.fullName ? "border-red-500" : ""
+                    formErrors.fullName ? "border-[#E31E24] bg-[#FDE8E9]/20" : ""
                   }`}
                 />
                 {formErrors.fullName && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
                     {formErrors.fullName}
                   </p>
                 )}
               </div>
 
               <div>
-                <label className="block mb-2 font-medium">Mobile Number</label>
+                <label className="block mb-2 font-semibold text-[#0B4E8C] text-sm">Mobile Number *</label>
 
                 <input
                   type="tel"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className={`${inputClass} ${formErrors.phone ? "border-red-500" : ""}`}
+                  className={`${inputClass} ${formErrors.phone ? "border-[#E31E24] bg-[#FDE8E9]/20" : ""}`}
                   placeholder="Enter your mobile number"
                 />
                 {formErrors.phone && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
                     {formErrors.phone}
                   </p>
                 )}
               </div>
 
               <div>
-                <label className="block mb-2 font-medium">Email Address</label>
+                <label className="block mb-2 font-semibold text-[#0B4E8C] text-sm">Email Address *</label>
 
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className={`${inputClass} ${formErrors.email ? "border-red-500" : ""}`}
+                  className={`${inputClass} ${formErrors.email ? "border-[#E31E24] bg-[#FDE8E9]/20" : ""}`}
                   placeholder="Enter your email"
                 />
                 {formErrors.email && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
                     {formErrors.email}
                   </p>
                 )}
               </div>
 
               <div>
-                <label className="block mb-2 font-medium">Upload Resume</label>
+                <label className="block mb-2 font-semibold text-[#0B4E8C] text-sm">Upload Resume *</label>
 
                 <input
                   id="resume"
@@ -328,29 +323,31 @@ const Career = () => {
                   name="resume"
                   accept=".pdf,.doc,.docx"
                   onChange={handleChange}
-                  className={`w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-light file:text-brand hover:file:bg-brand hover:file:text-white transition-colors ${formErrors.resume ? "border border-red-500 rounded-lg" : ""}`}
+                  className={`w-full text-sm text-[#333333] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#E8F5EB] file:text-[#1C8A3C] hover:file:bg-[#1C8A3C] hover:file:text-white transition-colors cursor-pointer ${formErrors.resume ? "border border-[#E31E24] rounded-xl" : ""}`}
                 />
 
-                <p className="mt-2 text-sm text-gray-500">
+                <p className="mt-2 text-xs text-[#555555]">
                   Accepted formats: PDF, DOC, DOCX (Maximum 5 MB)
                 </p>
 
                 {formErrors.resume && (
-                  <p className="mt-1 text-sm text-red-600">
+                  <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
                     {formErrors.resume}
                   </p>
                 )}
                 {formData.resume && (
-                  <div className="mt-3 rounded-lg bg-gray-50 border p-3 text-sm">
-                    <span className="font-semibold">Selected File:</span>{" "}
+                  <div className="mt-3 rounded-xl bg-[#E8F5EB] border border-[#1C8A3C]/30 p-3 text-xs text-[#1C8A3C]">
+                    <span className="font-bold">Selected File:</span>{" "}
                     {formData.resume.name}
                   </div>
                 )}
               </div>
 
-              <Button type="submit" disabled={loading} className="w-full">
-                {loading ? "Submitting Application..." : "Submit Application"}
-              </Button>
+              <div className="pt-4">
+                <Button type="submit" variant="primary" disabled={loading} className="w-full">
+                  {loading ? "Submitting Application..." : "Submit Application"}
+                </Button>
+              </div>
             </form>
           </motion.div>
         </div>
