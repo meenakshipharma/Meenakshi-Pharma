@@ -320,7 +320,7 @@ const Home = () => {
                       </h3>
                     </div>
 
-                    <p className="text-[#333333] leading-relaxed text-sm md:text-base text-justify">
+                    <p className="text-[#333333] leading-relaxed text-sm md:text-base lg:text-lg text-justify">
                       {service.desc}
                     </p>
                   </div>

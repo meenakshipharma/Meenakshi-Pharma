@@ -25,7 +25,7 @@ const CTASection = () => {
             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight max-w-4xl mx-auto tracking-tight text-white">
               Ready to Elevate Your Healthcare Supply?
             </h2>
-            <p className="text-base md:text-xl text-slate-100 mb-10 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-base md:text-xl text-slate-100 mb-10 max-w-2xl mx-auto leading-relaxed text-center">
               Join hundreds of satisfied partners and experience the Meenakshi Pharma difference.
             </p>
             <div className="flex justify-center">
