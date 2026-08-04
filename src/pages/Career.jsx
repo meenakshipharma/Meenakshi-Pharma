@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { FiBriefcase, FiCheckCircle } from "react-icons/fi";
@@ -31,6 +31,20 @@ const Career = () => {
 
   const [formErrors, setFormErrors] = useState({});
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    const handleBeforeUnload = (e) => {
+      if (loading) {
+        e.preventDefault();
+        e.returnValue = "Your job application submission is in progress. Please wait until it completes.";
+        return e.returnValue;
+      }
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, [loading]);
 
   const [status, setStatus] = useState({
     success: false,
@@ -710,6 +724,23 @@ const Career = () => {
       </section>
 
       <CTASection />
+
+      {/* Non-dismissible Full-screen Loading Overlay during submission */}
+      {loading && (
+        <div className="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-[9999] flex flex-col items-center justify-center p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl border border-slate-100 flex flex-col items-center"
+          >
+            <div className="w-14 h-14 border-4 border-[#0B4E8C] border-t-transparent rounded-full animate-spin mb-4"></div>
+            <h3 className="text-xl font-bold text-[#0B4E8C] mb-2">Submitting Application...</h3>
+            <p className="text-xs text-slate-600 leading-relaxed">
+              Please wait while your application and resume are being uploaded. Do not navigate away or refresh the page.
+            </p>
+          </motion.div>
+        </div>
+      )}
     </>
   );
 };
