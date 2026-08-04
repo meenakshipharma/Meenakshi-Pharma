@@ -21,6 +21,7 @@ import heroImg from "../assets/images/hero.webp";
 import testimonialVideo1 from "../assets/videos/srccc.mp4";
 import testimonialVideo2 from "../assets/videos/srccc1.mp4";
 import testimonialVideo3 from "../assets/videos/srccc2.mp4";
+import testimonialVideo4 from "../assets/videos/srccc3.webm";
 
 import { useMotionValue, animate } from "framer-motion";
 import { home, about, services } from "../data/content";
@@ -384,6 +385,11 @@ const Home = () => {
               },
               {
                 src: testimonialVideo3,
+                badge: "Logistics Hub",
+                title: "Advanced Cold Chain",
+                desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
+              }, {
+                src: testimonialVideo4,
                 badge: "Logistics Hub",
                 title: "Advanced Cold Chain",
                 desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
