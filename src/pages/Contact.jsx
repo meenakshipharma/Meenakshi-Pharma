@@ -237,18 +237,16 @@ const Contact = () => {
 
     try {
       if (serviceId && userTemplateId && publicKey) {
-        const userRes = await emailjs.send(serviceId, userTemplateId, templateParams, publicKey);
+        // Send user auto-reply email
+        await emailjs.send(serviceId, userTemplateId, templateParams, publicKey);
 
+        // Send company admin notification email if admin template ID is configured
         if (adminTemplateId && adminTemplateId.trim() && adminTemplateId !== userTemplateId) {
-          emailPromises.push(
-            emailjs.send(serviceId, adminTemplateId, templateParams, publicKey)
-          );
+          await emailjs.send(serviceId, adminTemplateId, templateParams, publicKey);
         }
-
-        await Promise.all(emailPromises);
       } else {
         console.warn(
-          "EmailJS credentials missing in .env. Simulating successful submit."
+          "EmailJS credentials missing in .env (VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY). Simulating successful submit."
         );
       }
 
