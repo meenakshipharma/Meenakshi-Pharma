@@ -25,7 +25,7 @@ import usePageLoader from "./hooks/usePageLoader";
 import Logo3DSplash from "./components/loader/Logo3DSplash";
 function App() {
   const loading = usePageLoader({
-    minDuration: 2500,
+    minDuration: 2200,
   });
   if (loading) {
     return <Logo3DSplash theme={themeJson} />;
