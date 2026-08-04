@@ -6,6 +6,7 @@ import { FiBriefcase, FiCheckCircle } from "react-icons/fi";
 import PageBanner from "../components/PageBanner";
 import Button from "../components/Button";
 import CTASection from "../components/CTASection";
+import CustomSelect from "../components/CustomSelect";
 import { career } from "../data/content";
 
 const Career = () => {
@@ -256,17 +257,8 @@ const Career = () => {
   const inputErrorClass =
     "w-full bg-[#FDE8E9]/20 border border-[#E31E24] rounded-xl px-4 py-3 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#E31E24] focus:border-[#E31E24] transition-all text-sm shadow-xs";
 
-  const selectClass =
-    "w-full bg-white border border-slate-300 rounded-xl px-4 py-3 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#0B4E8C] focus:border-[#0B4E8C] transition-all text-sm shadow-xs cursor-pointer";
-
-  const selectErrorClass =
-    "w-full bg-[#FDE8E9]/20 border border-[#E31E24] rounded-xl px-4 py-3 text-[#333333] focus:outline-none focus:ring-2 focus:ring-[#E31E24] focus:border-[#E31E24] transition-all text-sm shadow-xs cursor-pointer";
-
   const getInputClass = (fieldName) =>
     formErrors[fieldName] ? inputErrorClass : inputClass;
-
-  const getSelectClass = (fieldName) =>
-    formErrors[fieldName] ? selectErrorClass : selectClass;
 
   return (
     <>
@@ -386,17 +378,17 @@ const Career = () => {
                         <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Gender (Optional)
                         </label>
-                        <select
+                        <CustomSelect
                           name="gender"
                           value={formData.gender}
                           onChange={handleChange}
-                          className={selectClass}
-                        >
-                          <option value="">Select Gender</option>
-                          <option value="Male">Male</option>
-                          <option value="Female">Female</option>
-                          <option value="Prefer not to say">Prefer not to say</option>
-                        </select>
+                          placeholder="Select Gender"
+                          options={[
+                            "Male",
+                            "Female",
+                            "Prefer not to say",
+                          ]}
+                        />
                       </div>
 
                       <div>
@@ -472,29 +464,26 @@ const Career = () => {
                         <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Position Applying For *
                         </label>
-                        <select
+                        <CustomSelect
                           name="position"
                           value={formData.position}
                           onChange={handleChange}
-                          className={getSelectClass("position")}
-                        >
-                          <option value="">Select Position</option>
-                          <option value="Delivery Executive">Delivery Executive</option>
-                          <option value="Warehouse Executive">Warehouse Executive</option>
-                          <option value="Billing Executive">Billing Executive</option>
-                          <option value="Sales Executive">Sales Executive</option>
-                          <option value="Customer Support Executive">
-                            Customer Support Executive
-                          </option>
-                          <option value="Accounts Executive">Accounts Executive</option>
-                          <option value="Pharmacist">Pharmacist</option>
-                          <option value="Digital Marketing Executive">
-                            Digital Marketing Executive
-                          </option>
-                          <option value="HR & Administration">HR & Administration</option>
-                          <option value="Operations Executive">Operations Executive</option>
-                          <option value="Others">Others</option>
-                        </select>
+                          placeholder="Select Position"
+                          error={!!formErrors.position}
+                          options={[
+                            "Delivery Executive",
+                            "Warehouse Executive",
+                            "Billing Executive",
+                            "Sales Executive",
+                            "Customer Support Executive",
+                            "Accounts Executive",
+                            "Pharmacist",
+                            "Digital Marketing Executive",
+                            "HR & Administration",
+                            "Operations Executive",
+                            "Others",
+                          ]}
+                        />
                         {formErrors.position && (
                           <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
                             {formErrors.position}
@@ -506,20 +495,21 @@ const Career = () => {
                         <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Total Experience *
                         </label>
-                        <select
+                        <CustomSelect
                           name="experience"
                           value={formData.experience}
                           onChange={handleChange}
-                          className={getSelectClass("experience")}
-                        >
-                          <option value="">Select Experience</option>
-                          <option value="Fresher">Fresher</option>
-                          <option value="Less than 1 Year">Less than 1 Year</option>
-                          <option value="1–2 Years">1–2 Years</option>
-                          <option value="2–5 Years">2–5 Years</option>
-                          <option value="5–10 Years">5–10 Years</option>
-                          <option value="More than 10 Years">More than 10 Years</option>
-                        </select>
+                          placeholder="Select Experience"
+                          error={!!formErrors.experience}
+                          options={[
+                            "Fresher",
+                            "Less than 1 Year",
+                            "1–2 Years",
+                            "2–5 Years",
+                            "5–10 Years",
+                            "More than 10 Years",
+                          ]}
+                        />
                         {formErrors.experience && (
                           <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
                             {formErrors.experience}
@@ -563,22 +553,23 @@ const Career = () => {
                         <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Expected Salary *
                         </label>
-                        <select
+                        <CustomSelect
                           name="expectedSalary"
                           value={formData.expectedSalary}
                           onChange={handleChange}
-                          className={getSelectClass("expectedSalary")}
-                        >
-                          <option value="">Select Expected Salary</option>
-                          <option value="Below ₹15,000">Below ₹15,000</option>
-                          <option value="₹15,000 – ₹20,000">₹15,000 – ₹20,000</option>
-                          <option value="₹20,001 – ₹25,000">₹20,001 – ₹25,000</option>
-                          <option value="₹25,001 – ₹30,000">₹25,001 – ₹30,000</option>
-                          <option value="₹30,001 – ₹40,000">₹30,001 – ₹40,000</option>
-                          <option value="₹40,001 – ₹50,000">₹40,001 – ₹50,000</option>
-                          <option value="Above ₹50,000">Above ₹50,000</option>
-                          <option value="Negotiable">Negotiable</option>
-                        </select>
+                          placeholder="Select Expected Salary"
+                          error={!!formErrors.expectedSalary}
+                          options={[
+                            "Below ₹15,000",
+                            "₹15,000 – ₹20,000",
+                            "₹20,001 – ₹25,000",
+                            "₹25,001 – ₹30,000",
+                            "₹30,001 – ₹40,000",
+                            "₹40,001 – ₹50,000",
+                            "Above ₹50,000",
+                            "Negotiable",
+                          ]}
+                        />
                         {formErrors.expectedSalary && (
                           <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
                             {formErrors.expectedSalary}
@@ -590,21 +581,22 @@ const Career = () => {
                         <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Notice Period *
                         </label>
-                        <select
+                        <CustomSelect
                           name="noticePeriod"
                           value={formData.noticePeriod}
                           onChange={handleChange}
-                          className={getSelectClass("noticePeriod")}
-                        >
-                          <option value="">Select Notice Period</option>
-                          <option value="Immediate">Immediate</option>
-                          <option value="Within 15 Days">Within 15 Days</option>
-                          <option value="30 Days">30 Days</option>
-                          <option value="45 Days">45 Days</option>
-                          <option value="60 Days">60 Days</option>
-                          <option value="90 Days">90 Days</option>
-                          <option value="Negotiable">Negotiable</option>
-                        </select>
+                          placeholder="Select Notice Period"
+                          error={!!formErrors.noticePeriod}
+                          options={[
+                            "Immediate",
+                            "Within 15 Days",
+                            "30 Days",
+                            "45 Days",
+                            "60 Days",
+                            "90 Days",
+                            "Negotiable",
+                          ]}
+                        />
                         {formErrors.noticePeriod && (
                           <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
                             {formErrors.noticePeriod}

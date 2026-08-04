@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import PageBanner from "../components/PageBanner";
 import Button from "../components/Button";
+import CustomSelect from "../components/CustomSelect";
 import { partner } from "../data/content";
 
 const CATEGORY_OPTIONS = [
@@ -15,7 +16,7 @@ const CATEGORY_OPTIONS = [
 const Partner = () => {
   const [formData, setFormData] = useState({
     businessName: "",
-    businessType: "Retail Pharmacy",
+    businessType: "",
     ownerName: "",
     contactName: "",
     mobile: "",
@@ -68,6 +69,10 @@ const Partner = () => {
         if (!value || !value.toString().trim())
           return "Business / Pharmacy / Clinic Name is required.";
         break;
+      case "businessType":
+        if (!value || !value.toString().trim())
+          return "Business Type is required.";
+        break;
       case "ownerName":
         if (!value || !value.toString().trim())
           return "Proprietor / Owner Name is required.";
@@ -110,8 +115,7 @@ const Partner = () => {
         if (!value || !value.toString().trim()) return "State is required.";
         break;
       case "pincode":
-        if (!value || !value.toString().trim())
-          return "PIN Code is required.";
+        if (!value || !value.toString().trim()) return "PIN Code is required.";
         if (!/^\d{6}$/.test(value.toString().trim()))
           return "Enter a valid 6-digit PIN code.";
         break;
@@ -130,6 +134,10 @@ const Partner = () => {
           return "Interested Product Categories is required.";
         }
         break;
+      case "monthlyPurchase":
+        if (!value || !value.toString().trim())
+          return "Estimated Monthly Purchase Value is required.";
+        break;
       case "agreeTerms":
         if (!value)
           return "You must agree to the declaration before submitting.";
@@ -143,6 +151,7 @@ const Partner = () => {
   const validateAll = () => {
     const requiredFields = [
       "businessName",
+      "businessType",
       "ownerName",
       "contactName",
       "mobile",
@@ -154,6 +163,7 @@ const Partner = () => {
       "state",
       "pincode",
       "categories",
+      "monthlyPurchase",
       "drugLicense",
       "gstCertificate",
       "agreeTerms",
@@ -265,7 +275,7 @@ const Partner = () => {
   const resetForm = () => {
     setFormData({
       businessName: "",
-      businessType: "Retail Pharmacy",
+      businessType: "",
       ownerName: "",
       contactName: "",
       mobile: "",
@@ -405,13 +415,24 @@ const Partner = () => {
               {status.success ? (
                 <div className="text-center py-6 px-4">
                   <div className="w-20 h-20 bg-[#E8F5EB] text-[#1C8A3C] rounded-full flex items-center justify-center mx-auto mb-6 border-4 border-[#1C8A3C]/20 shadow-xs">
-                    <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                    <svg
+                      className="w-10 h-10"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2.5"
+                        d="M5 13l4 4L19 7"
+                      />
                     </svg>
                   </div>
 
                   <h2 className="text-2xl md:text-3xl font-bold text-[#0B4E8C] mb-4">
-                    Thank You for Your Interest in Partnering with Meenakshi Pharma
+                    Thank You for Your Interest in Partnering with Meenakshi
+                    Pharma
                   </h2>
 
                   <div className="inline-block bg-[#E8F5EB] border border-[#1C8A3C]/30 text-[#1C8A3C] font-bold text-sm md:text-base px-6 py-3 rounded-2xl mb-8">
@@ -420,13 +441,20 @@ const Partner = () => {
 
                   <div className="max-w-2xl mx-auto space-y-4 text-[#333333] text-sm md:text-base leading-relaxed text-left bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200 shadow-xs mb-8">
                     <p>
-                      Our team will review the information you have provided and verify your Drug License and GST Certificate as part of our standard onboarding process. Once the verification is complete, one of our representatives will contact you to discuss the next steps.
+                      Our team will review the information you have provided and
+                      verify your Drug License and GST Certificate as part of
+                      our standard onboarding process. Once the verification is
+                      complete, one of our representatives will contact you to
+                      discuss the next steps.
                     </p>
                     <p>
-                      We appreciate your interest in partnering with Meenakshi Pharma and look forward to building a trusted, long-term business relationship.
+                      We appreciate your interest in partnering with Meenakshi
+                      Pharma and look forward to building a trusted, long-term
+                      business relationship.
                     </p>
                     <p className="font-semibold text-[#0B4E8C] pt-2">
-                      Thank you for choosing Meenakshi Pharma as your pharmaceutical supply partner.
+                      Thank you for choosing Meenakshi Pharma as your
+                      pharmaceutical supply partner.
                     </p>
                   </div>
 
@@ -448,8 +476,8 @@ const Partner = () => {
                       Partnership Application Form
                     </h2>
                     <p className="text-[#333333] text-sm md:text-base">
-                      Please fill in your business details below. All fields marked
-                      with * are required.
+                      Please fill in your business details below. All fields
+                      marked with * are required.
                     </p>
                   </div>
 
@@ -481,15 +509,18 @@ const Partner = () => {
                     </svg>
                     <div className="text-xs md:text-sm text-[#78350F] leading-relaxed">
                       <p className="mb-2">
-                        <strong className="font-bold text-[#92400E]">Important Notice:</strong>{" "}
-                        Meenakshi Pharma is a licensed pharmaceutical wholesale distributor.
-                        We supply medicines only to licensed retail pharmacies, hospitals,
-                        and clinics holding a valid Drug License. We do not sell medicines
-                        directly to the general public or individual consumers.
+                        <strong className="font-bold text-[#92400E]">
+                          Important Notice:
+                        </strong>{" "}
+                        Meenakshi Pharma is a licensed pharmaceutical wholesale
+                        distributor. We supply medicines only to licensed retail
+                        pharmacies, hospitals, and clinics holding a valid Drug
+                        License. We do not sell medicines directly to the
+                        general public or individual consumers.
                       </p>
                       <p className="font-semibold text-[#92400E]">
-                        Please complete the form below if you are an eligible healthcare
-                        business interested in partnering with us.
+                        Please complete the form below if you are an eligible
+                        healthcare business interested in partnering with us.
                       </p>
                     </div>
                   </div>
@@ -506,483 +537,507 @@ const Partner = () => {
                     className="space-y-8"
                     encType="multipart/form-data"
                   >
-                {/* ── Business Details ───────────────────────────────── */}
-                <div>
-                  <h3 className="text-lg font-bold text-[#0B4E8C] border-b border-slate-200 pb-3 mb-6">
-                    Business Details
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Business Name */}
+                    {/* ── Business Details ───────────────────────────────── */}
                     <div>
-                      <label className={labelClass}>
-                        Business / Pharmacy / Clinic Name *
-                      </label>
-                      <input
-                        type="text"
-                        name="businessName"
-                        value={formData.businessName}
-                        onChange={handleChange}
-                        onFocus={handleFocus}
-                        className={getInputClass("businessName")}
-                      />
-                      <ErrorMsg field="businessName" />
-                    </div>
-
-                    {/* Business Type */}
-                    <div>
-                      <label className={labelClass}>Business Type *</label>
-                      <select
-                        name="businessType"
-                        value={formData.businessType}
-                        onChange={handleChange}
-                        className={inputClass}
-                      >
-                        <option value="Retail Pharmacy">Retail Pharmacy</option>
-                        <option value="Hospital">Hospital</option>
-                        <option value="Clinic">Clinic</option>
-                      </select>
-                    </div>
-
-                    {/* Owner Name */}
-                    <div>
-                      <label className={labelClass}>
-                        Proprietor / Owner Name *
-                      </label>
-                      <input
-                        type="text"
-                        name="ownerName"
-                        value={formData.ownerName}
-                        onChange={handleChange}
-                        onFocus={handleFocus}
-                        className={getInputClass("ownerName")}
-                      />
-                      <ErrorMsg field="ownerName" />
-                    </div>
-
-                    {/* Contact Person Name */}
-                    <div>
-                      <label className={labelClass}>
-                        Contact Person Name *
-                      </label>
-                      <input
-                        type="text"
-                        name="contactName"
-                        value={formData.contactName}
-                        onChange={handleChange}
-                        onFocus={handleFocus}
-                        disabled={sameAsOwner}
-                        className={`${getInputClass("contactName")} ${
-                          sameAsOwner ? "bg-slate-100 cursor-not-allowed" : ""
-                        }`}
-                      />
-                      <ErrorMsg field="contactName" />
-                      <div className="mt-2 flex items-center gap-2">
-                        <input
-                          type="checkbox"
-                          id="sameAsOwner"
-                          checked={sameAsOwner}
-                          onChange={(e) => {
-                            const checked = e.target.checked;
-                            setSameAsOwner(checked);
-                            setFormData((prev) => ({
-                              ...prev,
-                              contactName: checked ? prev.ownerName : "",
-                            }));
-                            if (checked) {
-                              setFormErrors((prev) => ({
-                                ...prev,
-                                contactName: "",
-                              }));
-                            }
-                          }}
-                          className="w-4 h-4 text-[#1C8A3C] rounded focus:ring-[#1C8A3C]"
-                        />
-                        <label
-                          htmlFor="sameAsOwner"
-                          className="text-xs text-[#333333] font-medium cursor-pointer"
-                        >
-                          Same as Proprietor / Owner
-                        </label>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* ── Contact Information ─────────────────────────────── */}
-                <div>
-                  <h3 className="text-lg font-bold text-[#0B4E8C] border-b border-slate-200 pb-3 mb-6">
-                    Contact Information
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    {/* Mobile */}
-                    <div>
-                      <label className={labelClass}>Mobile Number *</label>
-                      <input
-                        type="tel"
-                        name="mobile"
-                        value={formData.mobile}
-                        onChange={handleChange}
-                        onFocus={handleFocus}
-                        className={getInputClass("mobile")}
-                      />
-                      <ErrorMsg field="mobile" />
-                    </div>
-
-                    {/* WhatsApp */}
-                    <div>
-                      <label className={labelClass}>WhatsApp Number *</label>
-                      <input
-                        type="tel"
-                        name="whatsapp"
-                        value={formData.whatsapp}
-                        onChange={handleChange}
-                        onFocus={handleFocus}
-                        disabled={sameAsMobile}
-                        className={`${
-                          sameAsMobile
-                            ? inputClass + " bg-slate-100 cursor-not-allowed"
-                            : getInputClass("whatsapp")
-                        }`}
-                      />
-                      <ErrorMsg field="whatsapp" />
-                      <div className="mt-2 flex items-center gap-2">
-                        <input
-                          type="checkbox"
-                          id="sameAsMobile"
-                          checked={sameAsMobile}
-                          onChange={(e) => {
-                            const checked = e.target.checked;
-                            setSameAsMobile(checked);
-                            setFormData((prev) => ({
-                              ...prev,
-                              whatsapp: checked ? prev.mobile : "",
-                            }));
-                            if (checked) {
-                              setFormErrors((prev) => ({ ...prev, whatsapp: "" }));
-                            }
-                          }}
-                          className="w-4 h-4 text-[#1C8A3C] rounded focus:ring-[#1C8A3C]"
-                        />
-                        <label
-                          htmlFor="sameAsMobile"
-                          className="text-xs text-[#333333] font-medium cursor-pointer"
-                        >
-                          Same as Mobile Number
-                        </label>
-                      </div>
-                    </div>
-
-                    {/* Email */}
-                    <div>
-                      <label className={labelClass}>Email Address *</label>
-                      <input
-                        type="email"
-                        name="email"
-                        value={formData.email}
-                        onChange={handleChange}
-                        onFocus={handleFocus}
-                        className={getInputClass("email")}
-                      />
-                      <ErrorMsg field="email" />
-                    </div>
-
-                    {/* Landline */}
-                    <div>
-                      <label className={labelClass}>Landline Number</label>
-                      <input
-                        type="tel"
-                        name="landline"
-                        value={formData.landline}
-                        onChange={handleChange}
-                        className={inputClass}
-                      />
-                    </div>
-                  </div>
-                </div>
-
-                {/* ── Address Details ─────────────────────────────────── */}
-                <div>
-                  <h3 className="text-lg font-bold text-[#0B4E8C] border-b border-slate-200 pb-3 mb-6">
-                    Address Details
-                  </h3>
-                  <div className="space-y-6">
-                    {/* Full Address */}
-                    <div>
-                      <label className={labelClass}>
-                        Full Business Address *
-                      </label>
-                      <textarea
-                        name="address"
-                        rows="3"
-                        value={formData.address}
-                        onChange={handleChange}
-                        onFocus={handleFocus}
-                        className={getInputClass("address")}
-                      ></textarea>
-                      <ErrorMsg field="address" />
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-                      {/* City */}
-                      <div>
-                        <label className={labelClass}>City *</label>
-                        <input
-                          type="text"
-                          name="city"
-                          value={formData.city}
-                          onChange={handleChange}
-                          onFocus={handleFocus}
-                          className={getInputClass("city")}
-                        />
-                        <ErrorMsg field="city" />
-                      </div>
-
-                      {/* District */}
-                      <div>
-                        <label className={labelClass}>District *</label>
-                        <input
-                          type="text"
-                          name="district"
-                          value={formData.district}
-                          onChange={handleChange}
-                          onFocus={handleFocus}
-                          className={getInputClass("district")}
-                        />
-                        <ErrorMsg field="district" />
-                      </div>
-
-                      {/* State */}
-                      <div>
-                        <label className={labelClass}>State *</label>
-                        <input
-                          type="text"
-                          name="state"
-                          value={formData.state}
-                          onChange={handleChange}
-                          onFocus={handleFocus}
-                          className={getInputClass("state")}
-                        />
-                        <ErrorMsg field="state" />
-                      </div>
-
-                      {/* Pincode */}
-                      <div>
-                        <label className={labelClass}>PIN Code *</label>
-                        <input
-                          type="text"
-                          name="pincode"
-                          value={formData.pincode}
-                          onChange={handleChange}
-                          onFocus={handleFocus}
-                          className={getInputClass("pincode")}
-                        />
-                        <ErrorMsg field="pincode" />
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* ── Documents & Business Info ───────────────────────── */}
-                <div>
-                  <h3 className="text-lg font-bold text-[#0B4E8C] border-b border-slate-200 pb-3 mb-6">
-                    Documents & Business Info
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    {/* Drug License */}
-                    <div>
-                      <label className={labelClass}>
-                        Drug Licence Upload (PDF/JPG) *
-                      </label>
-                      <input
-                        type="file"
-                        name="drugLicense"
-                        accept=".pdf,.jpg,.jpeg,.png"
-                        onChange={handleChange}
-                        className={`w-full text-sm text-[#333333] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#E8F5EB] file:text-[#1C8A3C] hover:file:bg-[#1C8A3C] hover:file:text-white transition-colors cursor-pointer p-1.5 ${
-                          formErrors.drugLicense ? "border border-[#E31E24] bg-[#FDE8E9]/20 rounded-xl" : ""
-                        }`}
-                      />
-                      {formData.drugLicense && (
-                        <p className="mt-2 text-xs font-semibold text-[#1C8A3C]">
-                          Selected: {formData.drugLicense.name}
-                        </p>
-                      )}
-                      <ErrorMsg field="drugLicense" />
-                    </div>
-
-                    {/* GST Certificate */}
-                    <div>
-                      <label className={labelClass}>
-                        GST Certificate Upload (PDF/JPG) *
-                      </label>
-                      <input
-                        type="file"
-                        name="gstCertificate"
-                        accept=".pdf,.jpg,.jpeg,.png"
-                        onChange={handleChange}
-                        className={`w-full text-sm text-[#333333] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#E8F5EB] file:text-[#1C8A3C] hover:file:bg-[#1C8A3C] hover:file:text-white transition-colors cursor-pointer p-1.5 ${
-                          formErrors.gstCertificate ? "border border-[#E31E24] bg-[#FDE8E9]/20 rounded-xl" : ""
-                        }`}
-                      />
-                      {formData.gstCertificate && (
-                        <p className="mt-2 text-xs font-semibold text-[#1C8A3C]">
-                          Selected: {formData.gstCertificate.name}
-                        </p>
-                      )}
-                      <ErrorMsg field="gstCertificate" />
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-                    {/* Categories */}
-                    <div className="relative" ref={dropdownRef}>
-                      <label className={labelClass}>
-                        Interested Product Categories *
-                      </label>
-                      <div
-                        onClick={() => setCategoriesOpen((prev) => !prev)}
-                        className={`${getInputClass("categories")} cursor-pointer flex items-center justify-between min-h-[46px]`}
-                      >
-                        {Array.isArray(formData.categories) && formData.categories.length > 0 ? (
-                          <div className="flex flex-wrap gap-1.5 py-0.5">
-                            {formData.categories.map((cat) => (
-                              <span
-                                key={cat}
-                                className="inline-flex items-center gap-1 bg-[#E8F5EB] text-[#1C8A3C] text-xs font-semibold px-2.5 py-1 rounded-lg border border-[#1C8A3C]/20"
-                              >
-                                {cat}
-                                <button
-                                  type="button"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleCategoryToggle(cat);
-                                  }}
-                                  className="hover:text-[#0E5824] focus:outline-none ml-0.5"
-                                >
-                                  ✕
-                                </button>
-                              </span>
-                            ))}
-                          </div>
-                        ) : (
-                          <span className="text-slate-400">Select product categories...</span>
-                        )}
-                        <svg
-                          className={`w-4 h-4 text-slate-500 transition-transform shrink-0 ml-2 ${
-                            categoriesOpen ? "rotate-180" : ""
-                          }`}
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M19 9l-7 7-7-7"
+                      <h3 className="text-lg font-bold text-[#0B4E8C] border-b border-slate-200 pb-3 mb-6">
+                        Business Details
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Business Name */}
+                        <div>
+                          <label className={labelClass}>
+                            Business / Pharmacy / Clinic Name *
+                          </label>
+                          <input
+                            type="text"
+                            name="businessName"
+                            value={formData.businessName}
+                            onChange={handleChange}
+                            onFocus={handleFocus}
+                            className={getInputClass("businessName")}
                           />
-                        </svg>
-                      </div>
-                      <ErrorMsg field="categories" />
-
-                      {categoriesOpen && (
-                        <div className="absolute z-20 top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-xl shadow-lg p-2 space-y-1">
-                          {CATEGORY_OPTIONS.map((option) => {
-                            const isSelected =
-                              Array.isArray(formData.categories) &&
-                              formData.categories.includes(option);
-                            return (
-                              <div
-                                key={option}
-                                onClick={() => handleCategoryToggle(option)}
-                                className={`flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer text-sm transition-colors ${
-                                  isSelected
-                                    ? "bg-[#E8F5EB] text-[#1C8A3C] font-semibold"
-                                    : "hover:bg-slate-50 text-[#333333]"
-                                }`}
-                              >
-                                <input
-                                  type="checkbox"
-                                  checked={isSelected}
-                                  onChange={() => {}}
-                                  className="w-4 h-4 text-[#1C8A3C] rounded border-slate-300 focus:ring-[#1C8A3C] cursor-pointer"
-                                />
-                                <span>{option}</span>
-                              </div>
-                            );
-                          })}
+                          <ErrorMsg field="businessName" />
                         </div>
-                      )}
+
+                        {/* Business Type */}
+                        <div>
+                          <label className={labelClass}>Business Type *</label>
+                          <CustomSelect
+                            name="businessType"
+                            value={formData.businessType}
+                            onChange={handleChange}
+                            placeholder="Select Business Type"
+                            error={!!formErrors.businessType}
+                            options={[
+                              "Retail Pharmacy",
+                              "Hospital",
+                              "Clinic",
+                            ]}
+                          />
+                          <ErrorMsg field="businessType" />
+                        </div>
+
+                        {/* Owner Name */}
+                        <div>
+                          <label className={labelClass}>
+                            Proprietor / Owner Name *
+                          </label>
+                          <input
+                            type="text"
+                            name="ownerName"
+                            value={formData.ownerName}
+                            onChange={handleChange}
+                            onFocus={handleFocus}
+                            className={getInputClass("ownerName")}
+                          />
+                          <ErrorMsg field="ownerName" />
+                        </div>
+
+                        {/* Contact Person Name */}
+                        <div>
+                          <label className={labelClass}>
+                            Contact Person Name *
+                          </label>
+                          <input
+                            type="text"
+                            name="contactName"
+                            value={formData.contactName}
+                            onChange={handleChange}
+                            onFocus={handleFocus}
+                            disabled={sameAsOwner}
+                            className={`${getInputClass("contactName")} ${
+                              sameAsOwner
+                                ? "bg-slate-100 cursor-not-allowed"
+                                : ""
+                            }`}
+                          />
+                          <ErrorMsg field="contactName" />
+                          <div className="mt-2 flex items-center gap-2">
+                            <input
+                              type="checkbox"
+                              id="sameAsOwner"
+                              checked={sameAsOwner}
+                              onChange={(e) => {
+                                const checked = e.target.checked;
+                                setSameAsOwner(checked);
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  contactName: checked ? prev.ownerName : "",
+                                }));
+                                if (checked) {
+                                  setFormErrors((prev) => ({
+                                    ...prev,
+                                    contactName: "",
+                                  }));
+                                }
+                              }}
+                              className="w-4 h-4 text-[#1C8A3C] rounded focus:ring-[#1C8A3C]"
+                            />
+                            <label
+                              htmlFor="sameAsOwner"
+                              className="text-xs text-[#333333] font-medium cursor-pointer"
+                            >
+                              Same as Proprietor / Owner
+                            </label>
+                          </div>
+                        </div>
+                      </div>
                     </div>
 
-                    {/* Monthly Purchase */}
+                    {/* ── Contact Information ─────────────────────────────── */}
                     <div>
-                      <label className={labelClass}>
-                        Estimated Monthly Purchase Value
-                      </label>
-                      <select
-                        name="monthlyPurchase"
-                        value={formData.monthlyPurchase}
-                        onChange={handleChange}
-                        className={inputClass}
-                      >
-                        <option>Less than 1 Lakh</option>
-                        <option>1 - 5 Lakhs</option>
-                        <option>5 - 10 Lakhs</option>
-                        <option>More than 10 Lakhs</option>
-                      </select>
+                      <h3 className="text-lg font-bold text-[#0B4E8C] border-b border-slate-200 pb-3 mb-6">
+                        Contact Information
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Mobile */}
+                        <div>
+                          <label className={labelClass}>Mobile Number *</label>
+                          <input
+                            type="tel"
+                            name="mobile"
+                            value={formData.mobile}
+                            onChange={handleChange}
+                            onFocus={handleFocus}
+                            className={getInputClass("mobile")}
+                          />
+                          <ErrorMsg field="mobile" />
+                        </div>
+
+                        {/* WhatsApp */}
+                        <div>
+                          <label className={labelClass}>
+                            WhatsApp Number *
+                          </label>
+                          <input
+                            type="tel"
+                            name="whatsapp"
+                            value={formData.whatsapp}
+                            onChange={handleChange}
+                            onFocus={handleFocus}
+                            disabled={sameAsMobile}
+                            className={`${
+                              sameAsMobile
+                                ? inputClass +
+                                  " bg-slate-100 cursor-not-allowed"
+                                : getInputClass("whatsapp")
+                            }`}
+                          />
+                          <ErrorMsg field="whatsapp" />
+                          <div className="mt-2 flex items-center gap-2">
+                            <input
+                              type="checkbox"
+                              id="sameAsMobile"
+                              checked={sameAsMobile}
+                              onChange={(e) => {
+                                const checked = e.target.checked;
+                                setSameAsMobile(checked);
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  whatsapp: checked ? prev.mobile : "",
+                                }));
+                                if (checked) {
+                                  setFormErrors((prev) => ({
+                                    ...prev,
+                                    whatsapp: "",
+                                  }));
+                                }
+                              }}
+                              className="w-4 h-4 text-[#1C8A3C] rounded focus:ring-[#1C8A3C]"
+                            />
+                            <label
+                              htmlFor="sameAsMobile"
+                              className="text-xs text-[#333333] font-medium cursor-pointer"
+                            >
+                              Same as Mobile Number
+                            </label>
+                          </div>
+                        </div>
+
+                        {/* Email */}
+                        <div>
+                          <label className={labelClass}>Email Address *</label>
+                          <input
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleChange}
+                            onFocus={handleFocus}
+                            className={getInputClass("email")}
+                          />
+                          <ErrorMsg field="email" />
+                        </div>
+
+                        {/* Landline */}
+                        <div>
+                          <label className={labelClass}>Landline Number</label>
+                          <input
+                            type="tel"
+                            name="landline"
+                            value={formData.landline}
+                            onChange={handleChange}
+                            className={inputClass}
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </div>
 
-                  {/* Requirements */}
-                  <div>
-                    <label className={labelClass}>
-                      Specific Requirements or Comments
-                    </label>
-                    <textarea
-                      name="requirements"
-                      rows="3"
-                      value={formData.requirements}
-                      onChange={handleChange}
-                      className={inputClass}
-                    ></textarea>
-                  </div>
-                </div>
+                    {/* ── Address Details ─────────────────────────────────── */}
+                    <div>
+                      <h3 className="text-lg font-bold text-[#0B4E8C] border-b border-slate-200 pb-3 mb-6">
+                        Address Details
+                      </h3>
+                      <div className="space-y-6">
+                        {/* Full Address */}
+                        <div>
+                          <label className={labelClass}>
+                            Full Business Address *
+                          </label>
+                          <textarea
+                            name="address"
+                            rows="3"
+                            value={formData.address}
+                            onChange={handleChange}
+                            onFocus={handleFocus}
+                            className={getInputClass("address")}
+                          ></textarea>
+                          <ErrorMsg field="address" />
+                        </div>
 
-                {/* ── Declaration ─────────────────────────────────────── */}
-                <div className="mt-8">
-                  <div className="flex items-start gap-3">
-                    <input
-                      type="checkbox"
-                      id="agree"
-                      name="agreeTerms"
-                      checked={formData.agreeTerms}
-                      onChange={handleChange}
-                      className="mt-1 w-4 h-4 text-[#1C8A3C] bg-slate-100 border-slate-300 rounded focus:ring-[#1C8A3C]"
-                    />
-                    <label htmlFor="agree" className="text-xs md:text-sm text-[#333333] leading-relaxed cursor-pointer">
-                      I declare that the information provided above is true and
-                      correct. I authorize Meenakshi Pharma to contact me
-                      regarding this partnership application.
-                    </label>
-                  </div>
-                  <ErrorMsg field="agreeTerms" />
-                </div>
+                        <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                          {/* City */}
+                          <div>
+                            <label className={labelClass}>City *</label>
+                            <input
+                              type="text"
+                              name="city"
+                              value={formData.city}
+                              onChange={handleChange}
+                              onFocus={handleFocus}
+                              className={getInputClass("city")}
+                            />
+                            <ErrorMsg field="city" />
+                          </div>
 
-                {/* ── Submit ──────────────────────────────────────────── */}
-                <div className="pt-6 text-center">
-                  <Button
-                    type="submit"
-                    variant="primary"
-                    disabled={loading}
-                    className="w-full md:w-auto md:px-16"
-                  >
-                    {loading ? "Submitting..." : "Submit Application"}
-                  </Button>
-                </div>
-              </form>
-            </>
-          )}
+                          {/* District */}
+                          <div>
+                            <label className={labelClass}>District *</label>
+                            <input
+                              type="text"
+                              name="district"
+                              value={formData.district}
+                              onChange={handleChange}
+                              onFocus={handleFocus}
+                              className={getInputClass("district")}
+                            />
+                            <ErrorMsg field="district" />
+                          </div>
+
+                          {/* State */}
+                          <div>
+                            <label className={labelClass}>State *</label>
+                            <input
+                              type="text"
+                              name="state"
+                              value={formData.state}
+                              onChange={handleChange}
+                              onFocus={handleFocus}
+                              className={getInputClass("state")}
+                            />
+                            <ErrorMsg field="state" />
+                          </div>
+
+                          {/* Pincode */}
+                          <div>
+                            <label className={labelClass}>PIN Code *</label>
+                            <input
+                              type="text"
+                              name="pincode"
+                              value={formData.pincode}
+                              onChange={handleChange}
+                              onFocus={handleFocus}
+                              className={getInputClass("pincode")}
+                            />
+                            <ErrorMsg field="pincode" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* ── Documents & Business Info ───────────────────────── */}
+                    <div>
+                      <h3 className="text-lg font-bold text-[#0B4E8C] border-b border-slate-200 pb-3 mb-6">
+                        Documents & Business Info
+                      </h3>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        {/* Drug License */}
+                        <div>
+                          <label className={labelClass}>
+                            Drug Licence Upload (PDF/JPG) *
+                          </label>
+                          <input
+                            type="file"
+                            name="drugLicense"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            onChange={handleChange}
+                            className={`w-full text-sm text-[#333333] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#E8F5EB] file:text-[#1C8A3C] hover:file:bg-[#1C8A3C] hover:file:text-white transition-colors cursor-pointer p-1.5 ${
+                              formErrors.drugLicense
+                                ? "border border-[#E31E24] bg-[#FDE8E9]/20 rounded-xl"
+                                : ""
+                            }`}
+                          />
+                          {formData.drugLicense && (
+                            <p className="mt-2 text-xs font-semibold text-[#1C8A3C]">
+                              Selected: {formData.drugLicense.name}
+                            </p>
+                          )}
+                          <ErrorMsg field="drugLicense" />
+                        </div>
+
+                        {/* GST Certificate */}
+                        <div>
+                          <label className={labelClass}>
+                            GST Certificate Upload (PDF/JPG) *
+                          </label>
+                          <input
+                            type="file"
+                            name="gstCertificate"
+                            accept=".pdf,.jpg,.jpeg,.png"
+                            onChange={handleChange}
+                            className={`w-full text-sm text-[#333333] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#E8F5EB] file:text-[#1C8A3C] hover:file:bg-[#1C8A3C] hover:file:text-white transition-colors cursor-pointer p-1.5 ${
+                              formErrors.gstCertificate
+                                ? "border border-[#E31E24] bg-[#FDE8E9]/20 rounded-xl"
+                                : ""
+                            }`}
+                          />
+                          {formData.gstCertificate && (
+                            <p className="mt-2 text-xs font-semibold text-[#1C8A3C]">
+                              Selected: {formData.gstCertificate.name}
+                            </p>
+                          )}
+                          <ErrorMsg field="gstCertificate" />
+                        </div>
+                      </div>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        {/* Categories */}
+                        <div className="relative" ref={dropdownRef}>
+                          <label className={labelClass}>
+                            Interested Product Categories *
+                          </label>
+                          <div
+                            onClick={() => setCategoriesOpen((prev) => !prev)}
+                            className={`${getInputClass("categories")} cursor-pointer flex items-center justify-between min-h-[46px]`}
+                          >
+                            {Array.isArray(formData.categories) &&
+                            formData.categories.length > 0 ? (
+                              <div className="flex flex-wrap gap-1.5 py-0.5">
+                                {formData.categories.map((cat) => (
+                                  <span
+                                    key={cat}
+                                    className="inline-flex items-center gap-1 bg-[#E8F5EB] text-[#1C8A3C] text-xs font-semibold px-2.5 py-1 rounded-lg border border-[#1C8A3C]/20"
+                                  >
+                                    {cat}
+                                    <button
+                                      type="button"
+                                      onClick={(e) => {
+                                        e.stopPropagation();
+                                        handleCategoryToggle(cat);
+                                      }}
+                                      className="hover:text-[#0E5824] focus:outline-none ml-0.5"
+                                    >
+                                      ✕
+                                    </button>
+                                  </span>
+                                ))}
+                              </div>
+                            ) : (
+                              <span className="text-slate-400">
+                                Select product categories...
+                              </span>
+                            )}
+                            <svg
+                              className={`w-4 h-4 text-slate-500 transition-transform shrink-0 ml-2 ${
+                                categoriesOpen ? "rotate-180" : ""
+                              }`}
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
+                                d="M19 9l-7 7-7-7"
+                              />
+                            </svg>
+                          </div>
+                          <ErrorMsg field="categories" />
+
+                          {categoriesOpen && (
+                            <div className="absolute z-20 top-full left-0 right-0 mt-1 bg-white border border-slate-200 rounded-xl shadow-lg p-2 space-y-1">
+                              {CATEGORY_OPTIONS.map((option) => {
+                                const isSelected =
+                                  Array.isArray(formData.categories) &&
+                                  formData.categories.includes(option);
+                                return (
+                                  <div
+                                    key={option}
+                                    onClick={() => handleCategoryToggle(option)}
+                                    className={`flex items-center gap-3 px-3 py-2.5 rounded-lg cursor-pointer text-sm transition-colors ${
+                                      isSelected
+                                        ? "bg-[#E8F5EB] text-[#1C8A3C] font-semibold"
+                                        : "hover:bg-slate-50 text-[#333333]"
+                                    }`}
+                                  >
+                                    <input
+                                      type="checkbox"
+                                      checked={isSelected}
+                                      onChange={() => {}}
+                                      className="w-4 h-4 text-[#1C8A3C] rounded border-slate-300 focus:ring-[#1C8A3C] cursor-pointer"
+                                    />
+                                    <span>{option}</span>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
+                        </div>
+
+                        {/* Monthly Purchase */}
+                        <div>
+                          <label className={labelClass}>
+                            Estimated Monthly Purchase Value *
+                          </label>
+                          <CustomSelect
+                            name="monthlyPurchase"
+                            value={formData.monthlyPurchase}
+                            onChange={handleChange}
+                            placeholder="Select Monthly Purchase Value"
+                            error={!!formErrors.monthlyPurchase}
+                            options={[
+                              "Less than 1 Lakh",
+                              "1 - 5 Lakhs",
+                              "5 - 10 Lakhs",
+                              "More than 10 Lakhs",
+                            ]}
+                          />
+                          <ErrorMsg field="monthlyPurchase"/>
+                        </div>
+                      </div>
+
+                      {/* Requirements */}
+                      <div>
+                        <label className={labelClass}>
+                          Specific Requirements or Comments
+                        </label>
+                        <textarea
+                          name="requirements"
+                          rows="3"
+                          value={formData.requirements}
+                          onChange={handleChange}
+                          className={inputClass}
+                        ></textarea>
+                      </div>
+                    </div>
+
+                    {/* ── Declaration ─────────────────────────────────────── */}
+                    <div className="mt-8">
+                      <div className="flex items-start gap-3">
+                        <input
+                          type="checkbox"
+                          id="agree"
+                          name="agreeTerms"
+                          checked={formData.agreeTerms}
+                          onChange={handleChange}
+                          className="mt-1 w-4 h-4 text-[#1C8A3C] bg-slate-100 border-slate-300 rounded focus:ring-[#1C8A3C]"
+                        />
+                        <label
+                          htmlFor="agree"
+                          className="text-xs md:text-sm text-[#333333] leading-relaxed cursor-pointer"
+                        >
+                          I declare that the information provided above is true
+                          and correct. I authorize Meenakshi Pharma to contact
+                          me regarding this partnership application.
+                        </label>
+                      </div>
+                      <ErrorMsg field="agreeTerms" />
+                    </div>
+
+                    {/* ── Submit ──────────────────────────────────────────── */}
+                    <div className="pt-6 text-center">
+                      <Button
+                        type="submit"
+                        variant="primary"
+                        disabled={loading}
+                        className="w-full md:w-auto md:px-16"
+                      >
+                        {loading ? "Submitting..." : "Submit Application"}
+                      </Button>
+                    </div>
+                  </form>
+                </>
+              )}
             </motion.div>
           </div>
         </div>
