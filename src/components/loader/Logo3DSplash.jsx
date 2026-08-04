@@ -162,7 +162,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import "./Logo3DSplash.css";
-import logo from "../../assets/images/Logo.webp";
+import logo from "../../assets/images/logo_1.webp";
 
 export default function Logo3DSplash() {
   const [spread, setSpread] = useState(false);
@@ -224,7 +224,7 @@ export default function Logo3DSplash() {
             opacity: 0,
           }}
           animate={{
-            clipPath: "circle(80% at 50% 50%)",
+            clipPath: "circle(100% at 50% 50%)",
             scale: spread ? 0.9 : 1,
             opacity: spread ? 0 : 1,
           }}
