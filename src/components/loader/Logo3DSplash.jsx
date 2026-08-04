@@ -162,7 +162,7 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
 import "./Logo3DSplash.css";
-import logo from "../../assets/images/logo_1.png";
+import logo from "../../assets/images/Logo.webp";
 
 export default function Logo3DSplash() {
   const [spread, setSpread] = useState(false);

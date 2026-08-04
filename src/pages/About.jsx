@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import PageBanner from "../components/PageBanner";
 import SectionTitle from "../components/SectionTitle";
 import CTASection from "../components/CTASection";
-import heroImg from "../assets/images/hero.png";
+import heroImg from "../assets/images/hero.webp";
 import { about } from "../data/content";
 
 const About = () => {

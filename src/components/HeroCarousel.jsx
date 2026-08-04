@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
-import heroImg from "../assets/images/hero.png";
+import heroImg from "../assets/images/hero.webp";
 
 const slides = [
   {

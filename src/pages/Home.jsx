@@ -17,7 +17,7 @@ import Button from "../components/Button";
 import SectionTitle from "../components/SectionTitle";
 import CTASection from "../components/CTASection";
 import HeroCarousel from "../components/HeroCarousel";
-import heroImg from "../assets/images/hero.png";
+import heroImg from "../assets/images/hero.webp";
 import testimonialVideo1 from "../assets/videos/srccc.mp4";
 import testimonialVideo2 from "../assets/videos/srccc1.mp4";
 import testimonialVideo3 from "../assets/videos/srccc2.mp4";

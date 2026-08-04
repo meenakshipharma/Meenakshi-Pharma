@@ -9,7 +9,7 @@ import {
   FiLinkedin,
   FiInstagram,
 } from "react-icons/fi";
-import logoImg from "../../assets/images/Logo.png";
+import logoImg from "../../assets/images/Logo.webp";
 import { footer } from "../../data/content.js";
 
 const Footer = () => {

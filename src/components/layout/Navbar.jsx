@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { FiMenu, FiX, FiExternalLink } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 
-import logoImg from "../../assets/images/Logo.png";
+import logoImg from "../../assets/images/Logo.webp";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
