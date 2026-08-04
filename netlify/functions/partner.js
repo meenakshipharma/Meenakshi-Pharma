@@ -108,89 +108,113 @@ export default async (request) => {
       subject: `New Partnership Application - ${businessName}`,
 
       html: `
-        <h2>New Partnership Application</h2>
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <style>
+            * { box-sizing: border-box; }
+            body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #ffffff; margin: 0; padding: 0; color: #333333; width: 100% !important; }
+            .container { width: 100% !important; max-width: 100% !important; margin: 0; background-color: #ffffff; padding: 10px 15px; }
+            .header { background-color: #ffffff; padding: 10px 0 20px 0; text-align: center; border-bottom: 3px solid #1C8A3C; width: 100%; }
+            .content { padding: 25px 0; line-height: 1.6; width: 100%; }
+            .title { color: #0B4E8C; font-size: 18px; font-weight: 700; margin-top: 0; margin-bottom: 18px; border-bottom: 2px solid #e2e8f0; padding-bottom: 10px; word-wrap: break-word; }
+            .highlight-box { background-color: #E8F5EB; border-left: 4px solid #1C8A3C; padding: 14px 18px; border-radius: 6px; margin: 18px 0; color: #1C8A3C; font-weight: 600; font-size: 14px; word-wrap: break-word; }
+            .details-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 14px; }
+            .details-table th, .details-table td { padding: 10px 12px; border: 1px solid #e2e8f0; text-align: left; word-break: break-word; }
+            .details-table th { background-color: #0B4E8C; color: #ffffff; font-weight: 600; width: 35%; }
+            .details-table td { color: #334155; }
+            .details-table tr:nth-child(even) { background-color: #f8fafc; }
+            .footer { background-color: #ffffff; padding: 20px 0 10px 0; text-align: center; font-size: 12px; color: #64748b; border-top: 1px solid #e2e8f0; width: 100%; }
+          </style>
+        </head>
+        <body>
+          <div class="container">
+            <div class="header">
+              <img src="${process.env.LOGO_URL || 'https://res.cloudinary.com/dk75r8sim/image/upload/v1785771294/logo_1_ird2bh.png'}" alt="Meenakshi Pharma Logo" width="180" style="max-width: 180px; width: 180px; height: auto; display: block; margin: 0 auto; border: 0; outline: none; text-decoration: none;" />
+            </div>
+            <div class="content">
+              <h2 class="title">New Partnership Application Received</h2>
+              
+              <div class="highlight-box">
+                A new partnership application has been submitted on the Partner With Us page. The Drug License and GST Certificate attachments are included with this email.
+              </div>
 
-        <table cellpadding="8" cellspacing="0" border="1" style="border-collapse:collapse;width:100%">
-          <tr>
-            <th align="left">Business Name</th>
-            <td>${businessName}</td>
-          </tr>
+              <h3 style="color: #0B4E8C; font-size: 15px; margin-top: 20px; margin-bottom: 10px;">Partner Application Details</h3>
 
-          <tr>
-            <th align="left">Business Type</th>
-            <td>${businessType}</td>
-          </tr>
+              <table class="details-table">
+                <tr>
+                  <th>Business Name</th>
+                  <td><strong>${businessName}</strong></td>
+                </tr>
+                <tr>
+                  <th>Business Type</th>
+                  <td>${businessType}</td>
+                </tr>
+                <tr>
+                  <th>Owner Name</th>
+                  <td>${ownerName}</td>
+                </tr>
+                <tr>
+                  <th>Contact Person</th>
+                  <td>${contactName}</td>
+                </tr>
+                <tr>
+                  <th>Mobile Number</th>
+                  <td><a href="tel:${mobile}" style="color: #0B4E8C; font-weight: 600; text-decoration: none;">${mobile}</a></td>
+                </tr>
+                <tr>
+                  <th>WhatsApp Number</th>
+                  <td>${whatsapp ? `<a href="https://wa.me/91${whatsapp}" style="color: #1C8A3C; font-weight: 600; text-decoration: none;">${whatsapp}</a>` : "-"}</td>
+                </tr>
+                <tr>
+                  <th>Email Address</th>
+                  <td><a href="mailto:${email}" style="color: #0B4E8C; font-weight: 600; text-decoration: none;">${email}</a></td>
+                </tr>
+                <tr>
+                  <th>Landline</th>
+                  <td>${landline || "-"}</td>
+                </tr>
+                <tr>
+                  <th>Address</th>
+                  <td>${address}</td>
+                </tr>
+                <tr>
+                  <th>City / District</th>
+                  <td>${city}, ${district}</td>
+                </tr>
+                <tr>
+                  <th>State / PIN Code</th>
+                  <td>${state} - ${pincode}</td>
+                </tr>
+                <tr>
+                  <th>Interested Categories</th>
+                  <td><span style="background-color: #E8F5EB; color: #1C8A3C; padding: 3px 8px; border-radius: 4px; font-weight: 600;">${categoriesFormatted}</span></td>
+                </tr>
+                <tr>
+                  <th>Est. Monthly Purchase</th>
+                  <td>${monthlyPurchase || "-"}</td>
+                </tr>
+                <tr>
+                  <th>Requirements / Notes</th>
+                  <td style="white-space: pre-wrap; line-height: 1.5;">${requirements || "-"}</td>
+                </tr>
+              </table>
 
-          <tr>
-            <th align="left">Owner Name</th>
-            <td>${ownerName}</td>
-          </tr>
-
-          <tr>
-            <th align="left">Contact Person</th>
-            <td>${contactName}</td>
-          </tr>
-
-          <tr>
-            <th align="left">Mobile</th>
-            <td>${mobile}</td>
-          </tr>
-
-          <tr>
-            <th align="left">WhatsApp</th>
-            <td>${whatsapp || "-"}</td>
-          </tr>
-
-          <tr>
-            <th align="left">Email</th>
-            <td>${email}</td>
-          </tr>
-
-          <tr>
-            <th align="left">Landline</th>
-            <td>${landline || "-"}</td>
-          </tr>
-
-          <tr>
-            <th align="left">Address</th>
-            <td>${address}</td>
-          </tr>
-
-          <tr>
-            <th align="left">City</th>
-            <td>${city}</td>
-          </tr>
-
-          <tr>
-            <th align="left">District</th>
-            <td>${district}</td>
-          </tr>
-
-          <tr>
-            <th align="left">State</th>
-            <td>${state}</td>
-          </tr>
-
-          <tr>
-            <th align="left">PIN Code</th>
-            <td>${pincode}</td>
-          </tr>
-
-          <tr>
-            <th align="left">Interested Categories</th>
-            <td>${categoriesFormatted}</td>
-          </tr>
-
-          <tr>
-            <th align="left">Estimated Monthly Purchase</th>
-            <td>${monthlyPurchase || "-"}</td>
-          </tr>
-
-          <tr>
-            <th align="left">Requirements</th>
-            <td>${requirements || "-"}</td>
-          </tr>
-        </table>
+              <div style="margin-top: 25px; border-top: 1px solid #e2e8f0; padding-top: 15px; color: #475569; font-size: 13px;">
+                <p style="margin: 0; font-style: italic;">Automated Notification</p>
+                <p style="margin: 3px 0 0 0; font-weight: 700; color: #0B4E8C; font-style: italic;">Partner Portal</p>
+                <p style="margin: 2px 0 0 0; font-weight: 600; color: #334155; font-style: italic;">Meenakshi Pharma System</p>
+              </div>
+            </div>
+            <div class="footer">
+              <p style="margin: 0; font-weight: 700; color: #0B4E8C; font-size: 13px;">Meenakshi Pharma</p>
+              <p style="margin: 3px 0 0 0;">Building Healthier Communities</p>
+            </div>
+          </div>
+        </body>
+        </html>
       `,
 
       attachments: [
