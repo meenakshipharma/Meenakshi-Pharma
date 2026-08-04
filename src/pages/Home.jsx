@@ -372,28 +372,29 @@ const Home = () => {
           {(() => {
             const testimonialVideos = [
               {
-                src: testimonialVideo1,
-                badge: "Our Story",
-                title: "15+ Years of Excellence",
-                desc: "Trusted pharmaceutical distribution built on reliability, safety, and a commitment to healthcare advancement.",
-              },
-              {
-                src: testimonialVideo2,
-                badge: "Service Excellence",
-                title: "24/7 Dedicated Support",
-                desc: "Our client support and pharmacy helpline ensure round-the-clock service and supply chain management.",
-              },
-              {
-                src: testimonialVideo3,
-                badge: "Logistics Hub",
-                title: "Advanced Cold Chain",
-                desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
-              }, {
                 src: testimonialVideo4,
                 badge: "Logistics Hub",
                 title: "Advanced Cold Chain",
                 desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
               },
+              // {
+              //   src: testimonialVideo1,
+              //   badge: "Our Story",
+              //   title: "15+ Years of Excellence",
+              //   desc: "Trusted pharmaceutical distribution built on reliability, safety, and a commitment to healthcare advancement.",
+              // },
+              // {
+              //   src: testimonialVideo2,
+              //   badge: "Service Excellence",
+              //   title: "24/7 Dedicated Support",
+              //   desc: "Our client support and pharmacy helpline ensure round-the-clock service and supply chain management.",
+              // },
+              // {
+              //   src: testimonialVideo3,
+              //   badge: "Logistics Hub",
+              //   title: "Advanced Cold Chain",
+              //   desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
+              // }, 
             ];
 
             return (
