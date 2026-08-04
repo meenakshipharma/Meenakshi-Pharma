@@ -1,4 +1,4 @@
-# Meenakshi Pharma — Redesigned Website
+# Meenakshi Pharma -  Website
 
 A complete React (Vite) rebuild of the Meenakshi Pharma site, styled after the
 premium reference design you provided (split hero, blush/cream palette, rounded
