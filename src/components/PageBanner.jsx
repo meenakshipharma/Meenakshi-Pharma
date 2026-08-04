@@ -19,12 +19,12 @@ const PageBanner = ({ title, subtitle, subsubtitle, bgImage, children }) => {
             {title}
           </h1>
           {subtitle && (
-            <p className="text-base sm:text-lg md:text-xl text-[#333333] max-w-2xl mx-auto leading-relaxed font-normal">
+            <p className="text-base sm:text-lg md:text-xl text-[#333333] max-w-2xl mx-auto leading-relaxed font-normal text-center">
               {subtitle}
             </p>
           )}
           {subsubtitle && (
-            <p className="text-base sm:text-lg md:text-xl text-[#333333] max-w-2xl mx-auto leading-relaxed mt-1 font-normal">
+            <p className="text-base sm:text-lg md:text-xl text-[#333333] max-w-2xl mx-auto leading-relaxed mt-1 font-normal text-center">
               {subsubtitle}
             </p>
           )}
