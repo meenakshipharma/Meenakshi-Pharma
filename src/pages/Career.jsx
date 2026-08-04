@@ -292,15 +292,15 @@ const Career = () => {
                 Thank You for Your Interest in Joining Meenakshi Pharma
               </h2>
               
-              <div className="bg-[#E8F5EB] border-l-4 border-[#1C8A3C] p-4 rounded-xl text-[#1C8A3C] font-semibold text-sm md:text-base max-w-2xl mx-auto mb-6 text-left">
+              <div className="bg-[#E8F5EB] border-l-4 border-[#1C8A3C] p-4 rounded-xl text-[#1C8A3C] font-semibold text-sm md:text-base max-w-2xl mx-auto mb-6 text-justify">
                 We have successfully received your application and resume. Our recruitment team will review your profile based on the requirements of the position you applied for.
               </div>
 
-              <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto mb-4 leading-relaxed text-left md:text-center">
+              <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto mb-4 leading-relaxed text-justify">
                 If your qualifications and experience match our current or future hiring requirements, we will contact you regarding the next steps in the recruitment process.
               </p>
 
-              <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto mb-4 leading-relaxed text-left md:text-center">
+              <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto mb-4 leading-relaxed text-justify">
                 We appreciate the time and effort you have taken to apply and thank you for considering <span className="font-semibold italic text-[#0B4E8C]">Meenakshi Pharma</span> as your career destination.
               </p>
 

@@ -426,12 +426,12 @@ export const contact = {
   form: {
     title: "Send an Inquiry",
     fields: {
-      name: "Your Name *",
+      name: "Your Name",
       hospital: "Hospital / Pharmacy",
-      phone: "Phone Number *",
-      email: "Email Address *",
-      subject: "Subject *",
-      message: "Message *",
+      phone: "Phone Number",
+      email: "Email Address",
+      subject: "Subject",
+      message: "Message",
     },
     buttonText: "Send Message",
   },

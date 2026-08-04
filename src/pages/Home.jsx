@@ -23,30 +23,37 @@ import testimonialVideo2 from "../assets/videos/srccc1.mp4";
 import testimonialVideo3 from "../assets/videos/srccc2.mp4";
 import testimonialVideo4 from "../assets/videos/srccc3.webm";
 
-import { useMotionValue, animate } from "framer-motion";
+import { useMotionValue, animate, useInView } from "framer-motion";
 import { home, about, services } from "../data/content";
 import { iconMap } from "../utils/iconMap";
 
-const Counter = ({ target, suffix = "" }) => {
+const Counter = ({ target, prefix = "", suffix = "", duration = 3.5 }) => {
+  const ref = React.useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-50px" });
   const count = useMotionValue(0);
   const [displayValue, setDisplayValue] = React.useState("0");
 
   React.useEffect(() => {
-    const controls = animate(count, target, {
-      duration: 2,
+    if (!isInView) return;
+
+    const numericTarget = typeof target === "number" ? target : parseFloat(target) || 0;
+
+    const controls = animate(count, numericTarget, {
+      duration,
       ease: "easeOut",
       onUpdate: (latest) => {
         setDisplayValue(Math.round(latest).toLocaleString());
       },
     });
     return controls.stop;
-  }, [count, target]);
+  }, [isInView, count, target, duration]);
 
   return (
-    <>
+    <span ref={ref}>
+      {prefix}
       {displayValue}
       {suffix}
-    </>
+    </span>
   );
 };
 
@@ -180,7 +187,7 @@ const Home = () => {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#0B4E8C] leading-tight tracking-tight mb-6">
               Delivering <span className="text-[#1C8A3C]">Excellence</span> in Healthcare
             </h1>
-            <p className="text-base sm:text-lg text-[#333333] mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal">
+            <p className="text-base sm:text-lg text-[#333333] mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal text-justify">
               Your trusted partner in pharmaceutical distribution. We ensure safe, reliable, and timely access to quality healthcare products across the region.
             </p>
             <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
@@ -220,6 +227,7 @@ const Home = () => {
                     prefix={stat.prefix}
                     target={stat.target}
                     suffix={stat.suffix}
+                    duration={stat.duration || 3}
                   />
                 </h3>
                 <p className="text-[#333333] font-semibold text-sm md:text-base">{stat.label}</p>
@@ -259,13 +267,13 @@ const Home = () => {
                 align="left"
               />
               <p
-                className="text-[#333333] leading-relaxed mb-6 text-base"
+                className="text-[#333333] leading-relaxed mb-6 text-base text-justify"
                 dangerouslySetInnerHTML={{
                   __html: about.introduction.desc1,
                 }}
               />
               <p
-                className="text-[#333333] leading-relaxed mb-8 text-base"
+                className="text-[#333333] leading-relaxed mb-8 text-base text-justify"
                 dangerouslySetInnerHTML={{
                   __html: about.introduction.desc2,
                 }}
@@ -312,7 +320,7 @@ const Home = () => {
                       </h3>
                     </div>
 
-                    <p className="text-[#333333] leading-relaxed text-sm md:text-base">
+                    <p className="text-[#333333] leading-relaxed text-sm md:text-base text-justify">
                       {service.desc}
                     </p>
                   </div>

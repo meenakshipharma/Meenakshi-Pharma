@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FiX } from 'react-icons/fi';
 import PageBanner from '../components/PageBanner';
 import CTASection from '../components/CTASection';
 import { achievements as awards } from '../data/content';
@@ -66,23 +67,23 @@ const Achievements = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4"
+            className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-md flex items-center justify-center p-4 sm:p-6"
             onClick={() => setSelectedImage(null)}
           >
             <button 
-              className="absolute top-6 right-6 text-white text-4xl hover:text-[#1C8A3C] transition-colors cursor-pointer w-12 h-12 flex items-center justify-center rounded-full bg-white/10"
+              className="fixed top-4 right-4 sm:top-6 sm:right-6 z-[110] text-white bg-slate-800/80 hover:bg-[#1C8A3C] backdrop-blur-md transition-all duration-200 cursor-pointer w-11 h-11 sm:w-12 sm:h-12 flex items-center justify-center rounded-full border border-white/20 shadow-xl"
               onClick={() => setSelectedImage(null)}
               aria-label="Close document modal"
             >
-              &times;
+              <FiX className="w-6 h-6" />
             </button>
             <motion.img
-              initial={{ scale: 0.9 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.9 }}
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
               src={selectedImage}
               alt="Achievement fullscreen"
-              className="max-w-full max-h-[90vh] rounded-2xl shadow-2xl border-4 border-white/10"
+              className="max-w-full max-h-[88vh] rounded-2xl shadow-2xl border-4 border-white/10 object-contain"
               onClick={(e) => e.stopPropagation()}
             />
           </motion.div>

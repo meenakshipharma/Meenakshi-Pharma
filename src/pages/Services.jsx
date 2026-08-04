@@ -51,7 +51,7 @@ const Services = () => {
                         {service.title}
                       </h3>
 
-                      <p className="text-[#333333] text-sm md:text-base leading-relaxed">
+                      <p className="text-[#333333] text-sm md:text-base leading-relaxed text-justify">
                         {service.desc}
                       </p>
                     </div>
@@ -143,7 +143,7 @@ const Services = () => {
                         {service.title}
                       </h3>
 
-                      <p className="text-[#333333] text-sm md:text-base leading-relaxed">
+                      <p className="text-[#333333] text-sm md:text-base leading-relaxed text-justify">
                         {service.desc}
                       </p>
                     </div>

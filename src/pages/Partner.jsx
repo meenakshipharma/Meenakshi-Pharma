@@ -439,7 +439,7 @@ const Partner = () => {
                     Your partnership request has been submitted successfully.
                   </div>
 
-                  <div className="max-w-2xl mx-auto space-y-4 text-[#333333] text-sm md:text-base leading-relaxed text-left bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200 shadow-xs mb-8">
+                  <div className="max-w-2xl mx-auto space-y-4 text-[#333333] text-sm md:text-base leading-relaxed text-justify bg-slate-50 p-6 md:p-8 rounded-2xl border border-slate-200 shadow-xs mb-8">
                     <p>
                       Our team will review the information you have provided and
                       verify your Drug License and GST Certificate as part of
