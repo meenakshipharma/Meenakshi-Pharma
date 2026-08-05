@@ -18,10 +18,12 @@ import SectionTitle from "../components/SectionTitle";
 import CTASection from "../components/CTASection";
 import HeroCarousel from "../components/HeroCarousel";
 import heroImg from "../assets/images/hero.webp";
-import testimonialVideo1 from "../assets/videos/srccc.mp4";
-import testimonialVideo2 from "../assets/videos/srccc1.mp4";
-import testimonialVideo3 from "../assets/videos/srccc2.mp4";
-import testimonialVideo4 from "../assets/videos/srccc3.webm";
+// import testimonialVideo1 from "../assets/videos/srccc.mp4";
+// import testimonialVideo2 from "../assets/videos/srccc1.mp4";
+// import testimonialVideo3 from "../assets/videos/srccc2.mp4";
+import testimonialVideo3 from "../assets/videos/srccc3.webm";
+import testimonialVideo4 from "../assets/videos/srccc4.webm";
+import testimonialVideo5 from "../assets/videos/srccc5.webm";
 
 import { useMotionValue, animate, useInView } from "framer-motion";
 import { home, about, services } from "../data/content";
@@ -380,11 +382,24 @@ const Home = () => {
           {(() => {
             const testimonialVideos = [
               {
+                src: testimonialVideo3,
+                badge: "Logistics Hub",
+                title: "Advanced Cold Chain",
+                desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
+              },
+              {
                 src: testimonialVideo4,
                 badge: "Logistics Hub",
                 title: "Advanced Cold Chain",
                 desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
               },
+              {
+                src: testimonialVideo5,
+                badge: "Logistics Hub",
+                title: "Advanced Cold Chain",
+                desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
+              },
+
               // {
               //   src: testimonialVideo1,
               //   badge: "Our Story",
@@ -402,7 +417,7 @@ const Home = () => {
               //   badge: "Logistics Hub",
               //   title: "Advanced Cold Chain",
               //   desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
-              // }, 
+              // },
             ];
 
             return (
