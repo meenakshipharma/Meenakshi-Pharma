@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import PageBanner from "../components/PageBanner";
 import Button from "../components/Button";
 import CustomSelect from "../components/CustomSelect";
@@ -1032,7 +1033,14 @@ const Partner = () => {
                         >
                           I declare that the information provided above is true
                           and correct. I authorize Meenakshi Pharma to contact
-                          me regarding this partnership application.
+                          me regarding this application in accordance with the{" "}
+                          <Link to="/privacy-policy" target="_blank" className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]">
+                            Privacy Policy
+                          </Link>{" "}
+                          and{" "}
+                          <Link to="/terms-of-service" target="_blank" className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]">
+                            Terms of Service
+                          </Link>.
                         </label>
                       </div>
                       <ErrorMsg field="agreeTerms" />

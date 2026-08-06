@@ -60,7 +60,7 @@ const About = () => {
                 {about.introduction.title}
               </h2>
 
-              <div className="space-y-3 sm:space-y-4 text-[#333333] leading-relaxed text-xs sm:text-base text-left sm:text-justify">
+              <div className="space-y-3 sm:space-y-4 text-[#333333] leading-relaxed text-xs sm:text-base text-justify">
                 <p
                   dangerouslySetInnerHTML={{
                     __html: about.introduction.desc1,
@@ -128,7 +128,7 @@ const About = () => {
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#0B4E8C] mb-3 sm:mb-4">
                 {about.vision.title}
               </h2>
-              <p className="text-[#333333] leading-relaxed text-xs sm:text-base md:text-lg text-left sm:text-justify">
+              <p className="text-[#333333] leading-relaxed text-xs sm:text-base md:text-lg text-justify">
                 {about.vision.desc}
               </p>
             </motion.div>
@@ -160,7 +160,7 @@ const About = () => {
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#0B4E8C] mb-3 sm:mb-4">
                 {about.mission.title}
               </h2>
-              <p className="text-[#333333] leading-relaxed text-xs sm:text-base md:text-lg text-left sm:text-justify">
+              <p className="text-[#333333] leading-relaxed text-xs sm:text-base md:text-lg text-justify">
                 {about.mission.desc}
               </p>
             </motion.div>
@@ -183,7 +183,7 @@ const About = () => {
               viewport={{ once: true }}
             >
               <h3 className="text-xl sm:text-2xl font-bold text-[#0B4E8C] mb-3 sm:mb-4">Modern Warehousing</h3>
-              <p className="text-[#333333] leading-relaxed mb-4 sm:mb-6 text-xs sm:text-base text-left sm:text-justify">
+              <p className="text-[#333333] leading-relaxed mb-4 sm:mb-6 text-xs sm:text-base text-justify">
                 Our facilities are equipped with the latest technology for
                 inventory management and climate control, ensuring that all
                 pharmaceutical products are stored under optimal conditions.

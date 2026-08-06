@@ -188,7 +188,7 @@ const Home = () => {
             <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#0B4E8C] leading-snug sm:leading-tight tracking-tight mb-4 sm:mb-6">
               Delivering <span className="text-[#1C8A3C]">Excellence</span> in Healthcare
             </h1>
-            <p className="text-xs sm:text-base md:text-lg text-[#333333] mb-6 sm:mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal text-left sm:text-justify">
+            <p className="text-xs sm:text-base md:text-lg text-[#333333] mb-6 sm:mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal text-justify">
               Your trusted partner in pharmaceutical distribution. We ensure safe, reliable, and timely access to quality healthcare products across the region.
             </p>
             <div className="flex flex-row items-center gap-2.5 sm:gap-4 justify-center lg:justify-start w-full sm:w-auto">
@@ -268,13 +268,13 @@ const Home = () => {
                 align="left"
               />
               <p
-                className="text-[#333333] leading-relaxed mb-4 sm:mb-6 text-xs sm:text-base text-left sm:text-justify"
+                className="text-[#333333] leading-relaxed mb-4 sm:mb-6 text-xs sm:text-base text-justify"
                 dangerouslySetInnerHTML={{
                   __html: about.introduction.desc1,
                 }}
               />
               <p
-                className="text-[#333333] leading-relaxed mb-6 sm:mb-8 text-xs sm:text-base text-left sm:text-justify"
+                className="text-[#333333] leading-relaxed mb-6 sm:mb-8 text-xs sm:text-base text-justify"
                 dangerouslySetInnerHTML={{
                   __html: about.introduction.desc2,
                 }}
@@ -323,7 +323,7 @@ const Home = () => {
                       </h3>
                     </div>
 
-                    <p className="text-[#333333] leading-relaxed text-xs sm:text-sm md:text-base text-left sm:text-justify">
+                    <p className="text-[#333333] leading-relaxed text-xs sm:text-sm md:text-base text-justify">
                       {service.desc}
                     </p>
                   </div>
