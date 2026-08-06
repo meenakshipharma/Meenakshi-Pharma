@@ -101,7 +101,7 @@ export const termsOfService = {
     },
     {
       heading: '4. Purpose of Website Content',
-      content: `The content on this website—including product category lists, brand showcases, and service descriptions—is provided for general business information. Website content does not constitute a binding commercial offer or medical advice.`,
+      content: `The content on this website including product category lists, brand showcases, and service descriptions is provided for general business information. Website content does not constitute a binding commercial offer or medical advice.`,
     },
     {
       heading: '5. External Portals & Login Links',
