@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { FiBriefcase, FiCheckCircle } from "react-icons/fi";
 
+import { Link } from "react-router-dom";
 import PageBanner from "../components/PageBanner";
 import Button from "../components/Button";
 import CTASection from "../components/CTASection";
@@ -695,7 +696,14 @@ const Career = () => {
                       htmlFor="declarationConfirmed"
                       className="text-xs md:text-sm text-[#333333] cursor-pointer select-none"
                     >
-                      I confirm that the information provided is true and accurate. *
+                      I confirm that the information provided is true and accurate, and agree to the{" "}
+                      <Link to="/privacy-policy" target="_blank" className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]">
+                        Privacy Policy
+                      </Link>{" "}
+                      and{" "}
+                      <Link to="/terms-of-service" target="_blank" className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]">
+                        Terms of Service
+                      </Link>. *
                     </label>
                   </div>
                   {formErrors.declarationConfirmed && (
