@@ -43,6 +43,18 @@ const renderContactValue = (type, v) => {
     return (
       <a
         href={`mailto:${v}`}
+        className="hover:text-[#1C8A3C] transition-colors py-0.5 inline-block font-medium break-all"
+      >
+        {v}
+      </a>
+    );
+  }
+  if (type === "address") {
+    return (
+      <a
+        href={contact.mapUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         className="hover:text-[#1C8A3C] transition-colors py-0.5 inline-block font-medium"
       >
         {v}
@@ -304,29 +316,29 @@ const Contact = () => {
         subtitle={contact.banner.subtitle}
       />
 
-      <section className="section-padding bg-[#F5F7FA]">
+      <section className="pt-8 sm:pt-12 md:pt-16 pb-12 sm:pb-16 md:pb-20 bg-[#F5F7FA]">
         <div className="container-custom" ref={formContainerRef}>
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+          <div className="flex flex-col lg:flex-row gap-8 lg:gap-16 items-start">
             {/* Left Side Info */}
             <motion.div
               className="flex-1 w-full"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
             >
-              <h2 className="text-2xl md:text-3xl font-bold text-[#0B4E8C] mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-[#0B4E8C] mb-6 sm:mb-8">
                 {contact.details.title}
               </h2>
 
-              <div className="space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 {contact.details.info.map((item, index) => (
                   <div
                     key={index}
-                    className="flex gap-4 p-5 rounded-2xl bg-white border border-slate-200 border-l-4 border-l-[#1C8A3C] shadow-soft hover:shadow-card-hover transition-all duration-300"
+                    className="flex gap-3.5 sm:gap-4 p-4 sm:p-5 rounded-xl sm:rounded-2xl bg-white border border-slate-200 border-l-4 border-l-[#1C8A3C] shadow-soft hover:shadow-card-hover transition-all duration-300"
                   >
                     <div className="w-12 h-12 bg-[#E8F5EB] text-[#1C8A3C] rounded-2xl flex items-center justify-center shadow-xs shrink-0 text-xl border border-[#1C8A3C]/20">
                       {icons[item.type]}
                     </div>
-                    <div>
+                    <div className="min-w-0 flex-1">
                       <h4 className="font-bold text-[#0B4E8C] text-base mb-1">
                         {item.label}
                       </h4>
@@ -412,7 +424,7 @@ We appreciate your interest in Meenakshi Pharma and look forward to assisting yo
                   </Button>
                 </motion.div>
               ) : (
-                <div className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-200 border-t-4 border-t-[#0B4E8C]">
+                <div className="bg-white p-4 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl shadow-xl border border-slate-200 border-t-4 border-t-[#0B4E8C]">
                   <h3 className="text-2xl font-bold text-[#0B4E8C] mb-2">
                     Submit Inquiry
                   </h3>
@@ -563,14 +575,16 @@ We appreciate your interest in Meenakshi Pharma and look forward to assisting yo
                       )}
                     </div>
 
-                    <Button
-                      type="submit"
-                      variant="primary"
-                      disabled={loading}
-                      className="w-full md:w-auto px-10"
-                    >
-                      {loading ? "Submitting Inquiry..." : "Submit Inquiry"}
-                    </Button>
+                    <div className="flex justify-center md:justify-start">
+                      <Button
+                        type="submit"
+                        variant="primary"
+                        disabled={loading}
+                        className="px-8 md:px-10"
+                      >
+                        {loading ? "Submitting Inquiry..." : "Submit Inquiry"}
+                      </Button>
+                    </div>
                   </form>
                 </div>
               )}

@@ -55,7 +55,7 @@ const HeroCarousel = () => {
 
   return (
     <div
-      className="relative rounded-3xl overflow-hidden shadow-2xl aspect-square border-4 border-white backdrop-blur-md group select-none ring-1 ring-slate-200"
+      className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl aspect-[4/3] sm:aspect-square border-2 sm:border-4 border-white backdrop-blur-md group select-none ring-1 ring-slate-200"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -80,11 +80,11 @@ const HeroCarousel = () => {
           <div className="absolute inset-0 bg-gradient-to-t from-[#0B4E8C]/80 via-slate-900/20 to-transparent"></div>
 
           {/* Subtitle Caption */}
-          <div className="absolute bottom-10 left-6 right-6 z-10 text-white drop-shadow-md hidden sm:block">
-            <span className="inline-block text-[11px] uppercase tracking-widest font-semibold px-2.5 py-0.5 rounded-full bg-[#1C8A3C] text-white mb-2 shadow-xs">
+          <div className="absolute bottom-7 sm:bottom-10 left-3 right-3 sm:left-6 sm:right-6 z-10 text-white drop-shadow-md">
+            <span className="inline-block text-[9px] sm:text-[11px] uppercase tracking-widest font-semibold px-2 py-0.5 rounded-full bg-[#1C8A3C] text-white mb-1 sm:mb-2 shadow-xs">
               Meenakshi Pharma
             </span>
-            <h3 className="text-base sm:text-lg lg:text-xl font-bold leading-snug text-white">
+            <h3 className="text-xs sm:text-lg lg:text-xl font-bold leading-snug text-white line-clamp-1 sm:line-clamp-none">
               {slides[currentIndex].title}
             </h3>
           </div>
@@ -109,15 +109,15 @@ const HeroCarousel = () => {
       </button>
 
       {/* Pagination Dots */}
-      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1.5 bg-[#0B4E8C]/50 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
+      <div className="absolute bottom-2 sm:bottom-3 left-1/2 -translate-x-1/2 z-20 flex items-center gap-1 sm:gap-1.5 bg-[#0B4E8C]/50 backdrop-blur-md px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-full border border-white/20">
         {slides.map((_, index) => (
           <button
             key={index}
             onClick={() => setCurrentIndex(index)}
-            className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+            className={`h-1.5 sm:h-2 rounded-full transition-all duration-300 cursor-pointer ${
               index === currentIndex
-                ? "w-6 bg-[#1C8A3C] shadow-sm"
-                : "w-2 bg-white/60 hover:bg-white"
+                ? "w-4 sm:w-6 bg-[#1C8A3C] shadow-sm"
+                : "w-1.5 sm:w-2 bg-white/60 hover:bg-white"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

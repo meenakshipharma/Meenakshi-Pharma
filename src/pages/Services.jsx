@@ -32,9 +32,9 @@ const Services = () => {
             subtitle="Our Services"
           />
 
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-12 mt-12 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-4 sm:gap-8 lg:gap-12 mt-6 sm:mt-12 items-center">
             {/* ── LEFT COLUMN ── */}
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-4 sm:gap-8">
               {services.list.slice(0, 2).map((service, i) => {
                 const Icon = iconMap[service.icon];
                 return (
@@ -44,19 +44,19 @@ const Services = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.15 }}
-                    className="bg-white p-8 rounded-2xl border border-slate-200 border-t-4 border-t-[#0B4E8C] shadow-soft hover:shadow-card-hover hover:border-t-[#1C8A3C] transition-all duration-300 flex flex-col md:flex-row items-start lg:items-center gap-6 group"
+                    className="bg-white p-5 sm:p-8 rounded-xl sm:rounded-2xl border border-slate-200 border-t-4 border-t-[#0B4E8C] shadow-soft hover:shadow-card-hover hover:border-t-[#1C8A3C] transition-all duration-300 flex flex-col md:flex-row items-start lg:items-center gap-4 sm:gap-6 group"
                   >
                     <div className="flex-1 text-left lg:text-right order-2 lg:order-1">
-                      <h3 className="text-lg md:text-xl font-bold uppercase tracking-wider mb-2 text-[#0B4E8C] group-hover:text-[#1C8A3C] transition-colors">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold uppercase tracking-wider mb-1.5 sm:mb-2 text-[#0B4E8C] group-hover:text-[#1C8A3C] transition-colors">
                         {service.title}
                       </h3>
 
-                      <p className="text-[#333333] text-sm md:text-base leading-relaxed text-justify">
+                      <p className="text-[#333333] text-xs sm:text-sm md:text-base leading-relaxed text-left sm:text-justify">
                         {service.desc}
                       </p>
                     </div>
                     <div
-                      className={`flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center text-2xl text-white shadow-md order-1 lg:order-2 ${
+                      className={`flex-shrink-0 w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center text-xl sm:text-2xl text-white shadow-md order-1 lg:order-2 ${
                         service.color === "brand" ? "bg-[#0B4E8C] shadow-[#0B4E8C]/20" : "bg-[#1C8A3C] shadow-[#1C8A3C]/20"
                       }`}
                     >
@@ -118,7 +118,7 @@ const Services = () => {
             </motion.div>
 
             {/* ── RIGHT COLUMN ── */}
-            <div className="flex flex-col gap-8">
+            <div className="flex flex-col gap-4 sm:gap-8">
               {services.list.slice(2, 4).map((service, i) => {
                 const Icon = iconMap[service.icon];
                 return (
@@ -128,10 +128,10 @@ const Services = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.15 }}
-                    className="bg-white p-8 rounded-2xl border border-slate-200 border-t-4 border-t-[#1C8A3C] shadow-soft hover:shadow-card-hover hover:border-t-[#0B4E8C] transition-all duration-300 flex flex-col md:flex-row items-start lg:items-center gap-6 group"
+                    className="bg-white p-5 sm:p-8 rounded-xl sm:rounded-2xl border border-slate-200 border-t-4 border-t-[#1C8A3C] shadow-soft hover:shadow-card-hover hover:border-t-[#0B4E8C] transition-all duration-300 flex flex-col md:flex-row items-start lg:items-center gap-4 sm:gap-6 group"
                   >
                     <div
-                      className={`flex-shrink-0 w-14 h-14 rounded-2xl flex items-center justify-center text-2xl text-white shadow-md ${
+                      className={`flex-shrink-0 w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center text-xl sm:text-2xl text-white shadow-md ${
                         service.color === "brand" ? "bg-[#0B4E8C] shadow-[#0B4E8C]/20" : "bg-[#1C8A3C] shadow-[#1C8A3C]/20"
                       }`}
                     >
@@ -139,11 +139,11 @@ const Services = () => {
                     </div>
 
                     <div className="flex-1 text-left">
-                      <h3 className="text-lg md:text-xl font-bold uppercase tracking-wider mb-2 text-[#0B4E8C] group-hover:text-[#1C8A3C] transition-colors">
+                      <h3 className="text-base sm:text-lg md:text-xl font-bold uppercase tracking-wider mb-1.5 sm:mb-2 text-[#0B4E8C] group-hover:text-[#1C8A3C] transition-colors">
                         {service.title}
                       </h3>
 
-                      <p className="text-[#333333] text-sm md:text-base leading-relaxed text-justify">
+                      <p className="text-[#333333] text-xs sm:text-sm md:text-base leading-relaxed text-left sm:text-justify">
                         {service.desc}
                       </p>
                     </div>

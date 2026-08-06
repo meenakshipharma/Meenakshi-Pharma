@@ -20,7 +20,6 @@ import HeroCarousel from "../components/HeroCarousel";
 import heroImg from "../assets/images/hero.webp";
 // import testimonialVideo1 from "../assets/videos/srccc.mp4";
 // import testimonialVideo2 from "../assets/videos/srccc1.mp4";
-// import testimonialVideo3 from "../assets/videos/srccc2.mp4";
 import testimonialVideo3 from "../assets/videos/srccc3.webm";
 import testimonialVideo4 from "../assets/videos/srccc4.webm";
 import testimonialVideo5 from "../assets/videos/srccc5.webm";
@@ -85,7 +84,7 @@ const TestimonialVideoCard = ({ src, badge, title, desc, delay }) => {
 
   return (
     <motion.div
-      className="relative rounded-3xl overflow-hidden shadow-2xl bg-[#083B6A] group h-full w-full flex flex-col md:flex-row cursor-pointer border border-[#0B4E8C]"
+      className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl bg-[#083B6A] group h-full w-full flex flex-col md:flex-row cursor-pointer border border-[#0B4E8C]"
       initial={{ opacity: 0, y: 30 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
@@ -119,15 +118,15 @@ const TestimonialVideoCard = ({ src, badge, title, desc, delay }) => {
         />
 
         {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/35 group-hover:via-black/10 transition-all duration-300 pointer-events-none md:bg-gradient-to-t md:from-black/40 md:via-transparent md:to-black/10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/35 group-hover:via-black/10 transition-all duration-300 pointer-events-none md:bg-gradient-to-t md:from-black/40 md:via-transparent md:to-black/10"></div>
 
         {/* Play/Pause center overlay */}
         <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-          <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30 hover:scale-110 transition-transform">
+          <div className="w-10 h-10 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30 hover:scale-110 transition-transform">
             {isPlaying ? (
-              <FiPause size={20} />
+              <FiPause size={18} />
             ) : (
-              <FiPlay size={20} className="ml-1" />
+              <FiPlay size={18} className="ml-0.5" />
             )}
           </div>
         </div>
@@ -135,20 +134,20 @@ const TestimonialVideoCard = ({ src, badge, title, desc, delay }) => {
         {/* Mute/Unmute button top-right */}
         <button
           onClick={toggleMute}
-          className="absolute top-4 right-4 z-30 w-10 h-10 bg-black/50 backdrop-blur-md text-white rounded-full flex items-center justify-center border border-white/20 hover:bg-black/80 transition-colors"
+          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-8 h-8 sm:w-10 sm:h-10 bg-black/60 backdrop-blur-md text-white rounded-full flex items-center justify-center border border-white/20 hover:bg-black/80 transition-colors"
         >
-          {isMuted ? <FiVolumeX size={16} /> : <FiVolume2 size={16} />}
+          {isMuted ? <FiVolumeX size={14} /> : <FiVolume2 size={14} />}
         </button>
 
         {/* Text overlay bottom (Mobile only) */}
-        <div className="absolute bottom-6 left-6 right-6 z-20 pointer-events-none md:hidden">
-          <span className="inline-block bg-[#1C8A3C] text-white text-[10px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-2">
+        <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 z-20 pointer-events-none md:hidden bg-gradient-to-t from-black/90 via-black/60 to-transparent p-3 sm:p-4 rounded-xl">
+          <span className="inline-block bg-[#1C8A3C] text-white text-[9px] sm:text-[10px] font-semibold uppercase tracking-widest px-2.5 py-0.5 rounded-full mb-1">
             {badge}
           </span>
-          <h4 className="text-white text-lg font-bold mb-1 leading-snug drop-shadow-md">
+          <h4 className="text-white text-base sm:text-lg font-bold mb-1 leading-snug drop-shadow-md">
             {title}
           </h4>
-          <p className="text-slate-100 text-xs leading-relaxed max-w-sm drop-shadow-md">
+          <p className="text-slate-100 text-xs leading-relaxed max-w-sm drop-shadow-md line-clamp-3">
             {desc}
           </p>
         </div>
@@ -171,37 +170,37 @@ const Home = () => {
       </Helmet>
 
       {/* Hero Section */}
-      <section className="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-gradient-to-b from-[#E8F1F9] via-[#F5F7FA] to-white">
-        <div className="absolute top-10 right-0 w-[500px] h-[500px] bg-[#0B4E8C]/5 rounded-full blur-3xl pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#1C8A3C]/5 rounded-full blur-3xl pointer-events-none"></div>
+      <section className="relative pt-20 pb-12 sm:pt-28 sm:pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-gradient-to-b from-[#E8F1F9] via-[#F5F7FA] to-white">
+        <div className="absolute top-10 right-0 w-[280px] h-[280px] sm:w-[500px] sm:h-[500px] bg-[#0B4E8C]/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div className="absolute bottom-0 left-0 w-[240px] h-[240px] sm:w-[400px] sm:h-[400px] bg-[#1C8A3C]/5 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div className="container-custom relative z-10 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+        <div className="container-custom relative z-10 flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-16">
           <motion.div
             className="flex-1 text-center lg:text-left"
             initial={{ opacity: 0, x: -40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7 }}
           >
-            <span className="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-[#E8F5EB] border border-[#1C8A3C]/30 text-[#1C8A3C] font-semibold text-sm mb-6 shadow-xs">
-              <span className="w-2 h-2 rounded-full bg-[#E31E24] animate-pulse"></span>
+            <span className="inline-flex items-center gap-1.5 sm:gap-2 py-1 px-3 sm:py-1.5 sm:px-4 rounded-full bg-[#E8F5EB] border border-[#1C8A3C]/30 text-[#1C8A3C] font-semibold text-xs sm:text-sm mb-4 sm:mb-6 shadow-xs">
+              <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#E31E24] animate-pulse"></span>
               Meenakshi Pharma
             </span>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#0B4E8C] leading-tight tracking-tight mb-6">
+            <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#0B4E8C] leading-snug sm:leading-tight tracking-tight mb-4 sm:mb-6">
               Delivering <span className="text-[#1C8A3C]">Excellence</span> in Healthcare
             </h1>
-            <p className="text-base sm:text-lg text-[#333333] mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal text-justify">
+            <p className="text-xs sm:text-base md:text-lg text-[#333333] mb-6 sm:mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal text-left sm:text-justify">
               Your trusted partner in pharmaceutical distribution. We ensure safe, reliable, and timely access to quality healthcare products across the region.
             </p>
-            <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-              <Button to="/services" variant="primary">Explore Services</Button>
-              <Button to="/partner" variant="secondary">
+            <div className="flex flex-row items-center gap-2.5 sm:gap-4 justify-center lg:justify-start w-full sm:w-auto">
+              <Button to="/services" variant="primary" className="px-3.5 py-2.5 sm:px-7 sm:py-3.5 text-xs sm:text-base">Explore Services</Button>
+              <Button to="/partner" variant="secondary" className="px-3.5 py-2.5 sm:px-7 sm:py-3.5 text-xs sm:text-base">
                 Partner With Us
               </Button>
             </div>
           </motion.div>
 
           <motion.div
-            className="flex-1 relative w-full max-w-md mx-auto lg:max-w-lg lg:ml-auto mt-6 lg:mt-0"
+            className="flex-1 relative w-full max-w-sm sm:max-w-md mx-auto lg:max-w-lg lg:ml-auto mt-4 sm:mt-6 lg:mt-0"
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.15 }}
@@ -212,9 +211,9 @@ const Home = () => {
       </section>
 
       {/* Statistics Counter */}
-      <section className="py-12 bg-[#F5F7FA] relative z-20 border-y border-slate-200 shadow-xs">
+      <section className="py-8 sm:py-12 bg-[#F5F7FA] relative z-20 border-y border-slate-200 shadow-xs">
         <div className="container-custom">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6">
             {home.stats.map((stat, index) => (
               <motion.div
                 key={index}
@@ -222,9 +221,9 @@ const Home = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-white border border-slate-200 border-t-4 border-t-[#0B4E8C] p-6 md:p-8 rounded-2xl text-center shadow-soft hover:shadow-card-hover hover:border-t-[#1C8A3C] hover:-translate-y-1 transition-all duration-300 group"
+                className="bg-white border border-slate-200 border-t-4 border-t-[#0B4E8C] p-3.5 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl text-center shadow-soft hover:shadow-card-hover hover:border-t-[#1C8A3C] hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-center min-w-0"
               >
-                <h3 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-[#0B4E8C] group-hover:text-[#1C8A3C] mb-2 tracking-tight">
+                <h3 className="text-2xl sm:text-4xl md:text-5xl font-extrabold text-[#0B4E8C] group-hover:text-[#1C8A3C] mb-1 sm:mb-2 tracking-tight truncate">
                   <Counter
                     prefix={stat.prefix}
                     target={stat.target}
@@ -232,7 +231,7 @@ const Home = () => {
                     duration={stat.duration || 3}
                   />
                 </h3>
-                <p className="text-[#333333] font-semibold text-sm md:text-base">{stat.label}</p>
+                <p className="text-[#333333] font-semibold text-xs sm:text-sm md:text-base leading-snug">{stat.label}</p>
               </motion.div>
             ))}
           </div>
@@ -240,16 +239,16 @@ const Home = () => {
       </section>
 
       {/* About Section */}
-      <section className="section-padding bg-white">
+      <section className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-6 sm:pb-8 md:pb-10 bg-white">
         <div className="container-custom">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          <div className="flex flex-col lg:flex-row items-center gap-8 sm:gap-12 lg:gap-16">
             <motion.div
               className="flex-1 w-full"
               initial={{ opacity: 0, scale: 0.95 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
             >
-              <div className="relative aspect-[4/3] rounded-3xl overflow-hidden shadow-2xl border-4 border-[#F5F7FA]">
+              <div className="relative aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 sm:border-4 border-[#F5F7FA]">
                 <img
                   src={heroImg}
                   alt="About Us"
@@ -258,7 +257,7 @@ const Home = () => {
               </div>
             </motion.div>
             <motion.div
-              className="flex-1"
+              className="flex-1 w-full text-center lg:text-left"
               initial={{ opacity: 0, x: 30 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -269,32 +268,34 @@ const Home = () => {
                 align="left"
               />
               <p
-                className="text-[#333333] leading-relaxed mb-6 text-base text-justify"
+                className="text-[#333333] leading-relaxed mb-4 sm:mb-6 text-xs sm:text-base text-left sm:text-justify"
                 dangerouslySetInnerHTML={{
                   __html: about.introduction.desc1,
                 }}
               />
               <p
-                className="text-[#333333] leading-relaxed mb-8 text-base text-justify"
+                className="text-[#333333] leading-relaxed mb-6 sm:mb-8 text-xs sm:text-base text-left sm:text-justify"
                 dangerouslySetInnerHTML={{
                   __html: about.introduction.desc2,
                 }}
               />
-              <Button to="/about" variant="primary">Read Our Story</Button>
+              <div className="flex justify-center lg:justify-start">
+                <Button to="/about" variant="primary">Read Our Story</Button>
+              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* Services Section */}
-      <section className="section-padding bg-[#F5F7FA]">
+      <section className="pt-10 sm:pt-14 md:pt-16 lg:pt-20 pb-6 sm:pb-8 md:pb-10 bg-[#F5F7FA]">
         <div className="container-custom">
           <SectionTitle
             title="Comprehensive Healthcare Solutions"
             subtitle="Our Services"
           />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
             {services.list.slice(0, 3).map((service, index) => {
               const Icon = iconMap[service.icon];
 
@@ -305,24 +306,24 @@ const Home = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white p-8 md:p-10 rounded-2xl shadow-soft hover:shadow-card-hover border border-slate-200 border-t-4 border-t-[#0B4E8C] hover:border-t-[#1C8A3C] transition-all duration-300 group flex flex-col justify-between"
+                  className="bg-white p-5 sm:p-8 md:p-10 rounded-xl sm:rounded-2xl shadow-soft hover:shadow-card-hover border border-slate-200 border-t-4 border-t-[#0B4E8C] hover:border-t-[#1C8A3C] transition-all duration-300 group flex flex-col justify-between"
                 >
                   <div>
-                    <div className="flex items-center gap-4 mb-6">
+                    <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
                       <div
-                        className={`w-14 h-14 rounded-2xl flex items-center justify-center text-2xl text-white flex-shrink-0 shadow-md ${
+                        className={`w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl flex items-center justify-center text-xl sm:text-2xl text-white flex-shrink-0 shadow-md ${
                           index % 2 === 0 ? "bg-[#0B4E8C]" : "bg-[#1C8A3C]"
                         }`}
                       >
                         {Icon && <Icon />}
                       </div>
 
-                      <h3 className="text-xl md:text-2xl font-bold text-[#0B4E8C] group-hover:text-[#1C8A3C] transition-colors">
+                      <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-[#0B4E8C] group-hover:text-[#1C8A3C] transition-colors leading-snug">
                         {service.title}
                       </h3>
                     </div>
 
-                    <p className="text-[#333333] leading-relaxed text-sm md:text-base lg:text-lg text-justify">
+                    <p className="text-[#333333] leading-relaxed text-xs sm:text-sm md:text-base text-left sm:text-justify">
                       {service.desc}
                     </p>
                   </div>
@@ -330,7 +331,7 @@ const Home = () => {
               );
             })}
           </div>
-          <div className="text-center mt-12">
+          <div className="flex justify-center mt-6 sm:mt-8">
             <Button to="/services" variant="secondary">
               View All Services
             </Button>
@@ -339,13 +340,13 @@ const Home = () => {
       </section>
 
       {/* Why Choose Us */}
-      <section className="section-padding bg-white">
+      <section className="pt-8 sm:pt-10 md:pt-12 lg:pt-14 pb-8 sm:pb-10 md:pb-12 lg:pb-14 bg-white">
         <div className="container-custom text-center">
           <SectionTitle
             title={home.whyChooseUs.title}
             subtitle="Our Strengths"
           />
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-8 mt-6 sm:mt-8">
             {home.whyChooseUs.features.map((feature, index) => (
               <motion.div
                 key={index}
@@ -353,10 +354,10 @@ const Home = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.15 }}
-                className="bg-white p-8 md:p-10 rounded-2xl border border-slate-200 border-t-4 border-t-[#1C8A3C] shadow-soft hover:shadow-card-hover hover:border-t-[#0B4E8C] transition-all duration-300 relative overflow-hidden group"
+                className="bg-white p-5 sm:p-8 md:p-10 rounded-xl sm:rounded-2xl border border-slate-200 border-t-4 border-t-[#1C8A3C] shadow-soft hover:shadow-card-hover hover:border-t-[#0B4E8C] transition-all duration-300 relative overflow-hidden group"
               >
                 <div className="absolute top-0 right-0 w-24 h-24 bg-[#1C8A3C]/10 rounded-full -mr-8 -mt-8 pointer-events-none group-hover:scale-125 transition-transform"></div>
-                <h3 className="text-xl font-bold text-[#0B4E8C] group-hover:text-[#1C8A3C] transition-colors">{feature}</h3>
+                <h3 className="text-base sm:text-xl font-bold text-[#0B4E8C] group-hover:text-[#1C8A3C] transition-colors">{feature}</h3>
               </motion.div>
             ))}
           </div>
@@ -364,7 +365,7 @@ const Home = () => {
       </section>
 
       {/* Testimonial Video Section */}
-      <section className="section-padding bg-[#F5F7FA] overflow-hidden">
+      <section className="pt-8 sm:pt-10 md:pt-12 lg:pt-14 pb-6 sm:pb-8 md:pb-10 bg-[#F5F7FA] overflow-hidden">
         <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -421,9 +422,9 @@ const Home = () => {
             ];
 
             return (
-              <div className="relative mt-8 w-full max-w-sm md:max-w-4xl lg:max-w-5xl mx-auto px-4 md:px-0">
+              <div className="relative mt-6 sm:mt-8 w-full max-w-full sm:max-w-sm md:max-w-4xl lg:max-w-5xl mx-auto px-2 sm:px-4 md:px-0">
                 {/* Carousel Track */}
-                <div className="relative overflow-hidden rounded-3xl aspect-[3/4] md:aspect-[2/1] lg:aspect-[2.2/1] shadow-2xl bg-[#083B6A] group">
+                <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl aspect-[4/5] sm:aspect-[3/4] md:aspect-[2/1] lg:aspect-[2.2/1] shadow-2xl bg-[#083B6A] group">
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={currentVideoIndex}
@@ -453,7 +454,7 @@ const Home = () => {
                         testimonialVideos.length,
                     )
                   }
-                  className="absolute left-3 md:-left-16 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 bg-white text-[#0B4E8C] rounded-full shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#1C8A3C] hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                  className="absolute left-2 sm:left-3 md:-left-16 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-md text-[#0B4E8C] rounded-full shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#1C8A3C] hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
                   aria-label="Previous testimonial"
                 >
                   <svg
@@ -462,7 +463,7 @@ const Home = () => {
                     viewBox="0 0 24 24"
                     strokeWidth="2.5"
                     stroke="currentColor"
-                    className="w-5 h-5"
+                    className="w-4 h-4 sm:w-5 sm:h-5"
                   >
                     <path
                       strokeLinecap="round"
@@ -478,7 +479,7 @@ const Home = () => {
                       (prev) => (prev + 1) % testimonialVideos.length,
                     )
                   }
-                  className="absolute right-3 md:-right-16 top-1/2 -translate-y-1/2 z-30 w-10 h-10 md:w-12 md:h-12 bg-white text-[#0B4E8C] rounded-full shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#1C8A3C] hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
+                  className="absolute right-2 sm:right-3 md:-right-16 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-md text-[#0B4E8C] rounded-full shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#1C8A3C] hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
                   aria-label="Next testimonial"
                 >
                   <svg
@@ -487,7 +488,7 @@ const Home = () => {
                     viewBox="0 0 24 24"
                     strokeWidth="2.5"
                     stroke="currentColor"
-                    className="w-5 h-5"
+                    className="w-4 h-4 sm:w-5 sm:h-5"
                   >
                     <path
                       strokeLinecap="round"
@@ -498,15 +499,15 @@ const Home = () => {
                 </button>
 
                 {/* Indicators/Dots */}
-                <div className="flex justify-center gap-2 mt-6">
+                <div className="flex justify-center gap-1.5 sm:gap-2 mt-4 sm:mt-6">
                   {testimonialVideos.map((_, index) => (
                     <button
                       key={index}
                       onClick={() => setCurrentVideoIndex(index)}
-                      className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
+                      className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
                         currentVideoIndex === index
-                          ? "w-8 bg-[#1C8A3C]"
-                          : "w-2.5 bg-slate-300 hover:bg-slate-400"
+                          ? "w-6 sm:w-8 bg-[#1C8A3C]"
+                          : "w-2 sm:w-2.5 bg-slate-300 hover:bg-slate-400"
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
                     />

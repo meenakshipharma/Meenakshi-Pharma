@@ -31,6 +31,8 @@ const Navbar = () => {
     { name: "Contact", path: "/contact", blank: false },
   ];
 
+  const navRef = React.useRef(null);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -44,9 +46,43 @@ const Navbar = () => {
     setIsOpen(false);
   }, [location]);
 
+  // Close mobile menu on click/tap outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isOpen && navRef.current && !navRef.current.contains(event.target)) {
+        setIsOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("touchstart", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("touchstart", handleClickOutside);
+    };
+  }, [isOpen]);
+
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+    <>
+      {/* Mobile Backdrop Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 bg-slate-900/40 backdrop-blur-xs z-40 lg:hidden"
+            aria-hidden="true"
+          />
+        )}
+      </AnimatePresence>
+
+      <header
+        ref={navRef}
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
         isScrolled
           ? "bg-white shadow-md border-b border-slate-200 py-2.5 md:py-3"
           : "bg-white/95 backdrop-blur-md border-b border-slate-100 py-3 md:py-4"
@@ -56,7 +92,7 @@ const Navbar = () => {
         {/* Logo with Meenakshi Pharma Title - Left Corner */}
         <Link
           to="/"
-          className="flex items-center gap-2.5 sm:gap-3 z-50 group focus:outline-none shrink-0"
+          className="flex items-center gap-0 sm:gap-0 z-50 group focus:outline-none shrink-0"
         >
           <img
             src={logoImg}
@@ -67,7 +103,7 @@ const Navbar = () => {
               if (e.target.nextSibling) e.target.nextSibling.style.display = "flex";
             }}
           />
-          <span className="font-extrabold text-base sm:text-lg md:text-xl lg:text-2xl text-[#0B4E8C] tracking-tight group-hover:text-[#1C8A3C] transition-colors whitespace-nowrap">
+          <span className="font-extrabold text-base sm:text-lg md:text-xl  text-[#0B4E8C] tracking-tight group-hover:text-[#1C8A3C] transition-colors whitespace-nowrap">
             Meenakshi Pharma
           </span>
         </Link>
@@ -82,7 +118,7 @@ const Navbar = () => {
                 href={link.path}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 px-2 py-1.5 xl:px-3 xl:py-2 text-[11px] xl:text-xs 2xl:text-sm font-semibold rounded-lg text-[#0B4E8C] hover:text-[#1C8A3C] hover:bg-[#E8F5EB] transition-all duration-200 whitespace-nowrap"
+                className="inline-flex items-center gap-1 px-2 py-1.5 xl:px-3 xl:py-2 text-[11px] xl:text-xs 2xl:text-sm font-semibold rounded-lg text-[#0B4E8C] hover:text-[#1C8A3C] hover:bg-[#F5F7FA] transition-all duration-200 whitespace-nowrap"
               >
                 <span>{link.name}</span>
                 <FiExternalLink className="text-[#1C8A3C] text-xs shrink-0" />
@@ -138,7 +174,7 @@ const Navbar = () => {
                       href={link.path}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center justify-between py-2.5 px-4 rounded-xl text-sm sm:text-base font-semibold text-[#0B4E8C] hover:bg-[#E8F5EB] hover:text-[#1C8A3C] transition-colors"
+                      className="flex items-center justify-between py-2.5 px-4 rounded-xl text-sm sm:text-base font-semibold text-[#0B4E8C] hover:bg-[#F5F7FA] hover:text-[#1C8A3C] active:bg-[#E8F5EB] transition-colors"
                     >
                       <span>{link.name}</span>
                       <FiExternalLink className="text-[#1C8A3C]" />
@@ -163,6 +199,7 @@ const Navbar = () => {
         </AnimatePresence>
       </div>
     </header>
+    </>
   );
 };
 

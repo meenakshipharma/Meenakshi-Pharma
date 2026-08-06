@@ -417,14 +417,14 @@ const Partner = () => {
         subsubtitle={partner.banner.subsubtitle}
       />
 
-      <section className="section-padding bg-[#F5F7FA]">
+      <section className="pt-8 sm:pt-12 md:pt-16 pb-12 sm:pb-16 md:pb-20 bg-[#F5F7FA]">
         <div className="container-custom">
           <div className="max-w-5xl mx-auto">
             <motion.div
               ref={formContainerRef}
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-white p-8 md:p-12 rounded-3xl shadow-xl border border-slate-200 border-t-4 border-t-[#0B4E8C]"
+              className="bg-white p-4 sm:p-8 md:p-12 rounded-2xl sm:rounded-3xl shadow-xl border border-slate-200 border-t-4 border-t-[#0B4E8C]"
             >
               {status.success ? (
                 <div className="text-center py-6 px-4">
@@ -1017,18 +1017,18 @@ const Partner = () => {
 
                     {/* ── Declaration ─────────────────────────────────────── */}
                     <div className="mt-8">
-                      <div className="flex items-start gap-3">
+                      <div className="flex items-center gap-3">
                         <input
                           type="checkbox"
                           id="agree"
                           name="agreeTerms"
                           checked={formData.agreeTerms}
                           onChange={handleChange}
-                          className="mt-1 w-4 h-4 text-[#1C8A3C] bg-slate-100 border-slate-300 rounded focus:ring-[#1C8A3C]"
+                          className="w-4 h-4 text-[#1C8A3C] bg-slate-100 border-slate-300 rounded focus:ring-[#1C8A3C] shrink-0 cursor-pointer"
                         />
                         <label
                           htmlFor="agree"
-                          className="text-xs md:text-sm text-[#333333] leading-relaxed cursor-pointer"
+                          className="text-xs md:text-sm text-[#333333] leading-relaxed cursor-pointer select-none"
                         >
                           I declare that the information provided above is true
                           and correct. I authorize Meenakshi Pharma to contact
@@ -1039,12 +1039,12 @@ const Partner = () => {
                     </div>
 
                     {/* ── Submit ──────────────────────────────────────────── */}
-                    <div className="pt-6 text-center">
+                    <div className="pt-6 text-center flex justify-center">
                       <Button
                         type="submit"
                         variant="primary"
                         disabled={loading}
-                        className="w-full md:w-auto md:px-16"
+                        className="px-8 md:px-16"
                       >
                         {loading ? "Submitting..." : "Submit Application"}
                       </Button>

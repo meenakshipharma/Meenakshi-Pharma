@@ -290,14 +290,14 @@ const Career = () => {
         subsubtitle={career.banner.subsubtitle}
       />
 
-      <section className="py-16 md:py-24 bg-[#F5F7FA]">
+      <section className="pt-8 sm:pt-12 md:pt-16 pb-12 sm:pb-16 md:pb-20 bg-[#F5F7FA]">
         <div className="container mx-auto px-4 max-w-5xl" ref={formContainerRef}>
           {status.success ? (
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.5 }}
-              className="bg-white rounded-3xl shadow-xl border border-slate-200 border-t-4 border-t-[#1C8A3C] p-8 md:p-12 text-center"
+              className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-slate-200 border-t-4 border-t-[#1C8A3C] p-4 sm:p-8 md:p-12 text-center"
             >
               <div className="w-16 h-16 rounded-full bg-[#E8F5EB] text-[#1C8A3C] flex items-center justify-center mx-auto mb-6 shadow-xs border border-[#1C8A3C]/20">
                 <FiCheckCircle className="text-3xl" />
@@ -334,7 +334,7 @@ const Career = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
               viewport={{ once: true }}
-              className="bg-white rounded-3xl shadow-xl border border-slate-200 border-t-4 border-t-[#0B4E8C] p-8 md:p-12"
+              className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-slate-200 border-t-4 border-t-[#0B4E8C] p-4 sm:p-8 md:p-12"
             >
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-12 rounded-2xl bg-[#E8F5EB] text-[#1C8A3C] flex items-center justify-center border border-[#1C8A3C]/20 shadow-xs shrink-0">
@@ -682,20 +682,18 @@ const Career = () => {
                   <h3 className="text-lg font-bold text-[#0B4E8C] border-b border-slate-200 pb-2 mb-4">
                     Declaration
                   </h3>
-                  <div className="flex items-start gap-3">
+                  <div className="flex items-center gap-3">
                     <input
                       type="checkbox"
                       id="declarationConfirmed"
                       name="declarationConfirmed"
                       checked={formData.declarationConfirmed}
                       onChange={handleChange}
-                      className={`mt-1 w-4 h-4 text-[#0B4E8C] rounded border-slate-300 focus:ring-[#0B4E8C] cursor-pointer ${
-                        formErrors.declarationConfirmed ? "ring-2 ring-[#E31E24] border-[#E31E24]" : ""
-                      }`}
+                      className="w-4 h-4 text-[#0B4E8C] rounded border-slate-300 focus:ring-[#0B4E8C] cursor-pointer shrink-0"
                     />
                     <label
                       htmlFor="declarationConfirmed"
-                      className="text-xs md:text-sm text-[#333333] cursor-pointer"
+                      className="text-xs md:text-sm text-[#333333] cursor-pointer select-none"
                     >
                       I confirm that the information provided is true and accurate. *
                     </label>
@@ -707,12 +705,12 @@ const Career = () => {
                   )}
                 </div>
 
-                <div className="pt-6 text-center">
+                <div className="pt-6 text-center flex justify-center">
                   <Button
                     type="submit"
                     variant="primary"
                     disabled={loading}
-                    className="w-full md:w-auto md:px-16"
+                    className="px-8 md:px-16"
                   >
                     {loading ? "Submitting Application..." : "Submit Application"}
                   </Button>
