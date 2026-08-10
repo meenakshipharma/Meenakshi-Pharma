@@ -50,7 +50,7 @@ const Footer = () => {
                 const iconMap = {
                   Facebook: <FiFacebook />,
                   Twitter: <FiTwitter />,
-                  LinkedIn: <FiLinkedin />,
+                  // LinkedIn: <FiLinkedin />,
                   Instagram: <FiInstagram />,
                 };
                 return (
@@ -78,7 +78,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/about"
-                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block py-1"
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block"
                 >
                   About Us
                 </Link>
@@ -86,7 +86,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/services"
-                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block py-1"
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block "
                 >
                   Our Services
                 </Link>
@@ -96,7 +96,7 @@ const Footer = () => {
                   href="http://meenakshipharma.wsweborder.com/StockAndSales/DistributorPages/Login4StockNSales.aspx"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block py-1"
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block"
                 >
                   Stock & Sales
                 </a>
@@ -106,7 +106,7 @@ const Footer = () => {
                   href="https://meenakshipharma.wondersoft.in/ro13.html#/login"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block py-1"
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block"
                 >
                   Web Order
                 </a>
@@ -114,7 +114,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/partner"
-                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block py-1"
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block "
                 >
                   Partner With Us
                 </Link>
@@ -122,9 +122,17 @@ const Footer = () => {
               <li>
                 <Link
                   to="/career"
-                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block py-1"
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block "
                 >
                   Career Opportunities
+                </Link>
+              </li>
+                            <li>
+                <Link
+                  to="/career"
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block"
+                >
+                  Contact
                 </Link>
               </li>
             </ul>
@@ -175,7 +183,9 @@ const Footer = () => {
 
           {/* Map */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-6 tracking-wide border-l-4 border-[#1C8A3C] pl-3">Location</h3>
+            <h3 className="text-lg font-bold text-white mb-6 tracking-wide border-l-4 border-[#1C8A3C] pl-3">
+              Location
+            </h3>
             <div className="w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-xl border border-white/10 group hover:border-[#1C8A3C] transition-all duration-300">
               <iframe
                 src={footer.mapUrl}
@@ -197,10 +207,16 @@ const Footer = () => {
             &copy; {currentYear} {footer.copyright}
           </p>
           <div className="flex gap-6">
-            <Link to="/privacy-policy" className="hover:text-white transition-colors">
+            <Link
+              to="/privacy-policy"
+              className="hover:text-white transition-colors"
+            >
               Privacy Policy
             </Link>
-            <Link to="/terms-of-service" className="hover:text-white transition-colors">
+            <Link
+              to="/terms-of-service"
+              className="hover:text-white transition-colors"
+            >
               Terms of Service
             </Link>
           </div>
