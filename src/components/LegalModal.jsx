@@ -1,10 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiMail, FiPhone, FiMapPin } from 'react-icons/fi';
 import { privacyPolicy, termsOfService } from '../data/legalData';
 
 const LegalModal = ({ isOpen, onClose, initialTab = 'privacy' }) => {
   const [activeTab, setActiveTab] = useState(initialTab);
+  const scrollRef = useRef(null);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = 0;
+    }
+  }, [activeTab, isOpen]);
 
   useEffect(() => {
     if (isOpen) {
@@ -75,7 +82,7 @@ const LegalModal = ({ isOpen, onClose, initialTab = 'privacy' }) => {
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto p-4 sm:p-8 space-y-6 sm:space-y-8 bg-slate-50">
+            <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 sm:p-8 space-y-6 sm:space-y-8 bg-slate-50">
               <div>
                 <h1 className="text-2xl font-bold text-[#0B4E8C] mb-2">{data.title}</h1>
                 <p className="text-xs text-slate-500 font-medium">Last updated: {data.lastUpdated}</p>
