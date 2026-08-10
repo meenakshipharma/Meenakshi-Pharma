@@ -127,9 +127,9 @@ const Footer = () => {
                   Career Opportunities
                 </Link>
               </li>
-                            <li>
+              <li>
                 <Link
-                  to="/career"
+                  to="/contact"
                   className="text-slate-200 hover:text-white hover:underline transition-colors inline-block"
                 >
                   Contact
