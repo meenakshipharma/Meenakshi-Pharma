@@ -8,6 +8,7 @@ import PageBanner from "../components/PageBanner";
 import Button from "../components/Button";
 import CTASection from "../components/CTASection";
 import CustomSelect from "../components/CustomSelect";
+import LegalModal from "../components/LegalModal";
 import { career } from "../data/content";
 
 const Career = () => {
@@ -32,6 +33,7 @@ const Career = () => {
 
   const [formErrors, setFormErrors] = useState({});
   const [loading, setLoading] = useState(false);
+  const [legalModalState, setLegalModalState] = useState({ isOpen: false, tab: 'privacy' });
 
   useEffect(() => {
     const handleBeforeUnload = (e) => {
@@ -235,7 +237,11 @@ const Career = () => {
         body: data,
       });
 
-      const result = await response.json();
+      let result = {};
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        result = await response.json();
+      }
 
       if (!response.ok) {
         throw new Error(result.message || "Failed to submit application.");
@@ -697,13 +703,13 @@ const Career = () => {
                       className="text-xs md:text-sm text-[#333333] cursor-pointer select-none"
                     >
                       I confirm that the information provided is true and accurate, and agree to the{" "}
-                      <Link to="/privacy-policy" target="_blank" className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]">
+                      <button type="button" onClick={(e) => { e.preventDefault(); setLegalModalState({ isOpen: true, tab: 'privacy' }); }} className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]">
                         Privacy Policy
-                      </Link>{" "}
+                      </button>{" "}
                       and{" "}
-                      <Link to="/terms-of-service" target="_blank" className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]">
+                      <button type="button" onClick={(e) => { e.preventDefault(); setLegalModalState({ isOpen: true, tab: 'terms' }); }} className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]">
                         Terms of Service
-                      </Link>. *
+                      </button>. *
                     </label>
                   </div>
                   {formErrors.declarationConfirmed && (
@@ -730,6 +736,12 @@ const Career = () => {
       </section>
 
       <CTASection />
+
+      <LegalModal
+        isOpen={legalModalState.isOpen}
+        initialTab={legalModalState.tab}
+        onClose={() => setLegalModalState(prev => ({ ...prev, isOpen: false }))}
+      />
 
       {/* Non-dismissible Full-screen Loading Overlay during submission */}
       {loading && (

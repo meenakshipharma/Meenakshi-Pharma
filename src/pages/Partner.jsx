@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import PageBanner from "../components/PageBanner";
 import Button from "../components/Button";
 import CustomSelect from "../components/CustomSelect";
+import LegalModal from "../components/LegalModal";
 import { partner } from "../data/content";
 
 const CATEGORY_OPTIONS = [
@@ -42,6 +43,7 @@ const Partner = () => {
   const [sameAsMobile, setSameAsMobile] = useState(false);
   const [loading, setLoading] = useState(false);
   const [categoriesOpen, setCategoriesOpen] = useState(false);
+  const [legalModalState, setLegalModalState] = useState({ isOpen: false, tab: 'privacy' });
   const dropdownRef = useRef(null);
   const formContainerRef = useRef(null);
 
@@ -196,7 +198,15 @@ const Partner = () => {
 
   // ── Handlers ──────────────────────────────────────────────────────────────
   const handleChange = (e) => {
-    const { name, value, type, checked, files } = e.target;
+    let { name, value, type, checked, files } = e.target;
+
+    if (name === "mobile" || name === "whatsapp") {
+      value = value.replace(/\D/g, "").slice(0, 10);
+    }
+
+    if (name === "pincode") {
+      value = value.replace(/\D/g, "").slice(0, 6);
+    }
 
     setFormErrors((prev) => ({ ...prev, [name]: "" }));
 
@@ -265,9 +275,14 @@ const Partner = () => {
     });
   };
 
-  const handleFocus = (e) => {
-    const { name } = e.target;
-    setFormErrors((prev) => ({ ...prev, [name]: "" }));
+  const handleBlur = (e) => {
+    const { name, value, type, checked } = e.target;
+    const fieldValue = type === "checkbox" ? checked : value;
+    const error = validateField(name, fieldValue);
+    setFormErrors((prev) => ({
+      ...prev,
+      [name]: error,
+    }));
   };
 
   const handleCategoryToggle = (category) => {
@@ -349,7 +364,11 @@ const Partner = () => {
         body: data,
       });
 
-      const result = await response.json();
+      let result = {};
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        result = await response.json();
+      }
 
       if (!response.ok) {
         throw new Error(result.message || "Submission Failed.");
@@ -568,7 +587,7 @@ const Partner = () => {
                             name="businessName"
                             value={formData.businessName}
                             onChange={handleChange}
-                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                             className={getInputClass("businessName")}
                           />
                           <ErrorMsg field="businessName" />
@@ -602,7 +621,7 @@ const Partner = () => {
                             name="ownerName"
                             value={formData.ownerName}
                             onChange={handleChange}
-                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                             className={getInputClass("ownerName")}
                           />
                           <ErrorMsg field="ownerName" />
@@ -618,7 +637,7 @@ const Partner = () => {
                             name="contactName"
                             value={formData.contactName}
                             onChange={handleChange}
-                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                             disabled={sameAsOwner}
                             className={`${getInputClass("contactName")} ${
                               sameAsOwner
@@ -673,7 +692,7 @@ const Partner = () => {
                             name="mobile"
                             value={formData.mobile}
                             onChange={handleChange}
-                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                             className={getInputClass("mobile")}
                           />
                           <ErrorMsg field="mobile" />
@@ -689,13 +708,10 @@ const Partner = () => {
                             name="whatsapp"
                             value={formData.whatsapp}
                             onChange={handleChange}
-                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                             disabled={sameAsMobile}
-                            className={`${
-                              sameAsMobile
-                                ? inputClass +
-                                  " bg-slate-100 cursor-not-allowed"
-                                : getInputClass("whatsapp")
+                            className={`${getInputClass("whatsapp")} ${
+                              sameAsMobile ? "bg-slate-100 cursor-not-allowed" : ""
                             }`}
                           />
                           <ErrorMsg field="whatsapp" />
@@ -707,16 +723,12 @@ const Partner = () => {
                               onChange={(e) => {
                                 const checked = e.target.checked;
                                 setSameAsMobile(checked);
-                                setFormData((prev) => ({
-                                  ...prev,
-                                  whatsapp: checked ? prev.mobile : "",
-                                }));
-                                if (checked) {
-                                  setFormErrors((prev) => ({
-                                    ...prev,
-                                    whatsapp: "",
-                                  }));
-                                }
+                                setFormData((prev) => {
+                                  const newWhatsapp = checked ? prev.mobile : "";
+                                  const err = checked ? validateField("whatsapp", newWhatsapp) : "";
+                                  setFormErrors((pe) => ({ ...pe, whatsapp: err }));
+                                  return { ...prev, whatsapp: newWhatsapp };
+                                });
                               }}
                               className="w-4 h-4 text-[#1C8A3C] rounded focus:ring-[#1C8A3C]"
                             />
@@ -737,7 +749,7 @@ const Partner = () => {
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                             className={getInputClass("email")}
                           />
                           <ErrorMsg field="email" />
@@ -773,7 +785,7 @@ const Partner = () => {
                             rows="3"
                             value={formData.address}
                             onChange={handleChange}
-                            onFocus={handleFocus}
+                            onBlur={handleBlur}
                             className={getInputClass("address")}
                           ></textarea>
                           <ErrorMsg field="address" />
@@ -788,7 +800,7 @@ const Partner = () => {
                               name="city"
                               value={formData.city}
                               onChange={handleChange}
-                              onFocus={handleFocus}
+                              onBlur={handleBlur}
                               className={getInputClass("city")}
                             />
                             <ErrorMsg field="city" />
@@ -802,7 +814,7 @@ const Partner = () => {
                               name="district"
                               value={formData.district}
                               onChange={handleChange}
-                              onFocus={handleFocus}
+                              onBlur={handleBlur}
                               className={getInputClass("district")}
                             />
                             <ErrorMsg field="district" />
@@ -816,7 +828,7 @@ const Partner = () => {
                               name="state"
                               value={formData.state}
                               onChange={handleChange}
-                              onFocus={handleFocus}
+                              onBlur={handleBlur}
                               className={getInputClass("state")}
                             />
                             <ErrorMsg field="state" />
@@ -830,7 +842,7 @@ const Partner = () => {
                               name="pincode"
                               value={formData.pincode}
                               onChange={handleChange}
-                              onFocus={handleFocus}
+                              onBlur={handleBlur}
                               className={getInputClass("pincode")}
                             />
                             <ErrorMsg field="pincode" />
@@ -859,12 +871,34 @@ const Partner = () => {
                               formErrors.drugLicense
                                 ? "border border-[#E31E24] bg-[#FDE8E9]/20 rounded-xl"
                                 : ""
-                            }`}
+                            } ${formData.drugLicense ? "hidden" : ""}`}
                           />
                           {formData.drugLicense && (
-                            <p className="mt-2 text-xs font-semibold text-[#1C8A3C]">
-                              Selected: {formData.drugLicense.name}
-                            </p>
+                            <div className="mt-2 flex items-center justify-between bg-[#E8F5EB] border border-[#1C8A3C]/20 rounded-xl p-3">
+                              <span className="text-xs font-semibold text-[#1C8A3C] truncate mr-2" title={formData.drugLicense.name}>
+                                {formData.drugLicense.name}
+                              </span>
+                              <div className="flex gap-2 shrink-0">
+                                <button
+                                  type="button"
+                                  onClick={() => window.open(URL.createObjectURL(formData.drugLicense), '_blank')}
+                                  className="text-[#0B4E8C] hover:text-[#1C8A3C] text-xs font-bold px-2.5 py-1 bg-white rounded-xl shadow-xs border border-slate-200 transition-colors cursor-pointer"
+                                >
+                                  Preview
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setFormData(prev => ({ ...prev, drugLicense: null }));
+                                    const input = document.querySelector('input[name="drugLicense"]');
+                                    if (input) input.value = '';
+                                  }}
+                                  className="text-[#E31E24] hover:text-white hover:bg-[#E31E24] text-xs font-bold px-2.5 py-1 bg-white rounded-xl shadow-xs border border-[#E31E24]/30 transition-colors cursor-pointer"
+                                >
+                                  Remove
+                                </button>
+                              </div>
+                            </div>
                           )}
                           <ErrorMsg field="drugLicense" />
                         </div>
@@ -883,12 +917,34 @@ const Partner = () => {
                               formErrors.gstCertificate
                                 ? "border border-[#E31E24] bg-[#FDE8E9]/20 rounded-xl"
                                 : ""
-                            }`}
+                            } ${formData.gstCertificate ? "hidden" : ""}`}
                           />
                           {formData.gstCertificate && (
-                            <p className="mt-2 text-xs font-semibold text-[#1C8A3C]">
-                              Selected: {formData.gstCertificate.name}
-                            </p>
+                            <div className="mt-2 flex items-center justify-between bg-[#E8F5EB] border border-[#1C8A3C]/20 rounded-xl p-3">
+                              <span className="text-xs font-semibold text-[#1C8A3C] truncate mr-2" title={formData.gstCertificate.name}>
+                                {formData.gstCertificate.name}
+                              </span>
+                              <div className="flex gap-2 shrink-0">
+                                <button
+                                  type="button"
+                                  onClick={() => window.open(URL.createObjectURL(formData.gstCertificate), '_blank')}
+                                  className="text-[#0B4E8C] hover:text-[#1C8A3C] text-xs font-bold px-2.5 py-1 bg-white rounded-xl shadow-xs border border-slate-200 transition-colors cursor-pointer"
+                                >
+                                  Preview
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    setFormData(prev => ({ ...prev, gstCertificate: null }));
+                                    const input = document.querySelector('input[name="gstCertificate"]');
+                                    if (input) input.value = '';
+                                  }}
+                                  className="text-[#E31E24] hover:text-white hover:bg-[#E31E24] text-xs font-bold px-2.5 py-1 bg-white rounded-xl shadow-xs border border-[#E31E24]/30 transition-colors cursor-pointer"
+                                >
+                                  Remove
+                                </button>
+                              </div>
+                            </div>
                           )}
                           <ErrorMsg field="gstCertificate" />
                         </div>
@@ -1034,13 +1090,13 @@ const Partner = () => {
                           I declare that the information provided above is true
                           and correct. I authorize Meenakshi Pharma to contact
                           me regarding this application in accordance with the{" "}
-                          <Link to="/privacy-policy" target="_blank" className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]">
+                          <button type="button" onClick={(e) => { e.preventDefault(); setLegalModalState({ isOpen: true, tab: 'privacy' }); }} className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]">
                             Privacy Policy
-                          </Link>{" "}
+                          </button>{" "}
                           and{" "}
-                          <Link to="/terms-of-service" target="_blank" className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]">
+                          <button type="button" onClick={(e) => { e.preventDefault(); setLegalModalState({ isOpen: true, tab: 'terms' }); }} className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]">
                             Terms of Service
-                          </Link>.
+                          </button>.
                         </label>
                       </div>
                       <ErrorMsg field="agreeTerms" />
@@ -1081,6 +1137,12 @@ const Partner = () => {
           </motion.div>
         </div>
       )}
+
+      <LegalModal
+        isOpen={legalModalState.isOpen}
+        initialTab={legalModalState.tab}
+        onClose={() => setLegalModalState(prev => ({ ...prev, isOpen: false }))}
+      />
     </>
   );
 };
