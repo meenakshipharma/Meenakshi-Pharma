@@ -63,6 +63,9 @@ const Career = () => {
         if (!/^[A-Za-z\s.'-]{2,50}$/.test(val)) return "Enter a valid full name.";
         break;
       }
+      case "gender":
+        if (!value || !value.toString().trim()) return "Gender is required.";
+        break;
       case "phone":
         if (!value || !value.toString().trim()) return "Mobile Number is required.";
         if (!/^[6-9]\d{9}$/.test(value.toString().trim()))
@@ -74,7 +77,7 @@ const Career = () => {
           return "Enter a valid email address.";
         break;
       case "location":
-        if (!value || !value.toString().trim()) return "Current Location (City) is required.";
+        if (!value || !value.toString().trim()) return "Current Location is required.";
         break;
       case "position":
         if (!value || !value.toString().trim()) return "Position Applying For is required.";
@@ -104,6 +107,7 @@ const Career = () => {
   const validateAll = () => {
     const requiredFields = [
       "fullName",
+      "gender",
       "phone",
       "email",
       "location",
@@ -149,8 +153,22 @@ const Career = () => {
     }
   };
 
+  const handleBlur = (e) => {
+    const { name, value, type, checked } = e.target;
+    const fieldValue = type === "checkbox" ? checked : value;
+    const error = validateField(name, fieldValue);
+    setFormErrors((prev) => ({
+      ...prev,
+      [name]: error,
+    }));
+  };
+
   const handleChange = (e) => {
-    const { name, value, type, checked, files } = e.target;
+    let { name, value, type, checked, files } = e.target;
+
+    if (name === "phone") {
+      value = value.replace(/\D/g, "").slice(0, 10);
+    }
 
     setFormErrors((prev) => ({ ...prev, [name]: "" }));
 
@@ -384,6 +402,7 @@ const Career = () => {
                         name="fullName"
                         value={formData.fullName}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         placeholder="Enter your full name"
                         className={getInputClass("fullName")}
                       />
@@ -397,19 +416,25 @@ const Career = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
                         <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
-                          Gender (Optional)
+                          Gender *
                         </label>
                         <CustomSelect
                           name="gender"
                           value={formData.gender}
                           onChange={handleChange}
                           placeholder="Select Gender"
+                          error={!!formErrors.gender}
                           options={[
                             "Male",
                             "Female",
-                            "Prefer not to say",
+                            "Common",
                           ]}
                         />
+                        {formErrors.gender && (
+                          <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
+                            {formErrors.gender}
+                          </p>
+                        )}
                       </div>
 
                       <div>
@@ -421,6 +446,7 @@ const Career = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
+                          onBlur={handleBlur}
                           placeholder="Enter your mobile number"
                           className={getInputClass("phone")}
                         />
@@ -442,6 +468,7 @@ const Career = () => {
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
+                          onBlur={handleBlur}
                           placeholder="Enter your email"
                           className={getInputClass("email")}
                         />
@@ -454,13 +481,14 @@ const Career = () => {
 
                       <div>
                         <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
-                          Current Location (City) *
+                          Current Location (City)*
                         </label>
                         <input
                           type="text"
                           name="location"
                           value={formData.location}
                           onChange={handleChange}
+                          onBlur={handleBlur}
                           placeholder="Enter your city"
                           className={getInputClass("location")}
                         />
@@ -645,20 +673,50 @@ const Career = () => {
                       onChange={handleChange}
                       className={`w-full text-sm text-[#333333] file:mr-4 file:py-2.5 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-bold file:bg-[#E8F5EB] file:text-[#1C8A3C] hover:file:bg-[#1C8A3C] hover:file:text-white transition-colors cursor-pointer p-1.5 ${
                         formErrors.resume ? "border border-[#E31E24] bg-[#FDE8E9]/20 rounded-xl" : ""
-                      }`}
+                      } ${formData.resume ? "hidden" : "block"}`}
                     />
-                    <p className="mt-2 text-xs text-[#555555]">
-                      Accepted formats: PDF, DOC, DOCX (Maximum 5 MB)
-                    </p>
+                    {!formData.resume && (
+                      <p className="mt-2 text-xs text-[#555555]">
+                        Accepted formats: PDF, DOC, DOCX (Maximum 5 MB)
+                      </p>
+                    )}
                     {formErrors.resume && (
                       <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
                         {formErrors.resume}
                       </p>
                     )}
                     {formData.resume && (
-                      <div className="mt-3 rounded-xl bg-[#E8F5EB] border border-[#1C8A3C]/30 p-3 text-xs text-[#1C8A3C]">
-                        <span className="font-bold">Selected File:</span>{" "}
-                        {formData.resume.name}
+                      <div className="mt-3 flex items-center justify-between rounded-xl border border-slate-200 bg-white p-3 shadow-xs">
+                        <div className="flex items-center gap-3 overflow-hidden">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[#E8F5EB] text-[#1C8A3C]">
+                            <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                            </svg>
+                          </div>
+                          <p className="truncate text-sm font-semibold text-slate-700">
+                            {formData.resume.name}
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <button
+                            type="button"
+                            onClick={() => window.open(URL.createObjectURL(formData.resume), '_blank')}
+                            className="rounded-lg bg-slate-100 px-3 py-1.5 text-xs font-semibold text-[#0B4E8C] transition-colors hover:bg-slate-200"
+                          >
+                            Preview
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setFormData(prev => ({ ...prev, resume: null }));
+                              const input = document.getElementById("resume");
+                              if (input) input.value = '';
+                            }}
+                            className="rounded-lg bg-[#FDE8E9] px-3 py-1.5 text-xs font-semibold text-[#E31E24] transition-colors hover:bg-[#FAD1D3]"
+                          >
+                            Remove
+                          </button>
+                        </div>
                       </div>
                     )}
                   </div>
