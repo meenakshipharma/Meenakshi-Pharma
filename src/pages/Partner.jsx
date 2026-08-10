@@ -115,7 +115,7 @@ const Partner = () => {
       case "email":
         if (!value || !value.toString().trim())
           return "Email Address is required.";
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.toString().trim()))
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value.toString().trim()))
           return "Enter a valid email address.";
         break;
       case "address":
@@ -693,6 +693,11 @@ const Partner = () => {
                             value={formData.mobile}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            onKeyPress={(e) => {
+                              if (!/[0-9]/.test(e.key)) {
+                                e.preventDefault();
+                              }
+                            }}
                             className={getInputClass("mobile")}
                           />
                           <ErrorMsg field="mobile" />
@@ -709,6 +714,11 @@ const Partner = () => {
                             value={formData.whatsapp}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            onKeyPress={(e) => {
+                              if (!/[0-9]/.test(e.key)) {
+                                e.preventDefault();
+                              }
+                            }}
                             disabled={sameAsMobile}
                             className={`${getInputClass("whatsapp")} ${
                               sameAsMobile ? "bg-slate-100 cursor-not-allowed" : ""
@@ -843,6 +853,11 @@ const Partner = () => {
                               value={formData.pincode}
                               onChange={handleChange}
                               onBlur={handleBlur}
+                              onKeyPress={(e) => {
+                                if (!/[0-9]/.test(e.key)) {
+                                  e.preventDefault();
+                                }
+                              }}
                               className={getInputClass("pincode")}
                             />
                             <ErrorMsg field="pincode" />
