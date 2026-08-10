@@ -116,7 +116,7 @@ const Contact = () => {
         break;
       case "email":
         if (!value || !value.toString().trim()) return "Email Address is required.";
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.toString().trim()))
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value.toString().trim()))
           return "Enter a valid email address.";
         break;
       case "inquiryType":
@@ -161,8 +161,22 @@ const Contact = () => {
     setFormErrors({});
   };
 
-  const handleChange = (e) => {
+  const handleBlur = (e) => {
     const { name, value } = e.target;
+    const error = validateField(name, value);
+    setFormErrors((prev) => ({
+      ...prev,
+      [name]: error,
+    }));
+  };
+
+  const handleChange = (e) => {
+    let { name, value } = e.target;
+    
+    if (name === "phone") {
+      value = value.replace(/\D/g, "").slice(0, 10);
+    }
+
     setFormErrors((prev) => ({ ...prev, [name]: "" }));
 
     setFormData((prev) => {
@@ -449,6 +463,7 @@ We appreciate your interest in Meenakshi Pharma and look forward to assisting yo
                         name="fullName"
                         value={formData.fullName}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         placeholder="Enter your full name"
                         className={getInputClass("fullName")}
                       />
@@ -470,6 +485,12 @@ We appreciate your interest in Meenakshi Pharma and look forward to assisting yo
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
+                          onBlur={handleBlur}
+                          onKeyPress={(e) => {
+                            if (!/[0-9]/.test(e.key)) {
+                              e.preventDefault();
+                            }
+                          }}
                           placeholder="Enter 10-digit mobile number"
                           className={getInputClass("phone")}
                         />
@@ -489,6 +510,7 @@ We appreciate your interest in Meenakshi Pharma and look forward to assisting yo
                           name="email"
                           value={formData.email}
                           onChange={handleChange}
+                          onBlur={handleBlur}
                           placeholder="Enter your email address"
                           className={getInputClass("email")}
                         />
@@ -510,6 +532,7 @@ We appreciate your interest in Meenakshi Pharma and look forward to assisting yo
                         name="company"
                         value={formData.company}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         placeholder="Enter company or organization name"
                         className={inputClass}
                       />
@@ -545,6 +568,7 @@ We appreciate your interest in Meenakshi Pharma and look forward to assisting yo
                         name="subject"
                         value={formData.subject}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         placeholder="Brief summary of your inquiry"
                         className={getInputClass("subject")}
                       />
@@ -565,6 +589,7 @@ We appreciate your interest in Meenakshi Pharma and look forward to assisting yo
                         rows="5"
                         value={formData.message}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         placeholder="Type your message or details here..."
                         className={getInputClass("message")}
                       ></textarea>

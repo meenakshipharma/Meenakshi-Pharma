@@ -73,7 +73,7 @@ const Career = () => {
         break;
       case "email":
         if (!value || !value.toString().trim()) return "Email Address is required.";
-        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value.toString().trim()))
+        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value.toString().trim()))
           return "Enter a valid email address.";
         break;
       case "location":
@@ -447,6 +447,11 @@ const Career = () => {
                           value={formData.phone}
                           onChange={handleChange}
                           onBlur={handleBlur}
+                          onKeyPress={(e) => {
+                            if (!/[0-9]/.test(e.key)) {
+                              e.preventDefault();
+                            }
+                          }}
                           placeholder="Enter your mobile number"
                           className={getInputClass("phone")}
                         />
