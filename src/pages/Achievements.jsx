@@ -21,7 +21,7 @@ const Achievements = () => {
         subtitle="Recognitions that validate our commitment to excellence."
       />
 
-      <section className="pt-8 sm:pt-12 md:pt-16 pb-4 sm:pb-6 md:pb-8 bg-[#F5F7FA]">
+      <section className="pt-8 sm:pt-12 md:pt-16 pb-4 sm:pb-6 md:pb-+ bg-[#F5F7FA]">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
             {awards.map((award) => (
@@ -40,7 +40,7 @@ const Achievements = () => {
                     alt={award.title}
                     loading="eager"
                     decoding="async"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="w-full h-full object-contain p-2 sm:p-3 transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-[#083B6A]/50 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center backdrop-blur-xs">
                     <span className="bg-white text-[#0B4E8C] px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-xl font-semibold text-[10px] sm:text-xs tracking-wider uppercase shadow-lg transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
