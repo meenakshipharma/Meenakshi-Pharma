@@ -1,7 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import { FiMapPin, FiPhone, FiMail, FiClock, FiCheckCircle } from "react-icons/fi";
+import {
+  FiMapPin,
+  FiPhone,
+  FiMail,
+  FiClock,
+  FiCheckCircle,
+} from "react-icons/fi";
 import emailjs from "@emailjs/browser";
 import PageBanner from "../components/PageBanner";
 import Button from "../components/Button";
@@ -84,7 +90,8 @@ const Contact = () => {
     const handleBeforeUnload = (e) => {
       if (loading) {
         e.preventDefault();
-        e.returnValue = "Your inquiry submission is in progress. Please wait until it completes.";
+        e.returnValue =
+          "Your inquiry submission is in progress. Please wait until it completes.";
         return e.returnValue;
       }
     };
@@ -106,28 +113,37 @@ const Contact = () => {
       case "fullName": {
         const val = value?.toString().trim();
         if (!val) return "Full Name is required.";
-        if (!/^[A-Za-z\s.'-]{2,50}$/.test(val)) return "Enter a valid full name.";
+        if (!/^[A-Za-z\s.'-]{2,50}$/.test(val))
+          return "Enter a valid full name.";
         break;
       }
       case "phone":
-        if (!value || !value.toString().trim()) return "Mobile Number is required.";
+        if (!value || !value.toString().trim())
+          return "Mobile Number is required.";
         if (!/^[6-9]\d{9}$/.test(value.toString().trim()))
           return "Enter a valid 10-digit Indian mobile number.";
         break;
       case "email":
-        if (!value || !value.toString().trim()) return "Email Address is required.";
-        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value.toString().trim()))
+        if (!value || !value.toString().trim())
+          return "Email Address is required.";
+        if (
+          !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+            value.toString().trim(),
+          )
+        )
           return "Enter a valid email address.";
         break;
       case "inquiryType":
-        if (!value || !value.toString().trim()) return "Please select an Inquiry Type.";
+        if (!value || !value.toString().trim())
+          return "Please select an Inquiry Type.";
         break;
       case "subject":
         if (!value || !value.toString().trim()) return "Subject is required.";
         break;
       case "message":
         if (!value || !value.toString().trim()) return "Message is required.";
-        if (value.toString().trim().length < 5) return "Message should be at least 5 characters.";
+        if (value.toString().trim().length < 5)
+          return "Message should be at least 5 characters.";
         break;
       default:
         return "";
@@ -136,7 +152,14 @@ const Contact = () => {
   };
 
   const validateAll = () => {
-    const requiredFields = ["fullName", "phone", "email", "inquiryType", "subject", "message"];
+    const requiredFields = [
+      "fullName",
+      "phone",
+      "email",
+      "inquiryType",
+      "subject",
+      "message",
+    ];
 
     const newErrors = {};
     requiredFields.forEach((field) => {
@@ -172,7 +195,7 @@ const Contact = () => {
 
   const handleChange = (e) => {
     let { name, value } = e.target;
-    
+
     if (name === "phone") {
       value = value.replace(/\D/g, "").slice(0, 10);
     }
@@ -223,7 +246,8 @@ const Contact = () => {
     const userTemplateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
     const adminTemplateId = import.meta.env.VITE_EMAILJS_ADMIN_TEMPLATE_ID;
     const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-    const adminEmail = import.meta.env.VITE_ADMIN_EMAIL || "mpharma98@gmail.com";
+    const adminEmail =
+      import.meta.env.VITE_ADMIN_EMAIL || "mpharma98@gmail.com";
 
     const templateParams = {
       // Applicant / Submitter info
@@ -264,15 +288,29 @@ const Contact = () => {
     try {
       if (serviceId && userTemplateId && publicKey) {
         // Send user auto-reply email
-        await emailjs.send(serviceId, userTemplateId, templateParams, publicKey);
+        await emailjs.send(
+          serviceId,
+          userTemplateId,
+          templateParams,
+          publicKey,
+        );
 
         // Send company admin notification email if admin template ID is configured
-        if (adminTemplateId && adminTemplateId.trim() && adminTemplateId !== userTemplateId) {
-          await emailjs.send(serviceId, adminTemplateId, templateParams, publicKey);
+        if (
+          adminTemplateId &&
+          adminTemplateId.trim() &&
+          adminTemplateId !== userTemplateId
+        ) {
+          await emailjs.send(
+            serviceId,
+            adminTemplateId,
+            templateParams,
+            publicKey,
+          );
         }
       } else {
         console.warn(
-          "EmailJS credentials missing in .env (VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY). Simulating successful submit."
+          "EmailJS credentials missing in .env (VITE_EMAILJS_SERVICE_ID, VITE_EMAILJS_TEMPLATE_ID, VITE_EMAILJS_PUBLIC_KEY). Simulating successful submit.",
         );
       }
 
@@ -412,25 +450,40 @@ const Contact = () => {
                   </h2>
 
                   <div className="bg-[#E8F5EB] border-l-4 border-[#1C8A3C] p-4 rounded-xl text-[#1C8A3C] font-semibold text-sm md:text-base max-w-2xl mx-auto mb-6 text-justify">
-We have successfully received your inquiry. Our team will review your message and respond at the earliest opportunity.
+                    We have successfully received your inquiry. Our team will
+                    review your message and respond at the earliest opportunity.
                   </div>
 
                   <p className="text-slate-600 text-sm md:text-base max-w-2xl mx-auto mb-4 leading-relaxed text-justify">
-If your inquiry requires immediate assistance, please feel free to contact us directly using the phone number provided on our website during our business hours.
+                    If your inquiry requires immediate assistance, please feel
+                    free to contact us directly using the phone number provided
+                    on our website during our business hours.
                   </p>
 
                   <p className="text-[#0B4E8C] font-bold text-sm md:text-base max-w-2xl mx-auto mb-8 text-center">
-We appreciate your interest in Meenakshi Pharma and look forward to assisting you.
+                    We appreciate your interest in Meenakshi Pharma and look
+                    forward to assisting you.
                   </p>
 
                   <div className="border-t border-slate-200 pt-6 max-w-2xl mx-auto text-center text-slate-600 text-sm mb-8">
                     <p className="font-semibold italic">Regards,</p>
-                    <p className="font-bold text-[#0B4E8C] italic">Customer Support Team</p>
-                    <p className="font-semibold text-slate-700 italic">Meenakshi Pharma</p>
+                    <p className="font-bold text-[#0B4E8C] italic">
+                      Customer Support Team
+                    </p>
+                    <p className="font-semibold text-slate-700 italic">
+                      Meenakshi Pharma
+                    </p>
                   </div>
 
                   <Button
-                    onClick={() => setStatus({ success: false, error: "", message: "", submittedData: null })}
+                    onClick={() =>
+                      setStatus({
+                        success: false,
+                        error: "",
+                        message: "",
+                        submittedData: null,
+                      })
+                    }
                     variant="primary"
                     className="px-8"
                   >
@@ -443,7 +496,8 @@ We appreciate your interest in Meenakshi Pharma and look forward to assisting yo
                     Submit Inquiry
                   </h3>
                   <p className="text-[#333333] text-sm mb-6">
-                    Fill out the form below and our team will get back to you shortly.
+                    Fill out the form below and our team will get back to you
+                    shortly.
                   </p>
 
                   {status.error && (
@@ -525,7 +579,10 @@ We appreciate your interest in Meenakshi Pharma and look forward to assisting yo
                     {/* Company / Organization Name (Optional) */}
                     <div>
                       <label className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
-                        Company / Organization Name <span className="font-normal text-slate-500">(Optional)</span>
+                        Company / Organization Name{" "}
+                        <span className="font-normal text-slate-500">
+                          (Optional)
+                        </span>
                       </label>
                       <input
                         type="text"
@@ -627,9 +684,12 @@ We appreciate your interest in Meenakshi Pharma and look forward to assisting yo
             className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl border border-slate-100 flex flex-col items-center"
           >
             <div className="w-14 h-14 border-4 border-[#0B4E8C] border-t-transparent rounded-full animate-spin mb-4"></div>
-            <h3 className="text-xl font-bold text-[#0B4E8C] mb-2">Submitting Inquiry...</h3>
+            <h3 className="text-xl font-bold text-[#0B4E8C] mb-2">
+              Submitting Inquiry...
+            </h3>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Please wait while your inquiry is being submitted. Do not navigate away or refresh the page.
+              Please wait while your inquiry is being submitted. Do not navigate
+              away or refresh the page.
             </p>
           </motion.div>
         </div>

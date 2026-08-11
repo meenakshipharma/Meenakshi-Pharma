@@ -43,7 +43,10 @@ const Partner = () => {
   const [sameAsMobile, setSameAsMobile] = useState(false);
   const [loading, setLoading] = useState(false);
   const [categoriesOpen, setCategoriesOpen] = useState(false);
-  const [legalModalState, setLegalModalState] = useState({ isOpen: false, tab: 'privacy' });
+  const [legalModalState, setLegalModalState] = useState({
+    isOpen: false,
+    tab: "privacy",
+  });
   const dropdownRef = useRef(null);
   const formContainerRef = useRef(null);
 
@@ -63,7 +66,8 @@ const Partner = () => {
     const handleBeforeUnload = (e) => {
       if (loading) {
         e.preventDefault();
-        e.returnValue = "Your partnership application submission is in progress. Please wait until it completes.";
+        e.returnValue =
+          "Your partnership application submission is in progress. Please wait until it completes.";
         return e.returnValue;
       }
     };
@@ -115,7 +119,11 @@ const Partner = () => {
       case "email":
         if (!value || !value.toString().trim())
           return "Email Address is required.";
-        if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value.toString().trim()))
+        if (
+          !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(
+            value.toString().trim(),
+          )
+        )
           return "Enter a valid email address.";
         break;
       case "address":
@@ -588,6 +596,7 @@ const Partner = () => {
                             value={formData.businessName}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            placeholder="Enter your business name"
                             className={getInputClass("businessName")}
                           />
                           <ErrorMsg field="businessName" />
@@ -602,11 +611,7 @@ const Partner = () => {
                             onChange={handleChange}
                             placeholder="Select Business Type"
                             error={!!formErrors.businessType}
-                            options={[
-                              "Retail Pharmacy",
-                              "Hospital",
-                              "Clinic",
-                            ]}
+                            options={["Retail Pharmacy", "Hospital", "Clinic"]}
                           />
                           <ErrorMsg field="businessType" />
                         </div>
@@ -622,6 +627,7 @@ const Partner = () => {
                             value={formData.ownerName}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            placeholder="Enter your  owner name"
                             className={getInputClass("ownerName")}
                           />
                           <ErrorMsg field="ownerName" />
@@ -638,6 +644,7 @@ const Partner = () => {
                             value={formData.contactName}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            placeholder="9876543210"
                             disabled={sameAsOwner}
                             className={`${getInputClass("contactName")} ${
                               sameAsOwner
@@ -693,6 +700,7 @@ const Partner = () => {
                             value={formData.mobile}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            placeholder="9876543210"
                             onKeyPress={(e) => {
                               if (!/[0-9]/.test(e.key)) {
                                 e.preventDefault();
@@ -714,6 +722,7 @@ const Partner = () => {
                             value={formData.whatsapp}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            placeholder="9876543210"
                             onKeyPress={(e) => {
                               if (!/[0-9]/.test(e.key)) {
                                 e.preventDefault();
@@ -721,7 +730,9 @@ const Partner = () => {
                             }}
                             disabled={sameAsMobile}
                             className={`${getInputClass("whatsapp")} ${
-                              sameAsMobile ? "bg-slate-100 cursor-not-allowed" : ""
+                              sameAsMobile
+                                ? "bg-slate-100 cursor-not-allowed"
+                                : ""
                             }`}
                           />
                           <ErrorMsg field="whatsapp" />
@@ -734,9 +745,16 @@ const Partner = () => {
                                 const checked = e.target.checked;
                                 setSameAsMobile(checked);
                                 setFormData((prev) => {
-                                  const newWhatsapp = checked ? prev.mobile : "";
-                                  const err = checked ? validateField("whatsapp", newWhatsapp) : "";
-                                  setFormErrors((pe) => ({ ...pe, whatsapp: err }));
+                                  const newWhatsapp = checked
+                                    ? prev.mobile
+                                    : "";
+                                  const err = checked
+                                    ? validateField("whatsapp", newWhatsapp)
+                                    : "";
+                                  setFormErrors((pe) => ({
+                                    ...pe,
+                                    whatsapp: err,
+                                  }));
                                   return { ...prev, whatsapp: newWhatsapp };
                                 });
                               }}
@@ -760,6 +778,7 @@ const Partner = () => {
                             value={formData.email}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            placeholder="Enter your email address"
                             className={getInputClass("email")}
                           />
                           <ErrorMsg field="email" />
@@ -773,6 +792,7 @@ const Partner = () => {
                             name="landline"
                             value={formData.landline}
                             onChange={handleChange}
+                            placeholder="Enter your landline number"
                             className={inputClass}
                           />
                         </div>
@@ -796,6 +816,7 @@ const Partner = () => {
                             value={formData.address}
                             onChange={handleChange}
                             onBlur={handleBlur}
+                            placeholder="Enter You  Business Address"
                             className={getInputClass("address")}
                           ></textarea>
                           <ErrorMsg field="address" />
@@ -810,6 +831,7 @@ const Partner = () => {
                               name="city"
                               value={formData.city}
                               onChange={handleChange}
+                              placeholder="Enter you city"
                               onBlur={handleBlur}
                               className={getInputClass("city")}
                             />
@@ -824,6 +846,7 @@ const Partner = () => {
                               name="district"
                               value={formData.district}
                               onChange={handleChange}
+                              placeholder="Enter your district"
                               onBlur={handleBlur}
                               className={getInputClass("district")}
                             />
@@ -838,6 +861,7 @@ const Partner = () => {
                               name="state"
                               value={formData.state}
                               onChange={handleChange}
+                              placeholder="Enter your state"
                               onBlur={handleBlur}
                               className={getInputClass("state")}
                             />
@@ -853,6 +877,7 @@ const Partner = () => {
                               value={formData.pincode}
                               onChange={handleChange}
                               onBlur={handleBlur}
+                              placeholder="Enter your PIN code"
                               onKeyPress={(e) => {
                                 if (!/[0-9]/.test(e.key)) {
                                   e.preventDefault();
@@ -890,13 +915,21 @@ const Partner = () => {
                           />
                           {formData.drugLicense && (
                             <div className="mt-2 flex items-center justify-between bg-[#E8F5EB] border border-[#1C8A3C]/20 rounded-xl p-3">
-                              <span className="text-xs font-semibold text-[#1C8A3C] truncate mr-2" title={formData.drugLicense.name}>
+                              <span
+                                className="text-xs font-semibold text-[#1C8A3C] truncate mr-2"
+                                title={formData.drugLicense.name}
+                              >
                                 {formData.drugLicense.name}
                               </span>
                               <div className="flex gap-2 shrink-0">
                                 <button
                                   type="button"
-                                  onClick={() => window.open(URL.createObjectURL(formData.drugLicense), '_blank')}
+                                  onClick={() =>
+                                    window.open(
+                                      URL.createObjectURL(formData.drugLicense),
+                                      "_blank",
+                                    )
+                                  }
                                   className="text-[#0B4E8C] hover:text-[#1C8A3C] text-xs font-bold px-2.5 py-1 bg-white rounded-xl shadow-xs border border-slate-200 transition-colors cursor-pointer"
                                 >
                                   Preview
@@ -904,9 +937,14 @@ const Partner = () => {
                                 <button
                                   type="button"
                                   onClick={() => {
-                                    setFormData(prev => ({ ...prev, drugLicense: null }));
-                                    const input = document.querySelector('input[name="drugLicense"]');
-                                    if (input) input.value = '';
+                                    setFormData((prev) => ({
+                                      ...prev,
+                                      drugLicense: null,
+                                    }));
+                                    const input = document.querySelector(
+                                      'input[name="drugLicense"]',
+                                    );
+                                    if (input) input.value = "";
                                   }}
                                   className="text-[#E31E24] hover:text-white hover:bg-[#E31E24] text-xs font-bold px-2.5 py-1 bg-white rounded-xl shadow-xs border border-[#E31E24]/30 transition-colors cursor-pointer"
                                 >
@@ -936,13 +974,23 @@ const Partner = () => {
                           />
                           {formData.gstCertificate && (
                             <div className="mt-2 flex items-center justify-between bg-[#E8F5EB] border border-[#1C8A3C]/20 rounded-xl p-3">
-                              <span className="text-xs font-semibold text-[#1C8A3C] truncate mr-2" title={formData.gstCertificate.name}>
+                              <span
+                                className="text-xs font-semibold text-[#1C8A3C] truncate mr-2"
+                                title={formData.gstCertificate.name}
+                              >
                                 {formData.gstCertificate.name}
                               </span>
                               <div className="flex gap-2 shrink-0">
                                 <button
                                   type="button"
-                                  onClick={() => window.open(URL.createObjectURL(formData.gstCertificate), '_blank')}
+                                  onClick={() =>
+                                    window.open(
+                                      URL.createObjectURL(
+                                        formData.gstCertificate,
+                                      ),
+                                      "_blank",
+                                    )
+                                  }
                                   className="text-[#0B4E8C] hover:text-[#1C8A3C] text-xs font-bold px-2.5 py-1 bg-white rounded-xl shadow-xs border border-slate-200 transition-colors cursor-pointer"
                                 >
                                   Preview
@@ -950,9 +998,14 @@ const Partner = () => {
                                 <button
                                   type="button"
                                   onClick={() => {
-                                    setFormData(prev => ({ ...prev, gstCertificate: null }));
-                                    const input = document.querySelector('input[name="gstCertificate"]');
-                                    if (input) input.value = '';
+                                    setFormData((prev) => ({
+                                      ...prev,
+                                      gstCertificate: null,
+                                    }));
+                                    const input = document.querySelector(
+                                      'input[name="gstCertificate"]',
+                                    );
+                                    if (input) input.value = "";
                                   }}
                                   className="text-[#E31E24] hover:text-white hover:bg-[#E31E24] text-xs font-bold px-2.5 py-1 bg-white rounded-xl shadow-xs border border-[#E31E24]/30 transition-colors cursor-pointer"
                                 >
@@ -1068,7 +1121,7 @@ const Partner = () => {
                               "More than 10 Lakhs",
                             ]}
                           />
-                          <ErrorMsg field="monthlyPurchase"/>
+                          <ErrorMsg field="monthlyPurchase" />
                         </div>
                       </div>
 
@@ -1082,6 +1135,7 @@ const Partner = () => {
                           rows="3"
                           value={formData.requirements}
                           onChange={handleChange}
+                          placeholder="Enter your comments"
                           className={inputClass}
                         ></textarea>
                       </div>
@@ -1105,13 +1159,34 @@ const Partner = () => {
                           I declare that the information provided above is true
                           and correct. I authorize Meenakshi Pharma to contact
                           me regarding this application in accordance with the{" "}
-                          <button type="button" onClick={(e) => { e.preventDefault(); setLegalModalState({ isOpen: true, tab: 'privacy' }); }} className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setLegalModalState({
+                                isOpen: true,
+                                tab: "privacy",
+                              });
+                            }}
+                            className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]"
+                          >
                             Privacy Policy
                           </button>{" "}
                           and{" "}
-                          <button type="button" onClick={(e) => { e.preventDefault(); setLegalModalState({ isOpen: true, tab: 'terms' }); }} className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]">
+                          <button
+                            type="button"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              setLegalModalState({
+                                isOpen: true,
+                                tab: "terms",
+                              });
+                            }}
+                            className="text-[#0B4E8C] underline font-semibold hover:text-[#1C8A3C]"
+                          >
                             Terms of Service
-                          </button>.
+                          </button>
+                          .
                         </label>
                       </div>
                       <ErrorMsg field="agreeTerms" />
@@ -1145,9 +1220,12 @@ const Partner = () => {
             className="bg-white rounded-3xl p-8 max-w-sm w-full text-center shadow-2xl border border-slate-100 flex flex-col items-center"
           >
             <div className="w-14 h-14 border-4 border-[#0B4E8C] border-t-transparent rounded-full animate-spin mb-4"></div>
-            <h3 className="text-xl font-bold text-[#0B4E8C] mb-2">Submitting Application...</h3>
+            <h3 className="text-xl font-bold text-[#0B4E8C] mb-2">
+              Submitting Application...
+            </h3>
             <p className="text-xs text-slate-600 leading-relaxed">
-              Please wait while your partnership application and documents are being submitted. Do not navigate away or refresh the page.
+              Please wait while your partnership application and documents are
+              being submitted. Do not navigate away or refresh the page.
             </p>
           </motion.div>
         </div>
@@ -1156,7 +1234,9 @@ const Partner = () => {
       <LegalModal
         isOpen={legalModalState.isOpen}
         initialTab={legalModalState.tab}
-        onClose={() => setLegalModalState(prev => ({ ...prev, isOpen: false }))}
+        onClose={() =>
+          setLegalModalState((prev) => ({ ...prev, isOpen: false }))
+        }
       />
     </>
   );
