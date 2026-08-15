@@ -9,7 +9,7 @@ export const privacyPolicy = {
     {
       heading: '2. B2B Wholesale Scope',
       content: `Meenakshi Pharma operates strictly as a B2B licensed wholesale distributor. We supply pharmaceutical products exclusively to licensed retail pharmacies, hospitals, and clinics holding valid Drug Licenses. We do not sell medicines or products directly to the general public or individual retail consumers.`,
-    },
+    },  
     {
       heading: '3. Information We Collect',
       content: `To process partnership applications, career submissions, and business inquiries, we collect:`,

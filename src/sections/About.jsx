@@ -1,19 +1,22 @@
-import Reveal from '../components/Reveal.jsx'
-import Button from '../components/Button.jsx'
-import SectionHeading from '../components/SectionHeading.jsx'
-import { about } from '../data/content.js'
+import Reveal from "../components/Reveal.jsx";
+import Button from "../components/Button.jsx";
+import SectionHeading from "../components/SectionHeading.jsx";
+import { about } from "../data/content.js";
 
 export default function About() {
   return (
     <section id="about" className="section-pad">
       <div className="container-max grid lg:grid-cols-2 gap-14 items-center">
-        <Reveal direction="left" className="rounded-xl2 overflow-hidden shadow-soft aspect-[4/3] bg-sand order-2 lg:order-1">
+        <Reveal
+          direction="left"
+          className="rounded-xl2 overflow-hidden shadow-soft aspect-[4/3] bg-sand order-2 lg:order-1"
+        >
           <img
             src={about.image}
             alt="Inside the Meenakshi Pharma facility"
             className="h-full w-full object-cover"
             onError={(e) => {
-              e.currentTarget.style.display = 'none'
+              e.currentTarget.style.display = "none";
             }}
           />
         </Reveal>
@@ -37,23 +40,32 @@ export default function About() {
               alt={about.founder.name}
               className="h-full w-full object-cover"
               onError={(e) => {
-                e.currentTarget.style.display = 'none'
+                e.currentTarget.style.display = "none";
               }}
             />
           </div>
           <div className="text-center md:text-left">
-            <h3 className="font-display text-xl md:text-2xl text-ink">{about.founder.name}</h3>
-            <p className="text-coral font-medium text-sm mt-1">{about.founder.role}</p>
+            <h3 className="font-display text-xl md:text-2xl text-ink">
+              {about.founder.name}
+            </h3>
+            <p className="text-coral font-medium text-sm mt-1">
+              {about.founder.role}
+            </p>
             <p className="text-inkSoft text-sm mt-3 max-w-md">
-              With decades of combined pharmaceutical experience, our leadership team guides every batch from
-              formulation to final delivery. {/* TODO: real founder bio */}
+              With decades of combined pharmaceutical experience, our leadership
+              team guides every batch from formulation to final delivery.{" "}
+              {/* TODO: real founder bio */}
             </p>
           </div>
-          <Button variant="primary" href="#contact" className="mx-auto md:mx-0 whitespace-nowrap">
+          <Button
+            variant="primary"
+            href="#contact"
+            className="mx-auto md:mx-0 whitespace-nowrap"
+          >
             More About Us
           </Button>
         </div>
       </Reveal>
     </section>
-  )
+  );
 }
