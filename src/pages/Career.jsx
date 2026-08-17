@@ -411,12 +411,14 @@ const Career = () => {
                   </h3>
                   <div className="space-y-4">
                     <div>
-                      <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
+                      <label htmlFor="fullName" className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                         Full Name *
                       </label>
                       <input
+                        id="fullName"
                         type="text"
                         name="fullName"
+                        autoComplete="name"
                         value={formData.fullName}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -432,10 +434,11 @@ const Career = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
+                        <label htmlFor="gender" className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Gender *
                         </label>
                         <CustomSelect
+                          id="gender"
                           name="gender"
                           value={formData.gender}
                           onChange={handleChange}
@@ -455,12 +458,14 @@ const Career = () => {
                       </div>
 
                       <div>
-                        <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
+                        <label htmlFor="phone" className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Mobile Number *
                         </label>
                         <input
+                          id="phone"
                           type="tel"
                           name="phone"
+                          autoComplete="tel"
                           value={formData.phone}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -482,12 +487,14 @@ const Career = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
+                        <label htmlFor="email" className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Email Address *
                         </label>
                         <input
+                          id="email"
                           type="email"
                           name="email"
+                          autoComplete="email"
                           value={formData.email}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -502,12 +509,14 @@ const Career = () => {
                       </div>
 
                       <div>
-                        <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
+                        <label htmlFor="location" className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Current Location (City)*
                         </label>
                         <input
+                          id="location"
                           type="text"
                           name="location"
+                          autoComplete="address-level2"
                           value={formData.location}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -532,10 +541,11 @@ const Career = () => {
                   <div className="space-y-4">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
+                        <label htmlFor="position" className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Position Applying For *
                         </label>
                         <CustomSelect
+                          id="position"
                           name="position"
                           value={formData.position}
                           onChange={handleChange}
@@ -562,9 +572,12 @@ const Career = () => {
                         )}
                         {formData.position === "Others" && (
                           <div className="mt-3">
+                            <label htmlFor="otherPosition" className="sr-only">Other Position</label>
                             <input
+                              id="otherPosition"
                               type="text"
                               name="otherPosition"
+                              autoComplete="off"
                               value={formData.otherPosition || ""}
                               onChange={handleChange}
                               onBlur={handleBlur}
@@ -581,10 +594,11 @@ const Career = () => {
                       </div>
 
                       <div>
-                        <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
+                        <label htmlFor="experience" className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Total Experience *
                         </label>
                         <CustomSelect
+                          id="experience"
                           name="experience"
                           value={formData.experience}
                           onChange={handleChange}
@@ -609,12 +623,14 @@ const Career = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
+                        <label htmlFor="currentEmployer" className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Current Employer (Optional)
                         </label>
                         <input
+                          id="currentEmployer"
                           type="text"
                           name="currentEmployer"
+                          autoComplete="organization"
                           value={formData.currentEmployer}
                           onChange={handleChange}
                           placeholder="Enter your current employer"
@@ -623,12 +639,14 @@ const Career = () => {
                       </div>
 
                       <div>
-                        <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
+                        <label htmlFor="currentDesignation" className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Current Designation (Optional)
                         </label>
                         <input
+                          id="currentDesignation"
                           type="text"
                           name="currentDesignation"
+                          autoComplete="organization-title"
                           value={formData.currentDesignation}
                           onChange={handleChange}
                           placeholder="Enter your current designation"
@@ -639,10 +657,11 @@ const Career = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
+                        <label htmlFor="expectedSalary" className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Expected Salary *
                         </label>
                         <CustomSelect
+                          id="expectedSalary"
                           name="expectedSalary"
                           value={formData.expectedSalary}
                           onChange={handleChange}
@@ -667,10 +686,11 @@ const Career = () => {
                       </div>
 
                       <div>
-                        <label className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
+                        <label htmlFor="noticePeriod" className="block mb-1.5 font-semibold text-[#0B4E8C] text-sm">
                           Notice Period *
                         </label>
                         <CustomSelect
+                          id="noticePeriod"
                           name="noticePeriod"
                           value={formData.noticePeriod}
                           onChange={handleChange}
@@ -702,7 +722,7 @@ const Career = () => {
                     Resume
                   </h3>
                   <div>
-                    <label className="block mb-2 font-semibold text-[#0B4E8C] text-sm">
+                    <label htmlFor="resume" className="block mb-2 font-semibold text-[#0B4E8C] text-sm">
                       Upload Resume (PDF, DOC, DOCX) *
                     </label>
                     <input
@@ -764,10 +784,11 @@ const Career = () => {
                     Additional Information
                   </h3>
                   <div>
-                    <label className="block mb-2 font-semibold text-[#0B4E8C] text-sm">
+                    <label htmlFor="coverLetter" className="block mb-2 font-semibold text-[#0B4E8C] text-sm">
                       Cover Letter / Additional Comments (Optional)
                     </label>
                     <textarea
+                      id="coverLetter"
                       name="coverLetter"
                       rows="4"
                       value={formData.coverLetter}
