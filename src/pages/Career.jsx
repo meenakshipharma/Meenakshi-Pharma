@@ -166,6 +166,10 @@ const Career = () => {
   const handleChange = (e) => {
     let { name, value, type, checked, files } = e.target;
 
+    if (name === "fullName" || name === "location") {
+      value = value.replace(/[^a-zA-Z\s]/g, "");
+    }
+
     if (name === "phone") {
       value = value.replace(/\D/g, "").slice(0, 10);
     }
