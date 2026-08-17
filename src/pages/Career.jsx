@@ -22,6 +22,7 @@ const Career = () => {
     email: "",
     location: "",
     position: "",
+    otherPosition: "",
     experience: "",
     currentEmployer: "",
     currentDesignation: "",
@@ -84,6 +85,11 @@ const Career = () => {
       case "position":
         if (!value || !value.toString().trim()) return "Position Applying For is required.";
         break;
+      case "otherPosition":
+        if (formData.position === "Others" && (!value || !value.toString().trim())) {
+          return "Please specify the position.";
+        }
+        break;
       case "experience":
         if (!value || !value.toString().trim()) return "Total Experience is required.";
         break;
@@ -121,6 +127,10 @@ const Career = () => {
       "declarationConfirmed",
     ];
 
+    if (formData.position === "Others") {
+      requiredFields.push("otherPosition");
+    }
+
     const newErrors = {};
     requiredFields.forEach((field) => {
       const error = validateField(field, formData[field]);
@@ -139,6 +149,7 @@ const Career = () => {
       email: "",
       location: "",
       position: "",
+      otherPosition: "",
       experience: "",
       currentEmployer: "",
       currentDesignation: "",
@@ -168,7 +179,7 @@ const Career = () => {
   const handleChange = (e) => {
     let { name, value, type, checked, files } = e.target;
 
-    if (name === "fullName" || name === "location") {
+    if (name === "fullName" || name === "location" || name === "otherPosition") {
       value = value.replace(/[^a-zA-Z\s]/g, "");
     }
 
@@ -247,7 +258,7 @@ const Career = () => {
       data.append("phone", formData.phone.trim());
       data.append("email", formData.email.trim());
       data.append("location", formData.location.trim());
-      data.append("position", formData.position);
+      data.append("position", formData.position === "Others" ? formData.otherPosition.trim() : formData.position);
       data.append("experience", formData.experience);
       data.append("currentEmployer", formData.currentEmployer.trim());
       data.append("currentDesignation", formData.currentDesignation.trim());
@@ -548,6 +559,24 @@ const Career = () => {
                           <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
                             {formErrors.position}
                           </p>
+                        )}
+                        {formData.position === "Others" && (
+                          <div className="mt-3">
+                            <input
+                              type="text"
+                              name="otherPosition"
+                              value={formData.otherPosition || ""}
+                              onChange={handleChange}
+                              onBlur={handleBlur}
+                              placeholder="Enter position name"
+                              className={getInputClass("otherPosition")}
+                            />
+                            {formErrors.otherPosition && (
+                              <p className="mt-1.5 text-xs text-[#E31E24] font-medium">
+                                {formErrors.otherPosition}
+                              </p>
+                            )}
+                          </div>
                         )}
                       </div>
 
