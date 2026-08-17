@@ -600,12 +600,14 @@ const Partner = () => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {/* Business Name */}
                         <div>
-                          <label className={labelClass}>
+                          <label htmlFor="businessName" className={labelClass}>
                             Business / Pharmacy / Clinic Name *
                           </label>
                           <input
+                            id="businessName"
                             type="text"
                             name="businessName"
+                            autoComplete="organization"
                             value={formData.businessName}
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -617,8 +619,9 @@ const Partner = () => {
 
                         {/* Business Type */}
                         <div>
-                          <label className={labelClass}>Business Type *</label>
+                          <label htmlFor="businessType" className={labelClass}>Business Type *</label>
                           <CustomSelect
+                            id="businessType"
                             name="businessType"
                             value={formData.businessType}
                             onChange={handleChange}
@@ -631,12 +634,14 @@ const Partner = () => {
 
                         {/* Owner Name */}
                         <div>
-                          <label className={labelClass}>
+                          <label htmlFor="ownerName" className={labelClass}>
                             Proprietor / Owner Name *
                           </label>
                           <input
+                            id="ownerName"
                             type="text"
                             name="ownerName"
+                            autoComplete="name"
                             value={formData.ownerName}
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -648,12 +653,14 @@ const Partner = () => {
 
                         {/* Contact Person Name */}
                         <div>
-                          <label className={labelClass}>
+                          <label htmlFor="contactName" className={labelClass}>
                             Contact Person Name *
                           </label>
                           <input
+                            id="contactName"
                             type="text"
                             name="contactName"
+                            autoComplete="name"
                             value={formData.contactName}
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -706,10 +713,12 @@ const Partner = () => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                         {/* Mobile */}
                         <div>
-                          <label className={labelClass}>Mobile Number *</label>
+                          <label htmlFor="mobile" className={labelClass}>Mobile Number *</label>
                           <input
+                            id="mobile"
                             type="tel"
                             name="mobile"
+                            autoComplete="tel"
                             value={formData.mobile}
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -726,12 +735,14 @@ const Partner = () => {
 
                         {/* WhatsApp */}
                         <div>
-                          <label className={labelClass}>
+                          <label htmlFor="whatsapp" className={labelClass}>
                             WhatsApp Number *
                           </label>
                           <input
+                            id="whatsapp"
                             type="tel"
                             name="whatsapp"
+                            autoComplete="tel"
                             value={formData.whatsapp}
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -784,10 +795,12 @@ const Partner = () => {
 
                         {/* Email */}
                         <div>
-                          <label className={labelClass}>Email Address *</label>
+                          <label htmlFor="email" className={labelClass}>Email Address *</label>
                           <input
+                            id="email"
                             type="email"
                             name="email"
+                            autoComplete="email"
                             value={formData.email}
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -799,10 +812,12 @@ const Partner = () => {
 
                         {/* Landline */}
                         <div>
-                          <label className={labelClass}>Landline Number</label>
+                          <label htmlFor="landline" className={labelClass}>Landline Number</label>
                           <input
+                            id="landline"
                             type="tel"
                             name="landline"
+                            autoComplete="tel"
                             value={formData.landline}
                             onChange={handleChange}
                             placeholder="Enter your landline number"
@@ -820,12 +835,14 @@ const Partner = () => {
                       <div className="space-y-6">
                         {/* Full Address */}
                         <div>
-                          <label className={labelClass}>
+                          <label htmlFor="address" className={labelClass}>
                             Full Business Address *
                           </label>
                           <textarea
+                            id="address"
                             name="address"
                             rows="3"
+                            autoComplete="street-address"
                             value={formData.address}
                             onChange={handleChange}
                             onBlur={handleBlur}
@@ -838,10 +855,12 @@ const Partner = () => {
                         <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
                           {/* City */}
                           <div>
-                            <label className={labelClass}>City *</label>
+                            <label htmlFor="city" className={labelClass}>City *</label>
                             <input
+                              id="city"
                               type="text"
                               name="city"
+                              autoComplete="address-level2"
                               value={formData.city}
                               onChange={handleChange}
                               placeholder="Enter you city"
@@ -853,10 +872,12 @@ const Partner = () => {
 
                           {/* District */}
                           <div>
-                            <label className={labelClass}>District *</label>
+                            <label htmlFor="district" className={labelClass}>District *</label>
                             <input
+                              id="district"
                               type="text"
                               name="district"
+                              autoComplete="address-level3"
                               value={formData.district}
                               onChange={handleChange}
                               placeholder="Enter your district"
@@ -868,10 +889,12 @@ const Partner = () => {
 
                           {/* State */}
                           <div>
-                            <label className={labelClass}>State *</label>
+                            <label htmlFor="state" className={labelClass}>State *</label>
                             <input
+                              id="state"
                               type="text"
                               name="state"
+                              autoComplete="address-level1"
                               value={formData.state}
                               onChange={handleChange}
                               placeholder="Enter your state"
@@ -883,10 +906,12 @@ const Partner = () => {
 
                           {/* Pincode */}
                           <div>
-                            <label className={labelClass}>PIN Code *</label>
+                            <label htmlFor="pincode" className={labelClass}>PIN Code *</label>
                             <input
+                              id="pincode"
                               type="text"
                               name="pincode"
+                              autoComplete="postal-code"
                               value={formData.pincode}
                               onChange={handleChange}
                               onBlur={handleBlur}
@@ -912,10 +937,11 @@ const Partner = () => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         {/* Drug License */}
                         <div>
-                          <label className={labelClass}>
+                          <label htmlFor="drugLicense" className={labelClass}>
                             Drug Licence Upload (PDF/JPG) *
                           </label>
                           <input
+                            id="drugLicense"
                             type="file"
                             name="drugLicense"
                             accept=".pdf,.jpg,.jpeg,.png"
@@ -962,10 +988,11 @@ const Partner = () => {
 
                         {/* GST Certificate */}
                         <div>
-                          <label className={labelClass}>
+                          <label htmlFor="gstCertificate" className={labelClass}>
                             GST Certificate Upload (PDF/JPG) *
                           </label>
                           <input
+                            id="gstCertificate"
                             type="file"
                             name="gstCertificate"
                             accept=".pdf,.jpg,.jpeg,.png"
@@ -1016,10 +1043,15 @@ const Partner = () => {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         {/* Categories */}
                         <div className="relative" ref={dropdownRef}>
-                          <label className={labelClass}>
+                          <span id="categories-label" className={`block ${labelClass}`}>
                             Interested Product Categories *
-                          </label>
+                          </span>
                           <div
+                            id="categories"
+                            role="combobox"
+                            aria-expanded={categoriesOpen}
+                            aria-labelledby="categories-label"
+                            tabIndex="0"
                             onClick={() => setCategoriesOpen((prev) => !prev)}
                             className={`${getInputClass("categories")} cursor-pointer flex items-center justify-between min-h-[46px]`}
                           >
@@ -1100,10 +1132,11 @@ const Partner = () => {
 
                         {/* Monthly Purchase */}
                         <div>
-                          <label className={labelClass}>
+                          <label htmlFor="monthlyPurchase" className={labelClass}>
                             Estimated Monthly Purchase Value *
                           </label>
                           <CustomSelect
+                            id="monthlyPurchase"
                             name="monthlyPurchase"
                             value={formData.monthlyPurchase}
                             onChange={handleChange}
@@ -1122,10 +1155,11 @@ const Partner = () => {
 
                       {/* Requirements */}
                       <div>
-                        <label className={labelClass}>
+                        <label htmlFor="requirements" className={labelClass}>
                           Specific Requirements or Comments
                         </label>
                         <textarea
+                          id="requirements"
                           name="requirements"
                           rows="3"
                           value={formData.requirements}

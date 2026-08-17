@@ -11,6 +11,7 @@ const CustomSelect = ({
   error = false,
   disabled = false,
   className = "",
+  id,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
@@ -66,6 +67,7 @@ const CustomSelect = ({
   return (
     <div className={`relative w-full ${className}`} ref={containerRef}>
       <button
+        id={id || name}
         type="button"
         disabled={disabled}
         onClick={() => !disabled && setIsOpen((prev) => !prev)}

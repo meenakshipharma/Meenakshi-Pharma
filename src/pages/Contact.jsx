@@ -513,12 +513,14 @@ const Contact = () => {
                   <form onSubmit={handleSubmit} className="space-y-6">
                     {/* Full Name */}
                     <div>
-                      <label className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
+                      <label htmlFor="fullName" className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
                         Full Name *
                       </label>
                       <input
+                        id="fullName"
                         type="text"
                         name="fullName"
+                        autoComplete="name"
                         value={formData.fullName}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -535,12 +537,14 @@ const Contact = () => {
                     {/* Mobile & Email */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div>
-                        <label className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
+                        <label htmlFor="phone" className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
                           Mobile Number *
                         </label>
                         <input
+                          id="phone"
                           type="tel"
                           name="phone"
+                          autoComplete="tel"
                           value={formData.phone}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -560,12 +564,14 @@ const Contact = () => {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
+                        <label htmlFor="email" className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
                           Email Address *
                         </label>
                         <input
+                          id="email"
                           type="email"
                           name="email"
+                          autoComplete="email"
                           value={formData.email}
                           onChange={handleChange}
                           onBlur={handleBlur}
@@ -582,15 +588,17 @@ const Contact = () => {
 
                     {/* Company / Organization Name (Optional) */}
                     <div>
-                      <label className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
+                      <label htmlFor="company" className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
                         Company / Organization Name{" "}
                         <span className="font-normal text-slate-500">
                           (Optional)
                         </span>
                       </label>
                       <input
+                        id="company"
                         type="text"
                         name="company"
+                        autoComplete="organization"
                         value={formData.company}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -601,10 +609,11 @@ const Contact = () => {
 
                     {/* Inquiry Type */}
                     <div>
-                      <label className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
+                      <label htmlFor="inquiryType" className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
                         Inquiry Type *
                       </label>
                       <CustomSelect
+                        id="inquiryType"
                         name="inquiryType"
                         value={formData.inquiryType}
                         onChange={handleChange}
@@ -621,12 +630,14 @@ const Contact = () => {
 
                     {/* Subject */}
                     <div>
-                      <label className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
+                      <label htmlFor="subject" className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
                         Subject *
                       </label>
                       <input
+                        id="subject"
                         type="text"
                         name="subject"
+                        autoComplete="off"
                         value={formData.subject}
                         onChange={handleChange}
                         onBlur={handleBlur}
@@ -642,10 +653,11 @@ const Contact = () => {
 
                     {/* Message */}
                     <div>
-                      <label className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
+                      <label htmlFor="message" className="block text-sm font-semibold text-[#0B4E8C] mb-1.5">
                         Message *
                       </label>
                       <textarea
+                        id="message"
                         name="message"
                         rows="5"
                         value={formData.message}
