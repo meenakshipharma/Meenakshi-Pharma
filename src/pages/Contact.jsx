@@ -196,6 +196,10 @@ const Contact = () => {
   const handleChange = (e) => {
     let { name, value } = e.target;
 
+    if (name === "fullName" || name === "company") {
+      value = value.replace(/[^a-zA-Z\s]/g, "");
+    }
+
     if (name === "phone") {
       value = value.replace(/\D/g, "").slice(0, 10);
     }

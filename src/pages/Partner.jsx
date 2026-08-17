@@ -208,6 +208,17 @@ const Partner = () => {
   const handleChange = (e) => {
     let { name, value, type, checked, files } = e.target;
 
+    if (
+      name === "businessName" ||
+      name === "ownerName" ||
+      name === "contactName" ||
+      name === "city" ||
+      name === "district" ||
+      name === "state"
+    ) {
+      value = value.replace(/[^a-zA-Z\s]/g, "");
+    }
+
     if (name === "mobile" || name === "whatsapp") {
       value = value.replace(/\D/g, "").slice(0, 10);
     }
@@ -644,7 +655,7 @@ const Partner = () => {
                             value={formData.contactName}
                             onChange={handleChange}
                             onBlur={handleBlur}
-                            placeholder="9876543210"
+                            placeholder="Enter Contact Person Name"
                             disabled={sameAsOwner}
                             className={`${getInputClass("contactName")} ${
                               sameAsOwner
