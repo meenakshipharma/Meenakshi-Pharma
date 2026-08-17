@@ -15,6 +15,13 @@ import { footer } from "../../data/content.js";
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <footer className="bg-[#083B6A] text-white pt-20 pb-10 mt-auto border-t border-[#0B4E8C] relative overflow-hidden">
       {/* Background Subtle Medical Glow */}
@@ -77,7 +84,17 @@ const Footer = () => {
             <ul className="flex flex-col gap-2.5 text-sm">
               <li>
                 <Link
+                  to="/"
+                  onClick={scrollToTop}
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block"
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
                   to="/about"
+                  onClick={scrollToTop}
                   className="text-slate-200 hover:text-white hover:underline transition-colors inline-block"
                 >
                   About Us
@@ -86,9 +103,28 @@ const Footer = () => {
               <li>
                 <Link
                   to="/services"
+                  onClick={scrollToTop}
                   className="text-slate-200 hover:text-white hover:underline transition-colors inline-block "
                 >
                   Our Services
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/brands"
+                  onClick={scrollToTop}
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block "
+                >
+                  Brands
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to="/achievements"
+                  onClick={scrollToTop}
+                  className="text-slate-200 hover:text-white hover:underline transition-colors inline-block "
+                >
+                  Achievements
                 </Link>
               </li>
               <li>
@@ -114,6 +150,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/partner"
+                  onClick={scrollToTop}
                   className="text-slate-200 hover:text-white hover:underline transition-colors inline-block "
                 >
                   Partner With Us
@@ -122,6 +159,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/career"
+                  onClick={scrollToTop}
                   className="text-slate-200 hover:text-white hover:underline transition-colors inline-block "
                 >
                   Career Opportunities
@@ -130,6 +168,7 @@ const Footer = () => {
               <li>
                 <Link
                   to="/contact"
+                  onClick={scrollToTop}
                   className="text-slate-200 hover:text-white hover:underline transition-colors inline-block"
                 >
                   Contact
@@ -209,12 +248,14 @@ const Footer = () => {
           <div className="flex gap-6">
             <Link
               to="/privacy-policy"
+              onClick={scrollToTop}
               className="hover:text-white transition-colors"
             >
               Privacy Policy
             </Link>
             <Link
               to="/terms-of-service"
+              onClick={scrollToTop}
               className="hover:text-white transition-colors"
             >
               Terms of Service
