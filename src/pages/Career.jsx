@@ -9,6 +9,7 @@ import Button from "../components/Button";
 import CTASection from "../components/CTASection";
 import CustomSelect from "../components/CustomSelect";
 import LegalModal from "../components/LegalModal";
+import ConfirmModal from "../components/ConfirmModal";
 import { career } from "../data/content";
 
 const Career = () => {
@@ -34,6 +35,7 @@ const Career = () => {
   const [formErrors, setFormErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [legalModalState, setLegalModalState] = useState({ isOpen: false, tab: 'privacy' });
+  const [fileToRemove, setFileToRemove] = useState(null);
 
   useEffect(() => {
     const handleBeforeUnload = (e) => {
@@ -716,11 +718,7 @@ const Career = () => {
                           </button>
                           <button
                             type="button"
-                            onClick={() => {
-                              setFormData(prev => ({ ...prev, resume: null }));
-                              const input = document.getElementById("resume");
-                              if (input) input.value = '';
-                            }}
+                            onClick={() => setFileToRemove("resume")}
                             className="rounded-lg bg-[#FDE8E9] px-3 py-1.5 text-xs font-semibold text-[#E31E24] transition-colors hover:bg-[#FAD1D3]"
                           >
                             Remove
@@ -808,6 +806,20 @@ const Career = () => {
         isOpen={legalModalState.isOpen}
         initialTab={legalModalState.tab}
         onClose={() => setLegalModalState(prev => ({ ...prev, isOpen: false }))}
+      />
+
+      <ConfirmModal
+        isOpen={!!fileToRemove}
+        onClose={() => setFileToRemove(null)}
+        onConfirm={() => {
+          if (fileToRemove) {
+            setFormData(prev => ({ ...prev, [fileToRemove]: null }));
+            const input = document.getElementById(fileToRemove);
+            if (input) input.value = '';
+          }
+        }}
+        title="Remove File"
+        message="Are you sure you want to remove this file?"
       />
 
       {/* Non-dismissible Full-screen Loading Overlay during submission */}
