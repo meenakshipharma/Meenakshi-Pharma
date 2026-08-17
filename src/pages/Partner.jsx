@@ -6,6 +6,7 @@ import PageBanner from "../components/PageBanner";
 import Button from "../components/Button";
 import CustomSelect from "../components/CustomSelect";
 import LegalModal from "../components/LegalModal";
+import ConfirmModal from "../components/ConfirmModal";
 import { partner } from "../data/content";
 
 const CATEGORY_OPTIONS = [
@@ -47,6 +48,7 @@ const Partner = () => {
     isOpen: false,
     tab: "privacy",
   });
+  const [fileToRemove, setFileToRemove] = useState(null);
   const dropdownRef = useRef(null);
   const formContainerRef = useRef(null);
 
@@ -947,16 +949,7 @@ const Partner = () => {
                                 </button>
                                 <button
                                   type="button"
-                                  onClick={() => {
-                                    setFormData((prev) => ({
-                                      ...prev,
-                                      drugLicense: null,
-                                    }));
-                                    const input = document.querySelector(
-                                      'input[name="drugLicense"]',
-                                    );
-                                    if (input) input.value = "";
-                                  }}
+                                  onClick={() => setFileToRemove("drugLicense")}
                                   className="text-[#E31E24] hover:text-white hover:bg-[#E31E24] text-xs font-bold px-2.5 py-1 bg-white rounded-xl shadow-xs border border-[#E31E24]/30 transition-colors cursor-pointer"
                                 >
                                   Remove
@@ -1008,16 +1001,7 @@ const Partner = () => {
                                 </button>
                                 <button
                                   type="button"
-                                  onClick={() => {
-                                    setFormData((prev) => ({
-                                      ...prev,
-                                      gstCertificate: null,
-                                    }));
-                                    const input = document.querySelector(
-                                      'input[name="gstCertificate"]',
-                                    );
-                                    if (input) input.value = "";
-                                  }}
+                                  onClick={() => setFileToRemove("gstCertificate")}
                                   className="text-[#E31E24] hover:text-white hover:bg-[#E31E24] text-xs font-bold px-2.5 py-1 bg-white rounded-xl shadow-xs border border-[#E31E24]/30 transition-colors cursor-pointer"
                                 >
                                   Remove
@@ -1248,6 +1232,23 @@ const Partner = () => {
         onClose={() =>
           setLegalModalState((prev) => ({ ...prev, isOpen: false }))
         }
+      />
+
+      <ConfirmModal
+        isOpen={!!fileToRemove}
+        onClose={() => setFileToRemove(null)}
+        onConfirm={() => {
+          if (fileToRemove) {
+            setFormData((prev) => ({
+              ...prev,
+              [fileToRemove]: null,
+            }));
+            const input = document.querySelector(`input[name="${fileToRemove}"]`);
+            if (input) input.value = "";
+          }
+        }}
+        title="Remove File"
+        message="Are you sure you want to remove this file?"
       />
     </>
   );
