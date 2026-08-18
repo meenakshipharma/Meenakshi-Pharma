@@ -22,7 +22,6 @@ export default function QualityAssurance() {
             ))}
           </ul>
         </div>
-
         <Reveal direction="right" className="rounded-xl2 overflow-hidden shadow-soft aspect-[4/3] bg-sand">
           <img
             src={qualityAssurance.image}
