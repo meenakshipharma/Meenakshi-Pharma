@@ -143,7 +143,7 @@ export const footer = {
       url: "https://www.facebook.com/profile.php?id=61581812965748&mibextid=wwXIfr&rdid=8A2HXgNFjNjny6O0&share_url=https%3A%2F%2Fwww.facebook.com%2Fshare%2F1CbnCvAh5N%2F%3Fmibextid%3DwwXIfr#",
     },
     { name: "Twitter", url: "https://x.com/meenakshi_pharm" },
-    // { name: "LinkedIn", url: "#" },
+    { name: "LinkedIn", url: "https://www.linkedin.com/company/meenakshi-pharma/" },
     { name: "Instagram", url: "https://www.instagram.com/meenakshi_pharma_" },
   ],
   quickLinks: [
