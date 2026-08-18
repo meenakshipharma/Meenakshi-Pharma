@@ -57,7 +57,7 @@ const Footer = () => {
                 const iconMap = {
                   Facebook: <FiFacebook />,
                   Twitter: <FiTwitter />,
-                  // LinkedIn: <FiLinkedin />,
+                  LinkedIn: <FiLinkedin />,
                   Instagram: <FiInstagram />,
                 };
                 return (
