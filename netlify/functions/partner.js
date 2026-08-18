@@ -132,7 +132,7 @@ export default async (request) => {
         <body>
           <div class="container">
             <div class="header">
-              <img src="${process.env.LOGO_URL || 'https://res.cloudinary.com/dk75r8sim/image/upload/v1785771294/logo_1_ird2bh.png'}" alt="Meenakshi Pharma Logo" width="180" style="max-width: 180px; width: 180px; height: auto; display: block; margin: 0 auto; border: 0; outline: none; text-decoration: none;" />
+              <img src="${process.env.LOGO_URL || "https://res.cloudinary.com/dk75r8sim/image/upload/v1785771294/logo_1_ird2bh.png"}" alt="Meenakshi Pharma Logo" width="180" style="max-width: 180px; width: 180px; height: auto; display: block; margin: 0 auto; border: 0; outline: none; text-decoration: none;" />
             </div>
             <div class="content">
               <h2 class="title">New Partnership Application Received</h2>
@@ -243,7 +243,7 @@ export default async (request) => {
       );
     }
 
-    await resend.emails.send({
+    const { error: applicantError } = await resend.emails.send({
       from: process.env.FROM_EMAIL,
       to: email,
 
@@ -273,7 +273,7 @@ export default async (request) => {
         <body>
           <div class="container">
             <div class="header">
-              <img src="${process.env.LOGO_URL || 'https://meenakshipharma.netlify.app/logo_1.png'}" alt="Meenakshi Pharma Logo" width="180" style="max-width: 180px; width: 180px; height: auto; display: block; margin: 0 auto; border: 0; outline: none; text-decoration: none;" />
+              <img src="${process.env.LOGO_URL || "https://meenakshipharma.netlify.app/logo_1.png"}" alt="Meenakshi Pharma Logo" width="180" style="max-width: 180px; width: 180px; height: auto; display: block; margin: 0 auto; border: 0; outline: none; text-decoration: none;" />
             </div>
             <div class="content">
               <h2 class="title">Thank You for Your Interest in Partnering with Meenakshi Pharma</h2>
@@ -305,6 +305,19 @@ export default async (request) => {
         </html>
       `,
     });
+
+    if (applicantError) {
+      console.error(applicantError);
+      return Response.json(
+        {
+          success: false,
+          message: applicantError.message,
+        },
+        {
+          status: 500,
+        },
+      );
+    }
 
     return Response.json({
       success: true,

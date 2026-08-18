@@ -9,7 +9,7 @@ export default async (request) => {
         success: false,
         message: "Method Not Allowed",
       }),
-      { status: 405 }
+      { status: 405 },
     );
   }
 
@@ -43,7 +43,7 @@ export default async (request) => {
     ) {
       return Response.json(
         { success: false, message: "Required fields are missing." },
-        { status: 400 }
+        { status: 400 },
       );
     }
 
@@ -51,7 +51,7 @@ export default async (request) => {
     const buffer = Buffer.from(arrayBuffer);
 
     // 1. Notification Email to HR Admin
-    await resend.emails.send({
+    const { error: adminError } = await resend.emails.send({
       from: process.env.FROM_EMAIL,
       to: process.env.HR_EMAIL || process.env.FROM_EMAIL,
       subject: `New Job Application: ${fullName} - ${position}`,
@@ -80,7 +80,7 @@ export default async (request) => {
         <body>
           <div class="container">
             <div class="header">
-              <img src="${process.env.LOGO_URL || 'https://res.cloudinary.com/dk75r8sim/image/upload/v1785771294/logo_1_ird2bh.png'}" alt="Meenakshi Pharma Logo" width="180" style="max-width: 180px; width: 180px; height: auto; display: block; margin: 0 auto; border: 0; outline: none; text-decoration: none;" />
+              <img src="${process.env.LOGO_URL || "https://res.cloudinary.com/dk75r8sim/image/upload/v1785771294/logo_1_ird2bh.png"}" alt="Meenakshi Pharma Logo" width="180" style="max-width: 180px; width: 180px; height: auto; display: block; margin: 0 auto; border: 0; outline: none; text-decoration: none;" />
             </div>
             <div class="content">
               <h2 class="title">New Job Application Received</h2>
@@ -164,8 +164,16 @@ export default async (request) => {
       ],
     });
 
+    if (adminError) {
+      console.error(adminError);
+      return Response.json(
+        { success: false, message: adminError.message },
+        { status: 500 }
+      );
+    }
+
     // 2. Auto-Reply Email to Applicant (Full-Screen White Template)
-    await resend.emails.send({
+    const { error: replyError } = await resend.emails.send({
       from: process.env.FROM_EMAIL,
       to: email,
       subject: "Thank You for Your Application - Meenakshi Pharma",
@@ -190,7 +198,7 @@ export default async (request) => {
         <body>
           <div class="container">
             <div class="header">
-              <img src="${process.env.LOGO_URL || 'https://meenakshipharma.netlify.app/logo_1.png'}" alt="Meenakshi Pharma Logo" width="180" style="max-width: 180px; width: 180px; height: auto; display: block; margin: 0 auto; border: 0; outline: none; text-decoration: none;" />
+              <img src="${process.env.LOGO_URL || "https://meenakshipharma.netlify.app/logo_1.png"}" alt="Meenakshi Pharma Logo" width="180" style="max-width: 180px; width: 180px; height: auto; display: block; margin: 0 auto; border: 0; outline: none; text-decoration: none;" />
             </div>
             <div class="content">
               <h2 class="title">Thank You for Your Interest in Joining Meenakshi Pharma</h2>
@@ -229,6 +237,14 @@ export default async (request) => {
       `,
     });
 
+    if (replyError) {
+      console.error(replyError);
+      return Response.json(
+        { success: false, message: replyError.message },
+        { status: 500 }
+      );
+    }
+
     return Response.json({
       success: true,
       message: "Application Submitted Successfully",
@@ -237,7 +253,7 @@ export default async (request) => {
     console.error(err);
     return Response.json(
       { success: false, message: err.message },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };
