@@ -226,6 +226,10 @@ export default async (request) => {
                 <p style="margin: 3px 0 0 0; font-weight: 700; color: #0B4E8C; font-style: italic;">Recruitment Team</p>
                 <p style="margin: 2px 0 0 0; font-weight: 600; color: #334155; font-style: italic;">Meenakshi Pharma</p>
               </div>
+
+              <div style="margin-top: 20px; text-align: center; font-size: 11px; color: #94a3b8;">
+                <p style="margin: 0;">This is an automated message. Please do not reply to this email, as this inbox is not monitored.</p>
+              </div>
             </div>
             <div class="footer">
               <p style="margin: 0; font-weight: 700; color: #0B4E8C; font-size: 13px;">Meenakshi Pharma</p>
