@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
+import FAQSection from "../components/FAQSection";
 import { motion } from "framer-motion";
 import {
   FiMapPin,
@@ -13,6 +14,94 @@ import PageBanner from "../components/PageBanner";
 import Button from "../components/Button";
 import CustomSelect from "../components/CustomSelect";
 import { contact } from "../data/content.js";
+
+const contactFAQs = [
+  {
+    question: "How can I reach Meenakshi Pharma by phone?",
+    answer: "You can reach Meenakshi Pharma at 0431-2740311, 9942982301, or 9942982302 during operating hours.",
+  },
+  {
+    question: "What is Meenakshi Pharma's email address for inquiries?",
+    answer: "Official inquiries can be sent to mpharma98@gmail.com and meenakshipharmatry@gmail.com.",
+  },
+  {
+    question: "What are Meenakshi Pharma's working hours?",
+    answer: "Meenakshi Pharma is open Monday through Saturday from 9:00 AM to 9:00 PM (Sunday: Closed).",
+  },
+  {
+    question: "Where is Meenakshi Pharma's office located in Trichy?",
+    answer: "Meenakshi Pharma is located at C-135-A, Ground & 1st Floor, 5th Cross East, Thillai Nagar, Trichy - 620018, Tamil Nadu, India.",
+  },
+];
+
+const contactSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": "https://meenakshipharma.com/contact/#webpage",
+    "url": "https://meenakshipharma.com/contact",
+    "name": "Contact Us | Meenakshi Pharma Trichy, Tamil Nadu",
+    "description": "Contact Meenakshi Pharma in Thillai Nagar, Trichy. Reach us at 0431-2740311 or mpharma98@gmail.com for pharmaceutical supply inquiries and orders.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "WholesaleStore"],
+    "@id": "https://meenakshipharma.com/#organization",
+    "name": "Meenakshi Pharma",
+    "url": "https://meenakshipharma.com/",
+    "telephone": ["+91-431-2740311", "+91-9942982301", "+91-9942982302"],
+    "email": ["mpharma98@gmail.com", "meenakshipharmatry@gmail.com"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "C-135-A, Ground & 1st Floor, 5th Cross East, Thillai Nagar",
+      "addressLocality": "Tiruchirappalli",
+      "addressRegion": "Tamil Nadu",
+      "postalCode": "620018",
+      "addressCountry": "IN",
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "10.8288",
+      "longitude": "78.6852",
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "21:00",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://meenakshipharma.com/",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contact Us",
+        "item": "https://meenakshipharma.com/contact",
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": contactFAQs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  },
+];
 
 const icons = {
   address: <FiMapPin />,
@@ -359,13 +448,19 @@ const Contact = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Contact Us | Meenakshi Pharma</title>
-        <meta
-          name="description"
-          content="Get in touch with our team for inquiries, support, or feedback."
-        />
-      </Helmet>
+      <SEO
+        title="Contact Us | Meenakshi Pharma Trichy, Tamil Nadu"
+        description="Contact Meenakshi Pharma in Thillai Nagar, Trichy. Reach us at 0431-2740311 or mpharma98@gmail.com for pharmaceutical supply inquiries and orders."
+        keywords={[
+          "contact Meenakshi Pharma Trichy",
+          "Meenakshi Pharma phone number",
+          "Thillai Nagar pharma stockist address",
+          "pharmaceutical wholesaler contact Trichy",
+          "Meenakshi Pharma email"
+        ]}
+        canonicalPath="/contact"
+        schema={contactSchemas}
+      />
 
       <PageBanner
         title={contact.banner.title}
@@ -690,6 +785,13 @@ const Contact = () => {
           </div>
         </div>
       </section>
+
+      <FAQSection
+        title="Frequently Asked Questions"
+        subtitle="Contact & Support Insights"
+        description="Direct answers regarding phone numbers, operating hours, and location details."
+        faqs={contactFAQs}
+      />
 
       {/* Non-dismissible Full-screen Loading Overlay during submission */}
       {loading && (

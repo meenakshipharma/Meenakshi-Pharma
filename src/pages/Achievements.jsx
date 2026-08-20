@@ -1,27 +1,65 @@
 import React, { useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX } from 'react-icons/fi';
 import PageBanner from '../components/PageBanner';
 import CTASection from '../components/CTASection';
 import { achievements as awards } from '../data/content';
 
+const achievementsSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://meenakshipharma.com/achievements/#webpage",
+    "url": "https://meenakshipharma.com/achievements",
+    "name": "Achievements & Recognition | Meenakshi Pharma Trichy",
+    "description": "View awards, certificates, and recognition earned by Meenakshi Pharma as a trusted healthcare business partner in Trichy, Tamil Nadu.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://meenakshipharma.com/",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Achievements",
+        "item": "https://meenakshipharma.com/achievements",
+      },
+    ],
+  },
+];
+
 const Achievements = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   return (
     <>
-      <Helmet>
-        <title>Achievements & Certificates | Meenakshi Pharma</title>
-        <meta name="description" content="View our awards, recognitions, and quality certificates." />
-      </Helmet>
+      <SEO
+        title="Achievements & Recognition | Meenakshi Pharma Trichy"
+        description="View awards, certificates, and recognition earned by Meenakshi Pharma as a trusted healthcare business partner in Trichy, Tamil Nadu."
+        keywords={[
+          "Meenakshi Pharma awards",
+          "pharmaceutical certificates Trichy",
+          "Cipla business partner award",
+          "Alkem achievement certificate",
+          "GSK healthcare partner Trichy"
+        ]}
+        canonicalPath="/achievements"
+        schema={achievementsSchemas}
+      />
 
       <PageBanner 
         title="Our Achievements" 
         subtitle="Recognitions that validate our commitment to excellence."
       />
 
-      <section className="pt-8 sm:pt-12 md:pt-16 pb-4 sm:pb-6 md:pb-+ bg-[#F5F7FA]">
+      <section className="pt-8 sm:pt-12 md:pt-16 pb-4 sm:pb-6 md:pb-24 bg-[#F5F7FA]">
         <div className="container-custom">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-8">
             {awards.map((award) => (
@@ -37,7 +75,7 @@ const Achievements = () => {
                 <div className="relative overflow-hidden rounded-lg sm:rounded-xl bg-slate-100 aspect-[4/3] mb-3.5 sm:mb-5 border border-slate-100">
                   <img 
                     src={award.url} 
-                    alt={award.title}
+                    alt={`${award.title} - Meenakshi Pharma Trichy Certificate`}
                     loading="eager"
                     decoding="async"
                     className="w-full h-full object-contain p-2 sm:p-3 transition-transform duration-500 group-hover:scale-105"

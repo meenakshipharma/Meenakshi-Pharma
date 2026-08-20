@@ -1,18 +1,57 @@
 import React from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from '../components/SEO';
 import { motion, AnimatePresence } from 'framer-motion';
 import PageBanner from '../components/PageBanner';
 import CTASection from '../components/CTASection';
 import Button from '../components/Button';
 import { brands } from '../data/content';
 
+const brandsSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://meenakshipharma.com/brands/#webpage",
+    "url": "https://meenakshipharma.com/brands",
+    "name": "Authorized Pharma Brands & Stockist | Meenakshi Pharma",
+    "description": "Authorized stockist for 86+ top pharma brands including Cipla, GSK, Zydus, Torrent, Alkem, Glenmark, Lupin, and Dr. Reddy's in Trichy, Tamil Nadu.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://meenakshipharma.com/",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Brands",
+        "item": "https://meenakshipharma.com/brands",
+      },
+    ],
+  },
+];
+
 const Brands = () => {
   return (
     <>
-      <Helmet>
-        <title>Trusted Brands | Meenakshi Pharma</title>
-        <meta name="description" content="Discover the extensive portfolio of trusted pharmaceutical brands we distribute." />
-      </Helmet>
+      <SEO
+        title="Authorized Pharma Brands & Stockist | Meenakshi Pharma"
+        description="Authorized stockist for 86+ top pharma brands including Cipla, GSK, Zydus, Torrent, Alkem, Glenmark, Lupin, and Dr. Reddy's in Trichy, Tamil Nadu."
+        keywords={[
+          "authorized pharma stockist Trichy",
+          "Cipla distributor Trichy",
+          "GSK stockist Trichy",
+          "Zydus distributor Trichy",
+          "Alkem stockist Tamil Nadu",
+          "pharmaceutical brand partners"
+        ]}
+        canonicalPath="/brands"
+        schema={brandsSchemas}
+      />
 
       <PageBanner 
         title="Our Trusted Partners" 
@@ -40,7 +79,7 @@ const Brands = () => {
                 >
                   <img 
                     src={brand.url} 
-                    alt={brand.name} 
+                    alt={`${brand.name} logo - Authorized Brand Partner of Meenakshi Pharma`} 
                     className="max-w-[85%] max-h-[85%] sm:max-w-full sm:max-h-full object-contain group-hover:scale-105 transition-transform duration-300"
                   />
                 </motion.div>

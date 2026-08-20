@@ -1,5 +1,6 @@
 import React from "react";
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
+import FAQSection from "../components/FAQSection";
 import { motion } from "framer-motion";
 import PageBanner from "../components/PageBanner";
 import SectionTitle from "../components/SectionTitle";
@@ -8,16 +9,78 @@ import CTASection from "../components/CTASection";
 import { services } from "../data/content";
 import { iconMap } from "../utils/iconMap";
 
+const servicesFAQs = [
+  {
+    question: "What pharmaceutical distribution services does Meenakshi Pharma provide?",
+    answer: "Meenakshi Pharma provides wholesale distribution of General Medicines, Specialty Pharmaceuticals, Cosmetic Dermatology products, and Nutritional Supplements to pharmacies, hospitals, and clinics.",
+  },
+  {
+    question: "Does Meenakshi Pharma supply specialty medicines to hospitals?",
+    answer: "Yes, Meenakshi Pharma supplies critical specialty pharmaceuticals covering oncology, nephrology, cardiology, neurology, gastroenterology, and endocrinology across Trichy and surrounding regions.",
+  },
+  {
+    question: "How does Meenakshi Pharma maintain product quality and safety?",
+    answer: "Meenakshi Pharma ensures strict temperature management, safest packaging, and streamlined order fulfillment to maintain product integrity and prompt delivery.",
+  },
+];
+
+const servicesSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://meenakshipharma.com/services/#webpage",
+    "url": "https://meenakshipharma.com/services",
+    "name": "Healthcare Distribution Services | Meenakshi Pharma Trichy",
+    "description": "Explore pharmaceutical supply services in Trichy by Meenakshi Pharma: general medicines, specialty pharmaceuticals, dermatology cosmetics & nutritional products.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://meenakshipharma.com/",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Services",
+        "item": "https://meenakshipharma.com/services",
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": servicesFAQs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  },
+];
+
 const Services = () => {
   return (
     <>
-      <Helmet>
-        <title>Our Services | Meenakshi Pharma</title>
-        <meta
-          name="description"
-          content="Explore our comprehensive pharmaceutical distribution and logistics services."
-        />
-      </Helmet>
+      <SEO
+        title="Healthcare Distribution Services | Meenakshi Pharma Trichy"
+        description="Explore pharmaceutical supply services in Trichy by Meenakshi Pharma: general medicines, specialty pharmaceuticals, dermatology cosmetics & nutritional products."
+        keywords={[
+          "pharmaceutical services Trichy",
+          "general medicine supply Trichy",
+          "specialty pharmaceutical distributor",
+          "cosmetic dermatology products Trichy",
+          "nutritional supplement supplier Tamil Nadu"
+        ]}
+        canonicalPath="/services"
+        schema={servicesSchemas}
+      />
 
       <PageBanner
         title="Our Services"
@@ -154,6 +217,13 @@ const Services = () => {
           </div>
         </div>
       </section>
+
+      <FAQSection
+        title="Frequently Asked Questions"
+        subtitle="Services Insights"
+        description="Factual information regarding our healthcare distribution portfolio and logistical standards in Trichy."
+        faqs={servicesFAQs}
+      />
 
       <CTASection />
     </>

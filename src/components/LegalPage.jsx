@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Helmet } from 'react-helmet-async';
+import SEO from './SEO';
 import { motion, useScroll, useSpring } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FiMail, FiPhone, FiMapPin, FiShield, FiFileText } from 'react-icons/fi';
@@ -150,7 +150,7 @@ function SectionCard({ section, index, id }) {
 }
 
 /* ─── Main component ─────────────────────────────────────────── */
-const LegalPage = ({ data, metaDescription }) => {
+const LegalPage = ({ data, metaDescription, canonicalPath = "/" }) => {
   const [activeId, setActiveId] = useState('section-0');
   const observerRef = useRef(null);
 
@@ -177,12 +177,43 @@ const LegalPage = ({ data, metaDescription }) => {
     return () => observerRef.current?.disconnect();
   }, [data.sections]);
 
+  const legalSchemas = [
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": `https://meenakshipharma.com${canonicalPath}/#webpage`,
+      "url": `https://meenakshipharma.com${canonicalPath}`,
+      "name": `${data.title} | Meenakshi Pharma`,
+      "description": metaDescription,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://meenakshipharma.com/",
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": data.title,
+          "item": `https://meenakshipharma.com${canonicalPath}`,
+        },
+      ],
+    },
+  ];
+
   return (
     <>
-      <Helmet>
-        <title>{data.title} | Meenakshi Pharma</title>
-        <meta name="description" content={metaDescription} />
-      </Helmet>
+      <SEO
+        title={`${data.title} | Meenakshi Pharma`}
+        description={metaDescription}
+        canonicalPath={canonicalPath}
+        schema={legalSchemas}
+      />
 
       <ReadingProgress />
 

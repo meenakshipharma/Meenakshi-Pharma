@@ -1,5 +1,6 @@
 import React from "react";
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
+import FAQSection from "../components/FAQSection";
 import { motion } from "framer-motion";
 import PageBanner from "../components/PageBanner";
 import SectionTitle from "../components/SectionTitle";
@@ -7,16 +8,81 @@ import CTASection from "../components/CTASection";
 import heroImg from "../assets/images/hero.webp";
 import { about } from "../data/content";
 
+const aboutFAQs = [
+  {
+    question: "When was Meenakshi Pharma founded?",
+    answer: "Meenakshi Pharma was established in 1998 in a modest 10 × 10 ft room in Thillai Nagar, Tiruchirappalli (Trichy), Tamil Nadu, and has grown over 28 years into a leading authorized pharmaceutical stockist.",
+  },
+  {
+    question: "Where is Meenakshi Pharma's facility located?",
+    answer: "Meenakshi Pharma operates from its own facility located at C-135-A, Ground & 1st Floor, 5th Cross East, Thillai Nagar, Trichy - 620018, Tamil Nadu, India.",
+  },
+  {
+    question: "What is Meenakshi Pharma's vision and mission?",
+    answer: "Meenakshi Pharma's vision is to be one of India's most trusted pharmaceutical distribution companies. Its mission is to strengthen healthcare by ensuring seamless availability of genuine medicines with operational excellence and integrity.",
+  },
+];
+
+const aboutSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "AboutPage",
+    "@id": "https://meenakshipharma.com/about/#webpage",
+    "url": "https://meenakshipharma.com/about",
+    "name": "About Us | Meenakshi Pharma Trichy",
+    "description": "Learn about Meenakshi Pharma, established in 1998 in Thillai Nagar, Trichy as a leading authorized pharmaceutical stockist in Tamil Nadu.",
+    "mainEntity": {
+      "@id": "https://meenakshipharma.com/#organization",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://meenakshipharma.com/",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "About Us",
+        "item": "https://meenakshipharma.com/about",
+      },
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": aboutFAQs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  },
+];
+
 const About = () => {
   return (
     <>
-      <Helmet>
-        <title>About Us | Meenakshi Pharma</title>
-        <meta
-          name="description"
-          content="Learn about our vision, mission, and state-of-the-art infrastructure at Meenakshi Pharma."
-        />
-      </Helmet>
+      <SEO
+        title="About Us | Meenakshi Pharma Trichy"
+        description="Learn about Meenakshi Pharma, established in 1998 in Thillai Nagar, Trichy as a leading authorized pharmaceutical stockist in Tamil Nadu."
+        keywords={[
+          "About Meenakshi Pharma",
+          "Meenakshi Pharma history",
+          "pharmaceutical stockist Trichy",
+          "pharma distributor Thillai Nagar",
+          "Tiruchirappalli healthcare supplier"
+        ]}
+        canonicalPath="/about"
+        schema={aboutSchemas}
+      />
 
       <PageBanner
         title="About Meenakshi Pharma"
@@ -38,7 +104,7 @@ const About = () => {
               <div className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border-2 sm:border-4 border-white">
                 <img
                   src={heroImg}
-                  alt="Meenakshi Pharma"
+                  alt="Meenakshi Pharma distribution facility in Thillai Nagar, Trichy"
                   className="w-full h-full object-cover"
                 />
               </div>
@@ -211,13 +277,20 @@ const About = () => {
             >
               <img
                 src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1473&auto=format&fit=crop"
-                alt="Warehouse"
+                alt="Meenakshi Pharma pharmaceutical warehouse facility in Trichy"
                 className="w-full h-full object-cover"
               />
             </motion.div>
           </div>
         </div>
       </section>
+
+      <FAQSection
+        title="Frequently Asked Questions"
+        subtitle="About Meenakshi Pharma"
+        description="Verified details regarding our background, location, and commitment to healthcare supply in Trichy."
+        faqs={aboutFAQs}
+      />
 
       <CTASection />
     </>

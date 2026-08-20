@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PageBanner from "../components/PageBanner";
@@ -8,6 +8,35 @@ import CustomSelect from "../components/CustomSelect";
 import LegalModal from "../components/LegalModal";
 import ConfirmModal from "../components/ConfirmModal";
 import { partner } from "../data/content";
+
+const partnerSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://meenakshipharma.com/partner/#webpage",
+    "url": "https://meenakshipharma.com/partner",
+    "name": "Partner With Us | Meenakshi Pharma Distribution",
+    "description": "Partner with Meenakshi Pharma for reliable pharmaceutical distribution to retail pharmacies, hospitals, and clinics across Trichy and Tamil Nadu.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://meenakshipharma.com/",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Partner With Us",
+        "item": "https://meenakshipharma.com/partner",
+      },
+    ],
+  },
+];
 
 const CATEGORY_OPTIONS = [
   "General Medicines",
@@ -444,13 +473,19 @@ const Partner = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Partner With Us | Meenakshi Pharma</title>
-        <meta
-          name="description"
-          content="Apply to become a partner pharmacy or clinic with Meenakshi Pharma."
-        />
-      </Helmet>
+      <SEO
+        title="Partner With Us | Meenakshi Pharma Distribution"
+        description="Partner with Meenakshi Pharma for reliable pharmaceutical distribution to retail pharmacies, hospitals, and clinics across Trichy and Tamil Nadu."
+        keywords={[
+          "partner with pharma distributor Trichy",
+          "pharmacy stockist partnership",
+          "hospital medicine supply Tamil Nadu",
+          "wholesale pharma partnership Trichy",
+          "Meenakshi Pharma distribution partner"
+        ]}
+        canonicalPath="/partner"
+        schema={partnerSchemas}
+      />
 
       <PageBanner
         title={partner.banner.title}

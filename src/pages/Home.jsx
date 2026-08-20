@@ -1,6 +1,94 @@
 import React from "react";
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
+import FAQSection from "../components/FAQSection";
 import { motion, AnimatePresence } from "framer-motion";
+
+const homeFAQs = [
+  {
+    question: "What is Meenakshi Pharma?",
+    answer: "Meenakshi Pharma is a trusted pharmaceutical wholesaler and authorized stockist established in 1998, based in Thillai Nagar, Tiruchirappalli (Trichy), Tamil Nadu.",
+  },
+  {
+    question: "Where is Meenakshi Pharma located in Trichy?",
+    answer: "Meenakshi Pharma is located at C-135-A, Ground & 1st Floor, 5th Cross East, Thillai Nagar, Trichy - 620018, Tamil Nadu, India.",
+  },
+  {
+    question: "What pharmaceutical products does Meenakshi Pharma supply?",
+    answer: "Meenakshi Pharma supplies general medicines, specialty pharmaceuticals (oncology, cardiology, nephrology), cosmetic dermatology products, and nutritional supplements to pharmacies, hospitals, and clinics.",
+  },
+  {
+    question: "Does Meenakshi Pharma serve customers across Trichy and Tamil Nadu?",
+    answer: "Yes, Meenakshi Pharma serves retail pharmacies, hospitals, clinics, and healthcare institutions across Trichy, Tiruchirappalli, and surrounding regions in Tamil Nadu.",
+  },
+  {
+    question: "How can I contact Meenakshi Pharma for orders or inquiries?",
+    answer: "You can reach Meenakshi Pharma by calling 0431-2740311, 9942982301, 9942982302 or emailing mpharma98@gmail.com and meenakshipharmatry@gmail.com.",
+  },
+];
+
+const homeSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": ["Organization", "LocalBusiness", "WholesaleStore"],
+    "@id": "https://meenakshipharma.com/#organization",
+    "name": "Meenakshi Pharma",
+    "alternateName": ["Meenakshi Pharma Trichy", "Meenakshi Pharma Tiruchirappalli"],
+    "url": "https://meenakshipharma.com/",
+    "logo": "https://meenakshipharma.com/logo_1.png",
+    "image": "https://meenakshipharma.com/hero.webp",
+    "description": "Established in 1998 in Thillai Nagar, Tiruchirappalli, Meenakshi Pharma is a trusted pharmaceutical wholesaler and authorized stockist for leading pharma brands in Trichy, Tamil Nadu.",
+    "telephone": ["+91-431-2740311", "+91-9942982301", "+91-9942982302"],
+    "email": ["mpharma98@gmail.com", "meenakshipharmatry@gmail.com"],
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "C-135-A, Ground & 1st Floor, 5th Cross East, Thillai Nagar",
+      "addressLocality": "Tiruchirappalli",
+      "addressRegion": "Tamil Nadu",
+      "postalCode": "620018",
+      "addressCountry": "IN",
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "10.8288",
+      "longitude": "78.6852",
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+      "opens": "09:00",
+      "closes": "21:00",
+    },
+    "priceRange": "$$",
+    "sameAs": [
+      "https://www.facebook.com/profile.php?id=61581812965748",
+      "https://x.com/meenakshi_pharm",
+      "https://www.linkedin.com/company/meenakshi-pharma/",
+      "https://www.instagram.com/meenakshi_pharma_",
+    ],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://meenakshipharma.com/#website",
+    "url": "https://meenakshipharma.com/",
+    "name": "Meenakshi Pharma",
+    "publisher": {
+      "@id": "https://meenakshipharma.com/#organization",
+    },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": homeFAQs.map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer,
+      },
+    })),
+  },
+];
 import {
   FiActivity,
   FiTruck,
@@ -161,13 +249,22 @@ const Home = () => {
 
   return (
     <>
-      <Helmet>
-        <title>Meenakshi Pharma | Premium Healthcare Distribution</title>
-        <meta
-          name="description"
-          content="Delivering excellence in pharmaceutical distribution with a commitment to quality, reliability, and healthcare advancement."
-        />
-      </Helmet>
+      <SEO
+        title="Meenakshi Pharma | Pharmaceutical Company in Trichy"
+        description="Meenakshi Pharma is a trusted pharmaceutical wholesaler and authorized stockist in Trichy, Tamil Nadu, delivering genuine medicines since 1998."
+        keywords={[
+          "Meenakshi Pharma",
+          "Meenakshi Pharma Trichy",
+          "pharmaceutical company in Trichy",
+          "pharma company in Trichy",
+          "pharmaceutical distributor Trichy",
+          "pharmaceutical company Tiruchirappalli",
+          "pharma company Tamil Nadu",
+          "pharmaceutical stockist Trichy"
+        ]}
+        canonicalPath="/"
+        schema={homeSchemas}
+      />
 
       {/* Hero Section */}
       <section className="relative pt-20 pb-12 sm:pt-28 sm:pb-16 lg:pt-36 lg:pb-24 overflow-hidden bg-gradient-to-b from-[#E8F1F9] via-[#F5F7FA] to-white">
@@ -518,6 +615,13 @@ const Home = () => {
           })()}
         </div>
       </section>
+
+      <FAQSection
+        title="Frequently Asked Questions"
+        subtitle="Meenakshi Pharma Trichy Insights"
+        description="Factual information about Meenakshi Pharma's pharmaceutical wholesale distribution operations in Trichy, Tamil Nadu."
+        faqs={homeFAQs}
+      />
 
       <CTASection />
     </>

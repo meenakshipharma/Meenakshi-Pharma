@@ -18,6 +18,7 @@ import Career from "./pages/Career";
 import Contact from "./pages/Contact";
 import PrivacyPolicy from "./pages/PrivacyInfo";
 import TermsOfService from "./pages/TermsOfService";
+import NotFound from "./pages/NotFound";
 
 // Utils
 import ScrollToTop from "./components/ScrollToTop";
@@ -47,6 +48,7 @@ function App() {
             <Route path="/contact" element={<Contact />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />

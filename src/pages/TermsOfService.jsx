@@ -5,7 +5,8 @@ import { termsOfService } from '../data/legalData';
 const TermsOfService = () => (
   <LegalPage
     data={termsOfService}
-    metaDescription="Read Meenakshi Pharma's Terms of Service governing the use of our website and services."
+    metaDescription="Read the Terms of Service governing the use of Meenakshi Pharma's website and pharmaceutical distribution services."
+    canonicalPath="/terms-of-service"
   />
 );
 

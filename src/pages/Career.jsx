@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
-import { Helmet } from "react-helmet-async";
+import SEO from "../components/SEO";
 import { motion } from "framer-motion";
 import { FiBriefcase, FiCheckCircle } from "react-icons/fi";
 
@@ -11,6 +11,35 @@ import CustomSelect from "../components/CustomSelect";
 import LegalModal from "../components/LegalModal";
 import ConfirmModal from "../components/ConfirmModal";
 import { career } from "../data/content";
+
+const careerSchemas = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "@id": "https://meenakshipharma.com/career/#webpage",
+    "url": "https://meenakshipharma.com/career",
+    "name": "Career Opportunities | Meenakshi Pharma Trichy",
+    "description": "Explore career opportunities in pharmaceutical distribution and healthcare logistics with Meenakshi Pharma in Thillai Nagar, Trichy.",
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://meenakshipharma.com/",
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Career Opportunities",
+        "item": "https://meenakshipharma.com/career",
+      },
+    ],
+  },
+];
 
 const Career = () => {
   const formContainerRef = useRef(null);
@@ -318,13 +347,19 @@ const Career = () => {
 
   return (
     <>
-      <Helmet>
-        <title>{career.seo.title}</title>
-        <meta
-          name="description"
-          content="Join Meenakshi Pharma. Apply for career opportunities by submitting your details and resume."
-        />
-      </Helmet>
+      <SEO
+        title="Career Opportunities | Meenakshi Pharma Trichy"
+        description="Explore career opportunities in pharmaceutical distribution and healthcare logistics with Meenakshi Pharma in Thillai Nagar, Trichy."
+        keywords={[
+          "pharma jobs in Trichy",
+          "healthcare distribution careers",
+          "Meenakshi Pharma recruitment",
+          "pharmaceutical logistics jobs Trichy",
+          "Thillai Nagar pharma vacancies"
+        ]}
+        canonicalPath="/career"
+        schema={careerSchemas}
+      />
 
       <PageBanner
         title={career.banner.title}
