@@ -132,7 +132,7 @@ export default async (request) => {
         <body>
           <div class="container">
             <div class="header">
-              <img src="${process.env.LOGO_URL || 'https://res.cloudinary.com/dk75r8sim/image/upload/v1785771294/logo_1_ird2bh.png'}" alt="Meenakshi Pharma Logo" width="180" style="max-width: 180px; width: 180px; height: auto; display: block; margin: 0 auto; border: 0; outline: none; text-decoration: none;" />
+              <img src="${process.env.LOGO_URL || "https://res.cloudinary.com/dk75r8sim/image/upload/v1785771294/logo_1_ird2bh.png"}" alt="Meenakshi Pharma Logo" width="180" style="max-width: 180px; width: 180px; height: auto; display: block; margin: 0 auto; border: 0; outline: none; text-decoration: none;" />
             </div>
             <div class="content">
               <h2 class="title">New Partnership Application Received</h2>
@@ -243,7 +243,7 @@ export default async (request) => {
       );
     }
 
-    await resend.emails.send({
+    const { error: applicantError } = await resend.emails.send({
       from: process.env.FROM_EMAIL,
       to: email,
 
@@ -273,7 +273,7 @@ export default async (request) => {
         <body>
           <div class="container">
             <div class="header">
-              <img src="${process.env.LOGO_URL || 'https://meenakshipharma.netlify.app/logo_1.png'}" alt="Meenakshi Pharma Logo" width="180" style="max-width: 180px; width: 180px; height: auto; display: block; margin: 0 auto; border: 0; outline: none; text-decoration: none;" />
+              <img src="${process.env.LOGO_URL || "https://meenakshipharma.netlify.app/logo_1.png"}" alt="Meenakshi Pharma Logo" width="180" style="max-width: 180px; width: 180px; height: auto; display: block; margin: 0 auto; border: 0; outline: none; text-decoration: none;" />
             </div>
             <div class="content">
               <h2 class="title">Thank You for Your Interest in Partnering with Meenakshi Pharma</h2>
@@ -295,6 +295,16 @@ export default async (request) => {
               <p class="text-block" style="font-weight: 700; color: #0B4E8C; margin-top: 20px;">
                 Thank you for choosing Meenakshi Pharma as your pharmaceutical supply partner.
               </p>
+
+              <div style="margin-top: 25px; border-top: 1px solid #e2e8f0; padding-top: 15px; color: #475569; font-size: 14px;">
+                <p style="margin: 0; font-style: italic;">Regards,</p>
+                <p style="margin: 3px 0 0 0; font-weight: 700; color: #0B4E8C; font-style: italic;">Partner Portal</p>
+                <p style="margin: 2px 0 0 0; font-weight: 600; color: #334155; font-style: italic;">Meenakshi Pharma</p>
+              </div>
+
+              <div style="margin-top: 20px; text-align: center; font-size: 11px; color: #94a3b8;">
+                <p style="margin: 0;">This is an automated message. Please do not reply to this email, as this inbox is not monitored.</p>
+              </div>
             </div>
             <div class="footer">
               <p style="margin: 0; font-weight: 700; color: #0B4E8C; font-size: 13px;">Meenakshi Pharma</p>
@@ -305,6 +315,19 @@ export default async (request) => {
         </html>
       `,
     });
+
+    if (applicantError) {
+      console.error(applicantError);
+      return Response.json(
+        {
+          success: false,
+          message: applicantError.message,
+        },
+        {
+          status: 500,
+        },
+      );
+    }
 
     return Response.json({
       success: true,
