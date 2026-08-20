@@ -2,7 +2,6 @@ import { FiCheckCircle } from 'react-icons/fi'
 import Reveal from '../components/Reveal.jsx'
 import SectionHeading from '../components/SectionHeading.jsx'
 import { qualityAssurance } from '../data/content.js'
-
 export default function QualityAssurance() {
   return (
     <section id="quality" className="section-pad">

@@ -1,7 +1,7 @@
-import SectionHeading from '../components/SectionHeading.jsx'
-import BadgeCard from '../components/BadgeCard.jsx'
-import { StaggerGroup, StaggerItem } from '../components/Reveal.jsx'
-import { certifications } from '../data/content.js'
+import SectionHeading from "../components/SectionHeading.jsx";
+import BadgeCard from "../components/BadgeCard.jsx";
+import { StaggerGroup, StaggerItem } from "../components/Reveal.jsx";
+import { certifications } from "../data/content.js";
 
 export default function Certifications() {
   return (
@@ -23,5 +23,5 @@ export default function Certifications() {
         </StaggerGroup>
       </div>
     </section>
-  )
+  );
 }
