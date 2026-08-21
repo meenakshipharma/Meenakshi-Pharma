@@ -162,7 +162,7 @@ export const footer = {
   },
   mapUrl:
     "https://maps.google.com/maps?q=Meenakshi%20Pharma,%20Trichy&t=&z=15&ie=UTF8&iwloc=&output=embed",
-  copyright: "Meenakshi Pharma. All rights reserved.",
+  copyright: "Meenakshi Pharma. All rights reserved",
 };
 
 // CTA Component Configs
