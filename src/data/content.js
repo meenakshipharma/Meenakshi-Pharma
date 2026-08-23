@@ -157,7 +157,7 @@ export const footer = {
   contactInfo: {
     address:
       "C-135-A,Ground & 1st Floor ,5th Cross East, Thillai Nagar, Trichy-620018",
-    phone: ["0431-2740311", "9942982301", "9942982302"],
+    phone: ["0431-2740311","0431-4023700", "9942982301", "9942982302"],
     email: ["mpharma98@gmail.com", "meenakshipharmatry@gmail.com"],
   },
   mapUrl:
@@ -408,7 +408,7 @@ export const contact = {
       {
         type: "phone",
         label: "Phone Numbers",
-        value: ["0431-2740311", "9942982301", "9942982302"],
+        value: ["0431-2740311","0431-4023700", "9942982301", "9942982302"],
       },
       {
         type: "email",
