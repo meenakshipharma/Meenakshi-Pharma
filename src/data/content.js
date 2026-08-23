@@ -102,6 +102,7 @@ import img_nano from "../assets/images/brands/nano.webp";
 import img_pharma from "../assets/images/brands/pharma.webp";
 import img_priomed from "../assets/images/brands/priomed.webp";
 import img_savom from "../assets/images/brands/savom.webp";
+import img_auro from "../assets/images/brands/auropharma.webp";
 import img_stanmax from "../assets/images/brands/stanmax.webp";
 import img_track from "../assets/images/brands/track.webp";
 import img_versa from "../assets/images/brands/versa.webp";
@@ -530,7 +531,7 @@ export const brands = [
   { id: 75, url: img_nano, name: "Nano" },
   { id: 76, url: img_pharma, name: "Pharma" },
   { id: 77, url: img_priomed, name: "Priomed" },
-  { id: 78, url: img_savom, name: "Savom" },
+  { id: 78, url: img_auro, name: "Auro Pharma" },
   { id: 79, url: img_stanmax, name: "Stanmax" },
   { id: 80, url: img_track, name: "Track" },
   { id: 81, url: img_versa, name: "Versa" },
