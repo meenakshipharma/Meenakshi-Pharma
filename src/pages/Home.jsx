@@ -124,6 +124,11 @@ import heroImg from "../assets/images/hero.webp";
 import testimonialVideo3 from "../assets/videos/srccc3.webm";
 import testimonialVideo4 from "../assets/videos/srccc4.webm";
 import testimonialVideo5 from "../assets/videos/srccc5.webm";
+import testimonialVideo6 from "../assets/videos/srccc6.webm";
+import thumnail1 from "../assets/images/thumbnail1.webp"
+import thumnail2 from "../assets/images/thumbnail2.webp"
+import thumnail3 from "../assets/images/thumbnail3.webp"
+import thumnail4 from "../assets/images/thumbnail4.webp"
 
 import { useMotionValue, animate, useInView } from "framer-motion";
 import { home, about, services } from "../data/content";
@@ -159,104 +164,392 @@ const Counter = ({ target, prefix = "", suffix = "", duration = 3.5 }) => {
   );
 };
 
-const TestimonialVideoCard = ({ src, poster, badge, title, desc, delay }) => {
-  const [isMuted, setIsMuted] = React.useState(true);
-  const [isPlaying, setIsPlaying] = React.useState(true);
-  const videoRef = React.useRef(null);
+const TestimonialSection = () => {
+  const [activeIndex, setActiveIndex] = React.useState(0);
+  const [playingId, setPlayingId] = React.useState(null);
+  const [isMutedMap, setIsMutedMap] = React.useState({});
+  const videoRefs = React.useRef({});
 
-  const toggleMute = (e) => {
+  const touchStartX = React.useRef(null);
+  const touchEndX = React.useRef(null);
+
+  const testimonialItems = [
+    {
+      id: 0,
+      name: "Ramesh",
+      title: "Proprietor, Sri Medicals",
+      quote: "Wide range of quality products and fast support from the Meenakshi team.",
+      rating: 5,
+      video: testimonialVideo3,
+      poster: thumnail1,
+    },
+    {
+      id: 1,
+      name: "Karthik",
+      title: "Manager, Healthcare Partner",
+      quote: "Trusted partner for our business. Professional and customer-friendly.",
+      rating: 5,
+      video: testimonialVideo4,
+      poster: thumnail2,
+    },
+    {
+      id: 2,
+      name: "Senthil Kumar",
+      title: "Director, Life Care Supplies",
+      quote: "Advanced cold storage and temperature compliance for sensitive medications.",
+      rating: 5,
+      video: testimonialVideo5,
+      poster: thumnail3,
+    },
+    {
+      id: 3,
+      name: "Venkatesh",
+      title: "Owner, Prime Pharma",
+      quote: "Reliable pharmaceutical stockist with exceptional service and prompt delivery.",
+      rating: 5,
+      video: testimonialVideo6,
+      poster:thumnail4,
+    },
+  ];
+
+  const total = testimonialItems.length;
+
+  const pauseAllVideos = () => {
+    Object.values(videoRefs.current).forEach((video) => {
+      if (video) {
+        video.pause();
+        video.currentTime = 0;
+      }
+    });
+    setPlayingId(null);
+    setIsMutedMap({});
+  };
+
+  const handlePrev = () => {
+    pauseAllVideos();
+    setActiveIndex((prev) => (prev - 1 + total) % total);
+  };
+
+  const handleNext = () => {
+    pauseAllVideos();
+    setActiveIndex((prev) => (prev + 1) % total);
+  };
+
+  const handleSelect = (idx) => {
+    if (idx === activeIndex) return;
+    pauseAllVideos();
+    setActiveIndex(idx);
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchMove = (e) => {
+    touchEndX.current = e.targetTouches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStartX.current || !touchEndX.current) return;
+    const distance = touchStartX.current - touchEndX.current;
+    if (distance > 40) {
+      handleNext();
+    } else if (distance < -40) {
+      handlePrev();
+    }
+    touchStartX.current = null;
+    touchEndX.current = null;
+  };
+
+  const togglePlay = (e, item) => {
     e.stopPropagation();
-    if (videoRef.current) {
-      videoRef.current.muted = !videoRef.current.muted;
-      setIsMuted(videoRef.current.muted);
+    const video = videoRefs.current[item.id];
+    if (!video) return;
+
+    if (playingId === item.id) {
+      video.pause();
+      setPlayingId(null);
+    } else {
+      pauseAllVideos();
+      const shouldMute = isMutedMap[item.id] ?? false;
+      video.muted = shouldMute;
+      video.play().catch(() => {
+        // Fallback if browser restricts unmuted autoplay/play
+        video.muted = true;
+        setIsMutedMap((prev) => ({ ...prev, [item.id]: true }));
+        video.play();
+      });
+      setPlayingId(item.id);
     }
   };
 
-  const togglePlay = () => {
-    if (videoRef.current) {
-      if (isPlaying) {
-        videoRef.current.pause();
-      } else {
-        videoRef.current.play();
-      }
-      setIsPlaying(!isPlaying);
+  const toggleMute = (e, item) => {
+    e.stopPropagation();
+    const video = videoRefs.current[item.id];
+    const currentMuted = isMutedMap[item.id] ?? false;
+    const newMuted = !currentMuted;
+
+    setIsMutedMap((prev) => ({
+      ...prev,
+      [item.id]: newMuted,
+    }));
+
+    if (video) {
+      video.muted = newMuted;
     }
   };
 
   return (
-    <motion.div
-      className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl bg-[#083B6A] group h-full w-full flex flex-col md:flex-row cursor-pointer border border-[#0B4E8C]"
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6, delay }}
-      onClick={togglePlay}
-    >
-      {/* LEFT SIDE (Desktop Text) */}
-      <div className="hidden md:flex md:w-[45%] flex-col justify-center p-8 lg:p-12 text-left bg-[#083B6A] z-20 select-none">
-        <span className="inline-block self-start bg-[#1C8A3C] text-white text-[11px] font-semibold uppercase tracking-widest px-3 py-1 rounded-full mb-4 shadow-sm">
-          {badge}
-        </span>
-        <h4 className="text-white text-2xl lg:text-3xl font-bold mb-4 leading-snug">
-          {title}
-        </h4>
-        <p className="text-slate-100 text-sm lg:text-base leading-relaxed">
-          {desc}
-        </p>
-      </div>
-
-      {/* RIGHT SIDE (Video Player) */}
-      <div className="relative w-full h-full md:w-[55%] bg-black flex items-center justify-center overflow-hidden">
-        {/* Video */}
-        <video
-          ref={videoRef}
-          className="w-full h-full md:h-full md:w-auto md:aspect-[3/4] object-cover md:object-contain"
-          poster={poster}
-          preload="metadata"
-          autoPlay
-          muted
-          loop
-          playsInline
+    <section className="pt-10 sm:pt-14 lg:pt-20 pb-8 sm:pb-12 lg:pb-16 bg-[#F5F7FA] overflow-hidden select-none">
+      <div className="container-custom px-4 sm:px-6">
+        {/* Section Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-6 sm:mb-10 lg:mb-12"
         >
-          <source src={src} type="video/webm" />
-        </video>
-
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/35 group-hover:via-black/10 transition-all duration-300 pointer-events-none md:bg-gradient-to-t md:from-black/40 md:via-transparent md:to-black/10"></div>
-
-        {/* Play/Pause center overlay */}
-        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20">
-          <div className="w-10 h-10 sm:w-14 sm:h-14 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/30 hover:scale-110 transition-transform">
-            {isPlaying ? (
-              <FiPause size={18} />
-            ) : (
-              <FiPlay size={18} className="ml-0.5" />
-            )}
+          <div className="flex justify-center mb-3">
+            <span className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#E8F5EB] border border-[#1C8A3C]/30 text-[#1C8A3C] font-bold text-xs tracking-wider uppercase shadow-2xs">
+              <span className="w-2 h-2 rounded-full bg-[#E31E24] animate-pulse"></span>
+              TESTIMONIALS
+            </span>
           </div>
+
+          <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B4E8C] tracking-tight mb-3">
+            What Our Partners Say
+          </h2>
+
+          <div className="flex justify-center items-center gap-1.5 mt-2">
+            <div className="h-1 w-7 rounded-full bg-[#0B4E8C]"></div>
+            <div className="h-1 w-7 rounded-full bg-[#1C8A3C]"></div>
+            <div className="h-1 w-7 rounded-full bg-[#E31E24]"></div>
+          </div>
+        </motion.div>
+
+        {/* Carousel Outer Container with Touch Swipe Support */}
+        <div
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          className="relative w-full max-w-6xl mx-auto px-1 sm:px-6 md:px-12 flex items-center justify-center min-h-[420px] sm:min-h-[520px] lg:min-h-[570px]"
+        >
+          {/* Navigation Arrow Left */}
+          <motion.button
+            whileHover={{ scale: 1.12 }}
+            whileTap={{ scale: 0.94 }}
+            transition={{ duration: 0.2 }}
+            onClick={handlePrev}
+            className="absolute left-1 sm:left-2 md:-left-4 lg:-left-6 top-1/2 -translate-y-1/2 z-40 w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-white text-[#0B4E8C] rounded-full shadow-xl border border-slate-200/80 flex items-center justify-center hover:bg-[#0B4E8C] hover:text-white transition-colors cursor-pointer"
+            aria-label="Previous testimonial"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="2.5"
+              stroke="currentColor"
+              className="w-4 h-4 sm:w-5 sm:h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 19.5L8.25 12l7.5-7.5"
+              />
+            </svg>
+          </motion.button>
+
+          {/* Cards Track - 3D Positioning with Framer Motion */}
+          <div className="relative w-full h-[400px] sm:h-[480px] lg:h-[540px] flex items-center justify-center">
+            {testimonialItems.map((item, idx) => {
+              const diff = (idx - activeIndex + total) % total;
+              const isCenter = diff === 0;
+              const isRight = diff === 1;
+              const isLeft = diff === total - 1;
+
+              let xVal = "0%";
+              let scaleVal = 1;
+              let opacityVal = 1;
+              let zIndexVal = 30;
+
+              if (isLeft) {
+                xVal = "-85%";
+                scaleVal = 0.88;
+                opacityVal = 0.85;
+                zIndexVal = 10;
+              } else if (isRight) {
+                xVal = "85%";
+                scaleVal = 0.88;
+                opacityVal = 0.85;
+                zIndexVal = 10;
+              } else if (!isCenter) {
+                xVal = "0%";
+                scaleVal = 0.5;
+                opacityVal = 0;
+                zIndexVal = 0;
+              }
+
+              const isPlaying = playingId === item.id;
+              const isMuted = isMutedMap[item.id] ?? false;
+
+              return (
+                <motion.div
+                  key={item.id}
+                  animate={{
+                    x: xVal,
+                    scale: scaleVal,
+                    opacity: opacityVal,
+                    zIndex: zIndexVal,
+                  }}
+                  transition={{
+                    duration: 0.6,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  onClick={() => {
+                    if (!isCenter) {
+                      handleSelect(idx);
+                    }
+                  }}
+                  className={`absolute w-[84vw] max-w-[290px] sm:max-w-[340px] lg:max-w-[370px] h-[400px] sm:h-[480px] lg:h-[540px] rounded-2xl sm:rounded-3xl lg:rounded-[32px] overflow-hidden shadow-2xl border border-slate-200/80 bg-white cursor-pointer flex flex-col ${
+                    !isCenter && !isLeft && !isRight ? "hidden" : !isCenter ? "hidden md:flex" : "flex"
+                  }`}
+                >
+                  {isCenter ? (
+                    /* CENTER FEATURED CARD DESIGN */
+                    <div
+                      className="relative w-full h-full bg-slate-900 overflow-hidden flex flex-col justify-center items-center group"
+                      onClick={(e) => togglePlay(e, item)}
+                    >
+                      {/* Video Tag - Poster dynamically cleared during playback so stream frame displays smoothly without poster glitch */}
+                      <video
+                        ref={(el) => (videoRefs.current[item.id] = el)}
+                        className="w-full h-full object-cover"
+                        poster={isPlaying ? undefined : item.poster}
+                        preload="metadata"
+                        playsInline
+                        loop
+                        muted={isMuted}
+                        onEnded={() => setPlayingId(null)}
+                      >
+                        <source src={item.video} type="video/webm" />
+                      </video>
+
+                      {/* Large Play Button Overlay (when paused) */}
+                      {!isPlaying && (
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-black/10 transition-colors z-20">
+                          <motion.div
+                            whileHover={{ scale: 1.08 }}
+                            whileTap={{ scale: 0.94 }}
+                            transition={{ duration: 0.2 }}
+                            className="w-14 h-14 sm:w-18 sm:h-18 lg:w-20 lg:h-20 rounded-full border-4 border-white flex items-center justify-center bg-black/25 backdrop-blur-xs shadow-2xl cursor-pointer"
+                          >
+                            <FiPlay className="w-7 h-7 sm:w-9 sm:h-9 lg:w-10 lg:h-10 text-white fill-white ml-1" />
+                          </motion.div>
+                        </div>
+                      )}
+
+                      {/* Playing Pause Overlay on Hover */}
+                      {isPlaying && (
+                        <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity bg-black/20 z-20">
+                          <motion.div
+                            whileHover={{ scale: 1.08 }}
+                            whileTap={{ scale: 0.94 }}
+                            transition={{ duration: 0.2 }}
+                            className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-white/80 flex items-center justify-center bg-black/40 text-white backdrop-blur-xs shadow-lg"
+                          >
+                            <FiPause className="w-6 h-6 sm:w-7 sm:h-7 text-white" />
+                          </motion.div>
+                        </div>
+                      )}
+
+                      {/* Mute/Unmute Toggle Button (Bottom Right) */}
+                      <button
+                        onClick={(e) => toggleMute(e, item)}
+                        className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 z-40 w-9 h-9 sm:w-10 sm:h-10 bg-black/60 backdrop-blur-xs text-white rounded-full flex items-center justify-center border border-white/20 hover:bg-black/80 transition-colors cursor-pointer"
+                        aria-label={isMuted ? "Unmute video" : "Mute video"}
+                      >
+                        {isMuted ? (
+                          <FiVolumeX className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                        ) : (
+                          <FiVolume2 className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
+                        )}
+                      </button>
+                    </div>
+                  ) : (
+                    /* SIDE CARD DESIGN (Left & Right) - Full vertical portrait video frame with play icon only */
+                    <div className="relative w-full h-full bg-slate-900 overflow-hidden flex items-center justify-center group">
+                      <video
+                        ref={(el) => (videoRefs.current[item.id] = el)}
+                        className="w-full h-full object-cover pointer-events-none"
+                        poster={item.poster}
+                        preload="metadata"
+                        muted
+                        playsInline
+                      >
+                        <source src={item.video} type="video/webm" />
+                      </video>
+                      <div className="absolute inset-0 flex items-center justify-center bg-black/15 group-hover:bg-black/10 transition-colors">
+                        <motion.div
+                          whileHover={{ scale: 1.08 }}
+                          whileTap={{ scale: 0.94 }}
+                          transition={{ duration: 0.2 }}
+                          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full border-4 border-white flex items-center justify-center bg-black/20 backdrop-blur-xs shadow-md"
+                        >
+                          <FiPlay className="w-5 h-5 sm:w-6 sm:h-6 text-white fill-white ml-0.5" />
+                        </motion.div>
+                      </div>
+                    </div>
+                  )}
+                </motion.div>
+              );
+            })}
+          </div>
+
+          {/* Navigation Arrow Right */}
+          <motion.button
+            whileHover={{ scale: 1.12 }}
+            whileTap={{ scale: 0.94 }}
+            transition={{ duration: 0.2 }}
+            onClick={handleNext}
+            className="absolute right-1 sm:right-2 md:-right-4 lg:-right-6 top-1/2 -translate-y-1/2 z-40 w-9 h-9 sm:w-11 sm:h-11 md:w-12 md:h-12 bg-white text-[#0B4E8C] rounded-full shadow-xl border border-slate-200/80 flex items-center justify-center hover:bg-[#0B4E8C] hover:text-white transition-colors cursor-pointer"
+            aria-label="Next testimonial"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="2.5"
+              stroke="currentColor"
+              className="w-4 h-4 sm:w-5 sm:h-5"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M8.25 4.5l7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </motion.button>
         </div>
 
-        {/* Mute/Unmute button top-right */}
-        <button
-          onClick={toggleMute}
-          className="absolute top-3 right-3 sm:top-4 sm:right-4 z-30 w-8 h-8 sm:w-10 sm:h-10 bg-black/60 backdrop-blur-md text-white rounded-full flex items-center justify-center border border-white/20 hover:bg-black/80 transition-colors"
-        >
-          {isMuted ? <FiVolumeX size={14} /> : <FiVolume2 size={14} />}
-        </button>
-
-        {/* Text overlay bottom (Mobile only) */}
-        <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 z-20 pointer-events-none md:hidden bg-gradient-to-t from-black/90 via-black/60 to-transparent p-3 sm:p-4 rounded-xl">
-          <span className="inline-block bg-[#1C8A3C] text-white text-[9px] sm:text-[10px] font-semibold uppercase tracking-widest px-2.5 py-0.5 rounded-full mb-1">
-            {badge}
-          </span>
-          <h4 className="text-white text-base sm:text-lg font-bold mb-1 leading-snug drop-shadow-md">
-            {title}
-          </h4>
-          <p className="text-slate-100 text-xs leading-relaxed max-w-sm drop-shadow-md line-clamp-3">
-            {desc}
-          </p>
+        {/* Carousel Pagination Dots */}
+        <div className="flex justify-center items-center gap-2 sm:gap-2.5 mt-6 sm:mt-8">
+          {testimonialItems.map((_, idx) => (
+            <motion.button
+              key={idx}
+              onClick={() => handleSelect(idx)}
+              animate={{
+                width: idx === activeIndex ? 28 : 10,
+                backgroundColor: idx === activeIndex ? "#1C8A3C" : "#CBD5E1",
+              }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
+              className="h-2.5 rounded-full cursor-pointer"
+              aria-label={`Go to slide ${idx + 1}`}
+            />
+          ))}
         </div>
       </div>
-    </motion.div>
+    </section>
   );
 };
 
@@ -477,145 +770,8 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Testimonial Video Section */}
-      <section className="pt-8 sm:pt-10 md:pt-12 lg:pt-14 pb-6 sm:pb-8 md:pb-10 bg-[#F5F7FA] overflow-hidden">
-        <div className="container-custom">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-          >
-            <SectionTitle
-              title="What Our Partners Say"
-              subtitle="Testimonials"
-            />
-          </motion.div>
-
-          {/* Carousel Layout */}
-          {(() => {
-            const testimonialVideos = [
-              {
-                src: testimonialVideo3,
-                poster: "/testimonial-thumbnail.webp",
-                badge: "Logistics Hub",
-                title: "Advanced Cold Chain",
-                desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
-              },
-              {
-                src: testimonialVideo4,
-                poster: "/testimonial-thumbnail-2.webp",
-                badge: "Logistics Hub",
-                title: "Advanced Cold Chain",
-                desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
-              },
-              {
-                src: testimonialVideo5,
-                poster: "/testimonial-thumbnail-3.webp",
-                badge: "Logistics Hub",
-                title: "Advanced Cold Chain",
-                desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
-              },
-            ];
-
-            return (
-              <div className="relative mt-6 sm:mt-8 w-full max-w-full sm:max-w-sm md:max-w-4xl lg:max-w-5xl mx-auto px-2 sm:px-4 md:px-0">
-                {/* Carousel Track */}
-                <div className="relative overflow-hidden rounded-2xl sm:rounded-3xl aspect-[4/5] sm:aspect-[3/4] md:aspect-[2/1] lg:aspect-[2.2/1] shadow-2xl bg-[#083B6A] group">
-                  <AnimatePresence mode="wait">
-                    <motion.div
-                      key={currentVideoIndex}
-                      initial={{ opacity: 0, x: 50, scale: 0.95 }}
-                      animate={{ opacity: 1, x: 0, scale: 1 }}
-                      exit={{ opacity: 0, x: -50, scale: 0.95 }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }}
-                      className="absolute inset-0 w-full h-full"
-                    >
-                      <TestimonialVideoCard
-                        src={testimonialVideos[currentVideoIndex].src}
-                        poster={testimonialVideos[currentVideoIndex].poster}
-                        badge={testimonialVideos[currentVideoIndex].badge}
-                        title={testimonialVideos[currentVideoIndex].title}
-                        desc={testimonialVideos[currentVideoIndex].desc}
-                        delay={0}
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-
-                {/* Navigation Arrows */}
-                <button
-                  onClick={() =>
-                    setCurrentVideoIndex(
-                      (prev) =>
-                        (prev - 1 + testimonialVideos.length) %
-                        testimonialVideos.length,
-                    )
-                  }
-                  className="absolute left-2 sm:left-3 md:-left-16 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-md text-[#0B4E8C] rounded-full shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#1C8A3C] hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
-                  aria-label="Previous testimonial"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2.5"
-                    stroke="currentColor"
-                    className="w-4 h-4 sm:w-5 sm:h-5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M15.75 19.5L8.25 12l7.5-7.5"
-                    />
-                  </svg>
-                </button>
-
-                <button
-                  onClick={() =>
-                    setCurrentVideoIndex(
-                      (prev) => (prev + 1) % testimonialVideos.length,
-                    )
-                  }
-                  className="absolute right-2 sm:right-3 md:-right-16 top-1/2 -translate-y-1/2 z-30 w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 bg-white/90 backdrop-blur-md text-[#0B4E8C] rounded-full shadow-lg flex items-center justify-center border border-slate-200 hover:bg-[#1C8A3C] hover:text-white hover:scale-110 active:scale-95 transition-all cursor-pointer"
-                  aria-label="Next testimonial"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    strokeWidth="2.5"
-                    stroke="currentColor"
-                    className="w-4 h-4 sm:w-5 sm:h-5"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      d="M8.25 4.5l7.5 7.5-7.5 7.5"
-                    />
-                  </svg>
-                </button>
-
-                {/* Indicators/Dots */}
-                <div className="flex justify-center gap-1.5 sm:gap-2 mt-4 sm:mt-6">
-                  {testimonialVideos.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentVideoIndex(index)}
-                      className={`h-2 sm:h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                        currentVideoIndex === index
-                          ? "w-6 sm:w-8 bg-[#1C8A3C]"
-                          : "w-2 sm:w-2.5 bg-slate-300 hover:bg-slate-400"
-                      }`}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
-            );
-          })()}
-        </div>
-      </section>
+      {/* Testimonial Section */}
+      <TestimonialSection />
 
       <FAQSection
         title="Frequently Asked Questions"
