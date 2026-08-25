@@ -88,6 +88,19 @@ const homeSchemas = [
       },
     })),
   },
+  {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": "Customer Testimonial - Meenakshi Pharma",
+    "description": "Customer testimonial about Meenakshi Pharma cold storage, logistics hub, and pharmaceutical distribution in Trichy.",
+    "thumbnailUrl": [
+      "https://meenakshipharma.com/testimonial-thumbnail.jpg",
+      "https://meenakshipharma.com/testimonial-thumbnail.webp"
+    ],
+    "uploadDate": "2026-08-04T12:14:32+05:30",
+    "contentUrl": "https://meenakshipharma.com/assets/srccc3-DPyZh0ED.webm",
+    "duration": "PT25S"
+  },
 ];
 import {
   FiActivity,
@@ -146,7 +159,7 @@ const Counter = ({ target, prefix = "", suffix = "", duration = 3.5 }) => {
   );
 };
 
-const TestimonialVideoCard = ({ src, badge, title, desc, delay }) => {
+const TestimonialVideoCard = ({ src, poster, badge, title, desc, delay }) => {
   const [isMuted, setIsMuted] = React.useState(true);
   const [isPlaying, setIsPlaying] = React.useState(true);
   const videoRef = React.useRef(null);
@@ -198,12 +211,15 @@ const TestimonialVideoCard = ({ src, badge, title, desc, delay }) => {
         <video
           ref={videoRef}
           className="w-full h-full md:h-full md:w-auto md:aspect-[3/4] object-cover md:object-contain"
-          src={src}
+          poster={poster}
+          preload="metadata"
           autoPlay
           muted
           loop
           playsInline
-        />
+        >
+          <source src={src} type="video/webm" />
+        </video>
 
         {/* Gradient overlay */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-black/35 group-hover:via-black/10 transition-all duration-300 pointer-events-none md:bg-gradient-to-t md:from-black/40 md:via-transparent md:to-black/10"></div>
@@ -481,41 +497,25 @@ const Home = () => {
             const testimonialVideos = [
               {
                 src: testimonialVideo3,
+                poster: "/testimonial-thumbnail.webp",
                 badge: "Logistics Hub",
                 title: "Advanced Cold Chain",
                 desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
               },
               {
                 src: testimonialVideo4,
+                poster: "/testimonial-thumbnail-2.webp",
                 badge: "Logistics Hub",
                 title: "Advanced Cold Chain",
                 desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
               },
               {
                 src: testimonialVideo5,
+                poster: "/testimonial-thumbnail-3.webp",
                 badge: "Logistics Hub",
                 title: "Advanced Cold Chain",
                 desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
               },
-
-              // {
-              //   src: testimonialVideo1,
-              //   badge: "Our Story",
-              //   title: "15+ Years of Excellence",
-              //   desc: "Trusted pharmaceutical distribution built on reliability, safety, and a commitment to healthcare advancement.",
-              // },
-              // {
-              //   src: testimonialVideo2,
-              //   badge: "Service Excellence",
-              //   title: "24/7 Dedicated Support",
-              //   desc: "Our client support and pharmacy helpline ensure round-the-clock service and supply chain management.",
-              // },
-              // {
-              //   src: testimonialVideo3,
-              //   badge: "Logistics Hub",
-              //   title: "Advanced Cold Chain",
-              //   desc: "State-of-the-art cold storage and temperature compliance for sensitive and lifesaving medications.",
-              // },
             ];
 
             return (
@@ -533,6 +533,7 @@ const Home = () => {
                     >
                       <TestimonialVideoCard
                         src={testimonialVideos[currentVideoIndex].src}
+                        poster={testimonialVideos[currentVideoIndex].poster}
                         badge={testimonialVideos[currentVideoIndex].badge}
                         title={testimonialVideos[currentVideoIndex].title}
                         desc={testimonialVideos[currentVideoIndex].desc}
