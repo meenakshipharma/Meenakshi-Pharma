@@ -119,7 +119,7 @@ const Footer = () => {
                   onClick={scrollToTop}
                   className="text-slate-200 hover:text-white hover:underline transition-colors inline-block "
                 >
-                  Brands
+                  Brands We Deal
                 </Link>
               </li>
               <li>

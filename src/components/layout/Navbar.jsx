@@ -14,7 +14,7 @@ const Navbar = () => {
     { name: "Home", path: "/", blank: false },
     { name: "About Us", path: "/about", blank: false },
     { name: "Our Services", path: "/services", blank: false },
-    { name: "Brands", path: "/brands", blank: false },
+    { name: "Brands We Deal", path: "/brands", blank: false },
     { name: "Our Achievements", path: "/achievements", blank: false },
     {
       name: "Web Order",
