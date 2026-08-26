@@ -8,7 +8,9 @@ import {
   FiTwitter,
   FiLinkedin,
   FiInstagram,
+  FiYoutube,
 } from "react-icons/fi";
+import { FaWhatsapp } from "react-icons/fa";
 import logoImg from "../../assets/images/Logo.webp";
 import { footer } from "../../data/content.js";
 
@@ -52,13 +54,15 @@ const Footer = () => {
             <p className="text-slate-200 mb-6 leading-relaxed text-sm">
               {footer.tagline}
             </p>
-            <div className="flex gap-3">
+            <div className="flex gap-2">
               {footer.socials.map((social) => {
                 const iconMap = {
+                  WhatsApp: <FaWhatsapp />,
                   Facebook: <FiFacebook />,
                   Twitter: <FiTwitter />,
                   LinkedIn: <FiLinkedin />,
                   Instagram: <FiInstagram />,
+                  Youtube: <FiYoutube />,
                 };
                 return (
                   <a
