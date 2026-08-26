@@ -12,10 +12,10 @@ const Navbar = () => {
 
   const navLinks = [
     { name: "Home", path: "/", blank: false },
-    { name: "About", path: "/about", blank: false },
-    { name: "Services", path: "/services", blank: false },
+    { name: "About Us", path: "/about", blank: false },
+    { name: "Our Services", path: "/services", blank: false },
     { name: "Brands", path: "/brands", blank: false },
-    { name: "Achievements", path: "/achievements", blank: false },
+    { name: "Our Achievements", path: "/achievements", blank: false },
     {
       name: "Web Order",
       path: "https://meenakshipharma.wondersoft.in/ro13.html#/login",
