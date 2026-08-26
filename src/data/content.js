@@ -227,30 +227,41 @@ export const home = {
 // About Page Content
 export const about = {
   seo: {
-    title: "About Us | Meenakshi Pharma",
+    title: "About Us | Meenakshi Pharma Trichy",
     description:
-      "Learn more about our company profile, legacy, and our dedicated leadership team.",
+      "Meenakshi Pharma was established on 27 May 1998 by Mr. V. Thiyagarajan and Mr. R. Chandrasekar. Discover our journey of growth, values, and commitment to healthcare.",
   },
   banner: {
-    title: "About Our Company",
+    title: "About Meenakshi Pharma",
     subtitle:
-      "A trusted name in pharmaceutical distribution and healthcare logistics.",
+      "A Journey Built on Trust, Quality Service, and Continuous Growth",
   },
   introduction: {
-    subtitle: "About Meenakshi Pharma",
-    title: "Delivering Trust Since 1998",
-    desc1:
-      "Founded in <strong>1998</strong>, Meenakshi Pharma began its journey in a humble <strong>10 × 10 ft room in Thillai Nagar, Tiruchirappalli</strong>, with a small investment but a bold vision to build a trusted pharmaceutical distribution company that supports healthcare providers with quality medicines, dependable service, and ultimately helps save lives.",
-    desc2:
-      "Driven by years of hard work,<strong> countless sleepless nights</strong>, unwavering dedication, and the collective efforts of our management, employees, warehouse team, and delivery executives, Meenakshi Pharma has grown into one of the region's leading pharmaceutical wholesale distributors, operating from our own facility in Thillai Nagar.",
-    desc3:
-      "Today, we are proud to be an authorized stockist for leading pharmaceutical companies including <strong>Cipla, Wallace, Torrent, GSK, Zydus, Dr. Reddy's, Lupin, Alkem, Apex, Glenmark, Mankind</strong>, and many more.",
-    desc4:
-      "For over <strong> 28 years, we have been a trusted supply partner to retail pharmacies, hospitals, and clinics</strong> across Trichy and the surrounding regions, ensuring the timely availability of genuine medicines. Our commitment to quality, reliability, and customer satisfaction continues to make us a trusted name in pharmaceutical distribution.",
-    desc5:
-      "More than medicines, we deliver trust, reliability, and lasting partnerships.",
-    imageUrl:
-      "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1470&auto=format&fit=crop",
+    badge: "About Meenakshi Pharma",
+    mainTitle: "Meenakshi Pharma – Our Journey of Growth",
+    subTitle: "From a Small Beginning to a Journey Built on Trust and Hope",
+    storyParagraphs: [
+      "Our journey in the <strong>pharmaceutical industry</strong> began with our retail pharmacies, <strong>Meenakshi Medicals</strong> and <strong>Rajeswari Medicals</strong>, in <strong>Thottiyam, Tiruchirappalli District</strong>. The experience we gained in retail pharmacy and the trust we built with our customers became the foundation for our next step.",
+      "Building on this experience, <strong>Meenakshi Pharma was established in Tiruchirappalli on 27 May 1998 by Mr. V. Thiyagarajan and Mr. R. Chandrasekar</strong>. We started in a simple rented space of around <strong>300 square feet</strong> and faced several challenges in our early years. With <strong>integrity, hard work, quality service, and customer trust</strong> as our core values, we continued to grow step by step.",
+      "Over the years, the continued support of <strong>pharmacy owners, doctors, healthcare professionals, industry associates, business partners, employees, and well-wishers</strong> helped us expand our operations and strengthen our presence in the pharmaceutical distribution sector.",
+      "After <strong>12 years of hard work, dedication, and continuous growth</strong>, we took an important step forward in <strong>2010</strong> by moving into our own <strong>7,500-square-foot building</strong>. This milestone marked an important chapter in our journey — from a small <strong>300-square-foot rented space</strong> to a facility of our own, built through years of commitment and perseverance.",
+      "Today, Meenakshi Pharma has grown into an established pharmaceutical distribution company with an annual business turnover of approximately <strong>₹50 crore</strong>.",
+      "For us, this growth is more than a business achievement. It is a reflection of the <strong>trust, confidence, and support</strong> we have received from everyone who has been part of our journey."
+    ],
+    foundationTitle: "Our Foundation",
+    foundationValues: [
+      "Integrity",
+      "Trust",
+      "Quality Service",
+      "Commitment",
+      "Continuous Growth"
+    ],
+    foundationLead: "From our humble beginnings in retail pharmacy to becoming a growing pharmaceutical distribution company, the journey of <strong>Meenakshi Pharma continues</strong>.",
+    quote: "“A journey that began with trust and hope,\ngrew through quality service,\nand continues towards a better future.”",
+    closingParagraphs: [
+      "The story of Meenakshi Pharma is not only about how far we have come, but also about the <strong>trust we have earned, the relationships we have built, and the responsibility we carry towards the future</strong>.",
+      "With a strong foundation, valuable experience, and a commitment to excellence, we continue to move forward with confidence — <strong>serving better, growing stronger, and building a better future for Meenakshi Pharma.</strong>"
+    ]
   },
 
   vision: {
