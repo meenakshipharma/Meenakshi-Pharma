@@ -201,11 +201,11 @@ export const home = {
   ],
   aboutTeaser: {
     subtitle: "About Meenakshi Pharma",
-    title: "From a Small Room to a Trusted Healthcare Partner",
+    title: "Meenakshi Pharma – Our Journey of Growth",
     desc1:
-      "Established in 1998, Meenakshi Pharma began its journey from a modest 10 × 10 ft room in Thillai Nagar, Tiruchirappalli. Built on determination, integrity, and a vision to improve healthcare access, we have grown into one of the region's trusted pharmaceutical distribution companies.",
+      "Our journey in the <strong>pharmaceutical industry</strong> began with our retail pharmacies, <strong>Meenakshi Medicals</strong> and <strong>Rajeswari Medicals</strong>, in <strong>Thottiyam, Tiruchirappalli District</strong>. The experience we gained in retail pharmacy and the trust we built with our customers became the foundation for our next step.",
     desc2:
-      "Today, we proudly serve retail pharmacies, hospitals, and clinics across Trichy and surrounding regions as an authorized stockist for leading pharmaceutical brands. Every medicine we deliver reflects our commitment to trust, quality, and long-lasting partnerships.",
+      "Building on this experience, <strong>Meenakshi Pharma was established in Tiruchirappalli on 27 May 1998 by Mr. V. Thiyagarajan and Mr. R. Chandrasekar</strong>. We started in a simple rented space of around <strong>300 square feet</strong> and faced several challenges in our early years. With <strong>integrity, hard work, quality service, and customer trust</strong> as our core values, we continued to grow step by step.",
     buttonText: "Read Our Story",
     imageUrl:
       "https://images.unsplash.com/photo-1576091160550-2173dba999ef?q=80&w=1470&auto=format&fit=crop",
