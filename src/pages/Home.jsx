@@ -669,22 +669,16 @@ const Home = () => {
               viewport={{ once: true }}
             >
               <SectionTitle
-                title={about.introduction.title}
+                title="Meenakshi Pharma – Our Journey of Growth"
                 subtitle="About Meenakshi Pharma"
                 align="left"
               />
-              <p
-                className="text-[#333333] leading-relaxed mb-4 sm:mb-6 text-xs sm:text-base text-justify"
-                dangerouslySetInnerHTML={{
-                  __html: about.introduction.desc1,
-                }}
-              />
-              <p
-                className="text-[#333333] leading-relaxed mb-6 sm:mb-8 text-xs sm:text-base text-justify"
-                dangerouslySetInnerHTML={{
-                  __html: about.introduction.desc2,
-                }}
-              />
+              <p className="text-[#333333] leading-relaxed mb-4 sm:mb-6 text-xs sm:text-base text-justify">
+                Our journey in the <strong>pharmaceutical industry</strong> began with our retail pharmacies, <strong>Meenakshi Medicals</strong> and <strong>Rajeswari Medicals</strong>, in <strong>Thottiyam, Tiruchirappalli District</strong>. The experience we gained in retail pharmacy and the trust we built with our customers became the foundation for our next step.
+              </p>
+              <p className="text-[#333333] leading-relaxed mb-6 sm:mb-8 text-xs sm:text-base text-justify">
+                Building on this experience, <strong>Meenakshi Pharma was established in Tiruchirappalli on 27 May 1998 by Mr. V. Thiyagarajan and Mr. R. Chandrasekar</strong>. We started in a simple rented space of around <strong>300 square feet</strong> and faced several challenges in our early years. With <strong>integrity, hard work, quality service, and customer trust</strong> as our core values, we continued to grow step by step.
+              </p>
               <div className="flex justify-center lg:justify-start">
                 <Button to="/about" variant="primary">Read Our Story</Button>
               </div>
