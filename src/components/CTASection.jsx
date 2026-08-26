@@ -29,8 +29,8 @@ const CTASection = () => {
               Join hundreds of satisfied partners and experience the Meenakshi Pharma difference.
             </p>
             <div className="flex justify-center">
-              <Button to="/contact" variant="primary" className="shadow-lg shadow-[#1C8A3C]/40 hover:shadow-xl">
-                Get in Touch Today
+              <Button to="/partner" variant="primary" className="shadow-lg shadow-[#1C8A3C]/40 hover:shadow-xl">
+                Partner With Us
               </Button>
             </div>
           </div>

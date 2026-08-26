@@ -114,10 +114,10 @@ import img_zeneth from "../assets/images/brands/zeneth.webp";
 // Navbar Links
 export const navigation = [
   { name: "Home", path: "/", blank: false },
-  { name: "About", path: "/about", blank: false },
-  { name: "Services", path: "/services", blank: false },
+  { name: "About Us", path: "/about", blank: false },
+  { name: "Our Services", path: "/services", blank: false },
   { name: "Brands", path: "/brands", blank: false },
-  { name: "Achievements", path: "/achievements", blank: false },
+  { name: "Our Achievements", path: "/achievements", blank: false },
   {
     name: "Web Order",
     path: "https://meenakshipharma.wondersoft.in/ro13.html#/login",
@@ -146,6 +146,8 @@ export const footer = {
     { name: "Twitter", url: "https://x.com/meenakshi_pharm" },
     { name: "LinkedIn", url: "https://www.linkedin.com/company/meenakshi-pharma/" },
     { name: "Instagram", url: "https://www.instagram.com/meenakshi_pharma_" },
+    { name: "WhatsApp", url: "https://wa.me/919942982301"},
+    { name: "Youtube", url: "https://www.youtube.com/channel/UC3b5_XbFfbaMNma9QwHDj7Q"}
   ],
   quickLinks: [
     { name: "About Us", path: "/about" },
@@ -171,7 +173,7 @@ export const ctaConfig = {
   heading: "Ready to Elevate Your Healthcare Supply?",
   subheading:
     "Join hundreds of satisfied partners and experience the Meenakshi Pharma difference.",
-  buttonText: "Get in Touch Today",
+  buttonText: "Partner With Us",
 };
 
 // Home Page Content
@@ -549,7 +551,7 @@ export const achievements = [
     url: ach1,
     title: "Certificate of association with Calpol Paracetamol",
   },
-  { id: 2, url: ach2, title: "Certificate of Appointment - CIPLA" },
+  { id: 2, url: ach2, title: "Certificate of Appreciation - CIPLA" },
   { id: 3, url: ach3, title: "Business Partner Excellence - APEX" },
   {
     id: 4,
@@ -557,7 +559,7 @@ export const achievements = [
     title: "Core Pillar of Alkem Altis @Trichy Year 2021-2022",
   },
   { id: 5, url: ach5, title: "Silver Club Member-2020 - ZINCOVIT" },
-  { id: 6, url: ach6, title: "Zydus business partner" },
+  { id: 6, url: ach6, title: "Zydus Valued business partner" },
   { id: 7, url: ach7, title: "Alkem 50 Years of Excellence" },
   {
     id: 8,
@@ -572,16 +574,16 @@ export const achievements = [
   { id: 10, url: ach10, title: "Certificate of Appreciation - CIPLA" },
   { id: 11, url: ach11, title: "Certificate of Gratitude - LUPIN" },
   { id: 12, url: ach12, title: "Certificate of Appreciation - GSK" },
-  { id: 13, url: ach13, title: "Trusted Health Care Business Partner" },
-  { id: 14, url: ach14, title: "15 Years of Excellence - AKESISS" },
+  { id: 13, url: ach13, title: "Trusted Health Care Business Partner - GSK" },
+  { id: 14, url: ach14, title: "10 Years of Excellence - AKESISS" },
   { id: 15, url: ach15, title: "Certificate of Appreciation - CIPLA" },
   { id: 16, url: ach16, title: "Certificate of Appreciation - GLENMARK" },
   { id: 17, url: ach17, title: "Corona Warrior" },
   { id: 18, url: ach18, title: "Certificate of Honour" },
-  { id: 19, url: ach19, title: "Certificate of Appreciation - ALKEM" },
+  { id: 19, url: ach19, title: "Core Pillar of Alkem Altis @Trichy Year 2021 -2022" },
   { id: 20, url: ach20, title: "Certificate of Appreciation - CIPLA" },
   { id: 21, url: ach21, title: "Certificate of Appreciation - EVION" },
-  { id: 22, url: ach22, title: "10 Years of Excellence - AKESISS" },
+  { id: 22, url: ach22, title: "15 Years of Excellence - AKESISS" },
 ];
 
 export const partner = {
