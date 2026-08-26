@@ -6,6 +6,18 @@ publish = "dist"
 directory = "netlify/functions"
 node_bundler = "esbuild"
 
+[[headers]]
+for = "/robots.txt"
+[headers.values]
+  Content-Type = "text/plain; charset=utf-8"
+  Cache-Control = "public, max-age=86400"
+
+[[headers]]
+for = "/sitemap.xml"
+[headers.values]
+  Content-Type = "application/xml; charset=utf-8"
+  Cache-Control = "public, max-age=86400"
+
 [[redirects]]
 from = "/*"
 to = "/index.html"

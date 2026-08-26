@@ -1,5 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
 User-agent: *
 Allow: /
+Disallow:
 
-# Sitemap Location
+# Host
+Host: https://meenakshipharma.com
+
+# Sitemaps
 Sitemap: https://meenakshipharma.com/sitemap.xml
