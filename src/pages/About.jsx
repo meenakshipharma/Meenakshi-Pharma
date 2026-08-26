@@ -6,8 +6,8 @@ import PageBanner from "../components/PageBanner";
 import SectionTitle from "../components/SectionTitle";
 import CTASection from "../components/CTASection";
 import heroImg from "../assets/images/hero.webp";
-import imgChandrasekar from "../assets/images/chandrasekar.jpg";
-import imgThiyagarajan from "../assets/images/thiyagarajan.jpg";
+import imgChandrasekar from "../assets/images/chandrasekar.webp";
+import imgThiyagarajan from "../assets/images/thiyagarajan.webp";
 import { about } from "../data/content";
 
 const aboutFAQs = [
