@@ -45,24 +45,24 @@ const FAQSection = ({
                 key={index}
                 className="bg-white rounded-xl sm:rounded-2xl border border-slate-200/90 shadow-xs overflow-hidden transition-all duration-200 hover:border-[#0B4E8C]/40"
               >
-                <button
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-left focus:outline-none focus:bg-slate-50 cursor-pointer gap-4"
-                  aria-expanded={isOpen}
-                >
-                  <h3 className="text-base sm:text-lg font-bold text-[#0B4E8C] leading-snug">
-                    {faq.question}
-                  </h3>
-                  <div
-                    className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
-                      isOpen
-                        ? "bg-[#0B4E8C] text-white rotate-180"
-                        : "bg-slate-100 text-[#0B4E8C]"
-                    }`}
+                <h3 className="text-base sm:text-lg font-bold text-[#0B4E8C] leading-snug">
+                  <button
+                    onClick={() => toggleFAQ(index)}
+                    className="w-full px-5 py-4 sm:px-6 sm:py-5 flex items-center justify-between text-left focus:outline-none focus:bg-slate-50 cursor-pointer gap-4"
+                    aria-expanded={isOpen}
                   >
-                    <FiChevronDown className="text-lg" />
-                  </div>
-                </button>
+                    <span>{faq.question}</span>
+                    <div
+                      className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-transform duration-300 ${
+                        isOpen
+                          ? "bg-[#0B4E8C] text-white rotate-180"
+                          : "bg-slate-100 text-[#0B4E8C]"
+                      }`}
+                    >
+                      <FiChevronDown className="text-lg" />
+                    </div>
+                  </button>
+                </h3>
 
                 <AnimatePresence initial={false}>
                   {isOpen && (

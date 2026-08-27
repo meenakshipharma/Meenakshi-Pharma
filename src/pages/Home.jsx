@@ -559,17 +559,15 @@ const Home = () => {
   return (
     <>
       <SEO
-        title="Meenakshi Pharma | Pharmaceutical Company in Trichy"
-        description="Meenakshi Pharma is a trusted pharmaceutical wholesaler and authorized stockist in Trichy, Tamil Nadu, delivering genuine medicines since 1998."
+        title="Meenakshi Pharma | Pharmaceutical Distribution & Healthcare Supply in Trichy"
+        description="Meenakshi Pharma provides reliable pharmaceutical distribution and healthcare supply solutions to pharmacies, hospitals and healthcare businesses across Trichy and Tamil Nadu."
         keywords={[
           "Meenakshi Pharma",
           "Meenakshi Pharma Trichy",
-          "pharmaceutical company in Trichy",
-          "pharma company in Trichy",
-          "pharmaceutical distributor Trichy",
-          "pharmaceutical company Tiruchirappalli",
-          "pharma company Tamil Nadu",
-          "pharmaceutical stockist Trichy"
+          "pharmaceutical distribution Trichy",
+          "healthcare supply Trichy",
+          "pharma distributor Trichy",
+          "pharmaceutical stockist Tamil Nadu"
         ]}
         canonicalPath="/"
         schema={homeSchemas}
@@ -589,13 +587,13 @@ const Home = () => {
           >
             <span className="inline-flex items-center gap-1.5 sm:gap-2 py-1 px-3 sm:py-1.5 sm:px-4 rounded-full bg-[#E8F5EB] border border-[#1C8A3C]/30 text-[#1C8A3C] font-semibold text-xs sm:text-sm mb-4 sm:mb-6 shadow-xs">
               <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#E31E24] animate-pulse"></span>
-              Meenakshi Pharma
+              Delivering Excellence in Healthcare
             </span>
-            <h1 className="text-2xl xs:text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-extrabold text-[#0B4E8C] leading-snug sm:leading-tight tracking-tight mb-4 sm:mb-6">
-              Delivering <span className="text-[#1C8A3C]">Excellence</span> in Healthcare
+            <h1 className="text-2xl xs:text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-extrabold text-[#0B4E8C] leading-snug sm:leading-tight tracking-tight mb-4 sm:mb-6">
+              Pharmaceutical Distribution & <span className="text-[#1C8A3C]">Healthcare Supply</span> in Trichy
             </h1>
             <p className="text-xs sm:text-base md:text-lg text-[#333333] mb-6 sm:mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-normal text-justify">
-              Your trusted partner in pharmaceutical distribution. We ensure safe, reliable, and timely access to quality healthcare products across the region.
+              Meenakshi Pharma provides reliable pharmaceutical distribution and healthcare supply solutions to pharmacies, hospitals and healthcare businesses across Trichy and Tamil Nadu.
             </p>
             <div className="flex flex-row items-center gap-2.5 sm:gap-4 justify-center lg:justify-start w-full sm:w-auto">
               <Button to="/services" variant="primary" className="px-3.5 py-2.5 sm:px-7 sm:py-3.5 text-xs sm:text-base">Explore Services</Button>

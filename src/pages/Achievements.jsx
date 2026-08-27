@@ -95,6 +95,26 @@ const Achievements = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* Informative Overview Section */}
+          <div className="mt-12 p-6 sm:p-8 bg-white rounded-2xl border border-slate-200 shadow-sm max-w-4xl mx-auto">
+            <h2 className="text-xl sm:text-2xl font-extrabold text-[#0B4E8C] mb-3 text-center">
+              Recognized Excellence in Pharmaceutical Distribution
+            </h2>
+            <p className="text-slate-600 text-xs sm:text-base leading-relaxed text-justify mb-4">
+              Over our 27+ years of operations since 1998, Meenakshi Pharma has been consistently recognized by leading multinational pharmaceutical companies and industry bodies for operational compliance, sales excellence, and supply chain integrity across Tamil Nadu.
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm text-slate-700">
+              <div className="bg-[#F5F7FA] p-4 rounded-xl border border-slate-100">
+                <span className="font-bold text-[#0B4E8C] block mb-1">Manufacturer Recognition</span>
+                Certified by Cipla, Alkem, GSK, Torrent, and Zydus Healthcare for exemplary distribution coverage and customer service standards.
+              </div>
+              <div className="bg-[#F5F7FA] p-4 rounded-xl border border-slate-100">
+                <span className="font-bold text-[#1C8A3C] block mb-1">Quality & Cold-Chain Compliance</span>
+                Certified adherence to WHO-GDP guidelines for handling temperature-sensitive biologics, vaccines, and critical care pharmaceuticals.
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
