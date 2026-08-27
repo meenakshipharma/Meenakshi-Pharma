@@ -107,13 +107,13 @@ const About = () => {
                 {about.introduction.badge}
               </span>
 
-              <h1 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B4E8C] tracking-tight leading-snug sm:leading-tight mb-2 sm:mb-3">
+              <h2 className="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-[#0B4E8C] tracking-tight leading-snug sm:leading-tight mb-2 sm:mb-3">
                 {about.introduction.mainTitle}
-              </h1>
-
-              <h2 className="text-base sm:text-xl lg:text-2xl font-semibold text-[#1C8A3C] max-w-4xl">
-                {about.introduction.subTitle}
               </h2>
+
+              <h3 className="text-base sm:text-xl lg:text-2xl font-semibold text-[#1C8A3C] max-w-4xl">
+                {about.introduction.subTitle}
+              </h3>
             </motion.div>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-8 lg:gap-12 items-start">
@@ -198,7 +198,7 @@ const About = () => {
                       <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#1C8A3C]" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"/>
                       </svg>
-                      {val}
+                      {val} 
                     </span>
                   ))}
                 </div>
@@ -261,9 +261,9 @@ const About = () => {
                 <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#E31E24] animate-pulse"></span>
                 Our Leadership
               </span>
-              <h3 className="text-2xl sm:text-4xl font-extrabold text-[#0B4E8C] tracking-tight">
+              <h2 className="text-2xl sm:text-4xl font-extrabold text-[#0B4E8C] tracking-tight">
                 Meet Our Founders
-              </h3>
+              </h2>
               <p className="text-slate-600 text-xs sm:text-base mt-2 max-w-xl mx-auto font-medium">
                 The visionary leaders behind Meenakshi Pharma’s 28-year journey of trust, quality service, and growth.
               </p>
@@ -271,7 +271,7 @@ const About = () => {
             </motion.div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 lg:gap-12 max-w-4xl mx-auto relative z-10">
-              {/* Founder 1: Mr. R. Chandrasekar */}
+              {/* Founder 1: Mr. V. Thiyagarajan */}
               <motion.div
                 initial={{ opacity: 0, x: -30, y: 20 }}
                 whileInView={{ opacity: 1, x: 0, y: 0 }}
@@ -283,54 +283,6 @@ const About = () => {
                   opacity: { duration: 0.7, delay: 0.2 },
                   x: { duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] },
                   y: { duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }
-                }}
-                className="bg-gradient-to-b from-slate-50 to-white rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/80 shadow-md sm:shadow-lg hover:shadow-2xl hover:border-[#1C8A3C]/50 flex flex-col items-center p-5 sm:p-8 text-center relative group transform-gpu"
-              >
-                {/* Decorative Top Accent Badge Line */}
-                <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#1C8A3C] via-emerald-400 to-[#1C8A3C]"></div>
-
-                {/* Portrait Frame */}
-                <div className="relative w-40 h-52 sm:w-56 sm:h-72 rounded-2xl overflow-hidden shadow-lg sm:shadow-xl border-2 sm:border-4 border-white mb-4 sm:mb-6 group-hover:shadow-2xl transition-shadow duration-500">
-                  <img
-                    src={imgChandrasekar}
-                    alt="Mr. R. Chandrasekar - Founder & Managing Director"
-                    className="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B4E8C]/40 via-transparent to-transparent opacity-80 group-hover:opacity-50 transition-opacity duration-500"></div>
-                  <div className="absolute bottom-2.5 sm:bottom-3 left-2.5 sm:left-3 right-2.5 sm:right-3 text-white text-[10px] sm:text-xs font-semibold uppercase tracking-wider bg-[#0B4E8C]/75 backdrop-blur-md py-1 rounded-lg border border-white/20 shadow-sm">
-                    Est. 1998
-                  </div>
-                </div>
-
-                {/* Info Details */}
-                <h4 className="text-xl sm:text-3xl font-extrabold text-[#0B4E8C] tracking-tight mb-1.5 sm:mb-2">
-                  Mr. R. Chandrasekar
-                </h4>
-                
-                <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-[#E8F5EB] border border-[#1C8A3C]/30 text-[#1C8A3C] font-bold text-[11px] sm:text-sm shadow-sm mb-2.5 sm:mb-3">
-                  <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#1C8A3C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                  </svg>
-                  Founder & Managing Director
-                </div>
-
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium mt-1">
-                  Guiding Meenakshi Pharma’s strategic vision, distribution operations, and partner excellence across South India.
-                </p>
-              </motion.div>
-
-              {/* Founder 2: Mr. V. Thiyagarajan */}
-              <motion.div
-                initial={{ opacity: 0, x: 30, y: 20 }}
-                whileInView={{ opacity: 1, x: 0, y: 0 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10, scale: 1.015 }}
-                transition={{
-                  layout: { duration: 0.3 },
-                  hover: { type: "spring", stiffness: 300, damping: 22 },
-                  opacity: { duration: 0.7, delay: 0.35 },
-                  x: { duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] },
-                  y: { duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }
                 }}
                 className="bg-gradient-to-b from-slate-50 to-white rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/80 shadow-md sm:shadow-lg hover:shadow-2xl hover:border-[#0B4E8C]/50 flex flex-col items-center p-5 sm:p-8 text-center relative group transform-gpu"
               >
@@ -364,6 +316,54 @@ const About = () => {
 
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium mt-1">
                   Co-founder whose dedication and foundational retail experience laid the cornerstone of our company values.
+                </p>
+              </motion.div>
+
+              {/* Founder 2: Mr. R. Chandrasekar */}
+              <motion.div
+                initial={{ opacity: 0, x: 30, y: 20 }}
+                whileInView={{ opacity: 1, x: 0, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -10, scale: 1.015 }}
+                transition={{
+                  layout: { duration: 0.3 },
+                  hover: { type: "spring", stiffness: 300, damping: 22 },
+                  opacity: { duration: 0.7, delay: 0.35 },
+                  x: { duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] },
+                  y: { duration: 0.7, delay: 0.35, ease: [0.16, 1, 0.3, 1] }
+                }}
+                className="bg-gradient-to-b from-slate-50 to-white rounded-2xl sm:rounded-3xl overflow-hidden border border-slate-200/80 shadow-md sm:shadow-lg hover:shadow-2xl hover:border-[#1C8A3C]/50 flex flex-col items-center p-5 sm:p-8 text-center relative group transform-gpu"
+              >
+                {/* Decorative Top Accent Badge Line */}
+                <div className="absolute top-0 inset-x-0 h-1.5 bg-gradient-to-r from-[#1C8A3C] via-emerald-400 to-[#1C8A3C]"></div>
+
+                {/* Portrait Frame */}
+                <div className="relative w-40 h-52 sm:w-56 sm:h-72 rounded-2xl overflow-hidden shadow-lg sm:shadow-xl border-2 sm:border-4 border-white mb-4 sm:mb-6 group-hover:shadow-2xl transition-shadow duration-500">
+                  <img
+                    src={imgChandrasekar}
+                    alt="Mr. R. Chandrasekar - Founder & Managing Director"
+                    className="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0B4E8C]/40 via-transparent to-transparent opacity-80 group-hover:opacity-50 transition-opacity duration-500"></div>
+                  <div className="absolute bottom-2.5 sm:bottom-3 left-2.5 sm:left-3 right-2.5 sm:right-3 text-white text-[10px] sm:text-xs font-semibold uppercase tracking-wider bg-[#0B4E8C]/75 backdrop-blur-md py-1 rounded-lg border border-white/20 shadow-sm">
+                    Est. 1998
+                  </div>
+                </div>
+
+                {/* Info Details */}
+                <h4 className="text-xl sm:text-3xl font-extrabold text-[#0B4E8C] tracking-tight mb-1.5 sm:mb-2">
+                  Mr. R. Chandrasekar
+                </h4>
+                
+                <div className="inline-flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-4 sm:py-1.5 rounded-full bg-[#E8F5EB] border border-[#1C8A3C]/30 text-[#1C8A3C] font-bold text-[11px] sm:text-sm shadow-sm mb-2.5 sm:mb-3">
+                  <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#1C8A3C]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  Founder & Managing Director
+                </div>
+
+                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium mt-1">
+                  Guiding Meenakshi Pharma’s strategic vision, distribution operations, and partner excellence across South India.
                 </p>
               </motion.div>
             </div>
