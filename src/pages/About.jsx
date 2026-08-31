@@ -10,6 +10,18 @@ import imgChandrasekar from "../assets/images/chandrasekar.webp";
 import imgThiyagarajan from "../assets/images/thiyagarajan.webp";
 import { about } from "../data/content";
 
+import img1 from "../assets/images/infrastructure/infra_3.webp";
+import img2 from "../assets/images/infrastructure/infra_12.webp";
+import img3 from "../assets/images/infrastructure/infra_11.webp";
+import img8 from "../assets/images/infrastructure/infra_8.webp";
+import img9 from "../assets/images/infrastructure/infra_14.webp";
+import img20 from "../assets/images/infrastructure/infra_15.webp";
+
+
+const infrastructureImages = [
+  img1, img2, img3, img8, img9, img20
+];
+
 const aboutFAQs = [
   {
     question: "When and by whom was Meenakshi Pharma founded?",
@@ -297,9 +309,6 @@ const About = () => {
                     className="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B4E8C]/40 via-transparent to-transparent opacity-80 group-hover:opacity-50 transition-opacity duration-500"></div>
-                  <div className="absolute bottom-2.5 sm:bottom-3 left-2.5 sm:left-3 right-2.5 sm:right-3 text-white text-[10px] sm:text-xs font-semibold uppercase tracking-wider bg-[#0B4E8C]/75 backdrop-blur-md py-1 rounded-lg border border-white/20 shadow-sm">
-                    Est. 1998
-                  </div>
                 </div>
 
                 {/* Info Details */}
@@ -345,9 +354,6 @@ const About = () => {
                     className="w-full h-full object-cover transform group-hover:scale-108 transition-transform duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0B4E8C]/40 via-transparent to-transparent opacity-80 group-hover:opacity-50 transition-opacity duration-500"></div>
-                  <div className="absolute bottom-2.5 sm:bottom-3 left-2.5 sm:left-3 right-2.5 sm:right-3 text-white text-[10px] sm:text-xs font-semibold uppercase tracking-wider bg-[#0B4E8C]/75 backdrop-blur-md py-1 rounded-lg border border-white/20 shadow-sm">
-                    Est. 1998
-                  </div>
                 </div>
 
                 {/* Info Details */}
@@ -442,51 +448,33 @@ const About = () => {
           </div>
 
           {/* 4. Our Infrastructure */}
-          <div className="bg-white p-6 sm:p-10 rounded-3xl border border-slate-200 shadow-lg">
+          <div>
             <SectionTitle
               title="Our Infrastructure"
               subtitle="State-of-the-Art Facilities"
             />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-12 items-center mt-6">
-              <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-              >
-                <h3 className="text-xl sm:text-2xl font-bold text-[#0B4E8C] mb-3 sm:mb-4">Modern Warehousing</h3>
-                <p className="text-[#333333] leading-relaxed mb-4 sm:mb-6 text-xs sm:text-base text-justify">
-                  Our facilities are equipped with the latest technology for
-                  inventory management and climate control, ensuring that all
-                  pharmaceutical products are stored under optimal conditions.
-                </p>
-                <ul className="space-y-2.5 sm:space-y-4">
-                  <li className="flex items-center gap-2.5 sm:gap-3 text-[#333333] font-semibold text-xs sm:text-base">
-                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#1C8A3C] flex-shrink-0"></span>{" "}
-                    Temperature-controlled zones
-                  </li>
-                  <li className="flex items-center gap-2.5 sm:gap-3 text-[#333333] font-semibold text-xs sm:text-base">
-                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#0B4E8C] flex-shrink-0"></span>{" "}
-                    Advanced security systems
-                  </li>
-                  <li className="flex items-center gap-2.5 sm:gap-3 text-[#333333] font-semibold text-xs sm:text-base">
-                    <span className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-[#1C8A3C] flex-shrink-0"></span>{" "}
-                    Automated inventory tracking
-                  </li>
-                </ul>
-              </motion.div>
-              <motion.div
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl aspect-video border-2 sm:border-4 border-white mt-4 md:mt-0"
-              >
-                <img
-                  src="https://images.unsplash.com/photo-1586773860418-d37222d8fce3?q=80&w=1473&auto=format&fit=crop"
-                  alt="Meenakshi Pharma pharmaceutical warehouse facility in Trichy"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
+            <div className="mt-8 sm:mt-12">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
+                {infrastructureImages.map((img, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: (index % 10) * 0.1, duration: 0.5 }}
+                    className="group relative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl border border-slate-100/50 aspect-[4/3] cursor-pointer"
+                  >
+                    <img
+                      src={img}
+                      alt={`Infrastructure facility ${index + 1}`}
+                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0B4E8C]/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
