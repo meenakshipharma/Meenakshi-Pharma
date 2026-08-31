@@ -190,12 +190,9 @@ export default async (request) => {
                 </tr>
                 <tr>
                   <th>Interested Categories</th>
-                  <td><span style="background-color: #E8F5EB; color: #1C8A3C; padding: 3px 8px; border-radius: 4px; font-weight: 600;">${categoriesFormatted}</span></td>
+                   <td><span style="background-color: #E8F5EB; color: #1C8A3C; padding: 3px 8px; border-radius: 4px; font-weight: 600;">${categoriesFormatted}</span></td>
                 </tr>
-                <tr>
-                  <th>Est. Monthly Purchase</th>
-                  <td>${monthlyPurchase || "-"}</td>
-                </tr>
+
                 <tr>
                   <th>Requirements / Notes</th>
                   <td style="white-space: pre-wrap; line-height: 1.5;">${requirements || "-"}</td>
