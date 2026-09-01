@@ -296,7 +296,7 @@ const Career = () => {
       data.append("resume", formData.resume);
       data.append("coverLetter", formData.coverLetter.trim());
 
-      const response = await fetch("/.netlify/functions/careers", {
+      const response = await fetch("/api/careers", {
         method: "POST",
         body: data,
       });
