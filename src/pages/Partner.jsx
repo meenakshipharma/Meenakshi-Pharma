@@ -409,7 +409,7 @@ const Partner = () => {
         }
       });
 
-      const response = await fetch("/.netlify/functions/partner", {
+      const response = await fetch("/api/partner", {
         method: "POST",
         body: data,
       });
