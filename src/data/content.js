@@ -196,7 +196,7 @@ export const home = {
   stats: [
     { target: 28, suffix: "+", label: "Years in  Industry " },
     { target: 86, suffix: "+", label: "Pharmaceutical Brands" },
-    { target: 650, suffix: "+", label: "Healthcare Partners" },
+    { target: 1500, suffix: "+", label: "Healthcare Partners" },
     { target: 5, suffix: "M plus", label: "Medicine Units Distributed" },
   ],
   aboutTeaser: {

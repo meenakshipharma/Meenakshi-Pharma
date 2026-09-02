@@ -246,9 +246,23 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-white/15 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-300">
-          <p>
-            &copy; {currentYear} {footer.copyright}
-          </p>
+          <div className="flex flex-col md:flex-row items-center gap-2 md:gap-4 text-center md:text-left">
+            <p>
+              &copy; {currentYear} {footer.copyright}
+            </p>
+            <span className="hidden md:inline ">|</span>
+            <p>
+              Developed by&nbsp;
+              <a
+                href="https://dk-creative-solution1.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[#1C8A3C] hover:text-white hover:underline transition-colors font-medium ps-1"
+              >
+                DK Creative Solutions
+              </a>
+            </p>
+          </div>
           <div className="flex gap-6">
             <Link
               to="/privacy-policy"
