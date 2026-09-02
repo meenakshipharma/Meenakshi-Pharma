@@ -324,7 +324,7 @@ const About = () => {
                 </div>
 
                 <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-medium mt-1">
-                  Co-founder whose dedication and foundational retail experience laid the cornerstone of our company values.
+                  Founder whose dedication and foundational retail experience laid the cornerstone of our company values.
                 </p>
               </motion.div>
 
